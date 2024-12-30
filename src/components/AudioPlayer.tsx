@@ -5,6 +5,7 @@ interface AudioPlayerProps {
   title: string;
   subtitle: string;
   description: string;
+  audioFile: string;
   isExpanded: boolean;
   onToggle: () => void;
   isPlaying: boolean;
@@ -15,6 +16,7 @@ const AudioPlayer = ({
   title,
   subtitle,
   description,
+  audioFile,
   isExpanded,
   onToggle,
   isPlaying,
@@ -31,6 +33,7 @@ const AudioPlayer = ({
             onClick={(e) => {
               e.stopPropagation();
               onPlayPause();
+              console.log('Playing audio file:', audioFile);
             }}
             className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary/90 transition-colors"
           >
