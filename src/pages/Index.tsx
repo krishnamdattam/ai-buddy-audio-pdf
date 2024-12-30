@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import AudioPlayer from '../components/AudioPlayer';
 import documentPdf from '../assets/pdf/document.pdf';
+import audio1 from '../assets/audio/new1.mp3';
+import audio2 from '../assets/audio/new2.mp3';
+import audio3 from '../assets/audio/new3.mp3';
+import audio4 from '../assets/audio/new4.mp3';
+import audio5 from '../assets/audio/new5.mp3';
+import audio6 from '../assets/audio/new6.mp3';
 
 const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
@@ -12,37 +18,37 @@ const Index = () => {
       title: 'Introduction', 
       subtitle: 'Overview and context',
       description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.',
-      audioFile: '/src/assets/audio/new1.mp3'
+      audioFile: audio1
     },
     { 
       title: 'Section 2', 
       subtitle: 'Key concepts',
       description: 'Explores fundamental concepts and terminology essential for understanding the document content.',
-      audioFile: '/src/assets/audio/new2.mp3'
+      audioFile: audio2
     },
     { 
       title: 'Section 3', 
       subtitle: 'Main arguments',
       description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.',
-      audioFile: '/src/assets/audio/new3.mp3'
+      audioFile: audio3
     },
     { 
       title: 'Section 4', 
       subtitle: 'Analysis',
       description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.',
-      audioFile: '/src/assets/audio/new4.mp3'
+      audioFile: audio4
     },
     { 
       title: 'Section 5', 
       subtitle: 'Discussion',
       description: 'Examines implications of the findings and connects different aspects of the analysis.',
-      audioFile: '/src/assets/audio/new5.mp3'
+      audioFile: audio5
     },
     { 
       title: 'Summary', 
       subtitle: 'Key takeaways',
       description: 'Concise summary of the main points and conclusions drawn from the document.',
-      audioFile: '/src/assets/audio/new6.mp3'
+      audioFile: audio6
     },
   ];
 
