@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import AudioPlayer from '../components/AudioPlayer';
-import documentPdf from '../assets/pdf/document.pdf';
+import documentPdf from '../assets/pdf/document.pdf?url';
 import audio1 from '../assets/audio/new1.mp3';
 import audio2 from '../assets/audio/new2.mp3';
 import audio3 from '../assets/audio/new3.mp3';
@@ -74,7 +74,7 @@ const Index = () => {
     navigateToPdfPage(audioSections[index].pdfPage);
   };
 
-  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(documentPdf)}`;
+  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
 
   return (
     <div className="min-h-screen bg-gray-900">
