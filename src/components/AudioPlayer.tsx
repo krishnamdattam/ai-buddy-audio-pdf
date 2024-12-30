@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp, Play, Pause } from 'lucide-react';
 interface AudioPlayerProps {
   title: string;
   subtitle: string;
+  description: string;
   isExpanded: boolean;
   onToggle: () => void;
   isPlaying: boolean;
@@ -13,6 +14,7 @@ interface AudioPlayerProps {
 const AudioPlayer = ({
   title,
   subtitle,
+  description,
   isExpanded,
   onToggle,
   isPlaying,
@@ -44,9 +46,10 @@ const AudioPlayer = ({
       
       {isExpanded && (
         <div className="p-4 border-t border-gray-700">
-          <div className="bg-gray-700 rounded-full h-1">
+          <div className="bg-gray-700 rounded-full h-1 mb-4">
             <div className="bg-primary h-full rounded-full w-1/3"></div>
           </div>
+          <p className="text-sm text-gray-400 mt-2">{description}</p>
         </div>
       )}
     </div>

@@ -14,12 +14,36 @@ const Index = () => {
   }, []);
 
   const audioSections = [
-    { title: 'Introduction', subtitle: 'Overview and context' },
-    { title: 'Section 2', subtitle: 'Key concepts' },
-    { title: 'Section 3', subtitle: 'Main arguments' },
-    { title: 'Section 4', subtitle: 'Analysis' },
-    { title: 'Section 5', subtitle: 'Discussion' },
-    { title: 'Summary', subtitle: 'Key takeaways' },
+    { 
+      title: 'Introduction', 
+      subtitle: 'Overview and context',
+      description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.'
+    },
+    { 
+      title: 'Section 2', 
+      subtitle: 'Key concepts',
+      description: 'Explores fundamental concepts and terminology essential for understanding the document content.'
+    },
+    { 
+      title: 'Section 3', 
+      subtitle: 'Main arguments',
+      description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.'
+    },
+    { 
+      title: 'Section 4', 
+      subtitle: 'Analysis',
+      description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.'
+    },
+    { 
+      title: 'Section 5', 
+      subtitle: 'Discussion',
+      description: 'Examines implications of the findings and connects different aspects of the analysis.'
+    },
+    { 
+      title: 'Summary', 
+      subtitle: 'Key takeaways',
+      description: 'Concise summary of the main points and conclusions drawn from the document.'
+    },
   ];
 
   return (
@@ -53,6 +77,7 @@ const Index = () => {
                   key={index}
                   title={section.title}
                   subtitle={section.subtitle}
+                  description={section.description}
                   isExpanded={expandedPlayer === index}
                   onToggle={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
                   isPlaying={playingPlayer === index}
