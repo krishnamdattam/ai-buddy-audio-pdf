@@ -8,6 +8,7 @@ import audio3 from '../assets/audio/new3.mp3';
 import audio4 from '../assets/audio/new4.mp3';
 import audio5 from '../assets/audio/new5.mp3';
 import audio6 from '../assets/audio/new6.mp3';
+import 'pdfjs-dist/web/pdf_viewer.css';
 
 const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
@@ -73,6 +74,8 @@ const Index = () => {
     navigateToPdfPage(audioSections[index].pdfPage);
   };
 
+  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(documentPdf)}`;
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navbar />
@@ -94,7 +97,7 @@ const Index = () => {
             <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
               <iframe
                 ref={iframeRef}
-                src={documentPdf}
+                src={pdfViewerUrl}
                 className="w-full h-full rounded-lg"
                 title="PDF Preview"
               />
