@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import AudioPlayer from '../components/AudioPlayer';
 import documentPdf from '../assets/pdf/document.pdf';
@@ -12,45 +12,66 @@ import audio6 from '../assets/audio/new6.mp3';
 const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
   const [playingPlayer, setPlayingPlayer] = useState<number | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const audioSections = [
     { 
       title: 'Introduction', 
       subtitle: 'Overview and context',
       description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.',
-      audioFile: audio1
+      audioFile: audio1,
+      pdfPage: 5
     },
     { 
       title: 'Section 2', 
       subtitle: 'Key concepts',
       description: 'Explores fundamental concepts and terminology essential for understanding the document content.',
-      audioFile: audio2
+      audioFile: audio2,
+      pdfPage: 6
     },
     { 
       title: 'Section 3', 
       subtitle: 'Main arguments',
       description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.',
-      audioFile: audio3
+      audioFile: audio3,
+      pdfPage: 19
     },
     { 
       title: 'Section 4', 
       subtitle: 'Analysis',
       description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.',
-      audioFile: audio4
+      audioFile: audio4,
+      pdfPage: 28
     },
     { 
       title: 'Section 5', 
       subtitle: 'Discussion',
       description: 'Examines implications of the findings and connects different aspects of the analysis.',
-      audioFile: audio5
+      audioFile: audio5,
+      pdfPage: 29
     },
     { 
       title: 'Summary', 
       subtitle: 'Key takeaways',
       description: 'Concise summary of the main points and conclusions drawn from the document.',
-      audioFile: audio6
+      audioFile: audio6,
+      pdfPage: 44
     },
   ];
+
+  const navigateToPdfPage = (pageNumber: number) => {
+    if (iframeRef.current) {
+      iframeRef.current.contentWindow?.postMessage({
+        type: 'jumpToPage',
+        page: pageNumber
+      }, '*');
+    }
+  };
+
+  const handleAudioPlay = (index: number) => {
+    setPlayingPlayer(index);
+    navigateToPdfPage(audioSections[index].pdfPage);
+  };
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -69,10 +90,10 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-6">
-          {/* Left side - PDF viewer (increased width from w-1/2 to w-2/3) */}
           <div className="w-2/3">
             <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
               <iframe
+                ref={iframeRef}
                 src={documentPdf}
                 className="w-full h-full rounded-lg"
                 title="PDF Preview"
@@ -80,7 +101,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Right side - Audio players (decreased width from w-1/2 to w-1/3) */}
           <div className="w-1/3">
             <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2">
               {audioSections.map((section, index) => (
@@ -92,14 +112,13 @@ const Index = () => {
                     playingPlayer === index ? 'animate-glow relative' : ''
                   }`}
                 >
-                  {/* Add glow effect elements for playing state */}
                   {playingPlayer === index && (
                     <>
                       <div className="absolute inset-0 bg-purple-500/20 rounded-lg animate-pulse"></div>
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg opacity-50 blur-sm group-hover:opacity-75 transition"></div>
                     </>
                   )}
-                  <div className="relative z-10"> {/* Add relative and z-10 to keep content above glow */}
+                  <div className="relative z-10">
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="text-lg font-semibold text-white">{section.title}</h3>
@@ -128,7 +147,7 @@ const Index = () => {
                           className="w-full"
                           controls
                           src={section.audioFile}
-                          onPlay={() => setPlayingPlayer(index)}
+                          onPlay={() => handleAudioPlay(index)}
                           onPause={() => setPlayingPlayer(null)}
                         >
                           <source src={section.audioFile} type="audio/mpeg" />
