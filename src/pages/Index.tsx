@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
-import AudioPlayer from '../components/AudioPlayer';
 import documentPdf from '../assets/pdf/document.pdf?url';
 import audio1 from '../assets/audio/new1.mp3';
 import audio2 from '../assets/audio/new2.mp3';
@@ -14,7 +13,6 @@ const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
   const [playingPlayer, setPlayingPlayer] = useState<number | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [debugPage, setDebugPage] = useState<string>('1');
 
   const audioSections = [
     { 
@@ -61,32 +59,11 @@ const Index = () => {
     },
   ];
 
-  const navigateToPdfPage = (pageNumber: number) => {
-    if (iframeRef.current) {
-      iframeRef.current.contentWindow?.postMessage({
-        action: 'PAGE_NUMBER',
-        pageNumber: pageNumber - 1
-      }, '*');
-    }
-  };
-
   const handleAudioPlay = (index: number) => {
     setPlayingPlayer(index);
-    navigateToPdfPage(audioSections[index].pdfPage);
   };
 
   const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
-
-  const handleDebugPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDebugPage(e.target.value);
-  };
-
-  const handleDebugJump = () => {
-    const pageNumber = parseInt(debugPage);
-    if (!isNaN(pageNumber) && pageNumber > 0) {
-      navigateToPdfPage(pageNumber);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-900">
@@ -95,30 +72,11 @@ const Index = () => {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white text-center">
-            Learn from the Experts (PoC)
+            Learn from the Experts
           </h1>
           <p className="text-xl text-gray-200 text-center mt-2">
-            Personalised, Step-by-step audio course with detailed explanations
+            Interactive audio guides with detailed explanations
           </p>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center gap-4 bg-gray-800 p-4 rounded-lg">
-          <span className="text-white">Debug PDF Navigation:</span>
-          <input
-            type="number"
-            min="1"
-            value={debugPage}
-            onChange={handleDebugPageChange}
-            className="bg-gray-700 text-white px-3 py-1 rounded"
-          />
-          <button
-            onClick={handleDebugJump}
-            className="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-700"
-          >
-            Jump to Page
-          </button>
         </div>
       </div>
 
