@@ -59,10 +59,10 @@ const Index = () => {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white text-center">
-            Learn from the Experts
+            Learn from the Experts (PoC)
           </h1>
           <p className="text-xl text-gray-200 text-center mt-2">
-            Interactive audio guides with detailed explanations
+            Personalised, Step-by-step audio course with detailed explanations
           </p>
         </div>
       </div>
