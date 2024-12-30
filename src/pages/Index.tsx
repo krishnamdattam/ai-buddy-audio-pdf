@@ -123,31 +123,6 @@ const Index = () => {
                       >
                         <source src={section.audioFile} type="audio/mpeg" />
                       </audio>
-                      
-                      {/* Audio Controls */}
-                      <div className="mt-3 flex items-center gap-3">
-                        <select 
-                          className="bg-gray-700 text-white rounded text-sm px-2 py-1"
-                          onChange={(e) => {
-                            const audio = document.querySelector(`audio[src="${section.audioFile}"]`);
-                            if (audio) {
-                              (audio as HTMLAudioElement).playbackRate = parseFloat(e.target.value);
-                            }
-                          }}
-                        >
-                          <option value="0.5">0.5x</option>
-                          <option value="1.0" selected>1.0x</option>
-                          <option value="1.5">1.5x</option>
-                          <option value="2.0">2.0x</option>
-                        </select>
-
-                        <div className="flex items-center gap-1 text-gray-400">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                          </svg>
-                          <span className="text-xs">Speed</span>
-                        </div>
-                      </div>
                     </div>
                   )}
                 </div>
