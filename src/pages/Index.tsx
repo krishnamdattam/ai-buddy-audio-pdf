@@ -88,43 +88,54 @@ const Index = () => {
                   key={index}
                   className={`bg-gray-800 rounded-lg p-3 transition-all duration-200 ${
                     expandedPlayer === index ? 'ring-2 ring-purple-500' : ''
+                  } ${
+                    playingPlayer === index ? 'animate-glow relative' : ''
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-semibold text-white">{section.title}</h3>
-                      <p className="text-sm text-gray-400">{section.subtitle}</p>
-                    </div>
-                    <button
-                      onClick={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
-                      className="text-gray-400 hover:text-white"
-                    >
-                      {expandedPlayer === index ? (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                        </svg>
-                      ) : (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      )}
-                    </button>
-                  </div>
-
-                  {expandedPlayer === index && (
-                    <div className="mt-3">
-                      <p className="text-sm text-gray-300 mb-3">{section.description}</p>
-                      <audio
-                        className="w-full"
-                        controls
-                        src={section.audioFile}
-                        onPlay={() => setPlayingPlayer(index)}
-                        onPause={() => setPlayingPlayer(null)}
-                      >
-                        <source src={section.audioFile} type="audio/mpeg" />
-                      </audio>
-                    </div>
+                  {/* Add glow effect elements for playing state */}
+                  {playingPlayer === index && (
+                    <>
+                      <div className="absolute inset-0 bg-purple-500/20 rounded-lg animate-pulse"></div>
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-lg opacity-50 blur-sm group-hover:opacity-75 transition"></div>
+                    </>
                   )}
+                  <div className="relative z-10"> {/* Add relative and z-10 to keep content above glow */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                        <p className="text-sm text-gray-400">{section.subtitle}</p>
+                      </div>
+                      <button
+                        onClick={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
+                        className="text-gray-400 hover:text-white"
+                      >
+                        {expandedPlayer === index ? (
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                          </svg>
+                        ) : (
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        )}
+                      </button>
+                    </div>
+
+                    {expandedPlayer === index && (
+                      <div className="mt-3">
+                        <p className="text-sm text-gray-300 mb-3">{section.description}</p>
+                        <audio
+                          className="w-full"
+                          controls
+                          src={section.audioFile}
+                          onPlay={() => setPlayingPlayer(index)}
+                          onPause={() => setPlayingPlayer(null)}
+                        >
+                          <source src={section.audioFile} type="audio/mpeg" />
+                        </audio>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
