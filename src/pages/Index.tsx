@@ -63,8 +63,8 @@ const Index = () => {
   const navigateToPdfPage = (pageNumber: number) => {
     if (iframeRef.current) {
       iframeRef.current.contentWindow?.postMessage({
-        type: 'jumpToPage',
-        page: pageNumber
+        action: 'PAGE_NUMBER',
+        pageNumber: pageNumber - 1
       }, '*');
     }
   };
