@@ -12,37 +12,37 @@ const Index = () => {
       title: 'Introduction', 
       subtitle: 'Overview and context',
       description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.',
-      audioFile: '/src/assets/audio/introduction.mp3'
+      audioFile: '/src/assets/audio/new1.mp3'
     },
     { 
       title: 'Section 2', 
       subtitle: 'Key concepts',
       description: 'Explores fundamental concepts and terminology essential for understanding the document content.',
-      audioFile: '/src/assets/audio/section2.mp3'
+      audioFile: '/src/assets/audio/new2.mp3'
     },
     { 
       title: 'Section 3', 
       subtitle: 'Main arguments',
       description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.',
-      audioFile: '/src/assets/audio/section3.mp3'
+      audioFile: '/src/assets/audio/new3.mp3'
     },
     { 
       title: 'Section 4', 
       subtitle: 'Analysis',
       description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.',
-      audioFile: '/src/assets/audio/section4.mp3'
+      audioFile: '/src/assets/audio/new4.mp3'
     },
     { 
       title: 'Section 5', 
       subtitle: 'Discussion',
       description: 'Examines implications of the findings and connects different aspects of the analysis.',
-      audioFile: '/src/assets/audio/section5.mp3'
+      audioFile: '/src/assets/audio/new5.mp3'
     },
     { 
       title: 'Summary', 
       subtitle: 'Key takeaways',
       description: 'Concise summary of the main points and conclusions drawn from the document.',
-      audioFile: '/src/assets/audio/summary.mp3'
+      audioFile: '/src/assets/audio/new6.mp3'
     },
   ];
 

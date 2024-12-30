@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, ChevronUp, Play, Pause } from 'lucide-react';
 
 interface AudioPlayerProps {
@@ -22,6 +22,18 @@ const AudioPlayer = ({
   isPlaying,
   onPlayPause,
 }: AudioPlayerProps) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
+
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg mb-4 border border-gray-700">
       <div
@@ -55,6 +67,7 @@ const AudioPlayer = ({
           <p className="text-sm text-gray-400 mt-2">{description}</p>
         </div>
       )}
+      <audio ref={audioRef} src={audioFile} />
     </div>
   );
 };
