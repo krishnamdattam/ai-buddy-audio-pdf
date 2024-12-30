@@ -19,7 +19,7 @@ const AudioPlayer = ({
   onPlayPause,
 }: AudioPlayerProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm mb-4">
+    <div className="bg-gray-800 rounded-lg shadow-lg mb-4 border border-gray-700">
       <div
         className="p-4 flex items-center justify-between cursor-pointer"
         onClick={onToggle}
@@ -35,16 +35,16 @@ const AudioPlayer = ({
             {isPlaying ? <Pause size={20} /> : <Play size={20} />}
           </button>
           <div>
-            <h3 className="font-medium text-gray-900">{title}</h3>
-            <p className="text-sm text-gray-500">{subtitle}</p>
+            <h3 className="font-medium text-gray-200">{title}</h3>
+            <p className="text-sm text-gray-400">{subtitle}</p>
           </div>
         </div>
-        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        {isExpanded ? <ChevronUp size={20} className="text-gray-400" /> : <ChevronDown size={20} className="text-gray-400" />}
       </div>
       
       {isExpanded && (
-        <div className="p-4 border-t">
-          <div className="bg-gray-200 rounded-full h-1">
+        <div className="p-4 border-t border-gray-700">
+          <div className="bg-gray-700 rounded-full h-1">
             <div className="bg-primary h-full rounded-full w-1/3"></div>
           </div>
         </div>

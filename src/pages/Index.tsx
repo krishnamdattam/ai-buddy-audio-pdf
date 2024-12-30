@@ -14,16 +14,16 @@ const Index = () => {
   }, []);
 
   const audioSections = [
-    { title: 'Executive Summary', subtitle: 'Key points and findings' },
-    { title: 'Chapter 1 Overview', subtitle: 'Introduction and context' },
-    { title: 'Main Arguments', subtitle: 'Core concepts explained' },
-    { title: 'Data Analysis', subtitle: 'Key metrics and insights' },
-    { title: 'Conclusions', subtitle: 'Final thoughts and recommendations' },
-    { title: 'Next Steps', subtitle: 'Action items and follow-ups' },
+    { title: 'Introduction', subtitle: 'Overview and context' },
+    { title: 'Section 2', subtitle: 'Key concepts' },
+    { title: 'Section 3', subtitle: 'Main arguments' },
+    { title: 'Section 4', subtitle: 'Analysis' },
+    { title: 'Section 5', subtitle: 'Discussion' },
+    { title: 'Summary', subtitle: 'Key takeaways' },
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-900">
       <Navbar />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -35,10 +35,12 @@ const Index = () => {
                 <PDFUpload onFileSelect={handleFileSelect} />
               </div>
             ) : (
-              <div className="h-[calc(100vh-12rem)] bg-white rounded-lg shadow-sm p-4">
-                <p className="text-center text-gray-600">
-                  PDF Preview: {selectedFile.name}
-                </p>
+              <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
+                <iframe
+                  src={URL.createObjectURL(selectedFile)}
+                  className="w-full h-full rounded-lg"
+                  title="PDF Preview"
+                />
               </div>
             )}
           </div>

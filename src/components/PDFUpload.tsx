@@ -14,10 +14,10 @@ const PDFUpload = ({ onFileSelect }: PDFUploadProps) => {
   }, [onFileSelect]);
 
   return (
-    <div className="p-4 border-2 border-dashed rounded-lg bg-white">
+    <div className="p-4 border-2 border-dashed border-gray-600 rounded-lg bg-gray-800">
       <label className="flex flex-col items-center justify-center cursor-pointer">
         <Upload className="w-8 h-8 text-primary mb-2" />
-        <span className="text-sm font-medium text-gray-600">Upload PDF</span>
+        <span className="text-sm font-medium text-gray-300">Upload PDF</span>
         <input
           type="file"
           className="hidden"
