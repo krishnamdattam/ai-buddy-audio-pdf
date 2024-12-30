@@ -68,10 +68,10 @@ const Index = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
-          {/* Left side - PDF viewer */}
-          <div className="w-1/2">
-            <div className="h-[calc(100vh-16rem)] bg-gray-800 rounded-lg shadow-lg p-4">
+        <div className="flex gap-6">
+          {/* Left side - PDF viewer (increased width from w-1/2 to w-2/3) */}
+          <div className="w-2/3">
+            <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
               <iframe
                 src={documentPdf}
                 className="w-full h-full rounded-lg"
@@ -80,31 +80,31 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Right side - Audio players */}
-          <div className="w-1/2">
-            <div className="space-y-4">
+          {/* Right side - Audio players (decreased width from w-1/2 to w-1/3) */}
+          <div className="w-1/3">
+            <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2">
               {audioSections.map((section, index) => (
                 <div 
                   key={index}
-                  className={`bg-gray-800 rounded-lg p-4 transition-all duration-200 ${
+                  className={`bg-gray-800 rounded-lg p-3 transition-all duration-200 ${
                     expandedPlayer === index ? 'ring-2 ring-purple-500' : ''
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-xl font-semibold text-white">{section.title}</h3>
-                      <p className="text-gray-400">{section.subtitle}</p>
+                      <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                      <p className="text-sm text-gray-400">{section.subtitle}</p>
                     </div>
                     <button
                       onClick={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
                       className="text-gray-400 hover:text-white"
                     >
                       {expandedPlayer === index ? (
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                         </svg>
                       ) : (
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       )}
@@ -112,8 +112,8 @@ const Index = () => {
                   </div>
 
                   {expandedPlayer === index && (
-                    <div className="mt-4">
-                      <p className="text-gray-300 mb-4">{section.description}</p>
+                    <div className="mt-3">
+                      <p className="text-sm text-gray-300 mb-3">{section.description}</p>
                       <audio
                         className="w-full"
                         controls
@@ -125,9 +125,9 @@ const Index = () => {
                       </audio>
                       
                       {/* Audio Controls */}
-                      <div className="mt-4 flex items-center gap-4">
+                      <div className="mt-3 flex items-center gap-3">
                         <select 
-                          className="bg-gray-700 text-white rounded px-3 py-1"
+                          className="bg-gray-700 text-white rounded text-sm px-2 py-1"
                           onChange={(e) => {
                             const audio = document.querySelector(`audio[src="${section.audioFile}"]`);
                             if (audio) {
@@ -141,11 +141,11 @@ const Index = () => {
                           <option value="2.0">2.0x</option>
                         </select>
 
-                        <div className="flex items-center gap-2 text-gray-400">
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <div className="flex items-center gap-1 text-gray-400">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
                           </svg>
-                          <span className="text-sm">Speed Control</span>
+                          <span className="text-xs">Speed</span>
                         </div>
                       </div>
                     </div>
