@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import documentPdf from '../assets/pdf/document.pdf?url';
 import audio1 from '../assets/audio/new1.mp3';
@@ -9,10 +9,64 @@ import audio5 from '../assets/audio/new5.mp3';
 import audio6 from '../assets/audio/new6.mp3';
 import 'pdfjs-dist/web/pdf_viewer.css';
 
+interface Note {
+  sectionId: number;
+  content: string;
+  timestamp: string;
+}
+
 const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
   const [playingPlayer, setPlayingPlayer] = useState<number | null>(null);
+  const [isNoteDialogOpen, setIsNoteDialogOpen] = useState(false);
+  const [currentNoteSection, setCurrentNoteSection] = useState<number | null>(null);
+  const [noteContent, setNoteContent] = useState('');
+  const [notes, setNotes] = useState<Note[]>([]);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Load notes from localStorage on component mount
+  useEffect(() => {
+    const savedNotes = localStorage.getItem('audioSectionNotes');
+    if (savedNotes) {
+      setNotes(JSON.parse(savedNotes));
+    }
+  }, []);
+
+  // Save notes to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('audioSectionNotes', JSON.stringify(notes));
+  }, [notes]);
+
+  const handleOpenNoteDialog = (sectionIndex: number) => {
+    const existingNote = notes.find(note => note.sectionId === sectionIndex);
+    setNoteContent(existingNote?.content || '');
+    setCurrentNoteSection(sectionIndex);
+    setIsNoteDialogOpen(true);
+  };
+
+  const handleSaveNote = () => {
+    if (currentNoteSection === null) return;
+
+    const newNote: Note = {
+      sectionId: currentNoteSection,
+      content: noteContent,
+      timestamp: new Date().toISOString()
+    };
+
+    setNotes(prevNotes => {
+      const noteIndex = prevNotes.findIndex(note => note.sectionId === currentNoteSection);
+      if (noteIndex >= 0) {
+        const updatedNotes = [...prevNotes];
+        updatedNotes[noteIndex] = newNote;
+        return updatedNotes;
+      }
+      return [...prevNotes, newNote];
+    });
+
+    setIsNoteDialogOpen(false);
+    setNoteContent('');
+    setCurrentNoteSection(null);
+  };
 
   const audioSections = [
     { 
@@ -135,15 +189,31 @@ const Index = () => {
                     {expandedPlayer === index && (
                       <div className="mt-3">
                         <p className="text-sm text-gray-300 mb-3">{section.description}</p>
-                        <audio
-                          className="w-full"
-                          controls
-                          src={section.audioFile}
-                          onPlay={() => handleAudioPlay(index)}
-                          onPause={() => setPlayingPlayer(null)}
-                        >
-                          <source src={section.audioFile} type="audio/mpeg" />
-                        </audio>
+                        <div className="flex items-center gap-4 mb-3">
+                          <audio
+                            className="flex-1"
+                            controls
+                            src={section.audioFile}
+                            onPlay={() => handleAudioPlay(index)}
+                            onPause={() => setPlayingPlayer(null)}
+                          >
+                            <source src={section.audioFile} type="audio/mpeg" />
+                          </audio>
+                          <button
+                            onClick={() => handleOpenNoteDialog(index)}
+                            className="flex items-center gap-2 px-3 py-1 bg-purple-600 rounded-md hover:bg-purple-700 transition-colors"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                            <span className="text-sm text-white">Notes</span>
+                          </button>
+                        </div>
+                        {notes.find(note => note.sectionId === index) && (
+                          <div className="mt-2 p-3 bg-gray-700/50 rounded-md">
+                            <p className="text-sm text-gray-300">{notes.find(note => note.sectionId === index)?.content}</p>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -153,6 +223,37 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Note Dialog */}
+      {isNoteDialogOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md">
+            <h3 className="text-xl font-semibold text-white mb-4">
+              Add Notes for {currentNoteSection !== null ? audioSections[currentNoteSection].title : ''}
+            </h3>
+            <textarea
+              value={noteContent}
+              onChange={(e) => setNoteContent(e.target.value)}
+              className="w-full h-40 bg-gray-700 text-white rounded-md p-3 mb-4 focus:ring-2 focus:ring-purple-500 outline-none"
+              placeholder="Write your notes here..."
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setIsNoteDialogOpen(false)}
+                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveNote}
+                className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+              >
+                Save Notes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
