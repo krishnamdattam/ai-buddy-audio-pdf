@@ -14,6 +14,7 @@ const Index = () => {
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
   const [playingPlayer, setPlayingPlayer] = useState<number | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [debugPage, setDebugPage] = useState<string>('1');
 
   const audioSections = [
     { 
@@ -76,6 +77,17 @@ const Index = () => {
 
   const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
 
+  const handleDebugPageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDebugPage(e.target.value);
+  };
+
+  const handleDebugJump = () => {
+    const pageNumber = parseInt(debugPage);
+    if (!isNaN(pageNumber) && pageNumber > 0) {
+      navigateToPdfPage(pageNumber);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navbar />
@@ -88,6 +100,25 @@ const Index = () => {
           <p className="text-xl text-gray-200 text-center mt-2">
             Personalised, Step-by-step audio course with detailed explanations
           </p>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex items-center gap-4 bg-gray-800 p-4 rounded-lg">
+          <span className="text-white">Debug PDF Navigation:</span>
+          <input
+            type="number"
+            min="1"
+            value={debugPage}
+            onChange={handleDebugPageChange}
+            className="bg-gray-700 text-white px-3 py-1 rounded"
+          />
+          <button
+            onClick={handleDebugJump}
+            className="bg-purple-600 text-white px-4 py-1 rounded hover:bg-purple-700"
+          >
+            Jump to Page
+          </button>
         </div>
       </div>
 
