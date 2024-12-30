@@ -56,11 +56,22 @@ const Index = () => {
     <div className="min-h-screen bg-gray-900">
       <Navbar />
       
+      <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-4xl font-bold text-white text-center">
+            Learn from the Experts
+          </h1>
+          <p className="text-xl text-gray-200 text-center mt-2">
+            Interactive audio guides with detailed explanations
+          </p>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-8">
           {/* Left side - PDF viewer */}
           <div className="w-1/2">
-            <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
+            <div className="h-[calc(100vh-16rem)] bg-gray-800 rounded-lg shadow-lg p-4">
               <iframe
                 src={documentPdf}
                 className="w-full h-full rounded-lg"
@@ -73,17 +84,73 @@ const Index = () => {
           <div className="w-1/2">
             <div className="space-y-4">
               {audioSections.map((section, index) => (
-                <AudioPlayer
+                <div 
                   key={index}
-                  title={section.title}
-                  subtitle={section.subtitle}
-                  description={section.description}
-                  audioFile={section.audioFile}
-                  isExpanded={expandedPlayer === index}
-                  onToggle={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
-                  isPlaying={playingPlayer === index}
-                  onPlayPause={() => setPlayingPlayer(playingPlayer === index ? null : index)}
-                />
+                  className={`bg-gray-800 rounded-lg p-4 transition-all duration-200 ${
+                    expandedPlayer === index ? 'ring-2 ring-purple-500' : ''
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{section.title}</h3>
+                      <p className="text-gray-400">{section.subtitle}</p>
+                    </div>
+                    <button
+                      onClick={() => setExpandedPlayer(expandedPlayer === index ? null : index)}
+                      className="text-gray-400 hover:text-white"
+                    >
+                      {expandedPlayer === index ? (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                        </svg>
+                      ) : (
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      )}
+                    </button>
+                  </div>
+
+                  {expandedPlayer === index && (
+                    <div className="mt-4">
+                      <p className="text-gray-300 mb-4">{section.description}</p>
+                      <audio
+                        className="w-full"
+                        controls
+                        src={section.audioFile}
+                        onPlay={() => setPlayingPlayer(index)}
+                        onPause={() => setPlayingPlayer(null)}
+                      >
+                        <source src={section.audioFile} type="audio/mpeg" />
+                      </audio>
+                      
+                      {/* Audio Controls */}
+                      <div className="mt-4 flex items-center gap-4">
+                        <select 
+                          className="bg-gray-700 text-white rounded px-3 py-1"
+                          onChange={(e) => {
+                            const audio = document.querySelector(`audio[src="${section.audioFile}"]`);
+                            if (audio) {
+                              (audio as HTMLAudioElement).playbackRate = parseFloat(e.target.value);
+                            }
+                          }}
+                        >
+                          <option value="0.5">0.5x</option>
+                          <option value="1.0" selected>1.0x</option>
+                          <option value="1.5">1.5x</option>
+                          <option value="2.0">2.0x</option>
+                        </select>
+
+                        <div className="flex items-center gap-2 text-gray-400">
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                          </svg>
+                          <span className="text-sm">Speed Control</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
           </div>
