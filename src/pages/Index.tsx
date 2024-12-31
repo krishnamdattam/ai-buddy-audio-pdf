@@ -88,31 +88,31 @@ const Index = () => {
     { 
       title: 'Introduction', 
       subtitle: 'Overview and context',
-      description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.',
+      description: 'An overview of schemas in ky2help®, detailing their role in structuring the CMDB and managing configuration items with inheritance and lifecycle definitions.',
       audioFile: audio1,
       pdfPage: 5,
       duration: '5:30'
     },
     { 
       title: 'Section 2', 
-      subtitle: 'Key concepts',
-      description: 'Explores fundamental concepts and terminology essential for understanding the document content.',
+      subtitle: 'Schemas',
+      description: 'Defines schemas as the backbone of CMDB, detailing their structure, inheritance, and lifecycle management in ky2help®.',
       audioFile: audio2,
       pdfPage: 6,
       duration: '8:15'
     },
     { 
       title: 'Section 3', 
-      subtitle: 'Main arguments',
-      description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.',
+      subtitle: 'Product Catalog',
+      description: 'Explains the product catalog’s structure, product management processes, schema hierarchy, and template utility, with detailed steps and examples for efficient configuration.',
       audioFile: audio3,
       pdfPage: 19,
       duration: '12:45'
     },
     { 
       title: 'Section 4', 
-      subtitle: 'Analysis',
-      description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.',
+      subtitle: 'Relationships',
+      description: 'Explores relationships in configuration management, emphasizing dependency mapping and evaluating impacts for troubleshooting and audits.',
       audioFile: audio4,
       pdfPage: 28,
       duration: '10:20'
@@ -120,15 +120,15 @@ const Index = () => {
     { 
       title: 'Section 5', 
       subtitle: 'Discussion',
-      description: 'Examines implications of the findings and connects different aspects of the analysis.',
+      description: 'Details Configuration Items (CIs), their management, roles, lifecycle, and downtime tracking.',
       audioFile: audio5,
       pdfPage: 29,
       duration: '7:50'
     },
     { 
       title: 'Summary', 
-      subtitle: 'Key takeaways',
-      description: 'Concise summary of the main points and conclusions drawn from the document.',
+      subtitle: 'Key takeaways and Quiz',
+      description: 'Final session reviewing Asset and Configuration Management concepts with a quiz to reinforce the concepts.',
       audioFile: audio6,
       pdfPage: 44,
       duration: '4:20'
