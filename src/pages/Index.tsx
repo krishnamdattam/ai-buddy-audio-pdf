@@ -145,7 +145,7 @@ const Index = () => {
             Learn from the Experts
           </h1>
           <p className="text-xl text-gray-200 text-center mt-2">
-            Interactive audio guides with detailed explanations
+            Step-by-step, Personalised learning audio courses on any topic
           </p>
         </div>
       </div>
