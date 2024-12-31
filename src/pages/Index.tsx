@@ -119,7 +119,7 @@ const Index = () => {
     },
     { 
       title: 'Section 5', 
-      subtitle: 'Discussion',
+      subtitle: 'Configuration Items',
       description: 'Details Configuration Items (CIs), their management, roles, lifecycle, and downtime tracking.',
       audioFile: audio5,
       pdfPage: 29,
