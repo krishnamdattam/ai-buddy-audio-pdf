@@ -90,44 +90,61 @@ const Index = () => {
       subtitle: 'Overview and context',
       description: 'A comprehensive introduction to the document, providing background information and setting the context for the main discussion.',
       audioFile: audio1,
-      pdfPage: 5
+      pdfPage: 5,
+      duration: '5:30'
     },
     { 
       title: 'Section 2', 
       subtitle: 'Key concepts',
       description: 'Explores fundamental concepts and terminology essential for understanding the document content.',
       audioFile: audio2,
-      pdfPage: 6
+      pdfPage: 6,
+      duration: '8:15'
     },
     { 
       title: 'Section 3', 
       subtitle: 'Main arguments',
       description: 'Presents the core arguments and key points, supported by evidence and detailed explanations.',
       audioFile: audio3,
-      pdfPage: 19
+      pdfPage: 19,
+      duration: '12:45'
     },
     { 
       title: 'Section 4', 
       subtitle: 'Analysis',
       description: 'In-depth analysis of the findings, including data interpretation and critical evaluation.',
       audioFile: audio4,
-      pdfPage: 28
+      pdfPage: 28,
+      duration: '10:20'
     },
     { 
       title: 'Section 5', 
       subtitle: 'Discussion',
       description: 'Examines implications of the findings and connects different aspects of the analysis.',
       audioFile: audio5,
-      pdfPage: 29
+      pdfPage: 29,
+      duration: '7:50'
     },
     { 
       title: 'Summary', 
       subtitle: 'Key takeaways',
       description: 'Concise summary of the main points and conclusions drawn from the document.',
       audioFile: audio6,
-      pdfPage: 44
+      pdfPage: 44,
+      duration: '4:20'
     },
   ];
+
+  const totalDuration = audioSections.reduce((acc, section) => {
+    const [mins, secs] = section.duration.split(':').map(Number);
+    return acc + mins * 60 + secs;
+  }, 0);
+
+  const formatTotalDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+  };
 
   const handleAudioPlay = (index: number) => {
     setPlayingPlayer(index);
@@ -142,10 +159,13 @@ const Index = () => {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white text-center">
-            Learn from the Experts
+            Learn from the Experts (PoC)
           </h1>
           <p className="text-xl text-gray-200 text-center mt-2">
             Step-by-step, Personalised learning audio courses on any topic
+          </p>
+          <p className="text-md text-gray-200 text-center mt-1">
+            Total Duration: {formatTotalDuration(totalDuration)}
           </p>
         </div>
       </div>

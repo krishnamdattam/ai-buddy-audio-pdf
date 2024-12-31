@@ -8,6 +8,7 @@ interface AudioSectionProps {
     description: string;
     audioFile: string;
     pdfPage: number;
+    duration: string;
   };
   index: number;
   expandedPlayer: number | null;
@@ -45,7 +46,14 @@ const AudioSection = ({
       <div className="relative z-10">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-semibold text-white">
+                {section.title}
+              </h3>
+              <span className="text-sm text-gray-400">
+                {section.duration}
+              </span>
+            </div>
             <p className="text-sm text-gray-400">{section.subtitle}</p>
           </div>
           <button
