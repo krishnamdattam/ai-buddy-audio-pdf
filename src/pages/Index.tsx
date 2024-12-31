@@ -251,10 +251,10 @@ const Index = () => {
                     className="w-full bg-gray-700 text-white rounded-md pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-purple-500 outline-none appearance-none"
                   >
                     <option value="" disabled>Course Template</option>
-                    <option value="step-by-step">📝 Step-by-step Guide</option>
-                    <option value="classroom">🎓 Classroom Lecture</option>
-                    <option value="podcast">🎧 Podcast Overview</option>
-                    <option value="research">🔍 Research Analysis</option>
+                    <option value="step-by-step">📝 Step-by-step Guide (En)</option>
+                    <option value="classroom">🎓 Classroom Lecture (En)</option>
+                    <option value="podcast">🎧 Podcast Overview (En)</option>
+                    <option value="research">🔍 Research Analysis (En)</option>
                   </select>
                   <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
