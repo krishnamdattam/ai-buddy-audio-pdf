@@ -23,7 +23,7 @@ const Index = () => {
   const [notes, setNotes] = useState<Note[]>([]);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [courseType, setCourseType] = useState('audio');
-  const [audioLength, setAudioLength] = useState('medium');
+  const [audioLength, setAudioLength] = useState(50);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -156,6 +156,12 @@ const Index = () => {
 
   const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
 
+  const getLengthLabel = (value: number) => {
+    if (value <= 33) return 'Short';
+    if (value <= 66) return 'Medium';
+    return 'Long';
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
       <Navbar />
@@ -176,81 +182,88 @@ const Index = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-gray-800 rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-semibold text-white mb-4">Personalise Course</h2>
+          <h2 className="text-2xl font-semibold text-white mb-6 flex items-center gap-2">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+            Personalise Course
+          </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="col-span-1">
               <label className="block text-sm font-medium text-gray-400 mb-2">
                 Username
               </label>
-              <input
-                type="text"
-                className="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
-                placeholder="Enter your name"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">
-                Experience in this subject
-              </label>
-              <select
-                className="w-full bg-gray-700 text-white rounded-md px-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
-              >
-                <option value="beginner">Beginner</option>
-                <option value="intermediate">Intermediate</option>
-                <option value="advanced">Advanced</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-400 mb-2">
-                Preferred Length
-              </label>
-              <div className="flex items-center justify-between gap-4">
-                <button
-                  className={`px-4 py-2 rounded-md ${
-                    audioLength === 'short' 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300'
-                  }`}
-                  onClick={() => setAudioLength('short')}
-                >
-                  Short
-                </button>
-                <button
-                  className={`px-4 py-2 rounded-md ${
-                    audioLength === 'medium' 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300'
-                  }`}
-                  onClick={() => setAudioLength('medium')}
-                >
-                  Medium
-                </button>
-                <button
-                  className={`px-4 py-2 rounded-md ${
-                    audioLength === 'long' 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300'
-                  }`}
-                  onClick={() => setAudioLength('long')}
-                >
-                  Long
-                </button>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  className="w-full bg-gray-700 text-white rounded-md pl-10 pr-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none transition-all duration-200"
+                  placeholder="Enter your name"
+                />
               </div>
             </div>
 
-            <div>
+            <div className="col-span-1">
+              <label className="block text-sm font-medium text-gray-400 mb-2">
+                Experience in this subject
+              </label>
+              <div className="relative">
+                <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+                <select
+                  className="w-full bg-gray-700 text-white rounded-md pl-10 pr-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none appearance-none transition-all duration-200"
+                >
+                  <option value="beginner">Beginner</option>
+                  <option value="intermediate">Intermediate</option>
+                  <option value="advanced">Advanced</option>
+                </select>
+                <span className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 pointer-events-none">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-gray-400 mb-2">
+                Preferred Length
+              </label>
+              <div className="space-y-2">
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={audioLength}
+                  onChange={(e) => setAudioLength(Number(e.target.value))}
+                  className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                />
+                <div className="flex justify-between text-sm text-gray-400">
+                  <span className={audioLength <= 33 ? 'text-purple-500 font-medium' : ''}>Short</span>
+                  <span className={audioLength > 33 && audioLength <= 66 ? 'text-purple-500 font-medium' : ''}>Medium</span>
+                  <span className={audioLength > 66 ? 'text-purple-500 font-medium' : ''}>Long</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="col-span-1">
               <label className="block text-sm font-medium text-gray-400 mb-2">
                 Course Type
               </label>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 bg-gray-700 p-1 rounded-md">
                 <button
-                  className={`flex items-center gap-2 px-4 py-2 rounded-md ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-all duration-200 ${
                     courseType === 'audio' 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300'
+                      ? 'bg-purple-600 text-white shadow-lg' 
+                      : 'text-gray-300 hover:text-white'
                   }`}
                   onClick={() => setCourseType('audio')}
                 >
@@ -260,10 +273,10 @@ const Index = () => {
                   Audio
                 </button>
                 <button
-                  className={`flex items-center gap-2 px-4 py-2 rounded-md ${
+                  className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-all duration-200 ${
                     courseType === 'video' 
-                      ? 'bg-purple-600 text-white' 
-                      : 'bg-gray-700 text-gray-300'
+                      ? 'bg-purple-600 text-white shadow-lg' 
+                      : 'text-gray-300 hover:text-white'
                   }`}
                   onClick={() => setCourseType('video')}
                 >
@@ -275,14 +288,12 @@ const Index = () => {
               </div>
             </div>
 
-            <div>
+            <div className="col-span-1">
               <label className="block text-sm font-medium text-gray-400 mb-2">
                 Upload PDF
               </label>
-              <div className="flex items-center gap-4">
-                <button
-                  className="flex items-center gap-2 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600"
-                >
+              <div className="relative group">
+                <button className="w-full flex items-center gap-2 px-4 py-2 bg-gray-700 text-gray-300 rounded-md hover:bg-gray-600 transition-all duration-200 group-hover:ring-2 group-hover:ring-purple-500">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                   </svg>
@@ -291,14 +302,12 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex items-end">
-              <button
-                className="w-full px-6 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
-              >
+            <div className="col-span-2">
+              <button className="w-full px-6 py-3 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-all duration-200 transform hover:scale-[1.02] focus:scale-[0.98] flex items-center justify-center gap-2 font-medium shadow-lg">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
-                Personalise
+                Personalise Course
               </button>
             </div>
           </div>
