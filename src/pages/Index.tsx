@@ -143,7 +143,9 @@ const Index = () => {
   const formatTotalDuration = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
-    return hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+    return hours > 0 
+      ? `(${hours}h ${minutes}m Total)`
+      : `(${minutes} Min Total)`;
   };
 
   const handleAudioPlay = (index: number) => {

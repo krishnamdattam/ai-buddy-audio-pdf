@@ -46,12 +46,12 @@ const AudioSection = ({
       <div className="relative z-10">
         <div className="flex items-center justify-between">
           <div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-2">
               <h3 className="text-lg font-semibold text-white">
                 {section.title}
               </h3>
               <span className="text-sm text-gray-400">
-                {section.duration}
+                ({section.duration} Min)
               </span>
             </div>
             <p className="text-sm text-gray-400">{section.subtitle}</p>
