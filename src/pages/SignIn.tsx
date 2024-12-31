@@ -20,10 +20,10 @@ const SignIn = () => {
       <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-white text-center">
-            Audio PDF Learning Platform
+            Personalised Audio Learning Platform (PoC)
           </h1>
           <p className="text-xl text-gray-200 text-center mt-2">
-            Sign in to access interactive audio guides with detailed explanations
+            Sign in to access personalised audio courses
           </p>
         </div>
       </div>
@@ -39,11 +39,19 @@ const SignIn = () => {
                   colors: {
                     brand: '#6366f1',
                     brandAccent: '#4f46e5',
+                    inputText: 'white',
                   },
+                },
+              },
+              style: {
+                input: {
+                  color: 'white',
+                  backgroundColor: 'rgba(55, 65, 81, 1)',
                 },
               },
             }}
             providers={[]}
+            view="sign_in"
           />
         </div>
       </div>
