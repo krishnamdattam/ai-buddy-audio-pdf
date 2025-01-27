@@ -31,7 +31,7 @@ const Landing = () => {
           </div>
         </ContainerScroll>
       </div>
-      <div className="fixed bottom-8 right-8 z-50">
+      <div className="flex justify-center w-full mt-20">
         <Button
           onClick={() => navigate("/signin")}
           className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:shadow-lg transition-all duration-200 hover:scale-105"
