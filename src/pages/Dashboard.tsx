@@ -1,10 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, Trash2 } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [courseName, setCourseName] = useState('');
+  const [selectedTemplate, setSelectedTemplate] = useState('');
+  const [selectedPersona, setSelectedPersona] = useState('');
 
   // Placeholder data for courses
   const courses = [
@@ -19,6 +32,19 @@ const Dashboard = () => {
       createdAt: '2024-03-14',
     },
   ];
+
+  const handleNext = () => {
+    if (courseName && selectedTemplate && selectedPersona) {
+      // Store the course details in state management or pass as URL params
+      navigate('/upload-pdf', {
+        state: {
+          courseName,
+          template: selectedTemplate,
+          persona: selectedPersona,
+        },
+      });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -48,15 +74,67 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Create New Course Button */}
+        {/* Create New Course Section */}
         <div className="mb-8">
-          <Button
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
-            onClick={() => console.log('Create new course')}
-          >
-            <PlusCircle className="mr-2 h-5 w-5" />
-            Create a New Personalised Course
-          </Button>
+          {!isExpanded ? (
+            <Button
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-200"
+              onClick={() => setIsExpanded(true)}
+            >
+              <PlusCircle className="mr-2 h-5 w-5" />
+              Create a New Personalised Course
+            </Button>
+          ) : (
+            <Card className="bg-gray-800 border-gray-700 p-6">
+              <div className="space-y-4">
+                <Input
+                  placeholder="Enter course name"
+                  value={courseName}
+                  onChange={(e) => setCourseName(e.target.value)}
+                  className="bg-gray-700 border-gray-600 text-white placeholder-gray-400"
+                />
+                
+                <Select onValueChange={setSelectedTemplate}>
+                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                    <SelectValue placeholder="Choose course template" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700">
+                    <SelectItem value="step-by-step">Step-by-step Instructional Course</SelectItem>
+                    <SelectItem value="podcast">Podcast Style Course</SelectItem>
+                    <SelectItem value="refresher">Refresher Course</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select onValueChange={setSelectedPersona}>
+                  <SelectTrigger className="bg-gray-700 border-gray-600 text-white">
+                    <SelectValue placeholder="Choose persona template" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-gray-800 border-gray-700">
+                    <SelectItem value="andy-julia">Andy and Julia</SelectItem>
+                    <SelectItem value="robert-mark">Robert and Mark</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <div className="flex justify-end space-x-3 mt-4">
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsExpanded(false)}
+                    className="border-gray-600 text-gray-300 hover:bg-gray-700"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleNext}
+                    disabled={!courseName || !selectedTemplate || !selectedPersona}
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  >
+                    Next
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          )}
         </div>
 
         {/* Existing Courses */}
