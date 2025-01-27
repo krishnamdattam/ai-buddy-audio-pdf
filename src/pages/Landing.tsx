@@ -15,7 +15,7 @@ const Landing = () => {
               <h1 className="text-4xl font-semibold text-white">
                 Learn from the Experts with <br />
                 <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600">
-                  AI Buddy Audio
+                  AI Buddy
                 </span>
               </h1>
             </>
