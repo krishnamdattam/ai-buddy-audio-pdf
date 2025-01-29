@@ -1,20 +1,53 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AudioSection from '../components/AudioSection';
 import { supabase } from '@/integrations/supabase/client';
-import documentPdf from '../assets/pdf/document.pdf?url';
-import audio1 from '../assets/audio/new1.mp3';
-import audio2 from '../assets/audio/new2.mp3';
-import audio3 from '../assets/audio/new3.mp3';
-import audio4 from '../assets/audio/new4.mp3';
-import audio5 from '../assets/audio/new5.mp3';
-import audio6 from '../assets/audio/new6.mp3';
+import documentPdf from '../assets/Assets and Configuration Management/pdf/document.pdf?url';
+import audio1 from '../assets/Assets and Configuration Management/audio/new1.mp3';
+import audio2 from '../assets/Assets and Configuration Management/audio/new2.mp3';
+import audio3 from '../assets/Assets and Configuration Management/audio/new3.mp3';
+import audio4 from '../assets/Assets and Configuration Management/audio/new4.mp3';
+import audio5 from '../assets/Assets and Configuration Management/audio/new5.mp3';
+import audio6 from '../assets/Assets and Configuration Management/audio/new6.mp3';
 import type { Note } from '@/types/notes';
 import 'pdfjs-dist/web/pdf_viewer.css';
+import { Search, Settings, LogOut, FileText, Clock, BookOpen, MessageCircle, Send, X, Maximize2, Minimize2, ChevronLeft, Edit, Volume2, VolumeX } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { Slider } from "@/components/ui/slider";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-const Index = () => {
+// Audio files will be imported after you upload them
+const audioPlaceholder = '';
+
+interface CourseDialogue {
+  expert: string;
+  learner: string;
+}
+
+interface CourseSection {
+  title: string;
+  dialogues: CourseDialogue[];
+}
+
+interface CourseState {
+  courseName: string;
+  sections: CourseSection[];
+}
+
+export default function Index() {
+  const location = useLocation();
   const navigate = useNavigate();
+  const courseState = location.state as CourseState;
+  const [isLoading, setIsLoading] = useState(true);
   const [expandedPlayer, setExpandedPlayer] = useState<number | null>(null);
   const [playingPlayer, setPlayingPlayer] = useState<number | null>(null);
   const [isNoteDialogOpen, setIsNoteDialogOpen] = useState(false);
@@ -26,20 +59,53 @@ const Index = () => {
   const [audioLength, setAudioLength] = useState(50);
   const [isPersonalizationOpen, setIsPersonalizationOpen] = useState(false);
   const [courseTemplate, setCourseTemplate] = useState('step-by-step');
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [messages, setMessages] = useState<Array<{ text: string; isUser: boolean }>>([]);
+  const [newMessage, setNewMessage] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isPdfFullScreen, setIsPdfFullScreen] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const [playbackSpeed, setPlaybackSpeed] = useState(1);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<{
+    title: string;
+    duration: string;
+    progress: number;
+    currentTime: number;
+    isPlaying: boolean;
+    index: number;
+    audioElement?: HTMLAudioElement;
+  } | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
+      console.log('Auth Check - Session:', session);
+      console.log('Auth Check - Location State:', location.state);
+      console.log('Auth Check - History State:', window.history.state);
+      
       if (!session) {
-        navigate('/signin');
+        console.log('Redirecting to signin because no session');
+        navigate('/signin', { replace: true });
+        return;
       }
+
+      // If we have a session but no course state, go back to dashboard
+      if (!location.state) {
+        console.log('Redirecting to dashboard because no course state');
+        navigate('/dashboard', { replace: true });
+        return;
+      }
+
+      setIsLoading(false);
     };
     
     checkAuth();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (!session) {
-        navigate('/signin');
+        navigate('/signin', { replace: true });
       }
     });
 
@@ -100,18 +166,18 @@ const Index = () => {
     { 
       title: 'Section 2', 
       subtitle: 'Schemas',
-      description: 'Defines schemas as the backbone of CMDB, detailing their structure, inheritance, and lifecycle management in ky2help®.',
+      description: 'Detailed explanation of schema components, including attributes, relationships, and inheritance patterns for effective configuration management.',
       audioFile: audio2,
-      pdfPage: 6,
-      duration: '8:15'
+      pdfPage: 12,
+      duration: '8:45'
     },
     { 
       title: 'Section 3', 
       subtitle: 'Product Catalog',
-      description: 'Explains the product catalog’s structure, product management processes, schema hierarchy, and template utility, with detailed steps and examples for efficient configuration.',
+      description: 'Step-by-step guide to implementing schemas, with practical examples and best practices for optimal CMDB structure.',
       audioFile: audio3,
-      pdfPage: 19,
-      duration: '12:45'
+      pdfPage: 18,
+      duration: '6:15'
     },
     { 
       title: 'Section 4', 
@@ -152,9 +218,146 @@ const Index = () => {
       : `(${minutes} Min)`;
   };
 
-  const handleAudioPlay = (index: number) => {
-    setPlayingPlayer(index);
+  // Update audio element properties when volume, mute, or speed changes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = isMuted ? 0 : volume;
+      audioRef.current.playbackRate = playbackSpeed;
+    }
+  }, [volume, isMuted, playbackSpeed]);
+
+  const handleVolumeChange = (value: number) => {
+    setVolume(value);
+    setIsMuted(value === 0);
+    if (audioRef.current) {
+      audioRef.current.volume = value;
+      // Store the volume preference
+      localStorage.setItem('audioVolume', value.toString());
+    }
   };
+
+  const handlePlaybackSpeedChange = (speed: number) => {
+    setPlaybackSpeed(speed);
+    if (audioRef.current) {
+      audioRef.current.playbackRate = speed;
+    }
+  };
+
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    if (audioRef.current) {
+      if (newMutedState) {
+        audioRef.current.volume = 0;
+      } else {
+        audioRef.current.volume = volume;
+      }
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      const progress = (audioRef.current.currentTime / audioRef.current.duration) * 100;
+      setCurrentlyPlaying(prev => prev ? {
+        ...prev,
+        progress,
+        currentTime: audioRef.current!.currentTime
+      } : null);
+    }
+  };
+
+  const handleSeek = (value: number) => {
+    if (audioRef.current) {
+      const newTime = (value / 100) * audioRef.current.duration;
+      audioRef.current.currentTime = newTime;
+      setCurrentlyPlaying(prev => prev ? {
+        ...prev,
+        progress: value,
+        currentTime: newTime
+      } : null);
+    }
+  };
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const handleAudioPlay = (index: number) => {
+    // If we're already playing this audio, just resume it
+    if (currentlyPlaying && currentlyPlaying.index === index && audioRef.current) {
+      audioRef.current.play();
+      setPlayingPlayer(index);
+      setCurrentlyPlaying(prev => ({ ...prev!, isPlaying: true }));
+      return;
+    }
+
+    // Otherwise start a new audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+
+    const audio = new Audio(audioSections[index].audioFile);
+    // Apply current volume settings to new audio
+    audio.volume = isMuted ? 0 : volume;
+    audio.playbackRate = playbackSpeed;
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+    audio.play();
+
+    audioRef.current = audio;
+    setPlayingPlayer(index);
+    setCurrentlyPlaying({
+      title: audioSections[index].title,
+      duration: audioSections[index].duration,
+      progress: 0,
+      currentTime: 0,
+      isPlaying: true,
+      index: index,
+      audioElement: audio
+    });
+  };
+
+  const handleAudioPause = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setPlayingPlayer(null);
+      setCurrentlyPlaying(prev => prev ? { 
+        ...prev, 
+        isPlaying: false,
+        progress: (audioRef.current!.currentTime / audioRef.current!.duration) * 100,
+        currentTime: audioRef.current!.currentTime
+      } : null);
+    }
+  };
+
+  // Add an effect to sync audio state when visibility changes
+  useEffect(() => {
+    if (!isPdfFullScreen && audioRef.current) {
+      const isPlaying = !audioRef.current.paused;
+      if (currentlyPlaying) {
+        setCurrentlyPlaying(prev => ({
+          ...prev!,
+          isPlaying,
+          progress: (audioRef.current!.currentTime / audioRef.current!.duration) * 100,
+          currentTime: audioRef.current!.currentTime
+        }));
+      }
+      if (isPlaying) {
+        setPlayingPlayer(currentlyPlaying?.index ?? null);
+      }
+    }
+  }, [isPdfFullScreen]);
+
+  // Clean up audio on unmount
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+      }
+    };
+  }, []);
 
   const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
 
@@ -164,245 +367,493 @@ const Index = () => {
     return 'Long';
   };
 
+  useEffect(() => {
+    if (courseState?.sections) {
+      console.log('Course sections available:', courseState.sections);
+    }
+  }, [courseState]);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    navigate('/');
+  };
+
+  // Add scroll to bottom effect for chat
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newMessage.trim()) return;
+
+    // Add user message
+    setMessages(prev => [...prev, { text: newMessage, isUser: true }]);
+    const userMessage = newMessage;
+    setNewMessage('');
+
+    // Simulate AI response (replace with actual AI integration)
+    setTimeout(() => {
+      setMessages(prev => [...prev, { 
+        text: "I'm here to help you with your course. What would you like to know?", 
+        isUser: false 
+      }]);
+    }, 1000);
+  };
+
+  // Add this function to handle PDF full-screen toggle
+  const handlePdfFullScreenToggle = (fullScreen: boolean) => {
+    setIsPdfFullScreen(fullScreen);
+    // When returning from full screen, ensure the UI state matches the audio state
+    if (!fullScreen && audioRef.current) {
+      // Update the playing state based on whether audio is actually playing
+      const isPlaying = !audioRef.current.paused;
+      if (currentlyPlaying) {
+        setCurrentlyPlaying(prev => ({
+          ...prev!,
+          isPlaying,
+          progress: (audioRef.current!.currentTime / audioRef.current!.duration) * 100,
+          currentTime: audioRef.current!.currentTime
+        }));
+      }
+      // Update the playing player state to match
+      if (isPlaying && currentlyPlaying) {
+        setPlayingPlayer(currentlyPlaying.index);
+      }
+    }
+  };
+
+  // Add useEffect to initialize volume from localStorage
+  useEffect(() => {
+    const savedVolume = localStorage.getItem('audioVolume');
+    if (savedVolume !== null) {
+      const parsedVolume = parseFloat(savedVolume);
+      setVolume(parsedVolume);
+      if (audioRef.current) {
+        audioRef.current.volume = parsedVolume;
+      }
+    }
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-900">
-      <Navbar />
-      
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-700 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white text-center">
-            Learn from the Experts (PoC)
-          </h1>
-          <p className="text-xl text-gray-200 text-center mt-2">
-            Step-by-step, Personalised learning audio courses on any topic
-          </p>
-          <p className="text-md text-gray-200 text-center mt-1">
-            Total Duration: {formatTotalDuration(totalDuration)}
-          </p>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-900 relative overflow-hidden">
+      {/* Enhanced background effects */}
+      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-purple-500/5 to-indigo-500/5 rotate-45 transform scale-150" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <button
-          onClick={() => setIsPersonalizationOpen(!isPersonalizationOpen)}
-          className="w-full bg-gray-800 rounded-lg shadow-lg p-4 mb-2 flex items-center justify-between text-white hover:bg-gray-750 transition-colors"
+      {isLoading ? (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-gray-900/50 backdrop-blur-sm flex items-center justify-center z-50"
         >
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-            </svg>
-            <h2 className="text-2xl font-semibold">Personalise Course</h2>
+          <div className="text-center space-y-4">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto" />
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-white font-medium"
+            >
+              Loading audio course...
+            </motion.p>
           </div>
-          <svg 
-            className={`w-6 h-6 transform transition-transform duration-200 ${isPersonalizationOpen ? 'rotate-180' : ''}`} 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
+        </motion.div>
+      ) : (
+        <>
+          {/* Enhanced Header */}
+          <motion.header 
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
+            className="bg-gray-900/50 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
+            <div className="px-6 py-2 flex justify-between items-center">
+              {/* Logo */}
+              <div 
+                onClick={() => navigate('/dashboard')} 
+                className="cursor-pointer"
+              >
+                <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                  AI-Buddy
+                </h1>
+              </div>
 
-        <div 
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            isPersonalizationOpen 
-              ? 'max-h-[1000px] opacity-100' 
-              : 'max-h-0 opacity-0'
-          }`}
-        >
-          <div className="bg-gray-800 rounded-lg shadow-lg p-4">
-            <div className="grid grid-cols-4 gap-4 mb-4">
-              <div className="col-span-1">
-                <div className="relative">
-                  <input
-                    type="text"
-                    className="w-full bg-gray-700 text-white rounded-md pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-purple-500 outline-none"
-                    placeholder="Username"
+              {/* Search and Profile Section */}
+              <div className="flex items-center space-x-4">
+                <div className="relative w-80">
+                  <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-gray-400" />
+                  <Input 
+                    placeholder="Search courses..."
+                    className="pl-8 py-1 h-8 bg-gray-800/50 border-gray-700 text-white w-full text-sm"
                   />
-                  <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </span>
                 </div>
-              </div>
-
-              <div className="col-span-1">
-                <div className="relative">
-                  <select className="w-full bg-gray-700 text-white rounded-md pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-purple-500 outline-none appearance-none">
-                    <option value="" disabled>Experience Level</option>
-                    <option value="beginner">👶 Beginner</option>
-                    <option value="intermediate">👨‍💻 Intermediate</option>
-                    <option value="advanced">🎓 Advanced</option>
-                  </select>
-                  <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </span>
+                
+                <span className="text-gray-300 text-sm">Welcome Vijay</span>
+                
+                {/* Profile Dropdown */}
+                <div className="relative group">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center cursor-pointer">
+                    <span className="text-white text-sm font-medium">V</span>
+                  </div>
+                  
+                  {/* Dropdown Menu */}
+                  <div className="absolute right-0 mt-2 w-48 py-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                    <button 
+                      className="w-full px-4 py-2 text-left text-gray-300 hover:bg-gray-700 flex items-center text-sm"
+                      onClick={() => console.log('Settings clicked')}
+                    >
+                      <Settings className="h-3.5 w-3.5 mr-2" />
+                      Settings
+                    </button>
+                    <button 
+                      className="w-full px-4 py-2 text-left text-gray-300 hover:bg-gray-700 flex items-center text-sm"
+                      onClick={handleSignOut}
+                    >
+                      <LogOut className="h-3.5 w-3.5 mr-2" />
+                      Sign Out
+                    </button>
+                  </div>
                 </div>
-              </div>
-
-              <div className="col-span-1">
-                <div className="relative">
-                  <select
-                    value={courseTemplate}
-                    onChange={(e) => setCourseTemplate(e.target.value)}
-                    className="w-full bg-gray-700 text-white rounded-md pl-9 pr-3 py-2 text-sm focus:ring-2 focus:ring-purple-500 outline-none appearance-none"
-                  >
-                    <option value="" disabled>Course Template</option>
-                    <option value="step-by-step">📝 Step-by-step Guide (En)</option>
-                    <option value="classroom">🎓 Classroom Lecture (En)</option>
-                    <option value="podcast">🎧 Podcast Overview (En)</option>
-                    <option value="research">🔍 Research Analysis (En)</option>
-                  </select>
-                  <span className="absolute inset-y-0 left-0 pl-2.5 flex items-center text-gray-400">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div className="col-span-1">
-                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gray-700 text-sm text-gray-300 rounded-md hover:bg-gray-600 transition-all duration-200 focus:ring-2 focus:ring-purple-500">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-                  </svg>
-                  Upload PDF
-                </button>
               </div>
             </div>
+          </motion.header>
+          
+          {/* Reduced Hero Section with Integrated Controls */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-gradient-to-r from-purple-600 to-indigo-700 py-3 relative overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-grid-white/5 bg-[size:20px_20px]" />
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <motion.span
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="text-gray-200 font-medium"
+                  >
+                    Topic:
+                  </motion.span>
+                  <motion.h1 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="text-2xl font-bold text-white"
+                  >
+                    {courseState?.courseName || "ITIL"}
+                  </motion.h1>
+                </div>
 
-            <div className="grid grid-cols-12 gap-4 items-center">
-              <div className="col-span-4">
-                <div className="flex items-center gap-3 bg-gray-700 rounded-md px-3 py-2">
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={audioLength}
-                    onChange={(e) => setAudioLength(Number(e.target.value))}
-                    className="w-full h-1.5 bg-gray-600 rounded-lg appearance-none cursor-pointer accent-purple-600"
-                  />
-                  <span className="text-sm text-gray-300 min-w-[48px]">
-                    {getLengthLabel(audioLength)}
-                  </span>
+                <div className="flex items-center gap-6">
+                  <motion.div 
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    className="flex items-center gap-6"
+                  >
+                    <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+                      <Clock className="w-4 h-4" />
+                      <span className="text-sm font-medium">{formatTotalDuration(totalDuration)}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+                      <BookOpen className="w-4 h-4" />
+                      <span className="text-sm font-medium">{audioSections.length} Sections</span>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
-
-              <div className="col-span-4">
-                <div className="flex items-center gap-2 bg-gray-700 p-1 rounded-md">
-                  <button
-                    className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 rounded transition-all duration-200 ${
-                      courseType === 'audio' 
-                        ? 'bg-purple-600 text-white' 
-                        : 'text-gray-300 hover:text-white'
-                    }`}
-                    onClick={() => setCourseType('audio')}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15.536a5 5 0 001.414 1.414m2.828-9.9a9 9 0 012.728-2.728" />
-                    </svg>
-                    Audio
-                  </button>
-                  <button
-                    className={`flex-1 flex items-center justify-center gap-2 px-3 py-1.5 rounded transition-all duration-200 ${
-                      courseType === 'video' 
-                        ? 'bg-purple-600 text-white' 
-                        : 'text-gray-300 hover:text-white'
-                    }`}
-                    onClick={() => setCourseType('video')}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    Video
-                  </button>
-                </div>
-              </div>
-
-              <div className="col-span-4">
-                <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-all duration-200 flex items-center justify-center gap-2 font-medium">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                  </svg>
-                  Personalise Course
-                </button>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-6">
-          <div className="w-2/3">
-            <div className="h-[calc(100vh-12rem)] bg-gray-800 rounded-lg shadow-lg p-4">
-              <iframe
-                ref={iframeRef}
-                src={pdfViewerUrl}
-                className="w-full h-full rounded-lg"
-                title="PDF Preview"
-              />
-            </div>
-          </div>
-
-          <div className="w-1/3">
-            <div className="space-y-3 max-h-[calc(100vh-12rem)] overflow-y-auto pr-2">
-              {audioSections.map((section, index) => (
-                <AudioSection
-                  key={index}
-                  section={section}
-                  index={index}
-                  expandedPlayer={expandedPlayer}
-                  playingPlayer={playingPlayer}
-                  notes={notes}
-                  onExpand={setExpandedPlayer}
-                  onPlay={handleAudioPlay}
-                  onPause={() => setPlayingPlayer(null)}
-                  onOpenNoteDialog={handleOpenNoteDialog}
+          {/* Modified Split Layout with Full Screen Support */}
+          <div className={`flex ${isPdfFullScreen ? 'h-[calc(100vh-6rem)]' : 'h-[calc(100vh-12rem)]'} bg-gray-900/50 backdrop-blur-sm`}>
+            {/* PDF Viewer - Left Side */}
+            <motion.div 
+              initial={{ x: -50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className={`${isPdfFullScreen ? 'flex-1' : 'w-1/2'} border-r border-gray-700/50 transition-all duration-300`}
+            >
+              <div className="h-full rounded-lg overflow-hidden backdrop-blur-sm shadow-xl">
+                <iframe
+                  ref={iframeRef}
+                  src={pdfViewerUrl}
+                  className="w-full h-full"
+                  title="PDF Viewer"
                 />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+              </div>
+            </motion.div>
 
-      {isNoteDialogOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-xl font-semibold text-white mb-4">
-              Add Notes for {currentNoteSection !== null ? audioSections[currentNoteSection].title : ''}
-            </h3>
-            <textarea
-              value={noteContent}
-              onChange={(e) => setNoteContent(e.target.value)}
-              className="w-full h-40 bg-gray-700 text-white rounded-md p-3 mb-4 focus:ring-2 focus:ring-purple-500 outline-none"
-              placeholder="Write your notes here..."
-            />
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => setIsNoteDialogOpen(false)}
-                className="px-4 py-2 text-gray-300 hover:text-white transition-colors"
+            {/* Audio Sections - Right Side */}
+            <motion.div 
+              initial={{ x: 50, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              className={`${isPdfFullScreen ? 'w-[320px]' : 'w-1/2'} overflow-y-auto px-4 py-4 custom-scrollbar bg-gray-900/80 transition-all duration-300`}
+            >
+              <div className="space-y-3">
+                {audioSections.map((section, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-gray-800/60 backdrop-blur-sm rounded-lg border border-gray-700/50 hover:border-purple-500/30 transition-colors shadow-lg hover:shadow-purple-500/10"
+                  >
+                    <AudioSection
+                      section={section}
+                      index={index}
+                      expandedPlayer={expandedPlayer}
+                      playingPlayer={playingPlayer}
+                      notes={notes}
+                      onExpand={setExpandedPlayer}
+                      onPlay={handleAudioPlay}
+                      onPause={handleAudioPause}
+                      onOpenNoteDialog={handleOpenNoteDialog}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Floating Bottom Bar - Adjusted position */}
+          <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+            <div className="flex items-center gap-3 bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm rounded-full border border-purple-500/20 px-4 py-2 shadow-lg hover:shadow-purple-500/20 transition-all duration-300">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/dashboard')}
+                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
+                title="Back to Dashboard"
               >
-                Cancel
-              </button>
-              <button
-                onClick={handleSaveNote}
-                className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+
+              <div className="w-px h-5 bg-purple-500/20" />
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/course-canvas', { state: courseState })}
+                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
+                title="Edit Course Canvas"
               >
-                Save Notes
-              </button>
+                <Edit className="h-4 w-4" />
+              </Button>
+
+              <div className="w-px h-5 bg-purple-500/20" />
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => handlePdfFullScreenToggle(!isPdfFullScreen)}
+                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
+                title={isPdfFullScreen ? "Shrink PDF View" : "Widen PDF View"}
+              >
+                {isPdfFullScreen ? (
+                  <Minimize2 className="h-4 w-4" />
+                ) : (
+                  <Maximize2 className="h-4 w-4" />
+                )}
+              </Button>
+
+              <div className="w-px h-5 bg-purple-500/20" />
+
+              <div className="group relative flex items-center">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleMute}
+                  className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
+                  title="Volume Control"
+                >
+                  {isMuted || volume === 0 ? (
+                    <VolumeX className="h-4 w-4" />
+                  ) : (
+                    <Volume2 className="h-4 w-4" />
+                  )}
+                </Button>
+                
+                {/* Volume Slider */}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800/90 rounded-lg p-3 shadow-lg border border-purple-500/20">
+                  <div className="w-24 h-1.5">
+                    <Slider
+                      value={[isMuted ? 0 : volume]}
+                      min={0}
+                      max={1}
+                      step={0.1}
+                      onValueChange={([value]) => handleVolumeChange(value)}
+                      className="cursor-pointer"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+          {/* Enhanced Footer */}
+          <motion.footer 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            className="fixed bottom-0 left-0 right-0 h-6 border-t border-gray-800/50 bg-gray-900/30 backdrop-blur-sm z-40 flex items-center"
+          >
+            <div className="w-full px-4">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2 text-[10px] text-gray-400">
+                  <span className="hover:text-gray-300 transition-colors">© 2025 AI-Buddy</span>
+                  <div className="h-2 w-px bg-gray-700/50" />
+                  <span className="text-gray-500">v2.0.0</span>
+                </div>
+                <a 
+                  href="mailto:vijay.betigiri@swisscom.com"
+                  className="text-[10px] text-gray-400 hover:text-gray-300 transition-colors"
+                >
+                  Created by Vijay Betigiri
+                </a>
+              </div>
+            </div>
+          </motion.footer>
+
+          {/* Enhanced Notes Dialog */}
+          {isNoteDialogOpen && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+            >
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="bg-gray-800/90 rounded-xl p-6 w-full max-w-md border border-gray-700 shadow-2xl"
+              >
+                <h3 className="text-xl font-semibold text-white mb-4 bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                  Add Notes for {currentNoteSection !== null ? audioSections[currentNoteSection].title : ''}
+                </h3>
+                <textarea
+                  value={noteContent}
+                  onChange={(e) => setNoteContent(e.target.value)}
+                  className="w-full h-40 bg-gray-700/50 text-white rounded-lg p-3 mb-4 focus:ring-2 focus:ring-purple-500 outline-none border border-gray-600 hover:border-purple-500/50 transition-colors"
+                  placeholder="Write your notes here..."
+                />
+                <div className="flex justify-end gap-3">
+                  <Button
+                    onClick={() => setIsNoteDialogOpen(false)}
+                    variant="ghost"
+                    className="text-gray-300 hover:text-white hover:bg-gray-700/50"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={handleSaveNote}
+                    className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-indigo-600 hover:to-purple-600 transition-all duration-300"
+                  >
+                    Save Notes
+                  </Button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Chat Box */}
+          <div className="fixed bottom-20 right-12 z-50">
+            {/* Chat Toggle Button */}
+            <button
+              onClick={() => setIsChatOpen(!isChatOpen)}
+              className="bg-gradient-to-r from-purple-600 to-indigo-600 p-3 rounded-full shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+            >
+              {isChatOpen ? (
+                <X className="h-6 w-6 text-white" />
+              ) : (
+                <MessageCircle className="h-6 w-6 text-white" />
+              )}
+            </button>
+
+            {/* Chat Window */}
+            {isChatOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="absolute bottom-16 right-0 w-96 bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl border border-gray-700"
+              >
+                {/* Chat Header */}
+                <div className="p-4 border-b border-gray-700 bg-gradient-to-r from-purple-600/10 to-indigo-600/10">
+                  <h3 className="text-lg font-semibold text-white">Course Assistant</h3>
+                  <p className="text-sm text-gray-300">Ask me anything about the course</p>
+                </div>
+
+                {/* Chat Messages */}
+                <div className="h-96 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+                  {messages.map((message, index) => (
+                    <div
+                      key={index}
+                      className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div
+                        className={`max-w-[80%] p-3 rounded-lg ${
+                          message.isUser
+                            ? 'bg-purple-600 text-white rounded-br-none'
+                            : 'bg-gray-700 text-gray-100 rounded-bl-none'
+                        }`}
+                      >
+                        {message.text}
+                      </div>
+                    </div>
+                  ))}
+                  <div ref={messagesEndRef} />
+                </div>
+
+                {/* Chat Input */}
+                <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-700">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={newMessage}
+                      onChange={(e) => setNewMessage(e.target.value)}
+                      placeholder="Type your message..."
+                      className="flex-1 bg-gray-700/50 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600"
+                    />
+                    <button
+                      type="submit"
+                      className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-300"
+                    >
+                      <Send className="h-5 w-5 text-white" />
+                    </button>
+                  </div>
+                </form>
+              </motion.div>
+            )}
+          </div>
+
+          <style>{`
+            .custom-scrollbar::-webkit-scrollbar {
+              width: 8px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+              background: rgba(17, 24, 39, 0.7);
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+              background: rgba(139, 92, 246, 0.5);
+              border-radius: 4px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+              background: rgba(139, 92, 246, 0.7);
+            }
+
+            /* Add a subtle line between sections when hovering */
+            .custom-scrollbar > div > div:not(:last-child)::after {
+              content: '';
+              display: block;
+              height: 1px;
+              margin: 0.75rem 0;
+              background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.2), transparent);
+            }
+          `}</style>
+        </>
       )}
     </div>
   );
-};
-
-export default Index;
+}

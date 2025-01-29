@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
+import CourseCanvas from '@/pages/CourseCanvas';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,8 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/course-canvas" element={<CourseCanvas />} />
+          <Route path="/index" element={<Index />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

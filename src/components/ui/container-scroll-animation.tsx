@@ -30,6 +30,116 @@ export const ContainerScroll = ({
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
+  const translateY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [20, 0, -20]);
+  const rotateZ = useTransform(scrollYProgress, [0, 0.5, 1], [-10, 0, 10]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+
+  return (
+    <div
+      className="h-[60rem] flex items-center justify-center relative"
+      ref={containerRef}
+      style={{
+        perspective: "1000px",
+      }}
+    >
+      <Header translateY={translateY}>{titleComponent}</Header>
+      <motion.div
+        style={{
+          rotateX,
+          rotateZ,
+          scale,
+          opacity,
+        }}
+        className="w-full relative"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+export const ContainerScrollRotate3D = ({
+  titleComponent,
+  children,
+}: {
+  titleComponent: string | React.ReactNode;
+  children: React.ReactNode;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [30, 0, -30]);
+  const rotateY = useTransform(scrollYProgress, [0, 0.5, 1], [-30, 0, 30]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 1, 0.7]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]);
+  const translateZ = useTransform(scrollYProgress, [0, 0.5, 1], [-100, 0, -100]);
+
+  return (
+    <div
+      className="h-[40rem] flex items-center justify-center relative"
+      ref={containerRef}
+      style={{
+        perspective: "1500px",
+      }}
+    >
+      <motion.div
+        className="text-center mb-8 absolute top-0 w-full"
+        style={{
+          opacity: useTransform(scrollYProgress, [0, 0.5, 1], [0.3, 1, 0.3]),
+          translateY: useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]),
+        }}
+      >
+        {titleComponent}
+      </motion.div>
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+          scale,
+          opacity,
+          translateZ,
+        }}
+        className="w-full max-w-5xl relative mt-20"
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
+export const ContainerScrollCard = ({
+  titleComponent,
+  children,
+}: {
+  titleComponent: string | React.ReactNode;
+  children: React.ReactNode;
+}) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+  });
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  const scaleDimensions = () => {
+    return isMobile ? [0.7, 0.9] : [1.05, 1];
+  };
+
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
   const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
@@ -54,15 +164,15 @@ export const ContainerScroll = ({
   );
 };
 
-export const Header = ({ translate, titleComponent }: any) => {
+export const Header = ({ translate, translateY, children, titleComponent }: any) => {
   return (
     <motion.div
       style={{
-        translateY: translate,
+        translateY: translateY || translate,
       }}
       className="div max-w-5xl mx-auto text-center"
     >
-      {titleComponent}
+      {children || titleComponent}
     </motion.div>
   );
 };
