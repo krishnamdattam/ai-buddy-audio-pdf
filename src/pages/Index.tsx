@@ -3,16 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import AudioSection from '../components/AudioSection';
 import { supabase } from '@/integrations/supabase/client';
-import documentPdf from '../assets/Assets and Configuration Management/pdf/document.pdf?url';
-import audio1 from '../assets/Assets and Configuration Management/audio/new1.mp3';
-import audio2 from '../assets/Assets and Configuration Management/audio/new2.mp3';
-import audio3 from '../assets/Assets and Configuration Management/audio/new3.mp3';
-import audio4 from '../assets/Assets and Configuration Management/audio/new4.mp3';
-import audio5 from '../assets/Assets and Configuration Management/audio/new5.mp3';
-import audio6 from '../assets/Assets and Configuration Management/audio/new6.mp3';
 import type { Note } from '@/types/notes';
 import 'pdfjs-dist/web/pdf_viewer.css';
-import { Search, Settings, LogOut, FileText, Clock, BookOpen, MessageCircle, Send, X, Maximize2, Minimize2, ChevronLeft, Edit, Volume2, VolumeX } from 'lucide-react';
+import { Search, Settings, LogOut, FileText, Clock, BookOpen, MessageCircle, Send, X, Maximize2, Minimize2, ChevronLeft, Edit, Volume2, VolumeX, LayoutDashboard, Tv } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -40,7 +33,11 @@ interface CourseSection {
 
 interface CourseState {
   courseName: string;
+  template?: string;
+  persona?: string;
+  files?: string[];
   sections: CourseSection[];
+  audioFiles: { fileName: string; sectionTitle: string }[];
 }
 
 export default function Index() {
@@ -77,30 +74,63 @@ export default function Index() {
     index: number;
     audioElement?: HTMLAudioElement;
   } | null>(null);
+  const [audioSections, setAudioSections] = useState<Array<{
+    title: string;
+    subtitle: string;
+    description: string;
+    audioFile: string;
+    pdfPage: number;
+    duration: string;
+  }>>([]);
+  const [pdfUrl, setPdfUrl] = useState<string>('');
+  const [courseData, setCourseData] = useState<any>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      console.log('Auth Check - Session:', session);
-      console.log('Auth Check - Location State:', location.state);
-      console.log('Auth Check - History State:', window.history.state);
-      
-      if (!session) {
-        console.log('Redirecting to signin because no session');
-        navigate('/signin', { replace: true });
-        return;
-      }
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+          navigate('/signin');
+          return;
+        }
 
-      // If we have a session but no course state, go back to dashboard
-      if (!location.state) {
-        console.log('Redirecting to dashboard because no course state');
-        navigate('/dashboard', { replace: true });
-        return;
-      }
+        // Check for state in location or session storage
+        if (!location.state) {
+          const savedState = sessionStorage.getItem('navigationState');
+          if (savedState) {
+            const parsedState = JSON.parse(savedState);
+            if (parsedState.courseName && parsedState.sections && parsedState.files) {
+              // Clear the saved state to prevent reuse
+              sessionStorage.removeItem('navigationState');
+              // Update location state
+              navigate('.', { state: parsedState, replace: true });
+              return;
+            }
+          }
+          // If no state is available, redirect to dashboard
+          console.error('No course data available');
+          toast.error('Course data not available');
+          navigate('/dashboard');
+          return;
+        }
 
-      setIsLoading(false);
+        // Validate required state data
+        if (!location.state?.courseName || !location.state?.sections || !location.state?.files) {
+          console.error('Invalid course data');
+          toast.error('Invalid course data');
+          navigate('/dashboard');
+          return;
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error during auth check:', error);
+        toast.error('Authentication error');
+        navigate('/signin');
+      }
     };
-    
+
     checkAuth();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -110,7 +140,7 @@ export default function Index() {
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, location.state]);
 
   useEffect(() => {
     const savedNotes = localStorage.getItem('audioSectionNotes');
@@ -154,56 +184,77 @@ export default function Index() {
     setCurrentNoteSection(null);
   };
 
-  const audioSections = [
-    { 
-      title: 'Introduction', 
-      subtitle: 'Overview and context',
-      description: 'An overview of schemas in ky2help®, detailing their role in structuring the CMDB and managing configuration items with inheritance and lifecycle definitions.',
-      audioFile: audio1,
-      pdfPage: 5,
-      duration: '5:30'
-    },
-    { 
-      title: 'Section 2', 
-      subtitle: 'Schemas',
-      description: 'Detailed explanation of schema components, including attributes, relationships, and inheritance patterns for effective configuration management.',
-      audioFile: audio2,
-      pdfPage: 12,
-      duration: '8:45'
-    },
-    { 
-      title: 'Section 3', 
-      subtitle: 'Product Catalog',
-      description: 'Step-by-step guide to implementing schemas, with practical examples and best practices for optimal CMDB structure.',
-      audioFile: audio3,
-      pdfPage: 18,
-      duration: '6:15'
-    },
-    { 
-      title: 'Section 4', 
-      subtitle: 'Relationships',
-      description: 'Explores relationships in configuration management, emphasizing dependency mapping and evaluating impacts for troubleshooting and audits.',
-      audioFile: audio4,
-      pdfPage: 28,
-      duration: '10:20'
-    },
-    { 
-      title: 'Section 5', 
-      subtitle: 'Configuration Items',
-      description: 'Details Configuration Items (CIs), their management, roles, lifecycle, and downtime tracking.',
-      audioFile: audio5,
-      pdfPage: 29,
-      duration: '7:50'
-    },
-    { 
-      title: 'Summary', 
-      subtitle: 'Key takeaways and Quiz',
-      description: 'Final session reviewing Asset and Configuration Management concepts with a quiz to reinforce the concepts.',
-      audioFile: audio6,
-      pdfPage: 44,
-      duration: '4:20'
-    },
-  ];
+  // Load audio sections based on course data
+  useEffect(() => {
+    if (!courseState?.courseName || !courseState?.audioFiles) {
+      console.log('No course data found, redirecting to dashboard');
+      navigate('/dashboard');
+      return;
+    }
+
+    // Set the PDF URL to use backend endpoint with the correct PDF filename
+    const pdfFilename = courseState.files?.[0]; // Get the first PDF file from the files array
+    if (!pdfFilename) {
+      console.error('No PDF file found in course data');
+      toast.error('PDF file not found');
+      return;
+    }
+    const pdfUrl = `http://localhost:5001/api/pdf/${courseState.courseName}/${pdfFilename}`;
+    setPdfUrl(pdfUrl);
+
+    const loadAudioSections = async () => {
+      try {
+        // Transform the audio files data into sections
+        const sections = await Promise.all(courseState.audioFiles.map(async (audioFile, index) => {
+          const sectionNumber = index + 1;
+          
+          // Remove the section number prefix and format the title
+          const displayTitle = audioFile.sectionTitle.replace(/^\d+\.\s*/, '');
+          
+          // Use backend endpoint for audio files
+          const audioPath = `http://localhost:5001/api/audio/${courseState.courseName}/${audioFile.fileName}`;
+          
+          // Create audio element to get duration
+          const audio = new Audio(audioPath);
+          
+          // Wait for metadata to load to get duration
+          const duration = await new Promise<string>((resolve) => {
+            audio.addEventListener('loadedmetadata', () => {
+              const minutes = Math.floor(audio.duration / 60);
+              const seconds = Math.floor(audio.duration % 60);
+              resolve(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+            });
+            
+            // Handle errors
+            audio.addEventListener('error', () => {
+              console.error(`Error loading audio file: ${audioPath}`);
+              resolve('00:00');
+              toast.error(`Failed to load audio for section ${sectionNumber}: ${displayTitle}`);
+            });
+          });
+
+          return {
+            title: displayTitle,
+            subtitle: `Section ${sectionNumber}`,
+            description: `Audio lesson for ${displayTitle}`,
+            audioFile: audioPath,
+            pdfPage: sectionNumber,
+            duration
+          };
+        }));
+
+        console.log('Loaded audio sections:', sections);
+        setAudioSections(sections);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error setting up audio sections:', error);
+        toast.error('Failed to load course audio files');
+        navigate('/dashboard');
+      }
+    };
+
+    loadAudioSections();
+  }, [courseState, navigate]);
 
   const totalDuration = audioSections.reduce((acc, section) => {
     const [mins, secs] = section.duration.split(':').map(Number);
@@ -359,7 +410,7 @@ export default function Index() {
     };
   }, []);
 
-  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(window.location.origin + documentPdf)}`;
+  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
 
   const getLengthLabel = (value: number) => {
     if (value <= 33) return 'Short';
@@ -438,6 +489,85 @@ export default function Index() {
       }
     }
   }, []);
+
+  const handleEditCourseCanvas = () => {
+    if (!courseData) {
+      toast.error('Course data not loaded yet');
+      return;
+    }
+
+    // Transform the course data into the expected format
+    const transformedData = {
+      courseName: courseState.courseName,
+      template: courseState.template || '',
+      persona: courseState.persona || '',
+      files: courseState.files || [],
+      processedSections: courseData.map((section: any) => ({
+        title: section.title,
+        content: section.content || '',
+        metadata: section.metadata || {},
+        dialogues: section.dialogues || []
+      }))
+    };
+
+    navigate('/course-canvas', { 
+      state: transformedData,
+      replace: true 
+    });
+  };
+
+  const handlePlayCourse = (course: {
+    title: string;
+    sections: CourseSection[];
+    audioFiles: Array<{ fileName: string; sectionTitle: string; }>;
+  }) => {
+    if (!courseData) {
+      toast.error('Course data not loaded yet');
+      return;
+    }
+
+    // Transform the course data into the expected format
+    const transformedData = {
+      courseName: course.title,
+      sections: courseData.map((section: any) => ({
+        title: section.title,
+        dialogues: section.dialogues || []
+      })),
+      audioFiles: course.audioFiles
+    };
+
+    navigate('/course-canvas', { 
+      state: transformedData,
+      replace: true 
+    });
+  };
+
+  useEffect(() => {
+    const loadCourseData = async () => {
+      if (!courseState?.courseName) {
+        console.log('No course data found, redirecting to dashboard');
+        navigate('/dashboard');
+        return;
+      }
+
+      try {
+        // Fetch course data from the backend
+        const response = await fetch(`http://localhost:5001/api/courses/${courseState.courseName}`);
+        if (!response.ok) {
+          throw new Error('Failed to load course data');
+        }
+        const data = await response.json();
+        console.log('Course data loaded:', data);
+        setCourseData(data);
+      } catch (error) {
+        console.error('Error loading course data:', error);
+        toast.error('Failed to load course data');
+        navigate('/dashboard');
+      }
+    };
+
+    loadCourseData();
+  }, [courseState?.courseName, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-900 relative overflow-hidden">
@@ -581,8 +711,8 @@ export default function Index() {
                 <iframe
                   ref={iframeRef}
                   src={pdfViewerUrl}
-                  className="w-full h-full"
-                  title="PDF Viewer"
+                  className="w-full h-full border-0"
+                  title="PDF Document"
                 />
               </div>
             </motion.div>
@@ -629,7 +759,7 @@ export default function Index() {
                 className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
                 title="Back to Dashboard"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <LayoutDashboard className="h-4 w-4" />
               </Button>
 
               <div className="w-px h-5 bg-purple-500/20" />
@@ -642,6 +772,18 @@ export default function Index() {
                 title="Edit Course Canvas"
               >
                 <Edit className="h-4 w-4" />
+              </Button>
+
+              <div className="w-px h-5 bg-purple-500/20" />
+
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/video-player', { state: location.state })}
+                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-emerald-500/20 hover:shadow-lg transition-all duration-300"
+                title="Switch to Video Mode"
+              >
+                <Tv className="h-4 w-4" />
               </Button>
 
               <div className="w-px h-5 bg-purple-500/20" />

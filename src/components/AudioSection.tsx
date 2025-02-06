@@ -47,14 +47,17 @@ const AudioSection = ({
         <div className="flex items-center justify-between">
           <div>
             <div className="flex justify-between items-center gap-2">
-              <h3 className="text-lg font-semibold text-white">
+              <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+                <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-700 text-sm">
+                  {index + 1}
+                </span>
                 {section.title}
               </h3>
               <span className="text-sm text-gray-400">
                 ({section.duration} Min)
               </span>
             </div>
-            <p className="text-sm text-gray-400">{section.subtitle}</p>
+            <p className="text-sm text-gray-400 ml-9">{section.subtitle}</p>
           </div>
           <button
             onClick={() => onExpand(expandedPlayer === index ? null : index)}

@@ -64,7 +64,7 @@ const SignIn = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Sign in with your enterprise credentials
+            Sign in with your credentials
           </motion.p>
         </div>
 
@@ -128,7 +128,7 @@ const SignIn = () => {
                   sign_in: {
                     email_label: 'Enterprise Email',
                     password_label: 'Password',
-                    button_label: 'Sign in with Enterprise Login',
+                    button_label: 'Sign in',
                     loading_button_label: 'Signing in...',
                   },
                 },

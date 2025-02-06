@@ -1,0 +1,50 @@
+[
+  {
+    "id": "337837bd-e6ae-45e5-994b-9420763e450a",
+    "name": "Projektportfoliohandbuch_long_de",
+    "title": "Projektportfoliohandbuch_long_de",
+    "template": "educational-deep-dive",
+    "persona": "andy-julia",
+    "createdAt": "2025-02-05T07:29:09.247951",
+    "lastAccessed": "2025-02-05T12:07:05.918826",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "Extract of project handbook_de.pdf"
+  },
+  {
+    "id": "337837bd-e6ae-45e5-994b-9420763e450b",
+    "name": "Projektportfoliohandbuch_long_en",
+    "title": "Projektportfoliohandbuch_long_en",
+    "template": "educational-deep-dive",
+    "persona": "andy-julia",
+    "createdAt": "2025-02-04T07:29:09.247951",
+    "lastAccessed": "2025-02-04T12:07:05.918826",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "Extract of project handbook_de.pdf"
+  },
+  {
+    "id": "337837bd-e6ae-45e5-994b-9420763e450c",
+    "name": "Projektportfoliohandbuch_short_de",
+    "title": "Projektportfoliohandbuch_short_de",
+    "template": "rapid-refresher",
+    "persona": "andy-julia",
+    "createdAt": "2025-02-04T07:29:09.247951",
+    "lastAccessed": "2025-02-05T14:34:08.290132",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "Extract of project handbook_de.pdf"
+  },
+  {
+    "id": "337837bd-e6ae-45e5-994b-9420763e450d",
+    "name": "Projektportfoliohandbuch_short_ch",
+    "title": "Projektportfoliohandbuch_short_ch",
+    "template": "rapid-refresher",
+    "persona": "andy-julia",
+    "createdAt": "2025-02-04T07:29:09.247951",
+    "lastAccessed": "2025-02-05T17:10:09.779636",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "Extract of project handbook_de.pdf"
+  }
+]

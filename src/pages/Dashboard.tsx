@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Video, Languages, MessageSquare } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -26,6 +26,49 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { APIResponseValidator, type APIResponse } from '@/lib/validators';
 import { defaultSections } from '@/lib/default-sections';
 import { toast } from "sonner";
+import { cn } from '@/lib/utils';
+import AnimatedLoadingSkeleton from "@/components/ui/animated-loading-skeleton";
+import { motion } from 'framer-motion';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+
+// Add shimmer animation
+const shimmerAnimation = {
+  '@keyframes shimmer': {
+    '0%': {
+      transform: 'translateX(-100%)',
+    },
+    '100%': {
+      transform: 'translateX(100%)',
+    },
+  },
+  '.animate-shimmer': {
+    animation: 'shimmer 2s infinite',
+  },
+};
+
+// Add the animation to the document
+if (typeof document !== 'undefined') {
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .animate-shimmer {
+      animation: shimmer 2s infinite;
+    }
+  `;
+  document.head.appendChild(style);
+}
 
 // First, create an interface for the template structure
 interface CourseTemplate {
@@ -36,8 +79,69 @@ interface CourseTemplate {
   language: string;
 }
 
+// Update the interface for audio files
+interface AudioFile {
+  sectionTitle: string;
+  fileName: string;
+  speakerRole: 'expert' | 'learner';
+}
+
+// Update the type definitions to match the actual data structure
+interface ProcessedSection {
+  title?: string;
+  content?: string;
+  metadata?: {
+    prerequisites?: string[];
+    learningGoals?: string[];
+    estimatedTime?: string;
+  };
+  dialogue?: Array<{
+    speaker?: string;
+    text?: string;
+    purpose?: string;
+  }>;
+}
+
+interface CourseSection {
+  title: string;
+  content?: string;
+  metadata?: {
+    prerequisites?: string[];
+    learningGoals?: string[];
+    estimatedTime: string;
+  };
+  conversation?: {
+    title: string;
+    metadata: {
+      prerequisites: string[];
+      learningGoals: string[];
+      estimatedTime: string;
+    };
+    dialogue: Array<{
+      speaker: string;
+      text: string;
+      purpose: string;
+    }>;
+  };
+  dialogue?: Array<{
+    speaker: string;
+    text: string;
+    purpose: string;
+  }>;
+}
+
+interface CourseData {
+  courseName: string;
+  template: string;
+  persona: string;
+  files: string[];
+  processedSections: ProcessedSection[];
+  summary?: string;
+}
+
 const Dashboard = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(false);
   const [courseName, setCourseName] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('');
@@ -65,6 +169,97 @@ const Dashboard = () => {
     style: ''
   });
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [courses, setCourses] = useState<Array<{
+    id: number;
+    title: string;
+    createdAt: string;
+    progress: number;
+    lastAccessed: string;
+    template?: string;
+    persona?: string;
+    sections?: CourseSection[];
+    audioFiles?: AudioFile[];
+    audioAvailable: boolean;
+  }>>([]);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [courseToDelete, setCourseToDelete] = useState<typeof courses[0] | null>(null);
+  const [isDuplicateDialogOpen, setIsDuplicateDialogOpen] = useState(false);
+  const [existingCourse, setExistingCourse] = useState<{ id: number; title: string } | null>(null);
+  const [documentSummary, setDocumentSummary] = useState('');
+  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
+  const [summaryOption, setSummaryOption] = useState<'manual' | 'auto'>('manual');
+
+  // Add voice selection state
+  const [selectedExpertVoice, setSelectedExpertVoice] = useState('en-US-JennyNeural');  // Default expert voice
+  const [selectedLearnerVoice, setSelectedLearnerVoice] = useState('en-US-TonyNeural');  // Default learner voice
+
+  // Add voice options
+  const voiceOptions = [
+    { value: 'en-US-JennyNeural', label: 'Jenny (Female)', gender: 'Female' },
+    { value: 'en-US-TonyNeural', label: 'Tony (Male)', gender: 'Male' },
+    { value: 'en-US-AriaNeural', label: 'Aria (Female)', gender: 'Female' },
+    { value: 'en-US-DavisNeural', label: 'Davis (Male)', gender: 'Male' },
+    { value: 'en-US-GuyNeural', label: 'Guy (Male)', gender: 'Male' },
+    { value: 'en-US-AmberNeural', label: 'Amber (Female)', gender: 'Female' },
+    { value: 'en-US-AnaNeural', label: 'Ana (Female)', gender: 'Female' },
+    { value: 'en-US-AshleyNeural', label: 'Ashley (Female)', gender: 'Female' },
+    { value: 'en-US-BrandonNeural', label: 'Brandon (Male)', gender: 'Male' },
+    { value: 'en-US-ChristopherNeural', label: 'Christopher (Male)', gender: 'Male' },
+    { value: 'en-US-CoraNeural', label: 'Cora (Female)', gender: 'Female' },
+    { value: 'en-US-ElizabethNeural', label: 'Elizabeth (Female)', gender: 'Female' },
+    { value: 'en-US-EricNeural', label: 'Eric (Male)', gender: 'Male' },
+    { value: 'en-US-JacobNeural', label: 'Jacob (Male)', gender: 'Male' },
+    { value: 'en-US-MichelleNeural', label: 'Michelle (Female)', gender: 'Female' },
+    { value: 'en-US-MonicaNeural', label: 'Monica (Female)', gender: 'Female' },
+    { value: 'en-US-NancyNeural', label: 'Nancy (Female)', gender: 'Female' },
+    { value: 'en-US-RogerNeural', label: 'Roger (Male)', gender: 'Male' },
+    { value: 'en-US-SaraNeural', label: 'Sara (Female)', gender: 'Female' },
+    { value: 'en-US-SteffanNeural', label: 'Steffan (Male)', gender: 'Male' }
+  ];
+
+  // Add voice selection component
+  const VoiceSelector = () => (
+    <div className="grid grid-cols-2 gap-6 mt-4">
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-gray-300">Expert Voice</label>
+        <Select value={selectedExpertVoice} onValueChange={setSelectedExpertVoice}>
+          <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+            <SelectValue placeholder="Select expert voice" />
+          </SelectTrigger>
+          <SelectContent className="bg-gray-800 border-gray-700 text-white max-h-[300px]">
+            {voiceOptions.map((voice) => (
+              <SelectItem key={voice.value} value={voice.value} className="text-white hover:bg-gray-700">
+                <div className="flex items-center gap-2">
+                  <span>{voice.label}</span>
+                  <span className="text-xs text-gray-400">({voice.gender})</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium text-gray-300">Learner Voice</label>
+        <Select value={selectedLearnerVoice} onValueChange={setSelectedLearnerVoice}>
+          <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white">
+            <SelectValue placeholder="Select learner voice" />
+          </SelectTrigger>
+          <SelectContent className="bg-gray-800 border-gray-700 text-white max-h-[300px]">
+            {voiceOptions.map((voice) => (
+              <SelectItem key={voice.value} value={voice.value} className="text-white hover:bg-gray-700">
+                <div className="flex items-center gap-2">
+                  <span>{voice.label}</span>
+                  <span className="text-xs text-gray-400">({voice.gender})</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+  );
 
   // Add this to your component's constants
   const courseTemplates: CourseTemplate[] = [
@@ -116,103 +311,385 @@ const Dashboard = () => {
     checkAuth();
   }, [navigate]);
 
-  // Update the courses data structure to include progress and lastAccessed
-  const courses = [
-    {
-      id: 1,
-      title: 'Introduction to AI',
-      createdAt: '2024-03-15',
-      progress: 65, // percentage completed
-      lastAccessed: '27.03.2024', // Added lastAccessed
-    },
-    {
-      id: 2,
-      title: 'Machine Learning Basics',
-      createdAt: '2024-03-14',
-      progress: 30,
-      lastAccessed: '12.03.2024', // Added lastAccessed
-    },
-    {
-      id: 3,
-      title: 'Assets and Configuration Management',
-      createdAt: '2024-03-20',
-      progress: 0,
-      lastAccessed: '20.03.2024',
-    },
-  ];
+  // Load courses on component mount
+  useEffect(() => {
+    const loadCourses = async () => {
+      try {
+        const response = await fetch('http://localhost:5001/api/courses');
+        if (!response.ok) {
+          throw new Error('Failed to load courses');
+        }
+        const data = await response.json();
+        setCourses(data);
+      } catch (error) {
+        console.error('Error loading courses:', error);
+        toast.error('Failed to load courses', {
+          description: 'Please try refreshing the page',
+          duration: 3000
+        });
+      }
+    };
 
+    loadCourses();
+  }, []);
+
+  // Handle new course from CourseCanvas
+  useEffect(() => {
+    if (location.state?.newCourse) {
+      const { newCourse } = location.state;
+      
+      // Update courses list
+      setCourses(prevCourses => [
+        {
+          id: prevCourses.length + 1,
+          title: newCourse.title,
+          createdAt: newCourse.createdAt,
+          progress: 25, // Start new courses at 25%
+          lastAccessed: newCourse.lastAccessed,
+          template: newCourse.template,
+          persona: newCourse.persona,
+          audioFiles: newCourse.audioFiles,
+          audioAvailable: true
+        },
+        ...prevCourses
+      ]);
+
+      // Clear the navigation state
+      navigate(location.pathname, { replace: true, state: {} });
+
+      // Show success message
+      toast.success(`Course "${newCourse.title}" is ready!`, {
+        description: "Your new course has been added to your dashboard.",
+        duration: 3000
+      });
+    }
+  }, [location.state, navigate]);
+
+  // Handle course deletion
+  const handleDeleteCourse = async (course: typeof courses[0]) => {
+    setCourseToDelete(course);
+    setIsDeleteDialogOpen(true);
+  };
+
+  // Update the handleConfirmDelete function
+  const handleConfirmDelete = async () => {
+    if (!courseToDelete) return;
+
+    try {
+      // Delete course files first
+      const deleteFilesResponse = await fetch('http://localhost:5001/delete-course-files', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseName: courseToDelete.title,
+          audioFiles: courseToDelete.audioFiles || []
+        })
+      });
+
+      if (!deleteFilesResponse.ok) {
+        throw new Error('Failed to delete course files');
+      }
+
+      // Update UI immediately after successful deletion
+      const updatedCourses = courses.filter(course => course.id !== courseToDelete.id);
+      setCourses(updatedCourses);
+      
+      toast.success('Course deleted successfully', {
+        description: 'All related files have been removed'
+      });
+    } catch (error) {
+      console.error('Error deleting course:', error);
+      toast.error('Failed to delete course', {
+        description: 'Please try again or contact support'
+      });
+    } finally {
+      setIsDeleteDialogOpen(false);
+      setCourseToDelete(null);
+    }
+  };
+
+  // Add this function after other state declarations
+  const checkAudioFilesExist = async (courseName: string) => {
+    try {
+      const sanitizedCourseName = courseName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+      const response = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
+      
+      if (response.ok) {
+        const courseData = await response.json();
+        // Check if the course has audio files
+        if (courseData.audioFiles && courseData.audioFiles.length > 0) {
+          // Verify if the audio files physically exist
+          const verifyResponse = await fetch('http://localhost:5001/api/verify-audio-files', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              audioFiles: courseData.audioFiles
+            })
+          });
+
+          if (verifyResponse.ok) {
+            const { allFilesExist } = await verifyResponse.json();
+            return allFilesExist;
+          }
+        }
+      }
+      return false;
+    } catch (error) {
+      console.error('Error checking audio files:', error);
+      return false;
+    }
+  };
+
+  // Update the handlePlayCourse function
+  const handlePlayCourse = async (course: typeof courses[0]) => {
+    const hasAudioFiles = await checkAudioFilesExist(course.title);
+    
+    if (!hasAudioFiles) {
+      toast.error('Audio files not found', {
+        description: 'Please transform the course to audio first.',
+        duration: 3000
+      });
+      return;
+    }
+
+    try {
+      // Fetch complete course data
+      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch course data');
+      }
+      const courseData = await response.json();
+
+      // Navigate with complete course data
+      navigate('/audio', {
+        state: {
+          courseName: course.title,
+          sections: courseData.processedSections,
+          audioFiles: courseData.audioFiles,
+          files: courseData.files // Include the files array containing PDF filename
+        },
+        replace: true,
+      });
+    } catch (error) {
+      console.error('Error fetching course data:', error);
+      toast.error('Failed to load course data');
+    }
+  };
+
+  // Add new function for video course handling
+  const handlePlayVideoCourse = async (course: typeof courses[0]) => {
+    try {
+      // Show loading toast
+      toast.loading('Loading course data...', { id: 'loading-video-course' });
+
+      // Fetch complete course data
+      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch course data');
+      }
+      const courseData = await response.json();
+
+      // Validate required data
+      if (!courseData.processedSections || !courseData.files || courseData.files.length === 0) {
+        throw new Error('Invalid course data structure');
+      }
+
+      // Dismiss loading toast
+      toast.dismiss('loading-video-course');
+
+      // Navigate to video player page with validated data
+      navigate('/video-player', {
+        state: {
+          courseName: course.title,
+          sections: courseData.processedSections,
+          files: courseData.files,
+          template: courseData.template || '',
+          persona: courseData.persona || ''
+        },
+        replace: true,
+      });
+    } catch (error) {
+      console.error('Error fetching course data:', error);
+      // Dismiss loading toast and show error
+      toast.dismiss('loading-video-course');
+      toast.error('Failed to load video course', {
+        description: 'Please try again or contact support'
+      });
+      // Navigate back to dashboard on error
+      navigate('/dashboard');
+    }
+  };
+
+  // Add function to generate summary
+  const generateSummary = async () => {
+    if (!selectedFiles[0]) return;
+
+    setIsGeneratingSummary(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFiles[0]);
+
+      const response = await fetch('http://localhost:5001/generate-summary', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate summary');
+      }
+
+      const summaryText = await response.text();
+      setDocumentSummary(summaryText);
+      toast.success('Summary generated successfully');
+    } catch (error) {
+      console.error('Error generating summary:', error);
+      toast.error('Failed to generate summary');
+    } finally {
+      setIsGeneratingSummary(false);
+    }
+  };
+
+  // Update handleNext to include summary
   const handleNext = async () => {
     if (courseName && selectedTemplate && selectedPersona && selectedFiles.length > 0) {
       setIsLoading(true);
       try {
-        // Create FormData for file upload
+        const sanitizedCourseName = courseName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+
+        // First try to fetch existing course
+        const checkResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
+        
+        let courseData;
+        if (checkResponse.ok) {
+          courseData = await checkResponse.json();
+          if (courseData.processedSections && courseData.processedSections.length > 0) {
+            navigate('/course-canvas', { 
+              state: courseData,
+              replace: true
+            });
+            setIsLoading(false);
+            return;
+          }
+        }
+
+        // If we get here, either the course doesn't exist or has no processed sections
         const formData = new FormData();
         formData.append('file', selectedFiles[0]);
         formData.append('template', selectedTemplate);
         formData.append('persona', selectedPersona);
+        formData.append('courseName', courseName);
+        formData.append('summary', documentSummary || 'This is a technical document');
 
-        // Call the backend API
-        const response = await fetch('http://localhost:5001/process-pdf', {
-          method: 'POST',
-          body: formData,
-        });
+        // Add retry logic for processing PDF
+        let retryCount = 0;
+        const maxRetries = 3;
+        let processedData = null;
 
-        const rawData = await response.json();
-        
-        // Validate API response
-        const result = APIResponseValidator.safeParse(rawData);
-        
-        if (!result.success) {
-          console.error('API Response validation failed:', result.error);
-          // Use default sections if API validation fails
-          navigate('/course-canvas', { 
-            state: {
-              courseName,
-              template: selectedTemplate,
-              persona: selectedPersona,
-              files: selectedFiles.map(file => file.name),
-              processedSections: defaultSections
-            },
-            replace: true
+        while (retryCount < maxRetries) {
+          const response = await fetch('http://localhost:5001/process-pdf', {
+            method: 'POST',
+            body: formData,
           });
-          return;
+
+          const rawData = await response.json();
+          
+          // Check if we have valid processed sections
+          if (rawData.processedSections && rawData.processedSections.length > 0) {
+            processedData = rawData;
+            break;
+          }
+
+          // If no valid sections, wait and retry
+          retryCount++;
+          if (retryCount < maxRetries) {
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds before retry
+          }
         }
 
-        const validatedData = result.data;
-
-        // Navigate with validated data
-        navigate('/course-canvas', { 
-          state: {
-            courseName,
+        if (processedData) {
+          // We have valid processed sections
+          navigate('/course-canvas', { 
+            state: processedData,
+            replace: true
+          });
+        } else {
+          // After all retries, fall back to default sections
+          courseData = {
+            courseName: sanitizedCourseName,
             template: selectedTemplate,
             persona: selectedPersona,
             files: selectedFiles.map(file => file.name),
-            processedSections: validatedData.sections
-          },
-          replace: true
-        });
+            processedSections: defaultSections,
+            summary: documentSummary || 'This is a technical document'
+          };
+
+          // Save the default course data
+          await fetch('http://localhost:5001/save-course', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              courseName: sanitizedCourseName,
+              data: courseData
+            }),
+          });
+
+          navigate('/course-canvas', { 
+            state: courseData,
+            replace: true
+          });
+
+          toast.warning('Using default sections due to processing issues', {
+            description: 'You can still edit and customize the course content.',
+            duration: 5000
+          });
+        }
 
       } catch (error) {
-        console.error('API call failed:', error);
-        toast("Failed to process course", {
-          description: "Using default template as fallback",
-          duration: 3000
-        });
-        
-        // Navigate with default sections on error
-        navigate('/course-canvas', { 
-          state: {
-            courseName,
-            template: selectedTemplate,
-            persona: selectedPersona,
-            files: selectedFiles.map(file => file.name),
-            processedSections: defaultSections
-          },
-          replace: true
+        console.error('Error processing course:', error);
+        toast.error('Failed to process course', {
+          description: 'Please try again or contact support'
         });
       } finally {
         setIsLoading(false);
       }
+    } else {
+      toast.error('Please fill in all required fields');
+    }
+  };
+
+  // Function to save course data to JSON file
+  const saveToJsonFile = async (courseData: CourseData) => {
+    try {
+      const sanitizedCourseName = courseData.courseName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+      const response = await fetch('http://localhost:5001/save-course', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseName: sanitizedCourseName,
+          data: courseData
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save course data');
+      }
+
+      toast.success("Course data saved successfully", {
+        duration: 3000
+      });
+    } catch (error) {
+      console.error('Failed to save course data:', error);
+      toast.error("Failed to save course data", {
+        duration: 3000
+      });
     }
   };
 
@@ -262,11 +739,7 @@ const Dashboard = () => {
   };
 
   const handlePersonaChange = (value: string) => {
-    if (value === 'create-new') {
-      setIsPersonaModalOpen(true);
-    } else {
-      setSelectedPersona(value);
-    }
+    setSelectedPersona(value);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -280,65 +753,102 @@ const Dashboard = () => {
     setSelectedFiles(selectedFiles.filter(file => file !== fileToRemove));
   };
 
-  // Add these state variables at the top of your Dashboard component
-  const [testQuestion, setTestQuestion] = useState('');
-  const [testAnswer, setTestAnswer] = useState('');
-  const [testFile, setTestFile] = useState<File | null>(null);
-  const [testSections, setTestSections] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [uploadLoading, setUploadLoading] = useState(false);
-
-  // Add these functions inside your Dashboard component
-  const handleTestApi = async () => {
-    if (!testQuestion.trim()) return;
-    
-    setIsLoading(true);
+  const handleEditCourse = async (course: typeof courses[0]) => {
     try {
-      const response = await fetch('http://localhost:5001/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question: testQuestion }),
-      });
+      // Show loading toast
+      toast.loading('Loading course data...', { id: 'loading-course' });
 
-      const data = await response.json();
-      if (data.error) {
-        setTestAnswer(`Error: ${data.error}`);
-      } else {
-        setTestAnswer(data.answer);
+      // Fetch complete course data from backend
+      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch course data');
       }
+      
+      const courseData = await response.json();
+      
+      // Validate required data
+      if (!courseData.processedSections || !courseData.files) {
+        throw new Error('Invalid course data structure');
+      }
+      
+      // Ensure the courseData has the required structure
+      const processedData = {
+        courseName: courseData.courseName || course.title,
+        template: courseData.template || '',
+        persona: courseData.persona || '',
+        files: courseData.files || [],
+        processedSections: courseData.processedSections || [],
+        audioFiles: courseData.audioFiles || []
+      };
+      
+      // Dismiss loading toast
+      toast.dismiss('loading-course');
+      
+      // Navigate with complete course data
+      navigate('/course-canvas', { 
+        state: processedData,
+        replace: false 
+      });
     } catch (error) {
-      setTestAnswer(`Error: ${error.message}`);
-    } finally {
-      setIsLoading(false);
+      console.error('Error fetching course data:', error);
+      // Dismiss loading toast and show error
+      toast.dismiss('loading-course');
+      toast.error('Failed to load course data', {
+        description: 'Please try again or contact support'
+      });
     }
   };
 
-  const handleFileUpload = async () => {
-    if (!testFile) return;
+  // Add this helper function near the top of the component
+  const formatDate = (dateString: string | undefined) => {
+    if (!dateString) return 'Not accessed yet';
+    const date = new Date(dateString);
+    return date instanceof Date && !isNaN(date.getTime()) 
+      ? date.toLocaleDateString('en-GB', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }).replace(/\//g, '.')
+      : '01.01.2025';
+  };
 
-    setUploadLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', testFile);
+  // Update the getProgressStatus function
+  const getProgressStatus = (progress: number) => {
+    if (progress === 100) return { label: '', color: 'text-emerald-400' };
+    if (progress >= 75) return { label: '', color: 'text-blue-400' };
+    if (progress >= 50) return { label: '', color: 'text-purple-400' };
+    if (progress >= 25) return { label: '', color: 'text-amber-400' };
+    return { label: '', color: 'text-gray-400' };
+  };
 
-      const response = await fetch('http://localhost:5001/process-pdf', {
-        method: 'POST',
-        body: formData,
+  // Update the getRandomProgress function
+  const getRandomProgress = (courseId: number) => {
+    const seed = courseId * 17;
+    const baseProgress = [35, 45, 60, 75, 85, 95, 100];
+    const index = seed % baseProgress.length;
+    return baseProgress[index];
+  };
+
+  // Add the handleOpenExistingCourse function
+  const handleOpenExistingCourse = () => {
+    if (existingCourse) {
+      // Convert course title to a URL-friendly format
+      const courseNameParam = existingCourse.title.toLowerCase().replace(/\s+/g, '_');
+      navigate('/course-canvas', { 
+        state: { courseName: courseNameParam },
+        replace: true 
       });
-
-      const data = await response.json();
-      if (data.error) {
-        setTestSections([{ title: 'Error', content: data.error }]);
-      } else {
-        setTestSections(data.sections);
-      }
-    } catch (error) {
-      setTestSections([{ title: 'Error', content: error.message }]);
-    } finally {
-      setUploadLoading(false);
     }
+    setIsDuplicateDialogOpen(false);
+    setExistingCourse(null);
+    setIsExpanded(false);
+  };
+
+  // Add the handleRenameCourse function
+  const handleRenameCourse = () => {
+    setIsDuplicateDialogOpen(false);
+    setExistingCourse(null);
+    // Keep the form open for renaming
   };
 
   return (
@@ -397,377 +907,575 @@ const Dashboard = () => {
       </header>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-200">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/20">
+      {isLoading ? (
+        <div className="container mx-auto px-6 py-8">
+          <AnimatedLoadingSkeleton />
+        </div>
+      ) : (
+        <div className="container mx-auto px-6 py-8 pb-32">
+          {/* Dashboard Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {/* Total Courses */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-purple-500/10 rounded-full">
                   <BookOpen className="h-6 w-6 text-purple-400" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 font-medium">Total Courses</p>
-                  <h3 className="text-3xl font-bold text-white mt-1">12</h3>
-                  <p className="text-xs text-green-400 mt-1">↑ 23% from last month</p>
+                  <h3 className="text-sm font-medium text-gray-300">Total Courses</h3>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-white">{courses.length}</span>
+                    <span className="text-sm text-emerald-400 flex items-center">
+                      <ChevronRight className="h-4 w-4 rotate-90" />
+                      23% from last month
+                    </span>
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </motion.div>
 
-          <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-200">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-blue-500/20">
+            {/* Learning Hours */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-blue-500/10 rounded-full">
                   <Clock className="h-6 w-6 text-blue-400" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 font-medium">Learning Hours</p>
-                  <h3 className="text-3xl font-bold text-white mt-1">48.5</h3>
-                  <p className="text-xs text-green-400 mt-1">↑ 12% from last month</p>
+                  <h3 className="text-sm font-medium text-gray-300">Learning Hours</h3>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-white">48.5</span>
+                    <span className="text-sm text-emerald-400 flex items-center">
+                      <ChevronRight className="h-4 w-4 rotate-90" />
+                      12% from last month
+                    </span>
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </motion.div>
 
-          <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-200">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-3 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/20">
-                  <div className="h-6 w-6 text-emerald-400 flex items-center justify-center font-bold">
-                    %
-                  </div>
+            {/* Average Completion */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300"
+            >
+              <div className="flex items-center gap-4">
+                <div className="p-3 bg-emerald-500/10 rounded-full">
+                  <div className="h-6 w-6 text-emerald-400 flex items-center justify-center font-bold">%</div>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-400 font-medium">Avg. Completion</p>
-                  <h3 className="text-3xl font-bold text-white mt-1">78%</h3>
-                  <p className="text-xs text-green-400 mt-1">↑ 8% from last month</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Create New Course Button */}
-        {!isExpanded && (
-          <Button
-            className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 
-                       text-white px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300
-                       flex items-center space-x-3 mb-12 relative overflow-hidden"
-            onClick={() => setIsExpanded(true)}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 blur-xl group-hover:opacity-75 transition-opacity" />
-            <div className="relative flex items-center space-x-3">
-              <div className="bg-white/10 rounded-full p-2">
-                <PlusCircle className="h-5 w-5" />
-              </div>
-              <span className="text-lg">Create a New Personalised Course</span>
-            </div>
-          </Button>
-        )}
-
-        {/* Create Course Form */}
-        {isExpanded && (
-          <Card className="bg-gray-800/50 border-gray-700 mb-8">
-            <CardHeader className="border-b border-gray-700">
-              <CardTitle className="text-2xl font-semibold text-white">Create New Course</CardTitle>
-              <p className="text-sm text-gray-400 mt-1">Fill in the details below to create your personalized course</p>
-            </CardHeader>
-            <CardContent className="space-y-8 pt-6">
-              {/* Course Name with Icon */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                  <BookOpen className="h-4 w-4 text-purple-400" />
-                  Course Name
-                </label>
-                <Input
-                  placeholder="Enter a descriptive name for your course"
-                  value={courseName}
-                  onChange={(e) => setCourseName(e.target.value)}
-                  className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 h-12"
-                />
-              </div>
-
-              {/* Templates Section - Only show if course name exists */}
-              {courseName.trim() !== '' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-top-4 duration-500">
-                  {/* Course Template */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <Settings className="h-4 w-4 text-purple-400" />
-                      Course Template
-                    </label>
-                    <Select onValueChange={handleTemplateChange}>
-                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white h-[80px] items-start pt-3">
-                        <SelectValue placeholder="Choose how you want to structure your course" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                        <SelectItem value="educational-deep-dive" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <BookOpen className="h-4 w-4 text-purple-400" />
-                              Educational Deep Dive
-                            </div>
-                            <div className="text-sm text-gray-400">In-depth exploration of complex topics</div>
-                            <div className="text-xs text-purple-400/80">30-45 minutes • English</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="quick-industry-update" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <BookOpen className="h-4 w-4 text-purple-400" />
-                              Quick Industry Update
-                            </div>
-                            <div className="text-sm text-gray-400">Concise overview of latest developments</div>
-                            <div className="text-xs text-purple-400/80">15-20 minutes • English</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="engaging-podcast" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <BookOpen className="h-4 w-4 text-purple-400" />
-                              Engaging Podcast
-                            </div>
-                            <div className="text-sm text-gray-400">Share expert insights and explain concepts</div>
-                            <div className="text-xs text-purple-400/80">20-30 minutes • English</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="rapid-refresher" className="text-white hover:bg-gray-700 border-t border-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <BookOpen className="h-4 w-4 text-purple-400" />
-                              Rapid Refresher
-                            </div>
-                            <div className="text-sm text-gray-400">Quick memory refresh of essential concepts</div>
-                            <div className="text-xs text-purple-400/80">5-10 minutes • German</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="executive-summary" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <BookOpen className="h-4 w-4 text-purple-400" />
-                              Executive Summary
-                            </div>
-                            <div className="text-sm text-gray-400">Strategic overview for high-level decision making</div>
-                            <div className="text-xs text-purple-400/80">10-15 minutes • French</div>
-                          </div>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Teaching Persona */}
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <Users className="h-4 w-4 text-purple-400" />
-                      Teaching Persona
-                    </label>
-                    <Select onValueChange={handlePersonaChange}>
-                      <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white h-[80px] items-start pt-3">
-                        <SelectValue placeholder="Choose your teaching style and approach" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-gray-800 border-gray-700 text-white">
-                        <SelectItem value="andy-julia" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <Users className="h-4 w-4 text-purple-400" />
-                              Andy and Julia
-                            </div>
-                            <div className="text-sm text-gray-400">Friendly and engaging teaching duo</div>
-                            <div className="text-xs text-purple-400/80">English • Conversational Style</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="robert-mark" className="text-white hover:bg-gray-700">
-                          <div className="py-2 space-y-1">
-                            <div className="font-medium flex items-center gap-2">
-                              <Users className="h-4 w-4 text-purple-400" />
-                              Robert and Mark
-                            </div>
-                            <div className="text-sm text-gray-400">Professional and technical experts</div>
-                            <div className="text-xs text-purple-400/80">English • Technical Style</div>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="create-new" className="text-emerald-400 hover:bg-gray-700 border-t border-gray-700">
-                          <div className="py-2 flex items-center gap-2">
-                            <Plus className="h-4 w-4" />
-                            Create Custom Persona
-                          </div>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                  <h3 className="text-sm font-medium text-gray-300">Avg. Completion</h3>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-bold text-white">78%</span>
+                    <span className="text-sm text-emerald-400 flex items-center">
+                      <ChevronRight className="h-4 w-4 rotate-90" />
+                      8% from last month
+                    </span>
                   </div>
                 </div>
-              )}
-
-              {/* PDF Upload Section - Only show if template and persona are selected */}
-              {courseName.trim() !== '' && selectedTemplate && selectedPersona && (
-                <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
-                  <div className="flex justify-between items-center">
-                    <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                      <FileText className="h-4 w-4 text-purple-400" />
-                      Course Materials
-                    </label>
-                    <span className="text-xs text-gray-400">PDF files only • Max 50MB</span>
-                  </div>
-                  
-                  {/* Upload Area */}
-                  <div className="border-2 border-dashed border-gray-600 rounded-xl p-8 hover:border-purple-500 transition-colors bg-gray-800/30">
-                    <div className="flex flex-col items-center justify-center space-y-4">
-                      <input
-                        type="file"
-                        multiple
-                        accept=".pdf"
-                        onChange={handleFileChange}
-                        className="hidden"
-                        id="pdf-upload"
-                      />
-                      <label
-                        htmlFor="pdf-upload"
-                        className="cursor-pointer flex flex-col items-center justify-center group"
-                      >
-                        <div className="p-4 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
-                          <Upload className="h-6 w-6 text-purple-400" />
-                        </div>
-                        <span className="mt-4 text-sm font-medium text-gray-300">
-                          Drag & drop your PDFs here or click to browse
-                        </span>
-                        <span className="text-xs text-gray-500 mt-1">
-                          Supported formats: PDF
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* Selected Files List */}
-                  {selectedFiles.length > 0 && (
-                    <div className="space-y-3 mt-4">
-                      {selectedFiles.map((file, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center justify-between bg-gray-700/30 rounded-lg p-4 group hover:bg-gray-700/50 transition-colors"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <div className="p-2 bg-purple-500/10 rounded-lg">
-                              <FileText className="h-5 w-5 text-purple-400" />
-                            </div>
-                            <div>
-                              <p className="text-sm font-medium text-white">{file.name}</p>
-                              <p className="text-xs text-gray-400">
-                                {(file.size / (1024 * 1024)).toFixed(2)} MB
-                              </p>
-                            </div>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => removeFile(file)}
-                            className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-400 transition-opacity"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Action Buttons */}
-              <div className="flex justify-end space-x-4 pt-4 border-t border-gray-700">
-                <Button
-                  variant="outline"
-                  onClick={() => setIsExpanded(false)}
-                  className="border-gray-600 text-gray-300 hover:bg-gray-700 px-6"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={handleNext}
-                  disabled={!courseName || !selectedTemplate || !selectedPersona || selectedFiles.length === 0}
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8"
-                >
-                  Create Course
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
               </div>
-            </CardContent>
-          </Card>
-        )}
+            </motion.div>
+          </div>
 
-        {/* Existing Courses */}
-        <div>
-          <h2 className="text-2xl font-semibold mb-6 text-white">Your Personalised Courses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((course) => (
-              <Card key={course.id} className="group bg-gray-800/50 border-gray-700 hover:border-purple-500 hover:bg-gray-800/70 transition-all duration-300">
+          {/* Create Course Card */}
+          {!isExpanded ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="relative mb-8"
+            >
+              <Card 
+                className="bg-gray-800/50 border-gray-700 hover:border-purple-500/50 transition-all duration-300 cursor-pointer group overflow-hidden"
+                onClick={() => setIsExpanded(true)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <CardHeader>
-                  <CardTitle className="text-lg font-medium text-white flex items-center justify-between">
-                    <span>{course.title}</span>
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="text-gray-400 hover:text-white"
-                        onClick={() => {
-                          navigate('/index', {
-                            state: {
-                              courseName: course.title,
-                              sections: [
-                                // Define sections if needed
-                              ],
-                            },
-                            replace: true,
-                          });
-                        }}
-                      >
-                        <Play className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardTitle>
+                  <div>
+                    <CardTitle className="text-2xl font-semibold text-white">Create New Course</CardTitle>
+                    <p className="text-gray-400 mt-1">Transform your documents into interactive learning experiences</p>
+                  </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex justify-between text-sm text-gray-400">
-                      <span>Created on {new Date(course.createdAt).toLocaleDateString('en-GB', {
-                        day: '2-digit',
-                        month: '2-digit',
-                        year: 'numeric'
-                      }).replace(/\//g, '.')}</span>
-                      <span>Last accessed {course.lastAccessed}</span>
+                <CardContent className="pt-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1">
+                      <Input
+                        placeholder="Enter a descriptive name for your course"
+                        value={courseName}
+                        onChange={(e) => setCourseName(e.target.value)}
+                        className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 h-12"
+                      />
                     </div>
-                    
-                    <div className="flex space-x-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-purple-400 border-purple-400 hover:bg-purple-400/10"
-                        onClick={() => console.log('Edit course', course.id)}
-                      >
-                        <Edit className="h-4 w-4 mr-1" />
-                        Edit
-                      </Button>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="text-red-400 border-red-400 hover:bg-red-400/10"
-                        onClick={() => console.log('Delete course', course.id)}
-                      >
-                        <Trash2 className="h-4 w-4 mr-1" />
-                        Delete
-                      </Button>
-                    </div>
+                    <Button
+                      className="h-12 px-6 bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 hover:text-purple-300"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsExpanded(true);
+                      }}
+                    >
+                      Get Started
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
-            ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="relative"
+            >
+              <Card className="bg-gray-800/50 border-gray-700 mb-8 relative overflow-hidden">
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-600/50 via-pink-500/50 to-purple-600/50 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                <div className="relative bg-gray-800/50 rounded-lg p-6">
+                  <CardHeader className="border-b border-gray-700 px-0 pt-0">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-purple-500/10">
+                          <Plus className="h-5 w-5 text-purple-400" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-2xl font-semibold text-white">Create New Course</CardTitle>
+                          <p className="text-gray-400 mt-1">Fill in the details below to create your course</p>
+                        </div>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => setIsExpanded(false)}
+                        className="rounded-full hover:bg-gray-700/50"
+                      >
+                        <X className="h-5 w-5 text-gray-400" />
+                      </Button>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-8 pt-6 px-0">
+                    {/* Course Name with Icon */}
+                    <div className="flex-1 space-y-2">
+                      <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                        <BookOpen className="h-4 w-4 text-purple-400" />
+                        Course Name
+                      </label>
+                      <Input
+                        placeholder="Enter a descriptive name for your course"
+                        value={courseName}
+                        onChange={(e) => setCourseName(e.target.value)}
+                        className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 h-12"
+                      />
+                    </div>
+
+                    {/* Templates Section - Only show if course name exists */}
+                    {courseName.trim() !== '' && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-in fade-in slide-in-from-top-4 duration-500">
+                        {/* Course Template */}
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                            <MessageCircle className="h-4 w-4 text-purple-400" />
+                            Course Template
+                          </label>
+                          <Select onValueChange={handleTemplateChange}>
+                            <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white h-[80px] items-start pt-3">
+                              <SelectValue placeholder="Choose how you want to structure your course" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                              <SelectItem value="educational-deep-dive" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <BookOpen className="h-4 w-4 text-purple-400" />
+                                    Educational Deep Dive
+                                  </div>
+                                  <div className="text-sm text-gray-400">In-depth exploration of complex topics</div>
+                                  <div className="text-xs text-purple-400/80">30-45 minutes • English</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="quick-industry-update" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <BookOpen className="h-4 w-4 text-purple-400" />
+                                    Quick Industry Update
+                                  </div>
+                                  <div className="text-sm text-gray-400">Concise overview of latest developments</div>
+                                  <div className="text-xs text-purple-400/80">15-20 minutes • English</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="engaging-podcast" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <BookOpen className="h-4 w-4 text-purple-400" />
+                                    Engaging Podcast
+                                  </div>
+                                  <div className="text-sm text-gray-400">Share expert insights and explain concepts</div>
+                                  <div className="text-xs text-purple-400/80">20-30 minutes • English</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="rapid-refresher" className="text-white hover:bg-gray-700 border-t border-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <BookOpen className="h-4 w-4 text-purple-400" />
+                                    Rapid Refresher
+                                  </div>
+                                  <div className="text-sm text-gray-400">Quick memory refresh of essential concepts</div>
+                                  <div className="text-xs text-purple-400/80">5-10 minutes • German</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="executive-summary" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <BookOpen className="h-4 w-4 text-purple-400" />
+                                    Executive Summary
+                                  </div>
+                                  <div className="text-sm text-gray-400">Strategic overview for high-level decision making</div>
+                                  <div className="text-xs text-purple-400/80">10-15 minutes • French</div>
+                                </div>
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        {/* Language and Persona */}
+                        <div className="space-y-2">
+                          <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                            <Languages className="h-4 w-4 text-purple-400" />
+                            Language and Persona
+                          </label>
+                          <Select onValueChange={handlePersonaChange}>
+                            <SelectTrigger className="bg-gray-700/50 border-gray-600 text-white h-[80px] items-start pt-3">
+                              <SelectValue placeholder="Select a persona pair and their preferred language" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                              <SelectItem value="andrew-ava" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <Users className="h-4 w-4 text-purple-400" />
+                                    Andrew and Ava
+                                  </div>
+                                  <div className="text-sm text-gray-400">Expert and learner with multilingual capabilities</div>
+                                  <div className="text-xs text-purple-400/80">English • Multilingual</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="killian-maja" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <Users className="h-4 w-4 text-purple-400" />
+                                    Killian and Maja
+                                  </div>
+                                  <div className="text-sm text-gray-400">Native German speakers with technical expertise</div>
+                                  <div className="text-xs text-purple-400/80">German • Technical Style</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="jan-leni" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <Users className="h-4 w-4 text-purple-400" />
+                                    Jan and Leni
+                                  </div>
+                                  <div className="text-sm text-gray-400">Swiss German dialect specialists</div>
+                                  <div className="text-xs text-purple-400/80">Swiss German • Conversational</div>
+                                </div>
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Document Source Selection - Only show if template and persona are selected */}
+                    {courseName.trim() !== '' && selectedTemplate && selectedPersona && (
+                      <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
+                        <div className="flex justify-between items-center">
+                          <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
+                            <FileText className="h-4 w-4 text-purple-400" />
+                            Document Source
+                          </label>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          {/* PDF Upload Option */}
+                          <div className={cn(
+                            "p-4 rounded-xl border-2 border-dashed transition-all duration-300",
+                            "hover:bg-gray-800/50 group",
+                            selectedFiles.length > 0 ? "border-purple-500 bg-purple-500/10" : "border-gray-600"
+                          )}>
+                            <input
+                              type="file"
+                              multiple
+                              accept=".pdf"
+                              onChange={handleFileChange}
+                              className="hidden"
+                              id="pdf-upload"
+                            />
+                            <label
+                              htmlFor="pdf-upload"
+                              className="cursor-pointer flex items-center gap-4 text-left"
+                            >
+                              <div className="p-3 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors shrink-0">
+                                <Upload className="h-5 w-5 text-purple-400" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-base font-medium text-white">Upload PDF</h3>
+                                <p className="text-sm text-gray-400">Upload your existing PDF documents</p>
+                                <p className="text-xs text-gray-500 mt-1">PDF files only • Max 50MB</p>
+                              </div>
+                            </label>
+                            {selectedFiles.length > 0 && (
+                              <div className="mt-3 space-y-2">
+                                {selectedFiles.map((file, index) => (
+                                  <div
+                                    key={index}
+                                    className="flex items-center justify-between bg-gray-700/30 rounded-lg p-2 group hover:bg-gray-700/50 transition-colors"
+                                  >
+                                    <div className="flex items-center gap-2 min-w-0">
+                                      <FileText className="h-4 w-4 text-purple-400 shrink-0" />
+                                      <div className="truncate">
+                                        <p className="text-sm font-medium text-white truncate">{file.name}</p>
+                                        <p className="text-xs text-gray-400">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                                      </div>
+                                    </div>
+                                    <Button
+                                      variant="ghost"
+                                      size="sm"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        removeFile(file);
+                                      }}
+                                      className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-400 transition-opacity"
+                                    >
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Summary Section */}
+                          <div className={cn(
+                            "p-4 rounded-xl border-2 border-dashed transition-all duration-300",
+                            "hover:bg-gray-800/50 group",
+                            documentSummary ? "border-purple-500 bg-purple-500/10" : "border-gray-600"
+                          )}>
+                            <div className="flex items-start justify-between">
+                              <div className="flex items-start gap-4">
+                                <div className="p-3 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors shrink-0">
+                                  <FileText className="h-5 w-5 text-purple-400" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="text-base font-medium text-white">Document Summary</h3>
+                                  <p className="text-sm text-gray-400">Add a summary of your document</p>
+                                </div>
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => {
+                                  setDocumentSummary('');
+                                  generateSummary();
+                                }}
+                                className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 flex items-center gap-2 text-sm"
+                                disabled={isGeneratingSummary || !selectedFiles.length}
+                              >
+                                {isGeneratingSummary ? (
+                                  <>
+                                    <div className="h-3 w-3 animate-spin rounded-full border-2 border-purple-400 border-t-transparent" />
+                                    <span>Generating...</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <svg
+                                      className="h-3 w-3"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                      strokeWidth={2}
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                                      />
+                                    </svg>
+                                    <span>Auto-Generate</span>
+                                  </>
+                                )}
+                              </Button>
+                            </div>
+                            <div className="mt-4">
+                              <Textarea
+                                placeholder="Enter a comprehensive summary of your document..."
+                                value={documentSummary}
+                                onChange={(e) => setDocumentSummary(e.target.value)}
+                                className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 min-h-[160px] w-full text-sm"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Action Buttons */}
+                    <div className="flex justify-end gap-4 mt-8 pt-4 border-t border-gray-700">
+                      <Button
+                        variant="ghost"
+                        onClick={() => setIsExpanded(false)}
+                        className="bg-gray-800/50 text-white hover:bg-gray-700/50 hover:text-purple-400 transition-all duration-300 px-6"
+                      >
+                        Cancel
+                      </Button>
+                      <Button
+                        onClick={handleNext}
+                        disabled={!courseName || !selectedTemplate || !selectedPersona || selectedFiles.length === 0}
+                        className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8"
+                      >
+                        Create Course
+                        <ChevronRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+            </motion.div>
+          )}
+
+          {/* Existing Courses */}
+          <div>
+            <h2 className="text-2xl font-semibold mb-6 text-white flex items-center gap-3">
+              <BookOpen className="h-6 w-6 text-purple-400" />
+              Your Personalised Courses
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {courses.map((course, index) => {
+                // Calculate progress once per course render
+                const progress = getRandomProgress(course.id);
+                const progressStatus = getProgressStatus(progress);
+                
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group relative bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:border-purple-500/50 hover:bg-gray-800/80 transition-all duration-300"
+                  >
+                    {/* Course Header with Title and Play Button */}
+                    <div className="flex flex-col gap-4 mb-6">
+                      {/* Title Section */}
+                      <div className="flex items-start gap-3 min-w-0">
+                        <div className="p-2 rounded-lg bg-purple-500/10 shrink-0">
+                          <BookOpen className="h-5 w-5 text-purple-400" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-white group-hover:text-purple-400 transition-colors break-words">
+                          {course.title}
+                        </h3>
+                      </div>
+
+                      {/* Course Actions - Now below the title */}
+                      <div className="flex items-center gap-2 ml-11">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handlePlayCourse(course)}
+                          className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20"
+                          title="Play Audio Course"
+                        >
+                          <Headphones className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handlePlayVideoCourse(course)}
+                          className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/20"
+                          title="Play Video Course"
+                        >
+                          <Video className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleEditCourse(course)}
+                          className="w-8 h-8 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => handleDeleteCourse(course)}
+                          className="w-8 h-8 rounded-lg bg-gray-800/50 text-gray-400 hover:text-red-400 hover:bg-red-500/10"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    {/* Add a visual indicator for audio availability */}
+                    {!course.audioAvailable && (
+                      <div className="absolute top-2 right-2">
+                        <span className="text-xs text-gray-400 bg-gray-700/50 px-2 py-1 rounded-full">
+                          Audio not available
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Progress Section */}
+                    <div className="mb-6">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium text-gray-300">Course Progress</span>
+                        <div className="flex items-center gap-2">
+                          <span className={cn("text-sm font-medium", progressStatus.color)}>
+                            {progress}%
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-full bg-gray-700/50 rounded-full h-2.5 overflow-hidden">
+                        <div
+                          className={cn(
+                            "h-2.5 rounded-full transition-all duration-300 relative",
+                            progress === 100 ? "bg-emerald-500" : "bg-gradient-to-r from-purple-500 to-purple-400"
+                          )}
+                          style={{ width: `${progress}%` }}
+                        >
+                          <div className="absolute inset-0 bg-white/20">
+                            <div className="animate-shimmer -translate-x-full h-full w-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Course Info */}
+                    <div className="grid grid-cols-2 gap-4 text-sm mb-4">
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <Clock className="h-4 w-4 text-purple-400/70" />
+                        <p>Created {formatDate(course.createdAt)}</p>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-300">
+                        <Clock className="h-4 w-4 text-purple-400/70" />
+                        <p>Accessed {formatDate(course.lastAccessed)}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Add ChatBot at the end of the main div */}
+      {/* ChatBot */}
       <ChatBot />
 
-      {/* Update the footer section */}
+      {/* Footer */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-gray-900/50 backdrop-blur-sm z-40">
         <div className="max-w-7xl mx-auto px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -1076,122 +1784,65 @@ const Dashboard = () => {
         </DialogContent>
       </Dialog>
 
-      {/* API Test Section */}
-      <div className="max-w-7xl mx-auto px-8 py-4 mb-8">
-        <Card className="bg-gray-800/50 border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-lg font-medium text-white flex items-center gap-2">
-              <div className="p-2 rounded-full bg-yellow-500/10">
-                <Settings className="h-4 w-4 text-yellow-400" />
-              </div>
-              API Test Section
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Question/Answer Test */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium text-gray-300">Test Question/Answer</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Test Question</label>
-                  <div className="flex space-x-2">
-                    <Input
-                      placeholder="Enter your test question..."
-                      value={testQuestion}
-                      onChange={(e) => setTestQuestion(e.target.value)}
-                      className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400"
-                    />
-                    <Button
-                      onClick={handleTestApi}
-                      disabled={isLoading || !testQuestion.trim()}
-                      className="bg-yellow-500 hover:bg-yellow-600 text-black min-w-[100px]"
-                    >
-                      {isLoading ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                          Testing
-                        </div>
-                      ) : (
-                        'Test API'
-                      )}
-                    </Button>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">API Response</label>
-                  <Textarea
-                    value={testAnswer}
-                    readOnly
-                    className="bg-gray-700/50 border-gray-600 text-white h-[104px] resize-none"
-                    placeholder="API response will appear here..."
-                  />
-                </div>
+      {isLoading && <LoadingSpinner />}
+
+      {/* Add the Alert Dialog near the end of the component */}
+      <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <AlertDialogContent className="bg-gray-800 border border-gray-700">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-white">Delete Course</AlertDialogTitle>
+            <div className="text-gray-400">
+              <p>This will permanently delete the course "{courseToDelete?.title}" and all related files.</p>
+              <div className="mt-4">
+                <p className="mb-2">The following will be deleted:</p>
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Course audio files</li>
+                  <li>Course canvas data</li>
+                  <li>PDF documents</li>
+                </ul>
               </div>
             </div>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-gray-700 text-white hover:bg-gray-600 border-gray-600">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white border-0"
+            >
+              Delete Course
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
-            {/* PDF Upload Test */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium text-gray-300">Test PDF Processing</h3>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <Input
-                    type="file"
-                    accept=".pdf"
-                    onChange={(e) => setTestFile(e.target.files?.[0] || null)}
-                    className="bg-gray-700/50 border-gray-600 text-white"
-                  />
-                  <Button
-                    onClick={handleFileUpload}
-                    disabled={uploadLoading || !testFile}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-black min-w-[100px]"
-                  >
-                    {uploadLoading ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
-                        Processing
-                      </div>
-                    ) : (
-                      'Process PDF'
-                    )}
-                  </Button>
-                </div>
-
-                {/* Display Processed Sections */}
-                {testSections.length > 0 && (
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-medium text-gray-300">Processed Sections:</h4>
-                    <div className="space-y-4">
-                      {testSections.map((section, index) => (
-                        <Card key={index} className="bg-gray-700/30 border-gray-600">
-                          <CardHeader>
-                            <CardTitle className="text-sm text-white">{section.title}</CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="space-y-2">
-                              <div className="text-sm text-gray-300">
-                                <h5 className="font-medium mb-1">Content:</h5>
-                                <p className="whitespace-pre-wrap">{section.content}</p>
-                              </div>
-                              {section.script && (
-                                <div className="text-sm text-gray-300">
-                                  <h5 className="font-medium mb-1">Generated Script:</h5>
-                                  <p className="whitespace-pre-wrap">{section.script}</p>
-                                </div>
-                              )}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
+      {/* Add the Duplicate Course Dialog */}
+      <AlertDialog open={isDuplicateDialogOpen} onOpenChange={setIsDuplicateDialogOpen}>
+        <AlertDialogContent className="bg-gray-800 border border-gray-700">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-white">Course Already Exists</AlertDialogTitle>
+            <div className="text-gray-400">
+              <p>A course with the name "{existingCourse?.title}" already exists.</p>
+              <p className="mt-2">Would you like to open the existing course or go back and rename your new course?</p>
             </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {isLoading && <LoadingSpinner message="Processing your PDF..." />}
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={handleRenameCourse}
+              className="bg-gray-700 text-white hover:bg-gray-600 border-gray-600"
+            >
+              Rename Course
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleOpenExistingCourse}
+              className="bg-purple-600 hover:bg-purple-700 text-white border-0"
+            >
+              Open Existing Course
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

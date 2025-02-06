@@ -19,4 +19,8 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  assetsInclude: ['**/*.json'],  // Include JSON files as assets
+  json: {
+    stringify: true  // Enable JSON imports
+  },
 }));

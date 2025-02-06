@@ -40,7 +40,7 @@ const ChatBot = () => {
     setTimeout(() => {
       const botMessage: Message = {
         id: messages.length + 2,
-        text: "I'm here to help! This is a placeholder response.",
+        text: "This functionality is not yet available!",
         sender: 'bot',
         timestamp: new Date(),
       };
