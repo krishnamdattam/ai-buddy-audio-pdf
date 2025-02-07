@@ -1,0 +1,25 @@
+{
+  "audioAvailable": true,
+  "audioFiles": [
+    {
+      "fileName": "project_portfolio_handbook_long_en_section_0.wav",
+      "sectionIndex": 0,
+      "sectionTitle": "Principles"
+    },
+    {
+      "fileName": "project_portfolio_handbook_long_en_section_1.wav",
+      "sectionIndex": 1,
+      "sectionTitle": "Project description"
+    },
+    {
+      "fileName": "project_portfolio_handbook_long_en_section_2.wav",
+      "sectionIndex": 2,
+      "sectionTitle": "Project organization and committee structure"
+    },
+    {
+      "fileName": "project_portfolio_handbook_long_en_section_3.wav",
+      "sectionIndex": 3,
+      "sectionTitle": "Project phases"
+    }
+  ]
+}

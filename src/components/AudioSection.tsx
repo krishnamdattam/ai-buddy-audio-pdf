@@ -103,10 +103,10 @@ const AudioSection = ({
                 <span className="text-sm text-white">Notes</span>
               </button>
             </div>
-            {notes.find((note) => note.sectionId === index) && (
+            {notes.find((note) => note.section_index === index) && (
               <div className="mt-2 p-3 bg-gray-700/50 rounded-md">
                 <p className="text-sm text-gray-300">
-                  {notes.find((note) => note.sectionId === index)?.content}
+                  {notes.find((note) => note.section_index === index)?.content}
                 </p>
               </div>
             )}

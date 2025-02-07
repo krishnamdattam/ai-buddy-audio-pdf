@@ -17,6 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ChatBot from '../components/ChatBot';
 
 // Audio files will be imported after you upload them
 const audioPlaceholder = '';
@@ -154,23 +155,29 @@ export default function Index() {
   }, [notes]);
 
   const handleOpenNoteDialog = (sectionIndex: number) => {
-    const existingNote = notes.find(note => note.sectionId === sectionIndex);
+    const existingNote = notes.find(note => note.section_index === sectionIndex);
     setNoteContent(existingNote?.content || '');
     setCurrentNoteSection(sectionIndex);
     setIsNoteDialogOpen(true);
   };
 
   const handleSaveNote = () => {
-    if (currentNoteSection === null) return;
+    if (currentNoteSection === null || !courseState?.courseName) return;
 
+    const timestamp = Date.now();
     const newNote: Note = {
-      sectionId: currentNoteSection,
+      id: `note_${timestamp}`,
+      user_id: 'default_user', // This should be replaced with actual user ID
+      course_name: courseState.courseName,
+      section_index: currentNoteSection,
       content: noteContent,
-      timestamp: new Date().toISOString()
+      timestamp: timestamp,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     };
 
     setNotes(prevNotes => {
-      const noteIndex = prevNotes.findIndex(note => note.sectionId === currentNoteSection);
+      const noteIndex = prevNotes.findIndex(note => note.section_index === currentNoteSection);
       if (noteIndex >= 0) {
         const updatedNotes = [...prevNotes];
         updatedNotes[noteIndex] = newNote;
@@ -901,73 +908,7 @@ export default function Index() {
 
           {/* Chat Box */}
           <div className="fixed bottom-20 right-12 z-50">
-            {/* Chat Toggle Button */}
-            <button
-              onClick={() => setIsChatOpen(!isChatOpen)}
-              className="bg-gradient-to-r from-purple-600 to-indigo-600 p-3 rounded-full shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
-            >
-              {isChatOpen ? (
-                <X className="h-6 w-6 text-white" />
-              ) : (
-                <MessageCircle className="h-6 w-6 text-white" />
-              )}
-            </button>
-
-            {/* Chat Window */}
-            {isChatOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                className="absolute bottom-16 right-0 w-96 bg-gray-800/90 backdrop-blur-sm rounded-lg shadow-xl border border-gray-700"
-              >
-                {/* Chat Header */}
-                <div className="p-4 border-b border-gray-700 bg-gradient-to-r from-purple-600/10 to-indigo-600/10">
-                  <h3 className="text-lg font-semibold text-white">Course Assistant</h3>
-                  <p className="text-sm text-gray-300">Ask me anything about the course</p>
-                </div>
-
-                {/* Chat Messages */}
-                <div className="h-96 overflow-y-auto p-4 space-y-4 custom-scrollbar">
-                  {messages.map((message, index) => (
-                    <div
-                      key={index}
-                      className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
-                    >
-                      <div
-                        className={`max-w-[80%] p-3 rounded-lg ${
-                          message.isUser
-                            ? 'bg-purple-600 text-white rounded-br-none'
-                            : 'bg-gray-700 text-gray-100 rounded-bl-none'
-                        }`}
-                      >
-                        {message.text}
-                      </div>
-                    </div>
-                  ))}
-                  <div ref={messagesEndRef} />
-                </div>
-
-                {/* Chat Input */}
-                <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-700">
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="text"
-                      value={newMessage}
-                      onChange={(e) => setNewMessage(e.target.value)}
-                      placeholder="Type your message..."
-                      className="flex-1 bg-gray-700/50 text-white rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500 border border-gray-600"
-                    />
-                    <button
-                      type="submit"
-                      className="p-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition-all duration-300"
-                    >
-                      <Send className="h-5 w-5 text-white" />
-                    </button>
-                  </div>
-                </form>
-              </motion.div>
-            )}
+            <ChatBot courseName={courseState?.courseName} />
           </div>
 
           <style>{`

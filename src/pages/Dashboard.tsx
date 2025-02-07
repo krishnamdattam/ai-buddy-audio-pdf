@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Video, Languages, MessageSquare } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Video, Languages, MessageSquare, Trophy, Star, Coins } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -139,6 +139,13 @@ interface CourseData {
   summary?: string;
 }
 
+// Add new interface for learning points
+interface LearningProgress {
+  earned: number;
+  target: number;
+  lastMonth: number;
+}
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -189,6 +196,11 @@ const Dashboard = () => {
   const [documentSummary, setDocumentSummary] = useState('');
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [summaryOption, setSummaryOption] = useState<'manual' | 'auto'>('manual');
+  const [learningProgress, setLearningProgress] = useState<LearningProgress>({
+    earned: 1246,
+    target: 2000,
+    lastMonth: 1100
+  });
 
   // Add voice selection state
   const [selectedExpertVoice, setSelectedExpertVoice] = useState('en-US-JennyNeural');  // Default expert voice
@@ -758,8 +770,11 @@ const Dashboard = () => {
       // Show loading toast
       toast.loading('Loading course data...', { id: 'loading-course' });
 
+      // Sanitize the course name
+      const sanitizedCourseName = course.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+
       // Fetch complete course data from backend
-      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
+      const response = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
       if (!response.ok) {
         throw new Error('Failed to fetch course data');
       }
@@ -938,49 +953,73 @@ const Dashboard = () => {
               </div>
             </motion.div>
 
-            {/* Learning Hours */}
+            {/* Learning Points */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300"
             >
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-blue-500/10 rounded-full">
-                  <Clock className="h-6 w-6 text-blue-400" />
-                </div>
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-300">Learning Hours</h3>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-white">48.5</span>
-                    <span className="text-sm text-emerald-400 flex items-center">
-                      <ChevronRight className="h-4 w-4 rotate-90" />
-                      12% from last month
-                    </span>
+                  <p className="text-sm font-medium text-gray-300">Learning Points</p>
+                  <div className="mt-2">
+                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                      {learningProgress.earned}/{learningProgress.target}
+                    </p>
+                    <div className="mt-2 w-full bg-gray-700 rounded-full h-2.5 relative overflow-hidden">
+                      <div className="absolute inset-0">
+                        <div className="animate-shimmer -translate-x-full h-full w-[200%] bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
+                      </div>
+                      <div 
+                        className="relative bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full"
+                        style={{ width: `${(learningProgress.earned / learningProgress.target) * 100}%` }}
+                      ></div>
+                    </div>
                   </div>
+                </div>
+                <div className="p-3 bg-purple-500/10 rounded-lg">
+                  <Coins className="h-6 w-6 text-purple-400" />
                 </div>
               </div>
             </motion.div>
 
-            {/* Average Completion */}
+            {/* Badges & Rank */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300"
+              className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:bg-gray-800/80 transition-all duration-300 relative overflow-hidden"
             >
-              <div className="flex items-center gap-4">
-                <div className="p-3 bg-emerald-500/10 rounded-full">
-                  <div className="h-6 w-6 text-emerald-400 flex items-center justify-center font-bold">%</div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-gray-300">Avg. Completion</h3>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-white">78%</span>
-                    <span className="text-sm text-emerald-400 flex items-center">
-                      <ChevronRight className="h-4 w-4 rotate-90" />
-                      8% from last month
-                    </span>
+              {/* Background Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-transparent" />
+              
+              <div className="relative flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="p-3 bg-amber-500/10 rounded-full">
+                      <Trophy className="h-6 w-6 text-amber-400" />
+                    </div>
+                    {/* Small badge indicator */}
+                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-amber-500 rounded-full border-2 border-gray-800 flex items-center justify-center">
+                      <span className="animate-pulse" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-300">Badges</h3>
+                    <div className="flex items-center gap-3 mt-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-3xl font-bold text-white">12</span>
+                        <span className="text-sm text-amber-400">Badges</span>
+                      </div>
+                      <div className="h-4 w-px bg-gray-700" />
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        <span className="text-sm font-medium bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
+                          Gold League
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1473,7 +1512,7 @@ const Dashboard = () => {
       )}
 
       {/* ChatBot */}
-      <ChatBot />
+      <ChatBot mode="recommendation" />
 
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-gray-900/50 backdrop-blur-sm z-40">

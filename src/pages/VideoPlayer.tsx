@@ -858,7 +858,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = () => {
             </div>
 
             {/* Add ChatBot */}
-            <ChatBot />
+            <ChatBot courseName={location.state?.courseName} />
 
             {/* Enhanced Footer */}
             <footer className="mt-8 border-t border-gray-800 bg-gray-900/50 backdrop-blur-sm">

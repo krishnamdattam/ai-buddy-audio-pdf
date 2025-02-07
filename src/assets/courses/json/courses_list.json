@@ -46,5 +46,17 @@
     "progress": 0,
     "audioAvailable": true,
     "pdfFile": "Extract of project handbook_de.pdf"
+  },
+  {
+    "id": "6789abcd-ef01-2345-6789-abcdef012345",
+    "name": "introduction_to_cloud_computing",
+    "title": "Introduction to Cloud Computing",
+    "template": "educational-deep-dive",
+    "persona": "expert",
+    "createdAt": "2025-02-07T10:00:00.000000",
+    "lastAccessed": "2025-02-06T13:51:55.361773",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "test_course_pdf_1738837002376.pdf"
   }
 ]
