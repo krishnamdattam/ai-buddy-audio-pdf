@@ -876,10 +876,23 @@ const CourseCanvas = () => {
     {
       icon: (props) => <Video {...props} />,
       label: "Transform to Video",
-      onClick: () => toast.info("Video course transformation coming soon!", {
-        description: "We're working on bringing you interactive video courses. Stay tuned!",
-        duration: 3000
-      })
+      onClick: () => {
+        if (!isAudioAvailable) {
+          toast.error("Audio course must be available before creating video", {
+            description: "Please transform the course to audio first.",
+            duration: 3000
+          });
+          return;
+        }
+        toast.info("Video course transformation coming soon!", {
+          description: "We're working on bringing you interactive video courses. Stay tuned!",
+          duration: 3000
+        });
+      },
+      className: cn(
+        "relative group hover:scale-110 transition-transform",
+        !isAudioAvailable && "opacity-50 cursor-not-allowed"
+      )
     }
   ];
 
