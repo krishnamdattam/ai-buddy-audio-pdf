@@ -1,0 +1,785 @@
+{
+  "courseName": "Projektportfoliohandbuch_long_de",
+  "sections": [
+    {
+      "sectionTitle": "Grunds\u00e4tze",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute besprechen wir das Projekthandbuch f\u00fcr das NND-Projekt. Unser Ziel ist es, den Geltungsbereich, die Ziele und die Grunds\u00e4tze des Projekts zu verstehen.",
+          "audioFile": "projektportfoliohandbuch_long_de_1__grunds_tze.wav",
+          "startTime": 0,
+          "duration": 9396,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, ich bin bereit. Was sind die Voraussetzungen, um diesen Inhalt zu verstehen?",
+          "audioFile": "projektportfoliohandbuch_long_de_2__grunds_tze.wav",
+          "startTime": 9596,
+          "duration": 5544,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Du solltest Grundkenntnisse in Projektmanagement und ein Verst\u00e4ndnis der Unternehmensstruktur haben. Das hilft, die Details des Projekthandbuchs zu verstehen.",
+          "audioFile": "projektportfoliohandbuch_long_de_3__grunds_tze.wav",
+          "startTime": 15340,
+          "duration": 8640,
+          "purpose": "introduction",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstanden. Was macht das Projekthandbuch so wichtig?",
+          "audioFile": "projektportfoliohandbuch_long_de_4__grunds_tze.wav",
+          "startTime": 24180,
+          "duration": 3708,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Handbuch regelt, wie das NND-Projekt abgewickelt wird. Es legt Aufgaben, Verantwortlichkeiten und Prozesse fest. Stell dir vor, es ist wie die Bedienungsanleitung f\u00fcr ein komplexes Ger\u00e4t.",
+          "audioFile": "projektportfoliohandbuch_long_de_5__grunds_tze.wav",
+          "startTime": 28088,
+          "duration": 12312,
+          "purpose": "hook",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Ah, also ist es eine Art Leitfaden f\u00fcr alle Beteiligten?",
+          "audioFile": "projektportfoliohandbuch_long_de_6__grunds_tze.wav",
+          "startTime": 40600,
+          "duration": 3816,
+          "purpose": "understanding",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau. In Abschnitt 2.1 wird der Geltungsbereich beschrieben. Es gilt f\u00fcr alle Projektbeteiligten wie Axpo, KKL und Zwilag w\u00e4hrend des gesamten Projektzeitraums.",
+          "audioFile": "projektportfoliohandbuch_long_de_7__grunds_tze.wav",
+          "startTime": 44616,
+          "duration": 10800,
+          "purpose": "document reference",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Das bedeutet, alle m\u00fcssen sich an die Regeln halten, richtig?",
+          "audioFile": "projektportfoliohandbuch_long_de_8__grunds_tze.wav",
+          "startTime": 55616,
+          "duration": 3888,
+          "purpose": "clarification",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Richtig. In Abschnitt 2.2 wird erkl\u00e4rt, dass das Handbuch sicherstellt, dass die Projektstruktur, Aufgaben, Prozesse und Kommunikation klar geregelt sind, \u00e4hnlich einem Stadtplan, der den Verkehr lenkt.",
+          "audioFile": "projektportfoliohandbuch_long_de_9__grunds_tze.wav",
+          "startTime": 59704,
+          "duration": 13320,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Also sorgt es f\u00fcr Ordnung und Effizienz im Projektablauf?",
+          "audioFile": "projektportfoliohandbuch_long_de_10__grunds_tze.wav",
+          "startTime": 73224,
+          "duration": 3672,
+          "purpose": "understanding",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau. In Abschnitt 2.3 sind die Grunds\u00e4tze und Erfolgsfaktoren beschrieben, wie die Orientierung an zertifiziertem Projektmanagement und die klare Projektorganisation.",
+          "audioFile": "projektportfoliohandbuch_long_de_11__grunds_tze.wav",
+          "startTime": 77096,
+          "duration": 10224,
+          "purpose": "document reference",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche Rolle spielen diese Erfolgsfaktoren?",
+          "audioFile": "projektportfoliohandbuch_long_de_12__grunds_tze.wav",
+          "startTime": 87520,
+          "duration": 2700,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Sie sind entscheidend f\u00fcr den Projekterfolg. Stellen dir vor, sie sind wie die St\u00fctzpfeiler eines Geb\u00e4udes. Ohne sie k\u00f6nnte das Geb\u00e4ude einst\u00fcrzen.",
+          "audioFile": "projektportfoliohandbuch_long_de_13__grunds_tze.wav",
+          "startTime": 90420,
+          "duration": 8964,
+          "purpose": "analogy",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Das macht Sinn. Gibt es spezielle Herausforderungen, die angesprochen werden?",
+          "audioFile": "projektportfoliohandbuch_long_de_14__grunds_tze.wav",
+          "startTime": 99584,
+          "duration": 5148,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, es ist wichtig, dass Termine eingehalten werden und bei Problemen fr\u00fchzeitig eskaliert wird, um Kosten zu vermeiden. Das wird in den Erfolgsfaktoren betont.",
+          "audioFile": "projektportfoliohandbuch_long_de_15__grunds_tze.wav",
+          "startTime": 104932,
+          "duration": 10080,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstanden. Das klingt nach einem durchdachten Ansatz.",
+          "audioFile": "projektportfoliohandbuch_long_de_16__grunds_tze.wav",
+          "startTime": 115212,
+          "duration": 3744,
+          "purpose": "understanding",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Absolut. Jetzt eine Frage an dich: Warum ist es wichtig, dass alle Beteiligten die Ziele des Projekts unterst\u00fctzen?",
+          "audioFile": "projektportfoliohandbuch_long_de_17__grunds_tze.wav",
+          "startTime": 119156,
+          "duration": 7272,
+          "purpose": "quiz",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Ich denke, weil es die Zusammenarbeit und den Erfolg des Projekts sichert.",
+          "audioFile": "projektportfoliohandbuch_long_de_18__grunds_tze.wav",
+          "startTime": 126628,
+          "duration": 4392,
+          "purpose": "understanding",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau. Lass uns zusammenfassen: Das Projekthandbuch dient als Leitfaden f\u00fcr das NND-Projekt, gew\u00e4hrleistet klare Strukturen und Prozesse und legt kritische Erfolgsfaktoren fest.",
+          "audioFile": "projektportfoliohandbuch_long_de_19__grunds_tze.wav",
+          "startTime": 131220,
+          "duration": 10764,
+          "purpose": "summary",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "Das war sehr hilfreich. Vielen Dank f\u00fcr die Erkl\u00e4rung!",
+          "audioFile": "projektportfoliohandbuch_long_de_20__grunds_tze.wav",
+          "startTime": 142184,
+          "duration": 3528,
+          "purpose": "excitement",
+          "dialogueIndex": 19
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Projektbeschreibung",
+      "sectionIndex": 1,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute besprechen wir die Projektbeschreibung des NND Projekts. Der Fokus liegt auf der IT-Infrastruktur f\u00fcr nukleare Anlagen, die den ENSI-Richtlinien entsprechen muss.",
+          "audioFile": "projektportfoliohandbuch_long_de_1__projektbeschreibung.wav",
+          "startTime": 0,
+          "duration": 9972,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Klingt interessant! Warum ist das Thema so wichtig?",
+          "audioFile": "projektportfoliohandbuch_long_de_2__projektbeschreibung.wav",
+          "startTime": 10172,
+          "duration": 3600,
+          "purpose": "curiosity",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Stell dir vor, ein Kraftwerk h\u00e4tte keine sichere IT. Das k\u00f6nnte zu gro\u00dfen Risiken f\u00fchren. \u00c4hnlich wie bei einem Schloss ohne Schl\u00fcsselsystem. In Abschnitt 3.1 des Dokuments wird erkl\u00e4rt, dass die Werke ihre IT-Dienstleistungen zuvor ausgelagert hatten, was den neuen Anforderungen nicht mehr entspricht.",
+          "audioFile": "projektportfoliohandbuch_long_de_3__projektbeschreibung.wav",
+          "startTime": 13972,
+          "duration": 18252,
+          "purpose": "hook/analogy/document reference",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Ah, ich verstehe. Welche Anforderungen m\u00fcssen denn umgesetzt werden?",
+          "audioFile": "projektportfoliohandbuch_long_de_4__projektbeschreibung.wav",
+          "startTime": 32424,
+          "duration": 4644,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Wichtige Anforderungen laut Abschnitt 3.2 sind IT-Sicherheit, Inselbetriebsf\u00e4higkeit und Weisungsbefugnis. Diese sichern die Verf\u00fcgbarkeit und Sicherheit der IT-Systeme.",
+          "audioFile": "projektportfoliohandbuch_long_de_5__projektbeschreibung.wav",
+          "startTime": 37268,
+          "duration": 10584,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Was bedeutet Inselbetriebsf\u00e4higkeit genau?",
+          "audioFile": "projektportfoliohandbuch_long_de_6__projektbeschreibung.wav",
+          "startTime": 48052,
+          "duration": 2844,
+          "purpose": "clarification",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Inselbetriebsf\u00e4higkeit bedeutet, dass die IT-Systeme unabh\u00e4ngig vom externen Netz funktionieren k\u00f6nnen, \u00e4hnlich wie ein Notstromgenerator, der bei Stromausfall einspringt.",
+          "audioFile": "projektportfoliohandbuch_long_de_7__projektbeschreibung.wav",
+          "startTime": 51096,
+          "duration": 10188,
+          "purpose": "analogy",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Das macht Sinn. Und wie soll das Projekt diese Anforderungen umsetzen?",
+          "audioFile": "projektportfoliohandbuch_long_de_8__projektbeschreibung.wav",
+          "startTime": 61484,
+          "duration": 4644,
+          "purpose": "understanding",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "In Abschnitt 3.3 werden die Hauptziele beschrieben. Ein Ziel ist der Aufbau einer neuen IT-Infrastruktur. Das soll die Sicherheitsanforderungen und die Inselbetriebsf\u00e4higkeit gew\u00e4hrleisten.",
+          "audioFile": "projektportfoliohandbuch_long_de_9__projektbeschreibung.wav",
+          "startTime": 66328,
+          "duration": 11160,
+          "purpose": "document reference/explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, verstehe. Gibt es auch Dinge, die nicht im Projektumfang sind?",
+          "audioFile": "projektportfoliohandbuch_long_de_10__projektbeschreibung.wav",
+          "startTime": 77688,
+          "duration": 5292,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, Abschnitt 3.4 spricht dar\u00fcber. Zum Beispiel sind sicherheitsrelevante OT-Systeme und einige Personalfragen au\u00dferhalb des Projektumfangs.",
+          "audioFile": "projektportfoliohandbuch_long_de_11__projektbeschreibung.wav",
+          "startTime": 83180,
+          "duration": 9252,
+          "purpose": "document reference/explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Interessant, das ist eine klare Abgrenzung.",
+          "audioFile": "projektportfoliohandbuch_long_de_12__projektbeschreibung.wav",
+          "startTime": 92632,
+          "duration": 3132,
+          "purpose": "understanding",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Zum Abschluss, welche Auswirkungen k\u00f6nnte das Projekt auf die gesamte Organisation haben?",
+          "audioFile": "projektportfoliohandbuch_long_de_13__projektbeschreibung.wav",
+          "startTime": 95964,
+          "duration": 5256,
+          "purpose": "quiz",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Es k\u00f6nnte die IT-Sicherheit verbessern und die Autonomie der Werke st\u00e4rken.",
+          "audioFile": "projektportfoliohandbuch_long_de_14__projektbeschreibung.wav",
+          "startTime": 101420,
+          "duration": 4140,
+          "purpose": "answer",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Richtig! Zusammengefasst strebt das Projekt an, durch neue IT-Infrastrukturen und Organisationseinheiten die Anforderungen zu erf\u00fcllen und Risiken zu minimieren.",
+          "audioFile": "projektportfoliohandbuch_long_de_15__projektbeschreibung.wav",
+          "startTime": 105760,
+          "duration": 9864,
+          "purpose": "summary",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Danke, das war sehr aufschlussreich!",
+          "audioFile": "projektportfoliohandbuch_long_de_16__projektbeschreibung.wav",
+          "startTime": 115824,
+          "duration": 2556,
+          "purpose": "excitement",
+          "dialogueIndex": 15
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Projektorganisation und Gremienstruktur",
+      "sectionIndex": 2,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir \u00fcber die Projektorganisation und die Gremienstruktur im NND-Projekt. Unser Ziel ist es, zu verstehen, wie das Projekt gef\u00fchrt wird und welche Rolle das Steering Committee spielt.",
+          "audioFile": "projektportfoliohandbuch_long_de_1__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 0,
+          "duration": 11412,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Klingt interessant! Welche Voraussetzungen sollte ich daf\u00fcr mitbringen?",
+          "audioFile": "projektportfoliohandbuch_long_de_2__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 11612,
+          "duration": 4320,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Es w\u00e4re hilfreich, wenn Sie Grundkenntnisse im Projektmanagement und ein Verst\u00e4ndnis von Unternehmensstrukturen h\u00e4tten.",
+          "audioFile": "projektportfoliohandbuch_long_de_3__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 16132,
+          "duration": 6408,
+          "purpose": "introduction",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Gut, das habe ich. Wie wird die Projektorganisation im NND-Projekt strukturiert?",
+          "audioFile": "projektportfoliohandbuch_long_de_4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 22740,
+          "duration": 5580,
+          "purpose": "clarification",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "In Abschnitt 4.1 des Dokuments wird die Projektorganisation beschrieben. Sie stellt sicher, dass alle Teile des Projekts effizient zusammenarbeiten und die Ziele erreicht werden.",
+          "audioFile": "projektportfoliohandbuch_long_de_5__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 28520,
+          "duration": 10224,
+          "purpose": "document reference",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird die strategische F\u00fchrung sichergestellt?",
+          "audioFile": "projektportfoliohandbuch_long_de_6__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 38944,
+          "duration": 2844,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Steering Committee, oder SteCo, \u00fcbernimmt die strategische F\u00fchrung. Es trifft sich regelm\u00e4\u00dfig und ist daf\u00fcr verantwortlich, strategische Entscheidungen zu treffen und als Eskalationsinstanz zu fungieren.",
+          "audioFile": "projektportfoliohandbuch_long_de_7__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 41988,
+          "duration": 11916,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche spezifischen Aufgaben hat das SteCo?",
+          "audioFile": "projektportfoliohandbuch_long_de_8__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 54104,
+          "duration": 2844,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Zu den Aufgaben geh\u00f6ren die \u00dcbernahme der \u00fcbergeordneten Projektverantwortung, das Festlegen strategischer Ziele und die Bewertung der Projektergebnisse. Es fungiert auch als Eskalationsstelle bei Konflikten.",
+          "audioFile": "projektportfoliohandbuch_long_de_9__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 57148,
+          "duration": 11556,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt nach einer Menge Verantwortung! Wie wird auf operativer Ebene gearbeitet?",
+          "audioFile": "projektportfoliohandbuch_long_de_10__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 68904,
+          "duration": 5292,
+          "purpose": "understanding",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Der Projektvorsitz k\u00fcmmert sich um die operative Sicherstellung des Projekterfolgs. Er trifft sich alle zwei bis drei Monate und arbeitet eng mit dem Projektleiter zusammen.",
+          "audioFile": "projektportfoliohandbuch_long_de_11__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 74396,
+          "duration": 9360,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche Aufgaben hat der Projektvorsitz?",
+          "audioFile": "projektportfoliohandbuch_long_de_12__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 83956,
+          "duration": 2700,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Der Projektvorsitz stellt den Projekterfolg sicher, bewertet die Ergebnisse und ist f\u00fcr die Projektkommunikation verantwortlich. Er ist auch der Projekt-Risk-Owner und behandelt \u00c4nderungen im Projektumfang.",
+          "audioFile": "projektportfoliohandbuch_long_de_13__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 86856,
+          "duration": 11124,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstehe. Welche Rolle spielt der Projektleiter in diesen Strukturen?",
+          "audioFile": "projektportfoliohandbuch_long_de_14__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 98180,
+          "duration": 4320,
+          "purpose": "understanding",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Der Projektleiter bereitet die Sitzungen sowohl des SteCo als auch des Projektvorsitzes vor und nimmt an ihnen teil, um die operative und strategische Ausrichtung zu unterst\u00fctzen.",
+          "audioFile": "projektportfoliohandbuch_long_de_15__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 102700,
+          "duration": 9432,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, das macht Sinn. Gibt es einen Quiz, um mein Wissen zu testen?",
+          "audioFile": "projektportfoliohandbuch_long_de_16__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 112332,
+          "duration": 4716,
+          "purpose": "excitement",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Nat\u00fcrlich! Welche Hauptaufgabe hat das Steering Committee?",
+          "audioFile": "projektportfoliohandbuch_long_de_17__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 117248,
+          "duration": 3960,
+          "purpose": "quiz",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Es sorgt f\u00fcr die strategische Sicherstellung des Projekterfolgs und dient als Eskalationsinstanz.",
+          "audioFile": "projektportfoliohandbuch_long_de_18__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 121408,
+          "duration": 5544,
+          "purpose": "answer",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau! Zusammenfassend haben wir \u00fcber die Struktur und Aufgaben des SteCo sowie des Projektvorsitzes gesprochen. Was nehmen Sie aus dieser Lektion mit?",
+          "audioFile": "projektportfoliohandbuch_long_de_19__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 127152,
+          "duration": 9108,
+          "purpose": "summary",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "Ich habe gelernt, dass das SteCo f\u00fcr die strategische und der Projektvorsitz f\u00fcr die operative F\u00fchrung verantwortlich ist. Beide arbeiten zusammen, um den Projekterfolg sicherzustellen.",
+          "audioFile": "projektportfoliohandbuch_long_de_20__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 136460,
+          "duration": 10764,
+          "purpose": "reflection",
+          "dialogueIndex": 19
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Projektphasen",
+      "sectionIndex": 3,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute besprechen wir die verschiedenen Projektphasen des NND-Projekts. Diese Phasen sind entscheidend f\u00fcr die erfolgreiche Umsetzung der neuen IT-Infrastruktur.",
+          "audioFile": "projektportfoliohandbuch_long_de_1__projektphasen.wav",
+          "startTime": 0,
+          "duration": 9504,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Klingt spannend! Was genau sind die Projektphasen?",
+          "audioFile": "projektportfoliohandbuch_long_de_2__projektphasen.wav",
+          "startTime": 9704,
+          "duration": 3420,
+          "purpose": "curiosity",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekt ist in f\u00fcnf Hauptphasen unterteilt: Initialisierung, Vorprojekt, Hauptprojekt, Realisierung und Abschluss. Jede Phase hat spezifische Inhalte und Ergebnisse.",
+          "audioFile": "projektportfoliohandbuch_long_de_3__projektphasen.wav",
+          "startTime": 13324,
+          "duration": 11556,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was passiert in der Initialisierungsphase?",
+          "audioFile": "projektportfoliohandbuch_long_de_4__projektphasen.wav",
+          "startTime": 25080,
+          "duration": 2988,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "In Phase 0, der Initialisierung, wird die Grundlage f\u00fcr das Projekt gelegt. Wir formulieren die Gr\u00fcnde f\u00fcr das Projekt und pr\u00fcfen, ob es notwendig ist. Es werden die Bed\u00fcrfnisse identifiziert und ein Vorschlag f\u00fcr die Projektstrategie erarbeitet.",
+          "audioFile": "projektportfoliohandbuch_long_de_5__projektphasen.wav",
+          "startTime": 28268,
+          "duration": 14652,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt wie der Start eines Bauprojekts, bei dem man zuerst den Bedarf pr\u00fcft und die Planung beginnt.",
+          "audioFile": "projektportfoliohandbuch_long_de_6__projektphasen.wav",
+          "startTime": 43120,
+          "duration": 5796,
+          "purpose": "analogy",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Ganz genau. In dieser Phase wird auch der Projektantrag erstellt, der dann genehmigt werden muss, um das Projekt offiziell zu starten.",
+          "audioFile": "projektportfoliohandbuch_long_de_7__projektphasen.wav",
+          "startTime": 49116,
+          "duration": 7992,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstanden. Und was passiert danach?",
+          "audioFile": "projektportfoliohandbuch_long_de_8__projektphasen.wav",
+          "startTime": 57308,
+          "duration": 2772,
+          "purpose": "understanding",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "In Phase 1, dem Vorprojekt, findet ein Kickoff-Meeting statt und eine IST-Analyse wird durchgef\u00fchrt. Der Projektauftrag wird erstellt, der die Ziele und den Umfang festlegt.",
+          "audioFile": "projektportfoliohandbuch_long_de_9__projektphasen.wav",
+          "startTime": 60280,
+          "duration": 11016,
+          "purpose": "document reference",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Also werden hier die Details des Projekts festgelegt?",
+          "audioFile": "projektportfoliohandbuch_long_de_10__projektphasen.wav",
+          "startTime": 71496,
+          "duration": 3204,
+          "purpose": "clarification",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau. Es werden auch die Projektorganisation aufgebaut und eine grobe Termin- und Meilensteinplanung erstellt.",
+          "audioFile": "projektportfoliohandbuch_long_de_11__projektphasen.wav",
+          "startTime": 74900,
+          "duration": 6516,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird die Finanzierung in dieser Phase behandelt?",
+          "audioFile": "projektportfoliohandbuch_long_de_12__projektphasen.wav",
+          "startTime": 81616,
+          "duration": 3060,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Es wird eine Finanz- und Ressourcenplanung durchgef\u00fchrt und die notwendigen Mittel werden beschafft. Au\u00dferdem wird ein Kreditantrag f\u00fcr das Gesamtprojekt erstellt.",
+          "audioFile": "projektportfoliohandbuch_long_de_13__projektphasen.wav",
+          "startTime": 84876,
+          "duration": 8748,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, das macht Sinn. Gehen wir zur n\u00e4chsten Phase \u00fcber.",
+          "audioFile": "projektportfoliohandbuch_long_de_14__projektphasen.wav",
+          "startTime": 93824,
+          "duration": 3924,
+          "purpose": "understanding",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "In Phase 2, dem Hauptprojekt, werden Qualit\u00e4tsanforderungen erstellt und kommerzielle Spezifikationen festgelegt. Der Projektstrukturplan wird ausgearbeitet.",
+          "audioFile": "projektportfoliohandbuch_long_de_15__projektphasen.wav",
+          "startTime": 97948,
+          "duration": 9900,
+          "purpose": "document reference",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt nach einer sehr detaillierten Phase.",
+          "audioFile": "projektportfoliohandbuch_long_de_16__projektphasen.wav",
+          "startTime": 108048,
+          "duration": 2736,
+          "purpose": "reflection",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, es werden auch externe Leistungen ausgeschrieben und eine Risikoanalyse durchgef\u00fchrt. Der detaillierte Kosten- und Ressourcenplan wird erstellt.",
+          "audioFile": "projektportfoliohandbuch_long_de_17__projektphasen.wav",
+          "startTime": 110984,
+          "duration": 8640,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird sichergestellt, dass die Ressourcen effektiv genutzt werden?",
+          "audioFile": "projektportfoliohandbuch_long_de_18__projektphasen.wav",
+          "startTime": 119824,
+          "duration": 3888,
+          "purpose": "question",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "Durch die Ressourcenanalyse und -freigabe stellen wir sicher, dass alle ben\u00f6tigten Ressourcen verf\u00fcgbar sind und optimal eingesetzt werden.",
+          "audioFile": "projektportfoliohandbuch_long_de_19__projektphasen.wav",
+          "startTime": 123912,
+          "duration": 7992,
+          "purpose": "explanation",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstanden. Und was passiert in der Realisierungsphase?",
+          "audioFile": "projektportfoliohandbuch_long_de_20__projektphasen.wav",
+          "startTime": 132104,
+          "duration": 3888,
+          "purpose": "understanding",
+          "dialogueIndex": 19
+        },
+        {
+          "speaker": "expert",
+          "text": "In Phase 3, der Realisierung, werden technische Designkonzepte erstellt. Es finden Abnahmetests und die Inbetriebnahme der Rechenzentrumskomponenten statt.",
+          "audioFile": "projektportfoliohandbuch_long_de_21__projektphasen.wav",
+          "startTime": 136192,
+          "duration": 9756,
+          "purpose": "document reference",
+          "dialogueIndex": 20
+        },
+        {
+          "speaker": "learner",
+          "text": "Das ist der Punkt, an dem alles zusammenkommt, richtig?",
+          "audioFile": "projektportfoliohandbuch_long_de_22__projektphasen.wav",
+          "startTime": 146148,
+          "duration": 3852,
+          "purpose": "reflection",
+          "dialogueIndex": 21
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau. Au\u00dferdem wird ein IT Security Audit durchgef\u00fchrt und die Planung in Bezug auf Zeit, Finanzen und Ressourcen aktualisiert.",
+          "audioFile": "projektportfoliohandbuch_long_de_23__projektphasen.wav",
+          "startTime": 150200,
+          "duration": 8028,
+          "purpose": "explanation",
+          "dialogueIndex": 22
+        },
+        {
+          "speaker": "learner",
+          "text": "Was ist mit der letzten Phase, dem Abschluss?",
+          "audioFile": "projektportfoliohandbuch_long_de_24__projektphasen.wav",
+          "startTime": 158428,
+          "duration": 3060,
+          "purpose": "question",
+          "dialogueIndex": 23
+        },
+        {
+          "speaker": "expert",
+          "text": "In Phase 4 wird die Enddokumentation fertiggestellt und alle verbleibenden M\u00e4ngel werden behoben. Ein Projekt-Review sowie Workshops zu Lessons Learned werden durchgef\u00fchrt.",
+          "audioFile": "projektportfoliohandbuch_long_de_25__projektphasen.wav",
+          "startTime": 161688,
+          "duration": 9720,
+          "purpose": "document reference",
+          "dialogueIndex": 24
+        },
+        {
+          "speaker": "learner",
+          "text": "Das ist wichtig, um zuk\u00fcnftige Projekte zu verbessern.",
+          "audioFile": "projektportfoliohandbuch_long_de_26__projektphasen.wav",
+          "startTime": 171608,
+          "duration": 3636,
+          "purpose": "reflection",
+          "dialogueIndex": 25
+        },
+        {
+          "speaker": "expert",
+          "text": "Richtig. Der Projekt-Abschlussbericht wird erstellt und das Projektteam wird entlastet.",
+          "audioFile": "projektportfoliohandbuch_long_de_27__projektphasen.wav",
+          "startTime": 175444,
+          "duration": 5112,
+          "purpose": "summary",
+          "dialogueIndex": 26
+        },
+        {
+          "speaker": "learner",
+          "text": "Das ist eine gr\u00fcndliche Vorgehensweise. Vielen Dank f\u00fcr die Erkl\u00e4rung!",
+          "audioFile": "projektportfoliohandbuch_long_de_28__projektphasen.wav",
+          "startTime": 180756,
+          "duration": 4428,
+          "purpose": "excitement",
+          "dialogueIndex": 27
+        }
+      ]
+    }
+  ]
+}

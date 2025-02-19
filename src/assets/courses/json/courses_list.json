@@ -6,9 +6,10 @@
     "template": "educational-deep-dive",
     "persona": "andy-julia",
     "createdAt": "2025-02-05T07:29:09.247951",
-    "lastAccessed": "2025-02-05T12:07:05.918826",
+    "lastAccessed": "2025-02-13T05:54:58.275219",
     "progress": 0,
     "audioAvailable": true,
+    "presentationAvailable": true,
     "pdfFile": "Extract of project handbook_de.pdf"
   },
   {
@@ -21,6 +22,7 @@
     "lastAccessed": "2025-02-04T12:07:05.918826",
     "progress": 0,
     "audioAvailable": true,
+    "presentationAvailable": false,
     "pdfFile": "Extract of project handbook_de.pdf"
   },
   {
@@ -33,6 +35,7 @@
     "lastAccessed": "2025-02-05T14:34:08.290132",
     "progress": 0,
     "audioAvailable": true,
+    "presentationAvailable": false,
     "pdfFile": "Extract of project handbook_de.pdf"
   },
   {
@@ -45,18 +48,743 @@
     "lastAccessed": "2025-02-05T17:10:09.779636",
     "progress": 0,
     "audioAvailable": true,
+    "presentationAvailable": false,
     "pdfFile": "Extract of project handbook_de.pdf"
   },
   {
-    "id": "6789abcd-ef01-2345-6789-abcdef012345",
-    "name": "introduction_to_cloud_computing",
-    "title": "Introduction to Cloud Computing",
+    "id": "782500dd-7082-4810-b47b-2ae9963cdcf1",
+    "name": "aws_testing",
+    "title": "AWS testing",
     "template": "educational-deep-dive",
-    "persona": "expert",
-    "createdAt": "2025-02-07T10:00:00.000000",
-    "lastAccessed": "2025-02-06T13:51:55.361773",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-12T04:53:06.127407",
+    "lastAccessed": "2025-02-12T06:04:51.400715",
     "progress": 0,
     "audioAvailable": true,
-    "pdfFile": "test_course_pdf_1738837002376.pdf"
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf",
+    "presentationAvailable": true
+  },
+  {
+    "id": "c98c87eb-f947-47f2-9626-10209b2cd429",
+    "name": "microtest",
+    "title": "microtest",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T05:47:23.396654",
+    "lastAccessed": "2025-02-14T05:47:23.396654",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "5f25a88e-336b-4ed8-b8f2-15f95d9eda08",
+    "name": "asdsadsad",
+    "title": "asdsadsad",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T06:04:25.880960",
+    "lastAccessed": "2025-02-14T06:04:25.880960",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "dafeb20f-91df-4ffc-9ab4-33940bd620a5",
+    "name": "yasdasd",
+    "title": "yasdasd",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T06:09:30.301896",
+    "lastAccessed": "2025-02-14T06:09:30.301896",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "800b5fb7-4230-441c-89a1-d5b9ff8a50a9",
+    "name": "sdfsdfsdfwe",
+    "title": "sdfsdfsdfwe",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T06:19:57.435673",
+    "lastAccessed": "2025-02-14T06:19:57.435673",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "65516c1e-5e16-481c-bf95-cc9a23bb33d8",
+    "name": "asdasd",
+    "title": "asdasd",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T06:24:00.090327",
+    "lastAccessed": "2025-02-14T06:24:00.090327",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "3ea1946d-085d-4108-9875-9e2ac54b2387",
+    "name": "zfuz87578tu",
+    "title": "zfuz87578tu",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T06:32:31.595181",
+    "lastAccessed": "2025-02-14T06:32:31.595181",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "ddc3aeb2-ae73-4e18-940e-cd240d05cf43",
+    "name": "sdfsd234eew",
+    "title": "sdfsd234eew",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T07:45:55.638568",
+    "lastAccessed": "2025-02-14T07:45:55.638568",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "b4651a5c-5171-4289-b837-34705bfcfaae",
+    "name": "swerwer",
+    "title": "swerwer",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T08:26:58.706800",
+    "lastAccessed": "2025-02-14T08:26:58.706800",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "b5269fae-f2af-4981-86e9-db764031160f",
+    "name": "test1",
+    "title": "test1",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T10:58:45.458536",
+    "lastAccessed": "2025-02-14T10:58:45.458536",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "98130293-8154-4a06-a13b-230f3e455cd7",
+    "name": "gu789z8",
+    "title": "gu789z8",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T11:15:42.582539",
+    "lastAccessed": "2025-02-14T11:15:42.582539",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "18e984f3-5c02-4bbc-abb5-f8b8207d54e5",
+    "name": "test2",
+    "title": "test2",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T11:33:42.034309",
+    "lastAccessed": "2025-02-14T11:33:42.034309",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "1aa30865-6381-4f68-a756-624f4fcafe39",
+    "name": "abc",
+    "title": "ABC",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T11:42:21.482948",
+    "lastAccessed": "2025-02-14T11:42:21.482948",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "4b10da80-a161-45d4-9df3-5345323b70d2",
+    "name": "test3",
+    "title": "test3",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T12:25:23.639713",
+    "lastAccessed": "2025-02-14T12:25:23.639713",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "b219d2b0-fed2-4bc2-9273-3f3ed5be3e44",
+    "name": "abcdef",
+    "title": "abcdef",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T12:32:18.612682",
+    "lastAccessed": "2025-02-14T12:32:18.612682",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "d5148284-2afb-461b-a1ef-a2bd5421224e",
+    "name": "asdfscx",
+    "title": "asdfscx",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T12:33:34.876593",
+    "lastAccessed": "2025-02-14T12:33:34.876593",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "28b005a6-f1a2-4c74-8d3a-915b80ff9b76",
+    "name": "test42",
+    "title": "test42",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:35:48.202862",
+    "lastAccessed": "2025-02-14T13:35:48.202862",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "53f0e1a9-c0b1-4689-b848-762ea819c6e1",
+    "name": "test5",
+    "title": "test5",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:37:49.602169",
+    "lastAccessed": "2025-02-14T13:37:49.602169",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "0c7015d2-0da3-482e-a1ce-d81a4c2c9158",
+    "name": "test1234",
+    "title": "test1234",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:48:41.596391",
+    "lastAccessed": "2025-02-14T13:48:41.596391",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "506ad1b0-64e3-475f-9976-2f190e4f4547",
+    "name": "test1235",
+    "title": "test1235",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:50:02.509566",
+    "lastAccessed": "2025-02-14T13:50:02.509566",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "0255a8f7-c98a-4924-a60b-baaa63a86822",
+    "name": "test1236",
+    "title": "test1236",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:55:21.659769",
+    "lastAccessed": "2025-02-14T13:55:21.659769",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "11e8ac24-b5ee-42a0-a959-47e2ac4e0651",
+    "name": "hsdfoigjhoeurjof",
+    "title": "hsdfoigjhoeurjof",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T13:58:54.964408",
+    "lastAccessed": "2025-02-14T13:58:54.964408",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "d03643ee-3d98-4a08-9ecc-ad355c8bafd9",
+    "name": "qwert",
+    "title": "qwert",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:02:48.456536",
+    "lastAccessed": "2025-02-14T14:02:48.456536",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "9f9324f5-5ff7-484d-a5a9-7a72c55d73bc",
+    "name": "asdfsd",
+    "title": "asdfsd",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:04:31.858673",
+    "lastAccessed": "2025-02-14T14:04:31.858673",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "b1e5f1c9-1447-40a6-b1a7-7048823c2fbe",
+    "name": "testtt",
+    "title": "testtt",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:06:59.667639",
+    "lastAccessed": "2025-02-14T14:06:59.667639",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "242e696e-93ea-4047-9e34-51c5e2b7e96b",
+    "name": "jjljklkll",
+    "title": "jjljklkll",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:09:12.752392",
+    "lastAccessed": "2025-02-14T14:09:12.752392",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "5776451a-2772-4223-9cd5-dd15dd5159b4",
+    "name": "wert",
+    "title": "wert",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:11:35.766326",
+    "lastAccessed": "2025-02-14T14:11:35.766326",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "2c32ec61-dcf0-44d4-841a-b5e262097629",
+    "name": "testing1234",
+    "title": "testing1234",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:14:06.235837",
+    "lastAccessed": "2025-02-14T14:14:06.235837",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "a67ed6c5-e2ad-41de-baf9-292751bfbedc",
+    "name": "testing1236",
+    "title": "testing1236",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:15:32.268550",
+    "lastAccessed": "2025-02-14T14:15:32.268550",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "8b5b0a88-f9bf-42a0-a7bf-4ba38d020755",
+    "name": "testin1237",
+    "title": "testin1237",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:19:03.198470",
+    "lastAccessed": "2025-02-14T14:19:03.198470",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "8f95e3d7-8f69-4b44-902c-836ac0caac8f",
+    "name": "aws1",
+    "title": "aws1",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:21:46.751594",
+    "lastAccessed": "2025-02-14T14:21:46.751594",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "1153fd32-6694-4d90-bb35-bfa7d9a8e30a",
+    "name": "aws2",
+    "title": "aws2",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:23:51.621617",
+    "lastAccessed": "2025-02-14T14:23:51.621617",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "91ae81ab-4652-40b4-a68e-acf5ec8cf76a",
+    "name": "aws_long",
+    "title": "aws long",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:30:41.007690",
+    "lastAccessed": "2025-02-14T14:30:41.007690",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_2.0.pdf"
+  },
+  {
+    "id": "774046fc-1b40-4ef0-9e4a-211f9dc78b32",
+    "name": "aws3546",
+    "title": "aws3546",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:35:10.976916",
+    "lastAccessed": "2025-02-14T14:35:10.976916",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_2.0.pdf"
+  },
+  {
+    "id": "418dd60d-eed1-4381-b61f-c96410e348e4",
+    "name": "aws_long1",
+    "title": "aws long1",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:57:54.540740",
+    "lastAccessed": "2025-02-14T14:57:54.540740",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_2.0.pdf"
+  },
+  {
+    "id": "a3aca911-f0f4-4f35-8f48-a69a3576cc67",
+    "name": "aws_long_2",
+    "title": "aws long 2",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T14:59:51.984543",
+    "lastAccessed": "2025-02-14T14:59:51.984543",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "0d02875f-c348-42e2-af62-b0c8465cc8c2",
+    "name": "asdsdf23ed",
+    "title": "asdsdf23ed",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:00:32.445450",
+    "lastAccessed": "2025-02-14T15:00:32.445450",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_2.0.pdf"
+  },
+  {
+    "id": "2fbb947d-c7fc-47d6-a57a-87f8ba3fdc54",
+    "name": "aws123321",
+    "title": "aws123321",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:03:11.515859",
+    "lastAccessed": "2025-02-14T15:03:11.515859",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_2.0.pdf"
+  },
+  {
+    "id": "28f16c27-0d96-4a74-8495-af4850e26656",
+    "name": "aws333",
+    "title": "aws333",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:15:10.196335",
+    "lastAccessed": "2025-02-14T15:15:10.196335",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "1dcb68df-f5ab-4eb2-b913-4a9086c2e632",
+    "name": "aws3434",
+    "title": "aws3434",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:19:06.458745",
+    "lastAccessed": "2025-02-14T15:19:06.458745",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "a0e1a168-a979-4bff-87d4-a4358377ab69",
+    "name": "aigenie",
+    "title": "aigenie",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:29:50.098354",
+    "lastAccessed": "2025-02-14T15:29:50.098354",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "f7291c10-ab5d-4a9f-bfdc-0a2e2887ff8f",
+    "name": "qwerty",
+    "title": "qwerty",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:32:53.264537",
+    "lastAccessed": "2025-02-14T15:32:53.264537",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "2bf0200c-2ae6-451c-ac1c-66626186d16b",
+    "name": "abcdefg",
+    "title": "abcdefg",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:39:49.553749",
+    "lastAccessed": "2025-02-14T15:39:49.553749",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "6ab691f8-d234-4c00-9085-d0c2be2bf4d1",
+    "name": "safdfsdfsdfsdf",
+    "title": "safdfsdfsdfsdf",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:56:19.281531",
+    "lastAccessed": "2025-02-14T15:56:19.281531",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "4673f484-f627-4b57-8bd5-dd02c86bf30c",
+    "name": "aso",
+    "title": "aso",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T15:59:01.318340",
+    "lastAccessed": "2025-02-14T15:59:01.318340",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "edd66aa5-66fc-4c48-99a8-08b1ae4b53bc",
+    "name": "asdfwer2",
+    "title": "asdfwer2",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T16:07:25.843517",
+    "lastAccessed": "2025-02-14T16:07:25.843517",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/AWS_Cloud_Overview_3.0.pdf"
+  },
+  {
+    "id": "216bd63c-795f-45de-8a2c-e66783006059",
+    "name": "german_test",
+    "title": "German test",
+    "template": "educational-deep-dive",
+    "persona": "killian-maja",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T16:52:47.192165",
+    "lastAccessed": "2025-02-14T16:52:47.192165",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/sample_project_document.pdf"
+  },
+  {
+    "id": "d3c3fc1e-46a4-4f84-9c03-59a7b4eaf3fc",
+    "name": "asjklsjdlf",
+    "title": "asjklsjdlf",
+    "template": "educational-deep-dive",
+    "persona": "killian-maja",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-14T17:09:10.233214",
+    "lastAccessed": "2025-02-14T17:09:10.233214",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/sample_project_document.pdf"
+  },
+  {
+    "id": "16466577-38e9-4e10-840a-e7d4a6422e52",
+    "name": "code_repo_learn",
+    "title": "Code Repo Learn",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-17T12:58:09.594995",
+    "lastAccessed": "2025-02-17T12:58:09.594995",
+    "progress": 0,
+    "audioAvailable": false,
+    "pdfFile": "pdf/Gitingest_cyclotruc.pdf"
   }
 ]

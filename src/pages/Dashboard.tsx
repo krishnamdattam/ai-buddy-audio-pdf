@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Video, Languages, MessageSquare, Trophy, Star, Coins } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Presentation, Languages, MessageSquare, Trophy, Star, Coins, Globe } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -76,7 +76,6 @@ interface CourseTemplate {
   title: string;
   description: string;
   duration: string;
-  language: string;
 }
 
 // Update the interface for audio files
@@ -146,6 +145,48 @@ interface LearningProgress {
   lastMonth: number;
 }
 
+// Add this new interface near the top with other interfaces
+interface SkillLevel {
+  value: number;
+  label: string;
+  description: string;
+  color: string;
+}
+
+// Add this constant for skill levels
+const skillLevels: SkillLevel[] = [
+  {
+    value: 0,
+    label: 'Beginner',
+    description: 'New to the subject',
+    color: '#10B981'
+  },
+  {
+    value: 33,
+    label: 'Elementary',
+    description: 'Basic understanding, building knowledge',
+    color: '#3B82F6'
+  },
+  {
+    value: 66,
+    label: 'Intermediate',
+    description: 'Good working knowledge',
+    color: '#A855F7'
+  },
+  {
+    value: 100,
+    label: 'Advanced',
+    description: 'Expert level understanding',
+    color: '#EC4899'
+  }
+];
+
+// Add new interface for document source
+interface DocumentSource {
+  type: 'pdf' | 'url';
+  content: File[] | string;
+}
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -188,14 +229,12 @@ const Dashboard = () => {
     sections?: CourseSection[];
     audioFiles?: AudioFile[];
     audioAvailable: boolean;
+    presentationAvailable: boolean;
   }>>([]);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [courseToDelete, setCourseToDelete] = useState<typeof courses[0] | null>(null);
   const [isDuplicateDialogOpen, setIsDuplicateDialogOpen] = useState(false);
   const [existingCourse, setExistingCourse] = useState<{ id: number; title: string } | null>(null);
-  const [documentSummary, setDocumentSummary] = useState('');
-  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
-  const [summaryOption, setSummaryOption] = useState<'manual' | 'auto'>('manual');
   const [learningProgress, setLearningProgress] = useState<LearningProgress>({
     earned: 1246,
     target: 2000,
@@ -203,8 +242,8 @@ const Dashboard = () => {
   });
 
   // Add voice selection state
-  const [selectedExpertVoice, setSelectedExpertVoice] = useState('en-US-JennyNeural');  // Default expert voice
-  const [selectedLearnerVoice, setSelectedLearnerVoice] = useState('en-US-TonyNeural');  // Default learner voice
+  const [selectedExpertVoice, setSelectedExpertVoice] = useState('en-US-AndrewMultilingualNeural');  // Default expert voice
+  const [selectedLearnerVoice, setSelectedLearnerVoice] = useState('en-US-AvaMultilingualNeural');  // Default learner voice
 
   // Add voice options
   const voiceOptions = [
@@ -229,6 +268,46 @@ const Dashboard = () => {
     { value: 'en-US-SaraNeural', label: 'Sara (Female)', gender: 'Female' },
     { value: 'en-US-SteffanNeural', label: 'Steffan (Male)', gender: 'Male' }
   ];
+
+  // Add voice configuration state
+  const [voiceConfig, setVoiceConfig] = useState({
+    english: {
+      expert: {
+        voice: 'en-US-AndrewMultilingualNeural',
+        style: 'professional',
+        language: 'en-US'
+      },
+      learner: {
+        voice: 'en-US-AvaMultilingualNeural',
+        style: 'friendly',
+        language: 'en-US'
+      }
+    },
+    german: {
+      expert: {
+        voice: 'de-DE-KillianNeural',
+        style: 'professional',
+        language: 'de-DE'
+      },
+      learner: {
+        voice: 'de-DE-MajaNeural',
+        style: 'friendly',
+        language: 'de-DE'
+      }
+    },
+    swissgerman: {
+      expert: {
+        voice: 'de-CH-JanNeural',
+        style: 'professional',
+        language: 'de-CH'
+      },
+      learner: {
+        voice: 'de-CH-LeniNeural',
+        style: 'friendly',
+        language: 'de-CH'
+      }
+    }
+  });
 
   // Add voice selection component
   const VoiceSelector = () => (
@@ -276,41 +355,64 @@ const Dashboard = () => {
   // Add this to your component's constants
   const courseTemplates: CourseTemplate[] = [
     {
+      id: 'code-explainer',
+      title: 'Code Explainer',
+      description: 'Step-by-step explanation of code with examples and best practices',
+      duration: '20-30 minutes',
+    },
+    {
       id: 'educational-deep-dive',
       title: 'Educational Deep Dive',
       description: 'In-depth exploration of complex topics',
       duration: '30-45 minutes',
-      language: 'English'
+    },
+    {
+      id: 'technical-presentation',
+      title: 'Technical Presentation',
+      description: 'Detailed technical walkthrough with code examples and diagrams',
+      duration: '25-35 minutes',
     },
     {
       id: 'quick-industry-update',
       title: 'Quick Industry Update',
       description: 'Concise overview of latest developments',
       duration: '15-20 minutes',
-      language: 'English'
     },
     {
       id: 'engaging-podcast',
       title: 'Engaging Podcast',
       description: 'Share expert insights and explain concepts',
       duration: '20-30 minutes',
-      language: 'English'
     },
     {
       id: 'rapid-refresher',
       title: 'Rapid Refresher',
       description: 'Quick memory refresh of essential concepts',
       duration: '10-15 minutes',
-      language: 'German'
     },
     {
       id: 'executive-summary',
       title: 'Executive Summary',
       description: 'Strategic overview for high-level decision making',
       duration: '15-20 minutes',
-      language: 'French'
     }
   ];
+
+  // Add this to your component's state declarations
+  const [skillLevel, setSkillLevel] = useState<number>(0);
+
+  // Add this helper function to get the current skill level details
+  const getCurrentSkillLevel = (value: number): SkillLevel => {
+    return skillLevels.reduce((prev, curr) => {
+      return Math.abs(curr.value - value) < Math.abs(prev.value - value) ? curr : prev;
+    });
+  };
+
+  // Update the file state to handle both PDF and URL
+  const [documentSource, setDocumentSource] = useState<DocumentSource>({
+    type: 'pdf',
+    content: []
+  });
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -361,7 +463,8 @@ const Dashboard = () => {
           template: newCourse.template,
           persona: newCourse.persona,
           audioFiles: newCourse.audioFiles,
-          audioAvailable: true
+          audioAvailable: true,
+          presentationAvailable: true
         },
         ...prevCourses
       ]);
@@ -439,7 +542,8 @@ const Dashboard = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              audioFiles: courseData.audioFiles
+              audioFiles: courseData.audioFiles,
+              courseName: sanitizedCourseName
             })
           });
 
@@ -492,186 +596,296 @@ const Dashboard = () => {
     }
   };
 
-  // Add new function for video course handling
+  // Update the handlePlayVideoCourse function
   const handlePlayVideoCourse = async (course: typeof courses[0]) => {
+    const toastId = 'loading-presentation';
     try {
       // Show loading toast
-      toast.loading('Loading course data...', { id: 'loading-video-course' });
+      toast.loading('Loading presentation...', { id: toastId });
 
-      // Fetch complete course data
-      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch course data');
-      }
-      const courseData = await response.json();
-
-      // Validate required data
-      if (!courseData.processedSections || !courseData.files || courseData.files.length === 0) {
-        throw new Error('Invalid course data structure');
+      // Sanitize course name for URL
+      const sanitizedCourseName = course.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+      
+      // First check if presentation file exists
+      const presentationFile = `${sanitizedCourseName}_presentation.json`;
+      const checkResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}/${presentationFile}`);
+      
+      if (!checkResponse.ok) {
+        throw new Error('Presentation file not found');
       }
 
       // Dismiss loading toast
-      toast.dismiss('loading-video-course');
+      toast.dismiss(toastId);
 
-      // Navigate to video player page with validated data
-      navigate('/video-player', {
+      // Navigate to published presentation with course data
+      navigate('/published-presentation', {
         state: {
-          courseName: course.title,
-          sections: courseData.processedSections,
-          files: courseData.files,
-          template: courseData.template || '',
-          persona: courseData.persona || ''
-        },
-        replace: true,
+          courseName: sanitizedCourseName,
+          theme: 'black', // default theme
+          presentationFile: presentationFile
+        }
       });
+
     } catch (error) {
-      console.error('Error fetching course data:', error);
-      // Dismiss loading toast and show error
-      toast.dismiss('loading-video-course');
-      toast.error('Failed to load video course', {
-        description: 'Please try again or contact support'
+      console.error('Error loading presentation:', error);
+      toast.dismiss(toastId);
+      
+      // Show error toast
+      toast.error('Failed to load presentation', {
+        description: error instanceof Error ? error.message : 'Please try again or contact support'
       });
-      // Navigate back to dashboard on error
-      navigate('/dashboard');
-    }
-  };
-
-  // Add function to generate summary
-  const generateSummary = async () => {
-    if (!selectedFiles[0]) return;
-
-    setIsGeneratingSummary(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', selectedFiles[0]);
-
-      const response = await fetch('http://localhost:5001/generate-summary', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to generate summary');
+      
+      // If presentation file doesn't exist, navigate to presentation canvas to create one
+      if (error instanceof Error && error.message === 'Presentation file not found') {
+        navigate('/presentation-canvas', {
+          state: {
+            courseName: course.title,
+            isNewPresentation: true
+          }
+        });
       }
-
-      const summaryText = await response.text();
-      setDocumentSummary(summaryText);
-      toast.success('Summary generated successfully');
-    } catch (error) {
-      console.error('Error generating summary:', error);
-      toast.error('Failed to generate summary');
-    } finally {
-      setIsGeneratingSummary(false);
     }
   };
 
-  // Update handleNext to include summary
+  // Add this new component for the document source selector
+  const DocumentSourceSelector = () => (
+    <div className="p-4 rounded-lg border-2 border-dashed transition-all duration-300 hover:bg-gray-800/50">
+      <div className="flex gap-4 mb-4">
+        <Button
+          variant="ghost"
+          onClick={() => setDocumentSource(prev => ({ ...prev, type: 'pdf' }))}
+          className={cn(
+            "flex-1 h-12",
+            documentSource.type === 'pdf' 
+              ? "bg-purple-500/10 text-purple-400 border-purple-500/50" 
+              : "bg-gray-700/50 text-gray-400 border-gray-700"
+          )}
+        >
+          <FileText className="h-4 w-4 mr-2" />
+          PDF Document
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={() => setDocumentSource(prev => ({ ...prev, type: 'url' }))}
+          className={cn(
+            "flex-1 h-12",
+            documentSource.type === 'url' 
+              ? "bg-purple-500/10 text-purple-400 border-purple-500/50" 
+              : "bg-gray-700/50 text-gray-400 border-gray-700"
+          )}
+        >
+          <Globe className="h-4 w-4 mr-2" />
+          Web URL
+        </Button>
+      </div>
+
+      {documentSource.type === 'pdf' ? (
+        <>
+          <input
+            type="file"
+            multiple
+            accept=".pdf"
+            onChange={handleFileChange}
+            className="hidden"
+            id="pdf-upload"
+          />
+          <label
+            htmlFor="pdf-upload"
+            className="cursor-pointer flex items-center gap-4"
+          >
+            <div className="p-2 rounded-full bg-purple-500/10">
+              <Upload className="h-4 w-4 text-purple-400" />
+            </div>
+            <div>
+              <h4 className="text-base text-white">Upload PDF</h4>
+              <p className="text-sm text-gray-400">Upload your existing PDF documents</p>
+              <p className="text-xs text-gray-500 mt-1">PDF files only • Max 50MB</p>
+            </div>
+          </label>
+
+          {Array.isArray(documentSource.content) && documentSource.content.length > 0 && (
+            <div className="mt-4 space-y-2">
+              {documentSource.content.map((file: File, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-between bg-gray-800/30 rounded p-2 group"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <FileText className="h-4 w-4 text-purple-400 shrink-0" />
+                    <span className="text-sm text-gray-300 truncate">{file.name}</span>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      removeFile(file);
+                    }}
+                    className="opacity-0 group-hover:opacity-100 p-1 hover:text-red-400 transition-opacity"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+        <div className="space-y-4">
+          <div>
+            <Input
+              type="url"
+              placeholder="Enter website URL (e.g., https://github.com)"
+              value={typeof documentSource.content === 'string' ? documentSource.content : ''}
+              onChange={(e) => setDocumentSource(prev => ({ ...prev, content: e.target.value }))}
+              className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400"
+            />
+            <p className="text-xs text-gray-500 mt-2">Make sure the URL is publicly accessible</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  // Update handleNext to include web scraping
   const handleNext = async () => {
-    if (courseName && selectedTemplate && selectedPersona && selectedFiles.length > 0) {
-      setIsLoading(true);
-      try {
-        const sanitizedCourseName = courseName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+    if (!courseName || !selectedTemplate || !selectedPersona) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
 
-        // First try to fetch existing course
-        const checkResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
-        
-        let courseData;
-        if (checkResponse.ok) {
-          courseData = await checkResponse.json();
-          if (courseData.processedSections && courseData.processedSections.length > 0) {
-            navigate('/course-canvas', { 
-              state: courseData,
-              replace: true
-            });
-            setIsLoading(false);
-            return;
-          }
-        }
+    if (
+      (documentSource.type === 'pdf' && (!Array.isArray(documentSource.content) || documentSource.content.length === 0)) ||
+      (documentSource.type === 'url' && (!documentSource.content || typeof documentSource.content !== 'string'))
+    ) {
+      toast.error('Please provide either a PDF file or a valid URL');
+      return;
+    }
 
-        // If we get here, either the course doesn't exist or has no processed sections
-        const formData = new FormData();
-        formData.append('file', selectedFiles[0]);
-        formData.append('template', selectedTemplate);
-        formData.append('persona', selectedPersona);
-        formData.append('courseName', courseName);
-        formData.append('summary', documentSummary || 'This is a technical document');
+    setIsLoading(true);
+    try {
+      const sanitizedCourseName = courseName.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
 
-        // Add retry logic for processing PDF
-        let retryCount = 0;
-        const maxRetries = 3;
-        let processedData = null;
-
-        while (retryCount < maxRetries) {
-          const response = await fetch('http://localhost:5001/process-pdf', {
-            method: 'POST',
-            body: formData,
-          });
-
-          const rawData = await response.json();
-          
-          // Check if we have valid processed sections
-          if (rawData.processedSections && rawData.processedSections.length > 0) {
-            processedData = rawData;
-            break;
-          }
-
-          // If no valid sections, wait and retry
-          retryCount++;
-          if (retryCount < maxRetries) {
-            await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds before retry
-          }
-        }
-
-        if (processedData) {
-          // We have valid processed sections
-          navigate('/course-canvas', { 
-            state: processedData,
-            replace: true
-          });
-        } else {
-          // After all retries, fall back to default sections
-          courseData = {
-            courseName: sanitizedCourseName,
-            template: selectedTemplate,
-            persona: selectedPersona,
-            files: selectedFiles.map(file => file.name),
-            processedSections: defaultSections,
-            summary: documentSummary || 'This is a technical document'
-          };
-
-          // Save the default course data
-          await fetch('http://localhost:5001/save-course', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              courseName: sanitizedCourseName,
-              data: courseData
-            }),
-          });
-
+      // Check if course exists
+      const checkResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
+      
+      if (checkResponse.ok) {
+        const courseData = await checkResponse.json();
+        if (courseData.processedSections && courseData.processedSections.length > 0) {
           navigate('/course-canvas', { 
             state: courseData,
             replace: true
           });
-
-          toast.warning('Using default sections due to processing issues', {
-            description: 'You can still edit and customize the course content.',
-            duration: 5000
-          });
+          setIsLoading(false);
+          return;
         }
-
-      } catch (error) {
-        console.error('Error processing course:', error);
-        toast.error('Failed to process course', {
-          description: 'Please try again or contact support'
-        });
-      } finally {
-        setIsLoading(false);
       }
-    } else {
-      toast.error('Please fill in all required fields');
+
+      let endpoint = documentSource.type === 'pdf' ? 'process-pdf' : 'process-url';
+      let requestData;
+
+      if (documentSource.type === 'pdf') {
+        const formData = new FormData();
+        (documentSource.content as File[]).forEach(file => {
+          formData.append('file', file);
+        });
+        formData.append('template', selectedTemplate);
+        formData.append('persona', selectedPersona);
+        formData.append('courseName', courseName);
+        formData.append('skillLevel', skillLevel.toString());
+        formData.append('voiceConfig', JSON.stringify(selectedVoiceConfig));
+        requestData = formData;
+      } else {
+        requestData = JSON.stringify({
+          url: documentSource.content,
+          template: selectedTemplate,
+          persona: selectedPersona,
+          courseName: courseName,
+          skillLevel: skillLevel,
+          voiceConfig: selectedVoiceConfig
+        });
+      }
+
+      const response = await fetch(`http://localhost:5001/${endpoint}`, {
+        method: 'POST',
+        body: requestData,
+        headers: documentSource.type === 'url' ? {
+          'Content-Type': 'application/json'
+        } : undefined
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to process course');
+      }
+
+      const data = await response.json();
+
+      if (data.success && data.data) {
+        navigate('/course-canvas', { 
+          state: data.data,
+          replace: true
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      // If no valid data, wait and retry
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds before retry
+
+      // After all retries, verify if the course was actually saved
+      const verifyResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}`);
+      if (verifyResponse.ok) {
+        const savedCourse = await verifyResponse.json();
+        if (savedCourse.processedSections && savedCourse.processedSections.length > 0) {
+          // Course was saved successfully despite the processing delay
+          navigate('/course-canvas', { 
+            state: savedCourse,
+            replace: true
+          });
+          return;
+        }
+      }
+
+      // If we get here, we need to use default sections
+      const courseData = {
+        courseName: sanitizedCourseName,
+        template: selectedTemplate,
+        persona: selectedPersona,
+        files: selectedFiles.map(file => file.name),
+        processedSections: defaultSections,
+        skillLevel: skillLevel
+      };
+
+      // Save the default course data
+      const saveResponse = await fetch('http://localhost:5001/save-course', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          courseName: sanitizedCourseName,
+          data: courseData
+        }),
+      });
+
+      if (!saveResponse.ok) {
+        throw new Error('Failed to save course data');
+      }
+
+      navigate('/course-canvas', { 
+        state: courseData,
+        replace: true
+      });
+
+      toast.warning('Using default sections temporarily', {
+        description: 'The course is still being processed. You can refresh the page in a few moments to see the processed content.',
+        duration: 5000
+      });
+    } catch (error) {
+      console.error('Error processing course:', error);
+      toast.error('Failed to process course', {
+        description: 'Please try again or contact support'
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -750,19 +964,50 @@ const Dashboard = () => {
     }
   };
 
+  // Update handlePersonaChange to set the correct voices based on selected persona
   const handlePersonaChange = (value: string) => {
     setSelectedPersona(value);
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const filesArray = Array.from(e.target.files);
-      setSelectedFiles(filesArray);
+    
+    // Set the appropriate voices based on the selected persona
+    switch (value) {
+      case 'andrew-ava':
+        setSelectedExpertVoice(voiceConfig.english.expert.voice);
+        setSelectedLearnerVoice(voiceConfig.english.learner.voice);
+        break;
+      case 'killian-maja':
+        setSelectedExpertVoice(voiceConfig.german.expert.voice);
+        setSelectedLearnerVoice(voiceConfig.german.learner.voice);
+        break;
+      case 'jan-leni':
+        setSelectedExpertVoice(voiceConfig.swissgerman.expert.voice);
+        setSelectedLearnerVoice(voiceConfig.swissgerman.learner.voice);
+        break;
+      default:
+        // Default to English voices
+        setSelectedExpertVoice(voiceConfig.english.expert.voice);
+        setSelectedLearnerVoice(voiceConfig.english.learner.voice);
     }
   };
 
+  // Update removeFile handler
   const removeFile = (fileToRemove: File) => {
-    setSelectedFiles(selectedFiles.filter(file => file !== fileToRemove));
+    if (documentSource.type === 'pdf' && Array.isArray(documentSource.content)) {
+      setDocumentSource(prev => ({
+        ...prev,
+        content: (prev.content).filter(file => file !== fileToRemove)
+      }));
+    }
+  };
+
+  // Update handleFileChange
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const filesArray = Array.from(e.target.files);
+      setDocumentSource(prev => ({
+        ...prev,
+        content: filesArray
+      }));
+    }
   };
 
   const handleEditCourse = async (course: typeof courses[0]) => {
@@ -1126,6 +1371,16 @@ const Dashboard = () => {
                               <SelectValue placeholder="Choose how you want to structure your course" />
                             </SelectTrigger>
                             <SelectContent className="bg-gray-800 border-gray-700 text-white">
+                              <SelectItem value="code-explainer" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <MessageSquare className="h-4 w-4 text-purple-400" />
+                                    Code Explainer
+                                  </div>
+                                  <div className="text-sm text-gray-400">Step-by-step explanation of code with examples and best practices</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[0].duration}</div>
+                                </div>
+                              </SelectItem>
                               <SelectItem value="educational-deep-dive" className="text-white hover:bg-gray-700">
                                 <div className="py-2 space-y-1">
                                   <div className="font-medium flex items-center gap-2">
@@ -1133,7 +1388,17 @@ const Dashboard = () => {
                                     Educational Deep Dive
                                   </div>
                                   <div className="text-sm text-gray-400">In-depth exploration of complex topics</div>
-                                  <div className="text-xs text-purple-400/80">30-45 minutes • English</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[1].duration}</div>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="technical-presentation" className="text-white hover:bg-gray-700">
+                                <div className="py-2 space-y-1">
+                                  <div className="font-medium flex items-center gap-2">
+                                    <Presentation className="h-4 w-4 text-purple-400" />
+                                    Technical Presentation
+                                  </div>
+                                  <div className="text-sm text-gray-400">Detailed technical walkthrough with code examples and diagrams</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[2].duration}</div>
                                 </div>
                               </SelectItem>
                               <SelectItem value="quick-industry-update" className="text-white hover:bg-gray-700">
@@ -1143,7 +1408,7 @@ const Dashboard = () => {
                                     Quick Industry Update
                                   </div>
                                   <div className="text-sm text-gray-400">Concise overview of latest developments</div>
-                                  <div className="text-xs text-purple-400/80">15-20 minutes • English</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[3].duration}</div>
                                 </div>
                               </SelectItem>
                               <SelectItem value="engaging-podcast" className="text-white hover:bg-gray-700">
@@ -1153,7 +1418,7 @@ const Dashboard = () => {
                                     Engaging Podcast
                                   </div>
                                   <div className="text-sm text-gray-400">Share expert insights and explain concepts</div>
-                                  <div className="text-xs text-purple-400/80">20-30 minutes • English</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[4].duration}</div>
                                 </div>
                               </SelectItem>
                               <SelectItem value="rapid-refresher" className="text-white hover:bg-gray-700 border-t border-gray-700">
@@ -1163,7 +1428,7 @@ const Dashboard = () => {
                                     Rapid Refresher
                                   </div>
                                   <div className="text-sm text-gray-400">Quick memory refresh of essential concepts</div>
-                                  <div className="text-xs text-purple-400/80">5-10 minutes • German</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[5].duration}</div>
                                 </div>
                               </SelectItem>
                               <SelectItem value="executive-summary" className="text-white hover:bg-gray-700">
@@ -1173,7 +1438,7 @@ const Dashboard = () => {
                                     Executive Summary
                                   </div>
                                   <div className="text-sm text-gray-400">Strategic overview for high-level decision making</div>
-                                  <div className="text-xs text-purple-400/80">10-15 minutes • French</div>
+                                  <div className="text-xs text-purple-400/80">{courseTemplates[6].duration}</div>
                                 </div>
                               </SelectItem>
                             </SelectContent>
@@ -1227,138 +1492,78 @@ const Dashboard = () => {
                       </div>
                     )}
 
-                    {/* Document Source Selection - Only show if template and persona are selected */}
-                    {courseName.trim() !== '' && selectedTemplate && selectedPersona && (
-                      <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
-                        <div className="flex justify-between items-center">
-                          <label className="text-sm font-medium text-gray-300 flex items-center gap-2">
-                            <FileText className="h-4 w-4 text-purple-400" />
-                            Document Source
-                          </label>
+                    {/* Document Source & Skill Level - Two Column Layout */}
+                    <div className="grid grid-cols-2 gap-6">
+                      {/* Skill Level Box */}
+                      <div className="p-4 rounded-lg bg-gray-900/30">
+                        {/* Level Display */}
+                        <div className="flex justify-between items-start mb-6">
+                          <div>
+                            <h4 className="text-white text-base">
+                              {getCurrentSkillLevel(skillLevel).label}
+                            </h4>
+                            <p className="text-gray-400 text-sm">
+                              {getCurrentSkillLevel(skillLevel).description}
+                            </p>
+                          </div>
+                          <span className="text-gray-400">{skillLevel}%</span>
                         </div>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {/* PDF Upload Option */}
-                          <div className={cn(
-                            "p-4 rounded-xl border-2 border-dashed transition-all duration-300",
-                            "hover:bg-gray-800/50 group",
-                            selectedFiles.length > 0 ? "border-purple-500 bg-purple-500/10" : "border-gray-600"
-                          )}>
-                            <input
-                              type="file"
-                              multiple
-                              accept=".pdf"
-                              onChange={handleFileChange}
-                              className="hidden"
-                              id="pdf-upload"
+
+                        {/* Slider Container */}
+                        <div className="relative">
+                          {/* Background Track */}
+                          <div className="h-[2px] bg-gray-800">
+                            <div 
+                              className="h-full transition-all duration-200"
+                              style={{
+                                background: `linear-gradient(to right, #10B981, #3B82F6, #A855F7, #EC4899)`,
+                                width: `${skillLevel}%`
+                              }}
                             />
-                            <label
-                              htmlFor="pdf-upload"
-                              className="cursor-pointer flex items-center gap-4 text-left"
-                            >
-                              <div className="p-3 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors shrink-0">
-                                <Upload className="h-5 w-5 text-purple-400" />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h3 className="text-base font-medium text-white">Upload PDF</h3>
-                                <p className="text-sm text-gray-400">Upload your existing PDF documents</p>
-                                <p className="text-xs text-gray-500 mt-1">PDF files only • Max 50MB</p>
-                              </div>
-                            </label>
-                            {selectedFiles.length > 0 && (
-                              <div className="mt-3 space-y-2">
-                                {selectedFiles.map((file, index) => (
-                                  <div
-                                    key={index}
-                                    className="flex items-center justify-between bg-gray-700/30 rounded-lg p-2 group hover:bg-gray-700/50 transition-colors"
-                                  >
-                                    <div className="flex items-center gap-2 min-w-0">
-                                      <FileText className="h-4 w-4 text-purple-400 shrink-0" />
-                                      <div className="truncate">
-                                        <p className="text-sm font-medium text-white truncate">{file.name}</p>
-                                        <p className="text-xs text-gray-400">{(file.size / (1024 * 1024)).toFixed(2)} MB</p>
-                                      </div>
-                                    </div>
-                                    <Button
-                                      variant="ghost"
-                                      size="sm"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        removeFile(file);
-                                      }}
-                                      className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-400 transition-opacity"
-                                    >
-                                      <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
                           </div>
 
-                          {/* Summary Section */}
-                          <div className={cn(
-                            "p-4 rounded-xl border-2 border-dashed transition-all duration-300",
-                            "hover:bg-gray-800/50 group",
-                            documentSummary ? "border-purple-500 bg-purple-500/10" : "border-gray-600"
-                          )}>
-                            <div className="flex items-start justify-between">
-                              <div className="flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors shrink-0">
-                                  <FileText className="h-5 w-5 text-purple-400" />
-                                </div>
-                                <div className="flex-1 min-w-0">
-                                  <h3 className="text-base font-medium text-white">Document Summary</h3>
-                                  <p className="text-sm text-gray-400">Add a summary of your document</p>
-                                </div>
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => {
-                                  setDocumentSummary('');
-                                  generateSummary();
-                                }}
-                                className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 flex items-center gap-2 text-sm"
-                                disabled={isGeneratingSummary || !selectedFiles.length}
-                              >
-                                {isGeneratingSummary ? (
-                                  <>
-                                    <div className="h-3 w-3 animate-spin rounded-full border-2 border-purple-400 border-t-transparent" />
-                                    <span>Generating...</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <svg
-                                      className="h-3 w-3"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke="currentColor"
-                                      strokeWidth={2}
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
-                                      />
-                                    </svg>
-                                    <span>Auto-Generate</span>
-                                  </>
+                          {/* Marker Points */}
+                          <div className="absolute -top-1 left-0 right-0 flex justify-between">
+                            {skillLevels.map((level) => (
+                              <div
+                                key={level.value}
+                                className={cn(
+                                  "w-2 h-2 rounded-full transition-colors duration-200",
+                                  skillLevel >= level.value ? "opacity-100" : "opacity-30"
                                 )}
-                              </Button>
-                            </div>
-                            <div className="mt-4">
-                              <Textarea
-                                placeholder="Enter a comprehensive summary of your document..."
-                                value={documentSummary}
-                                onChange={(e) => setDocumentSummary(e.target.value)}
-                                className="bg-gray-700/50 border-gray-600 text-white placeholder-gray-400 min-h-[160px] w-full text-sm"
+                                style={{ backgroundColor: level.color }}
                               />
-                            </div>
+                            ))}
                           </div>
+
+                          {/* Range Input */}
+                          <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={skillLevel}
+                            onChange={(e) => setSkillLevel(Number(e.target.value))}
+                            className="absolute -top-1 left-0 w-full h-4 opacity-0 cursor-pointer"
+                            style={{
+                              WebkitAppearance: 'none',
+                              background: 'transparent'
+                            }}
+                          />
+
+                          {/* Slider Thumb */}
+                          <div 
+                            className="absolute -top-1 w-2 h-2 rounded-full bg-white border-2 border-blue-500 transition-all duration-200 pointer-events-none"
+                            style={{ 
+                              left: `calc(${skillLevel}% - 4px)`,
+                              display: skillLevel > 0 ? 'block' : 'none'
+                            }}
+                          />
                         </div>
                       </div>
-                    )}
+
+                      {/* Replace the PDF Upload Box with DocumentSourceSelector */}
+                      <DocumentSourceSelector />
+                    </div>
 
                     {/* Action Buttons */}
                     <div className="flex justify-end gap-4 mt-8 pt-4 border-t border-gray-700">
@@ -1371,7 +1576,7 @@ const Dashboard = () => {
                       </Button>
                       <Button
                         onClick={handleNext}
-                        disabled={!courseName || !selectedTemplate || !selectedPersona || selectedFiles.length === 0}
+                        disabled={!courseName || !selectedTemplate || !selectedPersona || !documentSource.content}
                         className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8"
                       >
                         Create Course
@@ -1421,6 +1626,15 @@ const Dashboard = () => {
                         <Button
                           variant="ghost"
                           size="icon"
+                          onClick={() => handleEditCourse(course)}
+                          className="w-8 h-8 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
                           onClick={() => handlePlayCourse(course)}
                           className="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-400 hover:text-purple-300 hover:bg-purple-500/20"
                           title="Play Audio Course"
@@ -1431,21 +1645,30 @@ const Dashboard = () => {
                         <Button
                           variant="ghost"
                           size="icon"
-                          onClick={() => handlePlayVideoCourse(course)}
-                          className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/20"
-                          title="Play Video Course"
+                          onClick={() => {
+                            if (!course.presentationAvailable) {
+                              toast.error('Presentation not available', {
+                                description: 'Please create a presentation for this course first.',
+                                duration: 3000
+                              });
+                              return;
+                            }
+                            handlePlayVideoCourse(course);
+                          }}
+                          className={cn(
+                            "w-8 h-8 rounded-lg",
+                            course.presentationAvailable 
+                              ? "bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/20" 
+                              : "bg-gray-700/50 text-gray-500 cursor-not-allowed"
+                          )}
+                          disabled={!course.presentationAvailable}
+                          title={course.presentationAvailable ? "Play Presentation Course" : "Presentation not available"}
                         >
-                          <Video className="h-4 w-4" />
+                          <Presentation className="h-4 w-4" />
                         </Button>
 
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() => handleEditCourse(course)}
-                          className="w-8 h-8 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        {/* Add a flex-grow div to create space */}
+                        <div className="flex-grow" />
 
                         <Button
                           variant="ghost"

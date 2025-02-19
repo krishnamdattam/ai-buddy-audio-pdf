@@ -1,0 +1,162 @@
+{
+  "courseName": "aws_long",
+  "template": "educational-deep-dive",
+  "persona": "andrew-ava",
+  "files": [
+    "pdf/aws_long.pdf"
+  ],
+  "processedSections": [
+    {
+      "title": "1. Introduction",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "Amazon Web Services (AWS) is a cloud computing platform that offers a\nwide range of services, including computing power, storage, databases,\nnetworking, and machine learning. It provides scalable and cost-effective\nsolutions for businesses and developers.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "2. Core AWS Services",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "3. Security & Compliance",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "AWS Identity and Access Management (IAM) helps manage user permissions\nsecurely. AWS Shield provides protection against DDoS attacks. AWS Key\nManagement Service (KMS) ensures secure key storage for data encryption.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "4. Cost Management",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "AWS follows a flexible pricing model, including pay-as-you-go, Reserved\nInstances, and Spot Instances. AWS Cost Explorer helps track and optimize\ncloud spending, while AWS Free Tier offers limited free access to various\nservices.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "5. Benefits of AWS Cloud",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "AWS provides scalability, allowing businesses to adjust resources based on\ndemand. It ensures reliability through high availability and fault-tolerant\ninfrastructure. Strong security measures, including compliance and data\nprotection, enhance trust. Its cost-effective model ensures affordability with\nno upfront costs and a pay-as-you-go approach.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "6. Conclusion",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding required"
+        ],
+        "learningGoals": [
+          "Understand key concepts"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "AWS offers a comprehensive cloud platform with diverse services that cater\nto various business needs. Its scalability, security, and flexibility make it a\npopular choice for organizations worldwide.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss this topic.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    }
+  ],
+  "summary": "This is a technical document",
+  "audioAvailable": false
+}

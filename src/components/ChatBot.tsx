@@ -24,7 +24,7 @@ const ChatBot = ({ courseName, mode = 'course' }: ChatBotProps) => {
     {
       id: 1,
       text: mode === 'course' 
-        ? "👋 I'm your buddy!\n\nAsk a question\nType 'quiz' to test yourself\nType 'feedback' to share thoughts"
+        ? "👋 I'm your buddy!\n\nAsk me any questions about the course\nType 'feedback' to share your thoughts"
         : "👋 I'm your learning advisor!\n\nI can help you:\n• Find courses based on your interests\n• Recommend learning paths\n• Suggest course creation\n\nWhat would you like to learn?",
       sender: 'bot',
       timestamp: new Date(),
@@ -34,6 +34,9 @@ const ChatBot = ({ courseName, mode = 'course' }: ChatBotProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isFeedbackMode, setIsFeedbackMode] = useState(false);
+  const [rating, setRating] = useState<number | null>(null);
+  const [feedbackStep, setFeedbackStep] = useState<'initial' | 'rating' | 'comment'>('initial');
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -46,14 +49,123 @@ const ChatBot = ({ courseName, mode = 'course' }: ChatBotProps) => {
 
   const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
-    if (mode === 'course' && !courseName) return;
+    if (mode === 'course' && !courseName) {
+        toast.error('Please select a course first');
+        return;
+    }
 
-    // Add user message
+    // Check for feedback command
+    if (newMessage.toLowerCase() === 'feedback' && mode === 'course') {
+        setIsFeedbackMode(true);
+        setFeedbackStep('rating');
+        
+        const botMessage: Message = {
+            id: messages.length + 2,
+            text: "Please rate your experience with this course from 1 to 5 stars:",
+            sender: 'bot',
+            timestamp: new Date(),
+        };
+        
+        setMessages(prev => [...prev, {
+            id: messages.length + 1,
+            text: newMessage,
+            sender: 'user',
+            timestamp: new Date(),
+        }, botMessage]);
+        
+        setNewMessage('');
+        return;
+    }
+
+    // Handle feedback flow
+    if (isFeedbackMode) {
+        if (feedbackStep === 'rating') {
+            const ratingNum = parseInt(newMessage);
+            if (ratingNum >= 1 && ratingNum <= 5) {
+                setRating(ratingNum);
+                setFeedbackStep('comment');
+                
+                const botMessage: Message = {
+                    id: messages.length + 2,
+                    text: "Thanks! Now please share your thoughts about the course. What did you like? What could be improved?",
+                    sender: 'bot',
+                    timestamp: new Date(),
+                };
+                
+                setMessages(prev => [...prev, {
+                    id: messages.length + 1,
+                    text: `Rating: ${ratingNum}/5`,
+                    sender: 'user',
+                    timestamp: new Date(),
+                }, botMessage]);
+                
+                setNewMessage('');
+                return;
+            } else {
+                const botMessage: Message = {
+                    id: messages.length + 2,
+                    text: "Please provide a valid rating between 1 and 5.",
+                    sender: 'bot',
+                    timestamp: new Date(),
+                };
+                
+                setMessages(prev => [...prev, botMessage]);
+                return;
+            }
+        }
+        
+        if (feedbackStep === 'comment') {
+            try {
+                // Send feedback to backend
+                const response = await fetch('http://localhost:5001/api/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        courseName,
+                        rating,
+                        comment: newMessage,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to submit feedback');
+                }
+
+                const botMessage: Message = {
+                    id: messages.length + 2,
+                    text: "Thank you for your feedback! It helps us improve the course content. Is there anything else I can help you with?",
+                    sender: 'bot',
+                    timestamp: new Date(),
+                };
+                
+                setMessages(prev => [...prev, {
+                    id: messages.length + 1,
+                    text: newMessage,
+                    sender: 'user',
+                    timestamp: new Date(),
+                }, botMessage]);
+                
+                // Reset feedback mode
+                setIsFeedbackMode(false);
+                setFeedbackStep('initial');
+                setRating(null);
+                setNewMessage('');
+                return;
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                toast.error('Failed to submit feedback');
+            }
+        }
+    }
+
+    // Regular chat flow
     const userMessage: Message = {
-      id: messages.length + 1,
-      text: newMessage,
-      sender: 'user',
-      timestamp: new Date(),
+        id: messages.length + 1,
+        text: newMessage,
+        sender: 'user',
+        timestamp: new Date(),
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -61,66 +173,60 @@ const ChatBot = ({ courseName, mode = 'course' }: ChatBotProps) => {
     setIsLoading(true);
 
     try {
-      // Send request to backend with sessionId if available
-      const response = await fetch(`http://localhost:5001/api/${mode === 'course' ? 'chat' : 'recommend'}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          question: newMessage,
-          courseName: courseName,
-          sessionId: sessionId,
-          mode: mode
-        }),
-      });
+        const sanitizedCourseName = courseName?.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+        
+        const response = await fetch(`http://localhost:5001/api/${mode === 'course' ? 'chat' : 'recommend'}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                question: newMessage,
+                courseName: sanitizedCourseName,
+                sessionId: sessionId,
+                mode: mode
+            }),
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to get response');
-      }
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to get response');
+        }
 
-      const data = await response.json();
-      
-      // Store the session ID if received
-      if (data.sessionId) {
-        setSessionId(data.sessionId);
-      }
-      
-      // Add bot response
-      let responseText = typeof data.answer === 'string' 
-        ? data.answer 
-        : data.answer?.response || "I apologize, but I couldn't process your request at the moment.";
+        const data = await response.json();
+        
+        if (data.sessionId) {
+            setSessionId(data.sessionId);
+        }
 
-      if (mode === 'recommendation' && responseText.includes("I couldn't find any specific courses matching your interests")) {
-        responseText = "I see that this course is not currently available in our library. Would you like to create a new course based on your documents?\n\nYou can create a new course by:\n1. Clicking 'Get Started' in the 'Create New Course' section\n2. Uploading your learning materials\n3. Choosing a template and persona\n\nWould you like me to help you get started?";
-      }
-      
-      const botMessage: Message = {
-        id: messages.length + 2,
-        text: responseText,
-        sender: 'bot',
-        timestamp: new Date(),
-        sectionInfo: data.section ? `Source: ${data.section}` : undefined
-      };
+        const botMessage: Message = {
+            id: messages.length + 2,
+            text: data.answer,
+            sender: 'bot',
+            timestamp: new Date(),
+            sectionInfo: data.section ? `Source: ${data.section}` : undefined
+        };
 
-      setMessages((prev) => [...prev, botMessage]);
+        setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error('Error getting chat response:', error);
-      toast.error('Failed to get response from AI');
-      
-      // Add error message
-      const errorMessage: Message = {
-        id: messages.length + 2,
-        text: "I'm sorry, I encountered an error while processing your request.",
-        sender: 'bot',
-        timestamp: new Date(),
-      };
+        console.error('Error getting chat response:', error);
+        
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+        toast.error(`Chat error: ${errorMessage}`);
+        
+        const botMessage: Message = {
+            id: messages.length + 2,
+            text: `I'm sorry, I encountered an error: ${errorMessage}. Please try again.`,
+            sender: 'bot',
+            timestamp: new Date(),
+        };
 
-      setMessages((prev) => [...prev, errorMessage]);
+        setMessages((prev) => [...prev, botMessage]);
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  };
+};
 
   const handleClearChat = () => {
     setMessages([{

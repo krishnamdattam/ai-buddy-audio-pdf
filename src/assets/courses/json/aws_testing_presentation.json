@@ -1,0 +1,134 @@
+{
+  "courseName": "aws_testing",
+  "sections": [
+    {
+      "title": "Welcome to Aws Testing Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Aws Testing learning journey",
+        "Discover the power of cloud computing and modern technologies",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: 1. Introduction",
+      "type": "section_header"
+    },
+    {
+      "title": "1. Introduction",
+      "type": "content",
+      "summary_points": [
+        "Amazon Web Services (AWS) is a leading cloud computing platform that provides scalable tools such as computing power, storage, databases, networking, and machine learning services.",
+        "AWS operates as a flexible, cost-effective alternative to owning physical hardware, allowing businesses to scale resources up or down based on demand, saving costs and improving efficiency.",
+        "Businesses can use AWS services like EC2 (Elastic Compute Cloud) for virtual computing and S3 (Simple Storage Service) for secure data storage, acting as building blocks to create tailored systems.",
+        "AWS is widely adopted because it offers a comprehensive suite of customizable tools that address nearly every technological need for businesses, from app hosting to AI model development."
+      ],
+      "audio_url": "/assets/audio/aws_testing/aws_testing_section_1__1__introduction.wav"
+    },
+    {
+      "title": "Section 2: 2. Core AWS Services",
+      "type": "section_header"
+    },
+    {
+      "title": "2. Core AWS Services",
+      "type": "content",
+      "summary_points": [
+        "Amazon EC2, AWS Lambda, and Elastic Beanstalk are core compute services: EC2 provides scalable virtual machines, Lambda offers serverless event-driven execution, and Elastic Beanstalk simplifies application deployment by managing infrastructure.",
+        "Amazon S3, EBS, and Glacier are key storage services: S3 is object storage for scalable, durable file storage; EBS is block storage optimized for high-performance tasks with EC2; and Glacier is low-cost archival storage for infrequently accessed data.",
+        "AWS Lambda differs from EC2 by being serverless and event-driven, handling tasks like image resizing automatically, while EC2 provides more control over server configurations for tasks requiring high computational power.",
+        "Amazon Glacier is ideal for long-term, low-cost archival storage, such as compliance records, while Amazon S3 and EBS address active storage needs for files and high-performance applications, respectively."
+      ],
+      "audio_url": "/assets/audio/aws_testing/aws_testing_section_2__2__core_aws_services.wav"
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "What is one key benefit of using AWS instead of owning physical hardware?",
+          "options": [
+            "It provides faster internet speeds.",
+            "It eliminates the need for software updates.",
+            "It allows businesses to scale resources up or down based on demand.",
+            "It guarantees 100% uptime for all services."
+          ],
+          "correct_answer": "It allows businesses to scale resources up or down based on demand.",
+          "explanation": "AWS provides scalability, which allows businesses to adjust resources based on their needs, saving costs compared to owning and maintaining physical hardware."
+        },
+        {
+          "question": "Which AWS service is best described as 'renting virtual computers in the cloud'?",
+          "options": [
+            "Amazon S3",
+            "Amazon EC2",
+            "AWS Lambda",
+            "Elastic Beanstalk"
+          ],
+          "correct_answer": "Amazon EC2",
+          "explanation": "Amazon EC2 (Elastic Compute Cloud) provides virtual machines that businesses can scale up or down to handle various computing tasks."
+        },
+        {
+          "question": "What is the primary difference between AWS Lambda and Amazon EC2?",
+          "options": [
+            "Lambda is serverless and runs code based on events, while EC2 provides virtual machines you can manage.",
+            "EC2 is used for storage, while Lambda is for computing tasks.",
+            "Lambda is designed for long-term data archiving, while EC2 is for running applications.",
+            "EC2 is event-driven, while Lambda is for managing virtual machines."
+          ],
+          "correct_answer": "Lambda is serverless and runs code based on events, while EC2 provides virtual machines you can manage.",
+          "explanation": "AWS Lambda runs code in response to events without managing servers, while Amazon EC2 provides full control over virtual machines for running applications."
+        },
+        {
+          "question": "Which AWS storage service is best suited for long-term, low-cost archival storage?",
+          "options": [
+            "Amazon S3",
+            "Amazon EBS",
+            "Amazon Glacier",
+            "Elastic Beanstalk"
+          ],
+          "correct_answer": "Amazon Glacier",
+          "explanation": "Amazon Glacier is designed for long-term, low-cost storage of data that is not frequently accessed, such as compliance records or old project files."
+        },
+        {
+          "question": "How does Amazon S3 differ from Amazon EBS?",
+          "options": [
+            "S3 is for object storage, while EBS provides block storage for high-performance tasks.",
+            "EBS is for archival storage, while S3 is for storing application files.",
+            "S3 requires an EC2 instance to work, while EBS does not.",
+            "EBS is designed for scalability, while S3 is not."
+          ],
+          "correct_answer": "S3 is for object storage, while EBS provides block storage for high-performance tasks.",
+          "explanation": "Amazon S3 is an object storage service for storing and retrieving large amounts of data, while Amazon EBS offers block storage for tasks that require high performance, such as running databases."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Aws Testing course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}

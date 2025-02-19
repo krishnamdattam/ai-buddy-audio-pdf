@@ -5,6 +5,8 @@ import SignIn from '@/pages/SignIn';
 import Index from '@/pages/Index';
 import CourseCanvas from '@/pages/CourseCanvas';
 import Landing from '@/pages/Landing';
+import PresentationCanvas from './pages/PresentationCanvas';
+import PublishedPresentation from './pages/PublishedPresentation';
 import { Toaster } from 'sonner';
 
 function App() {
@@ -18,6 +20,10 @@ function App() {
         <Route path="/index" element={<Index />} />
         <Route path="/audio" element={<Index />} />
         <Route path="/course-canvas" element={<CourseCanvas />} />
+        <Route path="/video-presentation" element={<PresentationCanvas />} />
+        <Route path="/presentation/:courseName" element={<PresentationCanvas />} />
+        <Route path="/presentation-canvas" element={<PresentationCanvas />} />
+        <Route path="/published-presentation" element={<PublishedPresentation />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Toaster position="top-center" richColors />

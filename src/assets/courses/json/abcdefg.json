@@ -1,0 +1,70 @@
+{
+  "courseName": "abcdefg",
+  "template": "educational-deep-dive",
+  "persona": "andrew-ava",
+  "files": [
+    "pdf/abcdefg.pdf"
+  ],
+  "processedSections": [
+    {
+      "title": "1. Introduction",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with internet and web technologies",
+          "General knowledge of IT infrastructure"
+        ],
+        "learningGoals": [
+          "Understand what AWS is",
+          "Identify key AWS services and their purposes",
+          "Recognize the benefits of using AWS for businesses and developers"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "Amazon Web Services (AWS) is a cloud computing platform that offers a\nwide range of services, including computing power, storage, databases,\nnetworking, and machine learning. It provides scalable and cost-effective\nsolutions for businesses and developers.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 1. Introduction.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "2. Core AWS Services",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS account setup",
+          "Knowledge of networking fundamentals"
+        ],
+        "learningGoals": [
+          "Understand the core AWS services",
+          "Learn how to use AWS compute and storage options",
+          "Explore AWS networking and database services"
+        ],
+        "estimatedTime": "45 minutes"
+      },
+      "content": "",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 2. Core AWS Services.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    }
+  ],
+  "summary": "This is a technical document",
+  "audioAvailable": false
+}

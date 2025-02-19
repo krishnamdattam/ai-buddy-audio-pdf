@@ -1,0 +1,28 @@
+{
+  "courseName": "aws2",
+  "sections": {
+    "section_id:1": {
+      "section_id": "1",
+      "title": "1. Introduction",
+      "content": "Amazon Web Services (AWS) is a cloud computing platform that offers a\nwide range of services, including computing power, storage, databases,\nnetworking, and machine learning. It provides scalable and cost-effective\nsolutions for businesses and developers.\n",
+      "subsections": []
+    },
+    "section_id:2": {
+      "section_id": "2",
+      "title": "2. Core AWS Services",
+      "content": "",
+      "subsections": [
+        {
+          "section_id": "2.1",
+          "title": "2.1 Compute Services",
+          "content": "Amazon EC2 provides scalable virtual machines to meet various computing\nneeds. AWS Lambda enables serverless computing, allowing event-driven\napplications to run without managing servers. Elastic Beanstalk simplifies\napplication deployment and management.\n"
+        },
+        {
+          "section_id": "2.2",
+          "title": "2.2 Storage Services",
+          "content": "Amazon S3 offers scalable and durable object storage for various use cases.\nAmazon EBS provides block storage for EC2 instances, ensuring high-\nperformance storage. Amazon Glacier is designed for low-cost, long-term\narchival storage.\n"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "courseName": "introduction_to_cloud_computing",
+  "sections": [
+    {
+      "title": "Welcome to Introduction To Cloud Computing Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Introduction To Cloud Computing learning journey",
+        "Discover the power of cloud computing and modern technologies",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: Introduction to Cloud Computing Concepts",
+      "type": "section_header"
+    },
+    {
+      "title": "Introduction to Cloud Computing Concepts",
+      "type": "content",
+      "summary_points": [
+        "Cloud computing involves the delivery of computing services over the Internet.",
+        "It encompasses services like servers, storage, databases, and more.",
+        "Cloud computing eliminates the need for physical hardware by providing resources online.",
+        "This technology enables scalable, on-demand access to computing resources."
+      ]
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "What is cloud computing?",
+          "options": [
+            "A delivery of computing services over the Internet",
+            "A type of physical hardware used in data centers",
+            "An operating system for local computers",
+            "A programming language for web development"
+          ],
+          "correct_answer": "A delivery of computing services over the Internet",
+          "explanation": "Cloud computing involves providing services such as storage, servers, and databases via the Internet, rather than relying on local hardware."
+        },
+        {
+          "question": "Which of the following is NOT an example of a cloud computing service?",
+          "options": [
+            "Servers",
+            "Databases",
+            "Storage",
+            "Desktop applications running offline"
+          ],
+          "correct_answer": "Desktop applications running offline",
+          "explanation": "Cloud computing services are accessed over the Internet, while offline desktop applications do not involve cloud-based resources."
+        },
+        {
+          "question": "What is the primary delivery method for cloud computing services?",
+          "options": [
+            "Over the Internet",
+            "Through a USB device",
+            "Via local area networks (LAN)",
+            "Using physical mail"
+          ],
+          "correct_answer": "Over the Internet",
+          "explanation": "Cloud computing relies on the Internet to provide access to computing resources remotely."
+        },
+        {
+          "question": "Which of the following best describes the resources provided by cloud computing?",
+          "options": [
+            "Servers, storage, and databases",
+            "Only hardware components",
+            "Only software applications",
+            "Networking cables"
+          ],
+          "correct_answer": "Servers, storage, and databases",
+          "explanation": "Cloud computing encompasses a range of services including servers, storage solutions, databases, and more, delivered via the Internet."
+        },
+        {
+          "question": "Why is cloud computing considered advantageous?",
+          "options": [
+            "It eliminates the need for Internet access",
+            "It provides flexible and scalable access to resources",
+            "It only works with specific hardware",
+            "It is limited to personal use only"
+          ],
+          "correct_answer": "It provides flexible and scalable access to resources",
+          "explanation": "Cloud computing allows users to scale resources up or down based on their needs, and offers flexibility by enabling access to services from anywhere with an Internet connection."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Introduction To Cloud Computing course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}

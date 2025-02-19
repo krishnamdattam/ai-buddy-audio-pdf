@@ -1,9 +1,9 @@
 {
   "courseName": "Projektportfoliohandbuch_long_de",
   "template": "educational-deep-dive",
-  "persona": "andy-julia",
+  "persona": "killian-maja",
   "files": [
-    "Extract of project handbook_de.pdf"
+    "pdf/Extract of project handbook_de.pdf"
   ],
   "processedSections": [
     {
@@ -19,6 +19,7 @@
         ],
         "estimatedTime": "30 Minuten"
       },
+      "content": "Geltungsbereich: Das Projekthandbuch NND gilt f\u00fcr alle Projektbeteiligten des Projektes NND, bestehend aus den Gesellschaften Axpo Power AG (Axpo), Kernkraftwerk Leibstadt AG (KKL) und Zwilag Zwischenlager W\u00fcrenlingen AG (Zwilag) in allen Phasen des Projektzeitraums. Die im Projekthandbuch festgelegten Regelungen sind f\u00fcr alle Projektbeteiligten verbindlich. /n Ziel und Zweck: Dieses Projekthandbuch legt fest, in welcher Art und Weise das Projekt NND abgewickelt und gesteuert wird. Es beschreibt die Aufgaben, die Verantwortlichkeiten, die Prozesse und regelt grunds\u00e4tzliche Vorgaben und Randbedingungen mit dem Ziel, den Projektauftrag zu erf\u00fcllen. Zweck des Projekthandbuchs ist die Sicherstellung, dass: \u2022 die Projektstruktur eindeutig festgelegt ist, \u2022 die Projektorganisation sowie Aufgaben, Kompetenzen und Verantwortung eindeutig geregelt sind, \u2022 Prozesse zur einheitlichen Planung, Durchf\u00fchrung und Steuerung des Projekts festgelegt sind, \u2022 Regelungen zur Kommunikation festgelegt sind und eingehalten werden, \u2022 eine einheitliche Dokumentation von Unterlagen und Informationen erfolgt, \u2022 eine erfolgreiche Zusammenarbeit der Projekt- und Linienorganisation besteht. Insofern dient das Projekthandbuch auch als Instrument der Qualit\u00e4tssicherung. F\u00fcr die Aktualisierung und Pflege des Projekthandbuchs ist das NND Projektmanagement Office (PMO) zust\u00e4ndig. /n Grunds\u00e4tze & Erfolgsfaktoren: Es gelten die folgenden Grunds\u00e4tze f\u00fcr die Bearbeitung des Projektes. Das Projekt NND \u2022 orientiert sich nach den Grunds\u00e4tzen eines zertifizierten Projektmanagements (IPMA), \u2022 hat einen klar definierten Auftrag vom Auftraggeber (Vorsitzender des Steering Committee), \u2022 hat eine Projektorganisation und eine klare Regelung der Verantwortlichkeiten, \u2022 hat einen angemessenen Projektstrukturplan (PSP). Die Arbeitspakete weisen alle eine Arbeitspaketbeschreibung vor, \u2022 hat einen auf dem PSP basierenden Terminplan in angemessener Detailierungstiefe, welcher kontinuierlich aktualisiert wird, \u2022 hat eine aktuelle Budgetplanung, aufgeteilt auf die Arbeitspakete und wird in einem verbindlichen Kostenstrukturplan dokumentiert und aktualisiert, \u2022 f\u00fchrt auf Arbeitspaketebene eine kontinuierliche Risikobewertung durch. /n Kritische Erfolgsfaktoren: \u2022 Die Projektorgane erhalten die f\u00fcr die Wahrnehmung ihrer Funktion und die Erf\u00fcllung ihrer Aufgaben notwendige Handlungskompetenz. \u2022 Der sichere und wirtschaftliche Betrieb der Anlagen hat unter Ber\u00fccksichtigung der technischen, organisatorischen sowie menschlichen Faktoren (HOF) bei NND h\u00f6chste Priorit\u00e4t. \u2022 Es ist daher stets sicherzustellen, dass gesetzte Termine eingehalten werden \u2013 und falls nicht, m\u00f6glichst fr\u00fchzeitig zu eskalieren, um Schaden bzw. Mehrkosten im Projekt abzuwenden. \u2022 Gesellschafts\u00fcbergreifend tragen und unterst\u00fctzen die F\u00fchrung und die Beteiligten die Ziele und das Vorgehen \u00fcber den Projektvorsitz (PV) und das Steering Committee (SteCo) mit. \u2022 Qualifizierte Ressourcen stehen in den jeweiligen Phasen zur Verf\u00fcgung.",
       "dialogue": [
         {
           "speaker": "Expert",
@@ -135,6 +136,7 @@
         ],
         "estimatedTime": "45 Minuten"
       },
+      "content": "Projektauftrag: Die nuklearen Werke - Kernkraftwerk Leibstadt AG (KKL), Kernkraftwerk Beznau (KKB) und das Zwilag Zwischenlager W\u00fcrenlingen AG - haben ihre Business IT weitestgehend an den fr\u00fcheren internen IT-Dienstleister der Axpo, Avectris (heute Aveniq), ausgelagert. Mit Inkrafttreten der ENSI Richtlinie G-22 im Jahre 2020 m\u00fcssen f\u00fcr alle 3 Werke neue Anforderungen umgesetzt werden. /n Anforderungen an das Projekt: A1: IT-Sicherheit gem\u00e4\u00df ENSI-Richtlinie G22 (Verf\u00fcgbarkeit, Integrit\u00e4t, Vertraulichkeit, Nichtabstreitbarkeit). A2: Inselbetriebsf\u00e4higkeit f\u00fcr schutzbed\u00fcrftige IT-Systeme. A3: Weisungsbefugnis der Standortleitung zur IT-Sicherheit. A4: Restriktive Einschr\u00e4nkung der Datenspeicherung ins Ausland. A5: Sicherer und effizienter Betrieb der Business-IT. A6: Kostensenkung durch Synergien zwischen Nuklearanlagen. /n Projektziele: Z1: Aufbau einer neuen IT-Infrastruktur zur Inselbetriebsf\u00e4higkeit. Z2: IT-Architektur zur Erf\u00fcllung der IT-Sicherheitsanforderungen. Z3: Neue IT-Organisationseinheit (KI) mit lokalen Teams zur eigenverantwortlichen Betriebsf\u00fchrung. Z4: Anpassung der Ablauforganisation inkl. Zusammenarbeit mit Demand IT der Nuklearanlagen. /n Projektumfang: In-Scope: Lieferung einer neuen IT-Infrastruktur, Sicherheitskonzepte, IT-Organisationseinheit, Prozessanpassungen. Out-of-Scope: OT-Systeme (ENSI G01), Security Operation Centers (SOC), Personal der Demand IT, Fachanwendungen BFS und SAP. /n Projektkategorisierung: Aufgrund seiner Komplexit\u00e4t und Tragweite ist das Projekt NND gem\u00e4\u00df den Projektportfoliohandb\u00fcchern KKL (FDB/0092), WDK006 und administrativer Weisung Zwilag (ZWI 2700/D0001) als Klasse A-Projekt eingestuft, was hohe Anforderungen an das Projektmanagementsystem stellt.",
       "dialogue": [
         {
           "speaker": "Expert",
@@ -231,6 +233,7 @@
         ],
         "estimatedTime": "30 Minuten"
       },
+      "content": "Projektorganisation: /n Steering Committee (SteCo): Hauptaufgabe ist die strategische, unternehmens\u00fcbergreifende Sicherstellung des Projekterfolgs, \u00fcbergeordnete Entscheidungsfindung und Eskalationsinstanz. Tritt quartalsweise oder ereignisabh\u00e4ngig zusammen und \u00fcbernimmt die Auftraggeberrolle. Der Projektleiter bereitet Sitzungen vor und nimmt teil. /n Aufgaben/Verantwortung: \u2022 \u00dcbernahme der \u00fcbergeordneten Projektverantwortung \u2022 Festlegen der strategischen Ziele \u2022 Kl\u00e4ren strategischer Fragen \u2022 Richtungsweisung bei Zielkonflikten \u2022 Bewertung der Projekt-Resultate \u00fcber Reporting \u2022 Eskalationsstelle bei Konflikten zwischen Projekt und Linie \u2022 Genehmigung/Ablehnung von Projektantr\u00e4gen \u2022 Einsetzung oder Abl\u00f6sung des Projektleiters \u2022 Freigabe von Beschaffungen ab Budgeth\u00f6he gem\u00e4\u00df Finanzkompetenzen. /n Projektvorsitz (PV): Vertritt die Interessen des Auftraggebers (Vorsitzender des SteCo) und stellt den operativen Projekterfolg sicher. Mitglieder: Leiter PV, IT-Abteilungsleiter, Strategischer Einkauf (Axpo), Unternehmenscontrolling (Axpo), Information Security Office (Axpo). Tritt alle zwei bis drei Monate oder ereignisabh\u00e4ngig zusammen. Der Projektleiter bereitet Sitzungen vor und nimmt teil. /n Aufgaben/Verantwortung: \u2022 Sicherstellung des Projekterfolges \u2022 Bewertung der Projekt-Resultate \u2022 Vereinbarung und Bewertung von Projektmanagement-Zielen \u2022 Kl\u00e4rung der Projekt-Rahmenbedingungen \u2022 Eskalationsstelle bei Konflikten \u2022 Projektkommunikation und -marketing in Abstimmung mit dem Projektleiter \u2022 Projekt-Risk-Owner \u2022 Einforderung und Genehmigung bei \u00c4nderungen des Projektauftrags, Projekthandbuchs, Projektziele, Projektorganisation, Projektplanung, Projektabschlussbericht und Finanzfreigabe unterhalb SteCo.",
       "dialogue": [
         {
           "speaker": "Expert",
@@ -347,6 +350,7 @@
         ],
         "estimatedTime": "60 Minuten"
       },
+      "content": "Projektphasen von NND: /n Phase 0: Initialisierung /n Inhalt: \u2022 Formulierung der Veranlassung \u2022 Pr\u00fcfung der Notwendigkeit des Projekts \u2022 Definition der Bed\u00fcrfnisse \u2022 Vorschlag zur Projekt- und L\u00f6sungsstrategie \u2022 Erstellung des Projektantrags /n Ergebnisse: \u2022 Genehmigter Projektantrag \u2022 Auftrag zum Start des Vorprojekts /n Phase 1: Vorprojekt /n Inhalt: \u2022 Kickoff-Meeting \u2022 IST-Analyse \u2022 Erstellung des Projektauftrags mit Zielen und Umfang \u2022 Analyse von Projektmanagement-Komponenten \u2022 Aufbau der Projektorganisation \u2022 Grobe Termin- und Meilensteinplanung \u2022 Aufgaben in Arbeitspaketen mit Terminplan verkn\u00fcpfen \u2022 Finanz- und Ressourcenplanung \u2022 Erstellung eines Umsetzungskonzepts /n Ergebnisse: \u2022 Genehmigtes Konzept \u2022 Grobe Kosten- und Ressourcenplanung \u2022 Kreditantrag f\u00fcr das Gesamtprojekt /n Phase 2: Hauptprojekt /n Inhalt: \u2022 Qualit\u00e4tsanforderungen und technische Dokumentation \u2022 Erstellung der kommerziellen Spezifikationen \u2022 D1 Eingabe \u2022 Erstellung Projektstrukturplan und Arbeitspakete \u2022 Erstellung Rahmenterminplan inkl. Abh\u00e4ngigkeiten \u2022 Ausschreibung externer Leistungen \u2022 Ressourcenanalyse und Freigabe \u2022 Risikoanalyse \u2022 Wirtschaftlichkeitsanalyse /n Ergebnisse: \u2022 Rahmenterminplan inkl. Schnittstellen \u2022 Detaillierter Kosten- und Ressourcenplan \u2022 Endverhandelte Offerte f\u00fcr externe Leistungen /n Phase 3: Realisierung /n Inhalt: \u2022 Technische Grundlagenkonzepte: Design Guide & Grobkonzepte (Netzwerk-, Infrastruktur-, Application-, Clienttier) \u2022 Eingabe D2 und D3 \u2022 Organisation und \u00dcberwachung von Abnahmetests und Inbetriebsetzung \u2022 IT Security Audit \u2022 Aktualisierung von Termin-, Finanz- und Ressourcenplanung \u2022 Claim Management /n Ergebnisse: \u2022 Realisierte und in Betrieb genommene L\u00f6sung \u2022 Schulung, Einweisung und provisorische \u00dcbergabe an Benutzer /n Phase 4: Abschluss /n Inhalt: \u2022 Enddokumentation und D4 Eingabe \u2022 Behebung von M\u00e4ngeln \u2022 Bearbeitung beh\u00f6rdlicher Auflagen \u2022 \u00dcberpr\u00fcfung der Zielerreichung \u2022 Claim Management \u2022 Projekt-Review, Lessons Learned, Wissenserhalt \u2022 Projekt-Schlussabrechnung /n Ergebnisse: \u2022 Projekt-Abschlussbericht mit Lessons Learned \u2022 Entlastung der Projektorganisation durch den PV und das SteCo",
       "dialogue": [
         {
           "speaker": "Expert",
@@ -491,28 +495,39 @@
       ]
     }
   ],
-  "summary": "This is a technical document",
-  "audioAvailable": true,
+  "summary": "The document is a project handbook for the NND project, which outlines the scope, objectives, governance, and execution strategy. It is applicable to all project stakeholders, including Axpo Power AG, Kernkraftwerk Leibstadt AG (KKL), and Zwilag Zwischenlager W\u00fcrenlingen AG, ensuring clear guidelines for project execution. The primary goal is to establish a new IT infrastructure for nuclear facilities in compliance with ENSI regulations, focusing on security, autonomy, and operational efficiency. The document details project phases, key success factors, governance structure, and compliance requirements, ensuring a structured and risk-mitigated approach to implementation.",
   "audioFiles": [
     {
-      "fileName": "projektportfoliohandbuch_long_de_section_0.wav",
+      "fileName": "Projektportfoliohandbuch_long_de_section_1__grunds_tze.wav",
       "sectionIndex": 0,
       "sectionTitle": "Grunds\u00e4tze"
     },
     {
-      "fileName": "projektportfoliohandbuch_long_de_section_1.wav",
+      "fileName": "Projektportfoliohandbuch_long_de_section_2__projektbeschreibung.wav",
       "sectionIndex": 1,
       "sectionTitle": "Projektbeschreibung"
     },
     {
-      "fileName": "projektportfoliohandbuch_long_de_section_2.wav",
+      "fileName": "Projektportfoliohandbuch_long_de_section_3__projektorganisation_und_gremienstruktur.wav",
       "sectionIndex": 2,
       "sectionTitle": "Projektorganisation und Gremienstruktur"
     },
     {
-      "fileName": "projektportfoliohandbuch_long_de_section_3.wav",
+      "fileName": "Projektportfoliohandbuch_long_de_section_4__projektphasen.wav",
       "sectionIndex": 3,
       "sectionTitle": "Projektphasen"
+    }
+  ],
+  "feedback": [
+    {
+      "rating": 3,
+      "comment": "the speed can be improved",
+      "timestamp": "2025-02-18T18:54:17.377145"
+    },
+    {
+      "rating": 3,
+      "comment": "speed",
+      "timestamp": "2025-02-18T18:56:21.329254"
     }
   ]
 }

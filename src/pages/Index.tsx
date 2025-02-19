@@ -5,7 +5,7 @@ import AudioSection from '../components/AudioSection';
 import { supabase } from '@/integrations/supabase/client';
 import type { Note } from '@/types/notes';
 import 'pdfjs-dist/web/pdf_viewer.css';
-import { Search, Settings, LogOut, FileText, Clock, BookOpen, MessageCircle, Send, X, Maximize2, Minimize2, ChevronLeft, Edit, Volume2, VolumeX, LayoutDashboard, Tv } from 'lucide-react';
+import { Search, Settings, LogOut, FileText, Clock, BookOpen, MessageCircle, Send, X, Maximize2, Minimize2, ChevronLeft, Edit, Home, Presentation } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -218,7 +218,7 @@ export default function Index() {
           // Remove the section number prefix and format the title
           const displayTitle = audioFile.sectionTitle.replace(/^\d+\.\s*/, '');
           
-          // Use backend endpoint for audio files
+          // Use backend endpoint for audio files with correct path structure
           const audioPath = `http://localhost:5001/api/audio/${courseState.courseName}/${audioFile.fileName}`;
           
           // Create audio element to get duration
@@ -416,8 +416,6 @@ export default function Index() {
       }
     };
   }, []);
-
-  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(pdfUrl)}`;
 
   const getLengthLabel = (value: number) => {
     if (value <= 33) return 'Short';
@@ -715,12 +713,15 @@ export default function Index() {
               className={`${isPdfFullScreen ? 'flex-1' : 'w-1/2'} border-r border-gray-700/50 transition-all duration-300`}
             >
               <div className="h-full rounded-lg overflow-hidden backdrop-blur-sm shadow-xl">
-                <iframe
-                  ref={iframeRef}
-                  src={pdfViewerUrl}
+                <object
+                  data={pdfUrl}
+                  type="application/pdf"
                   className="w-full h-full border-0"
                   title="PDF Document"
-                />
+                >
+                  <p>It appears you don't have a PDF plugin for this browser. You can 
+                  <a href={pdfUrl} target="_blank" rel="noopener noreferrer"> click here to download the PDF file.</a></p>
+                </object>
               </div>
             </motion.div>
 
@@ -766,10 +767,8 @@ export default function Index() {
                 className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
                 title="Back to Dashboard"
               >
-                <LayoutDashboard className="h-4 w-4" />
+                <Home className="h-4 w-4" />
               </Button>
-
-              <div className="w-px h-5 bg-purple-500/20" />
 
               <Button
                 variant="ghost"
@@ -781,19 +780,75 @@ export default function Index() {
                 <Edit className="h-4 w-4" />
               </Button>
 
-              <div className="w-px h-5 bg-purple-500/20" />
-
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => navigate('/video-player', { state: location.state })}
-                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-emerald-500/20 hover:shadow-lg transition-all duration-300"
-                title="Switch to Video Mode"
-              >
-                <Tv className="h-4 w-4" />
-              </Button>
+                onClick={async () => {
+                  const toastId = 'generating-presentation';
+                  try {
+                    if (!courseState?.courseName) {
+                      toast.error("Course name not found");
+                      return;
+                    }
 
-              <div className="w-px h-5 bg-purple-500/20" />
+                    // Check if presentation already exists
+                    const coursesList = await fetch('http://localhost:5001/api/courses').then(res => res.json());
+                    const course = coursesList.find((c: any) => c.name === courseState.courseName);
+                    
+                    if (course?.presentationAvailable) {
+                      // If presentation exists, navigate directly to presentation canvas
+                      navigate('/presentation-canvas', { 
+                        state: { 
+                          courseName: courseState.courseName,
+                          presentationFile: `${courseState.courseName}_presentation.json`
+                        }
+                      });
+                      return;
+                    }
+
+                    toast.loading("Generating presentation...", { id: toastId });
+
+                    const response = await fetch('http://localhost:5001/api/generate-presentation', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        course_name: courseState.courseName
+                      })
+                    });
+
+                    if (!response.ok) {
+                      throw new Error('Failed to generate presentation');
+                    }
+
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                      toast.dismiss(toastId);
+                      toast.success("Presentation generated successfully!");
+                      // Navigate to presentation canvas with the generated data
+                      navigate('/presentation-canvas', { 
+                        state: { 
+                          courseName: courseState.courseName,
+                          presentationFile: data.presentation_file
+                        }
+                      });
+                    } else {
+                      throw new Error(data.error || 'Unknown error occurred');
+                    }
+                  } catch (error) {
+                    toast.dismiss(toastId);
+                    toast.error(error.message || "Failed to generate presentation");
+                    console.error('Error generating presentation:', error);
+                  }
+                }}
+                className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-emerald-500/20 hover:shadow-lg transition-all duration-300 relative presentation-glow group"
+                title="Transform to Presentation"
+              >
+                <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-md animate-pulse-slow" />
+                <Presentation className="h-4 w-4 text-emerald-400 group-hover:text-emerald-300 transition-colors relative z-10" />
+              </Button>
 
               <Button
                 variant="ghost"
@@ -808,38 +863,6 @@ export default function Index() {
                   <Maximize2 className="h-4 w-4" />
                 )}
               </Button>
-
-              <div className="w-px h-5 bg-purple-500/20" />
-
-              <div className="group relative flex items-center">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleMute}
-                  className="w-9 h-9 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-purple-500/20 hover:shadow-lg transition-all duration-300"
-                  title="Volume Control"
-                >
-                  {isMuted || volume === 0 ? (
-                    <VolumeX className="h-4 w-4" />
-                  ) : (
-                    <Volume2 className="h-4 w-4" />
-                  )}
-                </Button>
-                
-                {/* Volume Slider */}
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-gray-800/90 rounded-lg p-3 shadow-lg border border-purple-500/20">
-                  <div className="w-24 h-1.5">
-                    <Slider
-                      value={[isMuted ? 0 : volume]}
-                      min={0}
-                      max={1}
-                      step={0.1}
-                      onValueChange={([value]) => handleVolumeChange(value)}
-                      className="cursor-pointer"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -933,6 +956,21 @@ export default function Index() {
               height: 1px;
               margin: 0.75rem 0;
               background: linear-gradient(to right, transparent, rgba(139, 92, 246, 0.2), transparent);
+            }
+
+            @keyframes pulse-slow {
+              0%, 100% {
+                opacity: 0.2;
+                transform: scale(1);
+              }
+              50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+              }
+            }
+
+            .animate-pulse-slow {
+              animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             }
           `}</style>
         </>

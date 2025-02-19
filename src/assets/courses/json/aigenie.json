@@ -1,0 +1,81 @@
+{
+  "courseName": "aigenie",
+  "template": "educational-deep-dive",
+  "persona": "andrew-ava",
+  "files": [
+    "pdf/aigenie.pdf"
+  ],
+  "processedSections": [
+    {
+      "title": "1. Introduction",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with IT infrastructure concepts",
+          "Interest in learning cloud platforms"
+        ],
+        "learningGoals": [
+          "Understand what AWS is",
+          "Learn about key AWS services",
+          "Recognize the benefits of using AWS",
+          "Explore AWS use cases"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "Amazon Web Services (AWS) is a cloud computing platform that offers a\nwide range of services, including computing power, storage, databases,\nnetworking, and machine learning. It provides scalable and cost-effective\nsolutions for businesses and developers.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 1. Introduction.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain this topic?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Let me break it down for you step by step.",
+          "purpose": "explanation"
+        }
+      ]
+    },
+    {
+      "title": "2. Core AWS Services",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS account setup",
+          "Knowledge of networking fundamentals"
+        ],
+        "learningGoals": [
+          "Understand the core services offered by AWS",
+          "Learn how to use AWS EC2 and S3 effectively",
+          "Gain insights into AWS IAM for managing access and permissions"
+        ],
+        "estimatedTime": "45 minutes"
+      },
+      "content": "",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 2. Core AWS Services.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain this topic?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Let me break it down for you step by step.",
+          "purpose": "explanation"
+        }
+      ]
+    }
+  ],
+  "summary": "This is a technical document",
+  "audioAvailable": false
+}

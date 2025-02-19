@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ChevronLeft, Save, Search, Settings, LogOut, ChevronRight, Mic, Edit, Play, Download, FileDown, MessageCircle, Menu, Video, Plus, Trash2, Pause, Volume2, Headphones, Clock, LayoutDashboard } from 'lucide-react';
+import { ChevronLeft, Save, Search, Settings, LogOut, ChevronRight, Mic, Edit, Play, Download, FileDown, MessageCircle, Menu, Video, Plus, Trash2, Pause, Volume2, Headphones, Clock, Home } from 'lucide-react';
 import ChatBot from '@/components/ChatBot';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
@@ -64,6 +64,18 @@ interface CourseData {
       }>;
     };
   }>;
+  voiceConfig?: {
+    expert: {
+      voice: string;
+      style: string;
+      language: string;
+    };
+    learner: {
+      voice: string;
+      style: string;
+      language: string;
+    };
+  };
 }
 
 interface Metadata {
@@ -209,7 +221,7 @@ const AudioPreview = ({ text, speaker, disabled = false }: { text: string; speak
           className={cn(
             "w-8 h-8 rounded-lg transition-all",
             "hover:bg-gray-700/50",
-            state.isPlaying ? (speaker === 'samantha' ? "text-purple-400 bg-purple-500/10" : "text-emerald-400 bg-emerald-500/10") : "text-gray-400",
+            state.isPlaying ? (speaker === 'daniel' ? "text-purple-400 bg-purple-500/10" : "text-emerald-400 bg-emerald-500/10") : "text-gray-400",
             state.isLoading ? "opacity-50 cursor-wait" : "opacity-100",
             disabled && "opacity-50 cursor-not-allowed"
           )}
@@ -328,7 +340,6 @@ const CourseCanvas = () => {
   const [expertVoice, setExpertVoice] = useState(location.state?.expertVoice || 'en-US-JennyNeural');
   const [learnerVoice, setLearnerVoice] = useState(location.state?.learnerVoice || 'en-US-TonyNeural');
   const [isAudioAvailable, setIsAudioAvailable] = useState(false);
-  const [pdfUrl, setPdfUrl] = useState<string>('');
 
   useEffect(() => {
     // Add debug logging
@@ -748,7 +759,19 @@ const CourseCanvas = () => {
         },
         body: JSON.stringify({
           courseName: courseName,
-          processedSections: processedSections
+          processedSections: processedSections,
+          voiceConfig: courseData.voiceConfig || {
+            expert: {
+              voice: 'en-US-AndrewMultilingualNeural',
+              style: 'professional',
+              language: 'en-US'
+            },
+            learner: {
+              voice: 'en-US-AvaMultilingualNeural',
+              style: 'friendly',
+              language: 'en-US'
+            }
+          }
         }),
       });
 
@@ -760,6 +783,18 @@ const CourseCanvas = () => {
 
       if (result.success) {
         const audioFiles = result.course?.audioFiles || [];
+        const progressUpdates = result.progress_updates || [];
+        
+        // Update progress based on updates
+        progressUpdates.forEach((update: any, index: number) => {
+          setTimeout(() => {
+            setAudioProgress(update.progress);
+            toast.info(`${update.message}`, {
+              description: `Progress: ${update.progress}% (${update.processed}/${update.total})`,
+              duration: 2000
+            });
+          }, index * 100); // Stagger updates for better UX
+        });
         
         toast.success(`Course "${courseName}" is ready!`, {
           description: `Generated ${audioFiles.length} audio files`,
@@ -788,14 +823,13 @@ const CourseCanvas = () => {
       }
 
     } catch (error) {
-      console.error('Error generating audio:', error);
-      toast.error('Failed to generate audio', {
-        description: error instanceof Error ? error.message : 'An error occurred',
-        duration: 3000
+      console.error('Error generating audio course:', error);
+      toast.error('Failed to generate audio course', {
+        description: error instanceof Error ? error.message : 'Unknown error occurred',
+        duration: 5000
       });
     } finally {
       setIsGeneratingAudio(false);
-      setAudioProgress(0);
     }
   };
 
@@ -842,7 +876,7 @@ const CourseCanvas = () => {
 
   const menuItems = [
     {
-      icon: (props) => <LayoutDashboard {...props} />,
+      icon: (props) => <Home {...props} />,
       label: "Back to Dashboard",
       onClick: () => navigate('/dashboard')
     },
@@ -850,16 +884,6 @@ const CourseCanvas = () => {
       icon: (props) => <Menu {...props} />,
       label: "Toggle Index",
       onClick: () => setIsIndexVisible(!isIndexVisible)
-    },
-    {
-      icon: (props) => <Save {...props} />,
-      label: "Save Canvas",
-      onClick: () => console.log('Save course')
-    },
-    {
-      icon: (props) => <FileDown {...props} />,
-      label: "Download PDF",
-      onClick: () => console.log('Download as PDF')
     },
     {
       icon: (props) => (
@@ -872,27 +896,6 @@ const CourseCanvas = () => {
       label: "Transform to Audio",
       onClick: handleTransformToAudio,
       className: "relative group hover:scale-110 transition-transform"
-    },
-    {
-      icon: (props) => <Video {...props} />,
-      label: "Transform to Video",
-      onClick: () => {
-        if (!isAudioAvailable) {
-          toast.error("Audio course must be available before creating video", {
-            description: "Please transform the course to audio first.",
-            duration: 3000
-          });
-          return;
-        }
-        toast.info("Video course transformation coming soon!", {
-          description: "We're working on bringing you interactive video courses. Stay tuned!",
-          duration: 3000
-        });
-      },
-      className: cn(
-        "relative group hover:scale-110 transition-transform",
-        !isAudioAvailable && "opacity-50 cursor-not-allowed"
-      )
     }
   ];
 
@@ -965,9 +968,6 @@ const CourseCanvas = () => {
       checkAudioAvailability();
     }
   }, [courseFileName]);
-
-  // Update the PDF viewer URL construction
-  const pdfViewerUrl = `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(`file://${pdfUrl}`)}`;
 
   // Add debug rendering
   if (!courseData) {
@@ -1161,8 +1161,8 @@ const CourseCanvas = () => {
                             <div className="flex flex-col items-center gap-1">
                               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-500/20 border border-purple-500/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-purple-500/5 overflow-hidden">
                                 <img 
-                                  src="/images/samantha-avatar.png" 
-                                  alt="Samantha"
+                                  src="/images/daniel-avatar.png" 
+                                  alt="Marc"
                                   className="w-full h-full object-cover"
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement;
@@ -1170,14 +1170,14 @@ const CourseCanvas = () => {
                                   }}
                                 />
                               </div>
-                              <span className="text-xs text-purple-400 font-medium">Samantha</span>
+                              <span className="text-xs text-purple-400 font-medium">Marc</span>
                             </div>
                             <div className="flex-1 space-y-1">
                               <div className="flex items-center gap-2 mb-2">
                                 <DialoguePurpose purpose={dialogue.expertPurpose} />
                                 <AudioPreview 
                                   text={dialogue.expert} 
-                                  speaker="samantha" 
+                                  speaker="daniel" 
                                   disabled={!isAudioAvailable} 
                                 />
                               </div>
@@ -1239,7 +1239,7 @@ const CourseCanvas = () => {
                               <div className="flex items-center justify-end gap-2 mb-2">
                                 <AudioPreview 
                                   text={dialogue.learner} 
-                                  speaker="daniel" 
+                                  speaker="samantha" 
                                   disabled={!isAudioAvailable} 
                                 />
                                 <DialoguePurpose purpose={dialogue.learnerPurpose} />
@@ -1287,8 +1287,8 @@ const CourseCanvas = () => {
                             <div className="flex flex-col items-center gap-1">
                               <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/20 flex items-center justify-center flex-shrink-0 shadow-lg shadow-emerald-500/5 overflow-hidden">
                                 <img 
-                                  src="/images/daniel-avatar.png" 
-                                  alt="Daniel"
+                                  src="/images/samantha-avatar.png" 
+                                  alt="Carin"
                                   className="w-full h-full object-cover"
                                   onError={(e) => {
                                     const target = e.target as HTMLImageElement;
@@ -1296,7 +1296,7 @@ const CourseCanvas = () => {
                                   }}
                                 />
                               </div>
-                              <span className="text-xs text-emerald-400 font-medium">Daniel</span>
+                              <span className="text-xs text-emerald-400 font-medium">Carin</span>
                             </div>
                           </div>
                         </div>

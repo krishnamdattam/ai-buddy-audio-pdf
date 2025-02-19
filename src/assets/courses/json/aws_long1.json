@@ -1,0 +1,188 @@
+{
+  "courseName": "aws_long1",
+  "template": "educational-deep-dive",
+  "persona": "andrew-ava",
+  "files": [
+    "pdf/aws_long1.pdf"
+  ],
+  "processedSections": [
+    {
+      "title": "1. Introduction",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with general IT concepts",
+          "Awareness of online service platforms"
+        ],
+        "learningGoals": [
+          "Understand what AWS is and its purpose",
+          "Identify the key services offered by AWS",
+          "Recognize the benefits of using AWS for businesses and developers"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "Amazon Web Services (AWS) is a cloud computing platform that offers a\nwide range of services, including computing power, storage, databases,\nnetworking, and machine learning. It provides scalable and cost-effective\nsolutions for businesses and developers.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 1. Introduction.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "2. Core AWS Services",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS account setup",
+          "Knowledge of networking concepts"
+        ],
+        "learningGoals": [
+          "Identify core AWS services and their purposes",
+          "Understand how to leverage AWS services for various use cases",
+          "Learn to navigate the AWS Management Console effectively"
+        ],
+        "estimatedTime": "45 minutes"
+      },
+      "content": "",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 2. Core AWS Services.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "3. Security & Compliance",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS services",
+          "Knowledge of security principles"
+        ],
+        "learningGoals": [
+          "Understand AWS Identity and Access Management (IAM)",
+          "Learn how AWS Shield mitigates DDoS attacks",
+          "Explore AWS Key Management Service (KMS) for secure encryption key storage"
+        ],
+        "estimatedTime": "45 minutes"
+      },
+      "content": "AWS Identity and Access Management (IAM) helps manage user permissions\nsecurely. AWS Shield provides protection against DDoS attacks. AWS Key\nManagement Service (KMS) ensures secure key storage for data encryption.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 3. Security & Compliance.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "4. Cost Management",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS services",
+          "Knowledge of billing and pricing concepts"
+        ],
+        "learningGoals": [
+          "Understand AWS pricing models",
+          "Learn how to use AWS Cost Explorer",
+          "Optimize cloud spending with AWS tools",
+          "Explore the AWS Free Tier offerings"
+        ],
+        "estimatedTime": "30 minutes"
+      },
+      "content": "AWS follows a flexible pricing model, including pay-as-you-go, Reserved\nInstances, and Spot Instances. AWS Cost Explorer helps track and optimize\ncloud spending, while AWS Free Tier offers limited free access to various\nservices.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 4. Cost Management.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "5. Benefits of AWS Cloud",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with IT infrastructure concepts",
+          "Knowledge of scalability and reliability in tech systems"
+        ],
+        "learningGoals": [
+          "Understand the scalability benefits of AWS Cloud",
+          "Learn about AWS's reliability and fault-tolerant infrastructure",
+          "Explore AWS's security measures and compliance standards",
+          "Understand the cost-effectiveness of AWS's pricing model"
+        ],
+        "estimatedTime": "15 minutes"
+      },
+      "content": "AWS provides scalability, allowing businesses to adjust resources based on\ndemand. It ensures reliability through high availability and fault-tolerant\ninfrastructure. Strong security measures, including compliance and data\nprotection, enhance trust. Its cost-effective model ensures affordability with\nno upfront costs and a pay-as-you-go approach.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 5. Benefits of AWS Cloud.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    },
+    {
+      "title": "6. Conclusion",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of cloud computing",
+          "Familiarity with AWS services",
+          "Knowledge of scalability and security concepts"
+        ],
+        "learningGoals": [
+          "Summarize the key benefits of AWS",
+          "Understand AWS's position in the cloud market",
+          "Recognize the importance of scalability, security, and flexibility in cloud platforms"
+        ],
+        "estimatedTime": "5 minutes"
+      },
+      "content": "AWS offers a comprehensive cloud platform with diverse services that cater\nto various business needs. Its scalability, security, and flexibility make it a\npopular choice for organizations worldwide.\n",
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Let's discuss 6. Conclusion.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Could you explain it?",
+          "purpose": "question"
+        }
+      ]
+    }
+  ],
+  "summary": "This is a technical document",
+  "audioAvailable": false
+}

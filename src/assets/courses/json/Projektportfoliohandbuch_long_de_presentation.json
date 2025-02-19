@@ -1,0 +1,164 @@
+{
+  "courseName": "Projektportfoliohandbuch_long_de",
+  "sections": [
+    {
+      "title": "Welcome to Projektportfoliohandbuch Long De Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Projektportfoliohandbuch Long De learning journey",
+        "Learn through the audio-visual presentation and by asking questions to the AI Buddy Assistant",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: Grunds\u00e4tze",
+      "type": "section_header"
+    },
+    {
+      "title": "Grunds\u00e4tze",
+      "type": "content",
+      "summary_points": [
+        "Das Projekthandbuch f\u00fcr das NND-Projekt dient als Leitfaden und regelt Aufgaben, Verantwortlichkeiten und Prozesse f\u00fcr alle Beteiligten wie Axpo, KKL und Zwilag w\u00e4hrend des gesamten Projektzeitraums.",
+        "Es stellt sicher, dass die Projektstruktur, Aufgaben, Prozesse und Kommunikation klar definiert sind, \u00e4hnlich einem Stadtplan, der Ordnung und Effizienz gew\u00e4hrleistet.",
+        "Die Grunds\u00e4tze und Erfolgsfaktoren umfassen zertifiziertes Projektmanagement, klare Projektorganisation und fr\u00fchzeitige Eskalation bei Problemen, um Kosten und Verz\u00f6gerungen zu vermeiden.",
+        "Das Projekthandbuch f\u00f6rdert die Zusammenarbeit und den Projekterfolg, indem es klare Ziele setzt und sicherstellt, dass alle Beteiligten diese unterst\u00fctzen."
+      ],
+      "audio_url": "/assets/audio/Projektportfoliohandbuch_long_de/Projektportfoliohandbuch_long_de_section_1__grunds_tze.wav"
+    },
+    {
+      "title": "Section 2: Projektbeschreibung",
+      "type": "section_header"
+    },
+    {
+      "title": "Projektbeschreibung",
+      "type": "content",
+      "summary_points": [
+        "Das NND Projekt fokussiert sich auf den Aufbau einer IT-Infrastruktur f\u00fcr nukleare Anlagen, die den ENSI-Richtlinien entspricht und die Sicherheit gew\u00e4hrleistet.",
+        "Wichtige Anforderungen sind IT-Sicherheit, Inselbetriebsf\u00e4higkeit und Weisungsbefugnis, um die Verf\u00fcgbarkeit und Unabh\u00e4ngigkeit der IT-Systeme sicherzustellen.",
+        "Inselbetriebsf\u00e4higkeit bedeutet, dass die IT-Systeme unabh\u00e4ngig vom externen Netz funktionieren k\u00f6nnen, \u00e4hnlich einem Notstromgenerator.",
+        "Der Projektumfang umfasst den Aufbau einer neuen IT-Infrastruktur, schlie\u00dft jedoch sicherheitsrelevante OT-Systeme und einige Personalfragen aus."
+      ],
+      "audio_url": "/assets/audio/Projektportfoliohandbuch_long_de/Projektportfoliohandbuch_long_de_section_2__projektbeschreibung.wav"
+    },
+    {
+      "title": "Section 3: Projektorganisation und Gremienstruktur",
+      "type": "section_header"
+    },
+    {
+      "title": "Projektorganisation und Gremienstruktur",
+      "type": "content",
+      "summary_points": [
+        "Die Projektorganisation im NND-Projekt sorgt daf\u00fcr, dass alle Teile effizient zusammenarbeiten und die Projektziele erreicht werden.",
+        "Das Steering Committee (SteCo) \u00fcbernimmt die strategische F\u00fchrung, legt Ziele fest, bewertet Ergebnisse und dient als Eskalationsinstanz bei Konflikten.",
+        "Der Projektvorsitz ist f\u00fcr die operative Sicherstellung des Projekterfolgs verantwortlich, einschlie\u00dflich der Bewertung von Ergebnissen, der Projektkommunikation und des Risikomanagements.",
+        "Der Projektleiter unterst\u00fctzt sowohl die strategische als auch die operative F\u00fchrung durch Vorbereitung und Teilnahme an den Sitzungen von SteCo und Projektvorsitz."
+      ],
+      "audio_url": "/assets/audio/Projektportfoliohandbuch_long_de/Projektportfoliohandbuch_long_de_section_3__projektorganisation_und_gremienstruktur.wav"
+    },
+    {
+      "title": "Section 4: Projektphasen",
+      "type": "section_header"
+    },
+    {
+      "title": "Projektphasen",
+      "type": "content",
+      "summary_points": [
+        "Das NND-Projekt besteht aus f\u00fcnf Hauptphasen: Initialisierung, Vorprojekt, Hauptprojekt, Realisierung und Abschluss, die jeweils spezifische Inhalte und Ergebnisse haben.",
+        "In der Initialisierungsphase werden die Projektgr\u00fcnde gepr\u00fcft, Bed\u00fcrfnisse identifiziert, eine Strategie vorgeschlagen und ein Projektantrag erstellt, der genehmigt werden muss.",
+        "In der Vorprojektphase werden ein Kickoff-Meeting, eine IST-Analyse, die Projektorganisation, Meilensteinplanung sowie Finanz- und Ressourcenplanung durchgef\u00fchrt.",
+        "In den sp\u00e4teren Phasen werden detaillierte Pl\u00e4ne erstellt, externe Leistungen ausgeschrieben, die Umsetzung realisiert, Tests durchgef\u00fchrt, die Enddokumentation erstellt und ein Lessons-Learned-Review abgehalten."
+      ],
+      "audio_url": "/assets/audio/Projektportfoliohandbuch_long_de/Projektportfoliohandbuch_long_de_section_4__projektphasen.wav"
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "Was ist die Hauptfunktion des Projekthandbuchs f\u00fcr das NND-Projekt?",
+          "options": [
+            "Es dient als Marketingdokument f\u00fcr das Projekt.",
+            "Es regelt Aufgaben, Verantwortlichkeiten und Prozesse des Projekts.",
+            "Es dient ausschlie\u00dflich der Kostenkontrolle.",
+            "Es beschreibt ausschlie\u00dflich die IT-Sicherheitsanforderungen."
+          ],
+          "correct_answer": "Es regelt Aufgaben, Verantwortlichkeiten und Prozesse des Projekts.",
+          "explanation": "Das Projekthandbuch dient als Leitfaden, der sicherstellt, dass alle Beteiligten klare Strukturen, Aufgaben und Prozesse haben, um das Projekt effizient umzusetzen."
+        },
+        {
+          "question": "Welche der folgenden Anforderungen geh\u00f6rt laut Abschnitt 3.2 des Projekthandbuchs zu den Hauptzielen der IT-Infrastruktur?",
+          "options": [
+            "Mitarbeiterschulungen",
+            "Inselbetriebsf\u00e4higkeit",
+            "Marketingstrategien",
+            "Rekrutierung von IT-Personal"
+          ],
+          "correct_answer": "Inselbetriebsf\u00e4higkeit",
+          "explanation": "Die Inselbetriebsf\u00e4higkeit stellt sicher, dass die IT-Systeme unabh\u00e4ngig vom externen Netz arbeiten k\u00f6nnen, was entscheidend f\u00fcr die IT-Sicherheit ist."
+        },
+        {
+          "question": "Welche Hauptaufgabe hat das Steering Committee (SteCo) im NND-Projekt?",
+          "options": [
+            "Es verwaltet die Projektfinanzen.",
+            "Es \u00fcbernimmt die strategische F\u00fchrung und dient als Eskalationsinstanz.",
+            "Es f\u00fchrt die technischen Abnahmetests durch.",
+            "Es ist ausschlie\u00dflich f\u00fcr die Personalplanung zust\u00e4ndig."
+          ],
+          "correct_answer": "Es \u00fcbernimmt die strategische F\u00fchrung und dient als Eskalationsinstanz.",
+          "explanation": "Das SteCo ist f\u00fcr die strategische Steuerung des Projekts verantwortlich und dient als Eskalationsstelle bei Konflikten oder strategischen Entscheidungen."
+        },
+        {
+          "question": "Welche Phase des NND-Projekts umfasst die Erstellung des Projektantrags und die Pr\u00fcfung der Notwendigkeit des Projekts?",
+          "options": [
+            "Vorprojekt",
+            "Hauptprojekt",
+            "Initialisierungsphase",
+            "Realisierungsphase"
+          ],
+          "correct_answer": "Initialisierungsphase",
+          "explanation": "In der Initialisierungsphase werden die Grundlagen des Projekts gelegt, einschlie\u00dflich der Formulierung des Projektantrags und der Pr\u00fcfung der Projektnotwendigkeit."
+        },
+        {
+          "question": "Welche Aufgabe wird in der Abschlussphase des NND-Projekts durchgef\u00fchrt?",
+          "options": [
+            "Durchf\u00fchrung einer IST-Analyse",
+            "Erstellung eines Kreditantrags",
+            "Abschlie\u00dfende Dokumentation und Lessons Learned Workshops",
+            "Technische Abnahmetests"
+          ],
+          "correct_answer": "Abschlie\u00dfende Dokumentation und Lessons Learned Workshops",
+          "explanation": "In der Abschlussphase werden die Enddokumentation erstellt, verbleibende M\u00e4ngel behoben, Lessons Learned Workshops durchgef\u00fchrt und das Projektteam entlastet."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Projektportfoliohandbuch Long De course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}
