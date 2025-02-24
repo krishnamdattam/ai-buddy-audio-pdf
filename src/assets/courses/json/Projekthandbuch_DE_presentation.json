@@ -1,0 +1,176 @@
+{
+  "courseName": "Projekthandbuch_DE",
+  "presentationConfig": {
+    "logo": {
+      "position": "top-left",
+      "src": "/images/axpo_logo_dark.png",
+      "style": {
+        "left": "20px",
+        "margin": "10px",
+        "maxHeight": "60px",
+        "position": "absolute",
+        "top": "20px",
+        "zIndex": "1000"
+      }
+    }
+  },
+  "sections": [
+    {
+      "summary_points": [
+        "Willkommen zu Ihrer umfassenden Projekthandbuch DE Lernreise",
+        "Lernen Sie durch die audiovisuelle Präsentation und im Dialog mit dem KI-Buddy-Assistenten",
+        "Lernen Sie anhand praktischer Beispiele und realer Szenarien",
+        "Beherrschen Sie Kernkonzepte und Best Practices"
+      ],
+      "title": "Willkommen zum Projekthandbuch DE Kurs",
+      "type": "welcome"
+    },
+    {
+      "metadata": {
+        "estimatedTime": "2 Stunden",
+        "learningGoals": [
+          "Verstehen grundlegender Konzepte und Dienstleistungen",
+          "Lernen Sie mit Kerntechnologien zu arbeiten",
+          "Beherrschen Sie wichtige Fachbegriffe und Prinzipien",
+          "Erlangen Sie praktisches Umsetzungswissen"
+        ],
+        "prerequisites": [
+          "Grundlegendes Verständnis von IT-Konzepten",
+          "Vertrautheit mit grundlegenden Computerbegriffen",
+          "Keine Vorkenntnisse erforderlich"
+        ]
+      },
+      "title": "Kursübersicht",
+      "type": "overview"
+    },
+    {
+      "title": "Section 1: 2. Grundsätze",
+      "type": "section_header"
+    },
+    {
+      "summary_points": [
+        "Das Projekthandbuch NND sichert den Projekterfolg, indem es klare Regeln und Prozesse für die Zusammenarbeit zwischen den beteiligten Unternehmen wie Axpo, KKL und Zwilag festlegt.",
+        "Es regelt die Organisation, Steuerung, Dokumentation, Verantwortlichkeiten, Planung, Durchführung von Prozessen sowie die einheitliche Kommunikation und Terminüberwachung im Projekt.",
+        "Das NND Projektmanagement Office (PMO) ist für die kontinuierliche Pflege und Aktualisierung des Projekthandbuchs zuständig, um sicherzustellen, dass es immer aktuell bleibt.",
+        "Das Projekt orientiert sich an zertifizierten Projektmanagement-Standards (wie IPMA), bewertet Risiken kontinuierlich, eskaliert bei Verzögerungen frühzeitig und stellt sicher, dass qualifizierte Ressourcen sowie Führungskompetenz vorhanden sind."
+      ],
+      "title": "2. Grundsätze",
+      "type": "content"
+    },
+    {
+      "title": "Section 2: 3. Projektbeschreibung",
+      "type": "section_header"
+    },
+    {
+      "summary_points": [
+        "Das Projekt NND wurde gestartet, um die ENSI-Richtlinie G-22 von 2020 zu erfüllen und die IT-Sicherheit sowie Servicequalität in den Kernkraftwerken Leibstadt, Beznau und Zwilag zu verbessern.",
+        "Wichtige Anforderungen des Projekts sind IT-Sicherheit (Verfügbarkeit, Integrität, Vertraulichkeit, Nichtabstreitbarkeit), Inselbetriebsfähigkeit der IT-Systeme und lokale Weisungsbefugnis zur IT-Sicherheit.",
+        "Das Projekt umfasst den Aufbau einer neuen IT-Infrastruktur, die Entwicklung einer hochsicheren IT-Architektur, die Schaffung einer neuen IT-Organisationseinheit namens KI mit lokalen Teams und die Anpassung von Prozessen und Zusammenarbeit.",
+        "Bereiche wie sicherheitsrelevante Operational Technology (OT)-Systeme, Security Operation Centers (SOC) und bestimmte Fachanwendungen wie SAP bleiben außerhalb des Projektumfangs."
+      ],
+      "title": "3. Projektbeschreibung",
+      "type": "content"
+    },
+    {
+      "title": "Section 3: 4. Projektorganisation und Gremienstruktur",
+      "type": "section_header"
+    },
+    {
+      "summary_points": [
+        "Das Steering Committee (SteCo) ist für die strategische Aufsicht des Projekts verantwortlich und stellt die Ausrichtung an den Unternehmenszielen sicher, legt strategische Ziele fest, löst übergeordnete Probleme und genehmigt größere Beschaffungen über einem bestimmten Budget.",
+        "Das SteCo trifft sich vierteljährlich oder bei bedeutenden Ereignissen nach Bedarf. Die Sitzungen werden vom Projektleiter vorbereitet, der auch an den Meetings teilnimmt.",
+        "Der Projektvorsitz konzentriert sich auf die operative Durchführung des Projekts, vertritt die Interessen des Auftraggebers, bewertet Projektergebnisse, klärt Rahmenbedingungen, managt Risiken und genehmigt Änderungen am Projektumfang oder -plan.",
+        "Sowohl das SteCo als auch der Projektvorsitz haben klar definierte, sich ergänzende Rollen und arbeiten eng zusammen, wobei ihre Zusammenarbeit für den Projekterfolg essentiell ist."
+      ],
+      "title": "4. Projektorganisation und Gremienstruktur",
+      "type": "content"
+    },
+    {
+      "title": "Section 4: 5. Projektphasen",
+      "type": "section_header"
+    },
+    {
+      "summary_points": [
+        "Die 5 Projektphasen decken den gesamten Projektlebenszyklus ab, von der Initiierung bis zum Abschluss, wobei jede Phase spezifische Ziele und Ergebnisse hat.",
+        "Phase 1: Die Initiierung beinhaltet die Definition der Projektbegründung, die Bewertung seiner Notwendigkeit und die Erstellung eines genehmigten Projektantrags für den Start der Vorarbeiten.",
+        "Phase 2: Die Planung umfasst Aktivitäten wie ein Kickoff-Meeting, eine IST-Analyse und die Erstellung einer Projektcharta, die zu einem genehmigten Konzept und einer groben Kosten-/Ressourcenplanung führt.",
+        "Phase 3: Die Detailplanung konzentriert sich auf die Festlegung von Qualitätsanforderungen, kommerziellen Spezifikationen und einem Rahmenterminplan, was zu detaillierten Kosten-/Ressourcenplänen und finalisierten externen Serviceangeboten führt.",
+        "Phase 4: Die Implementierung umfasst technisches Design, Tests und Inbetriebnahme, was zu einer voll funktionsfähigen Lösung und Schulungen für Benutzer führt.",
+        "Phase 5: Der Abschluss beinhaltet die Finalisierung der Dokumentation, die Behebung von Mängeln und die Erstellung eines Projektabschlussberichts mit Lessons Learned zur Verbesserung zukünftiger Initiativen."
+      ],
+      "title": "5. Projektphasen",
+      "type": "content"
+    },
+    {
+      "quiz_questions": [
+        {
+          "correct_answer": "Es stellt sicher, dass alle Beteiligten dieselben Ziele verfolgen und effizient zusammenarbeiten.",
+          "explanation": "Das Projekthandbuch NND definiert klare Regeln, Prozesse und Strukturen, um Effizienz und Zielorientierung in der Zusammenarbeit der beteiligten Organisationen sicherzustellen.",
+          "options": [
+            "Es dient als Marketinginstrument für das Projekt.",
+            "Es stellt sicher, dass alle Beteiligten dieselben Ziele verfolgen und effizient zusammenarbeiten.",
+            "Es dient ausschließlich der Kostenkontrolle im Projekt.",
+            "Es ist ein Dokument zur Speicherung von Projektdaten für die Zukunft."
+          ],
+          "question": "Was ist die Hauptfunktion des Projekthandbuchs NND?"
+        },
+        {
+          "correct_answer": "Einführung eines neuen IT-Dienstleisters außerhalb der Kernanlagen",
+          "explanation": "Das Projekt NND fokussiert sich auf Insourcing und die Schaffung einer neuen IT-Organisationseinheit, nicht auf den Einsatz eines externen Dienstleisters.",
+          "options": [
+            "Gewährleistung der IT-Sicherheit (Verfügbarkeit, Integrität, Vertraulichkeit, Nichtabstreitbarkeit)",
+            "Einführung eines neuen IT-Dienstleisters außerhalb der Kernanlagen",
+            "Inselbetriebsfähigkeit für schutzbedürftige IT-Systeme",
+            "Weisungsbefugnis der Standortleitung hinsichtlich IT-Sicherheit"
+          ],
+          "question": "Welche der folgenden IT-Anforderungen gehört NICHT zu den Hauptanforderungen des Projekts NND?"
+        },
+        {
+          "correct_answer": "Es legt strategische Ziele fest, klärt Zielkonflikte und genehmigt größere Beschaffungen.",
+          "explanation": "Das SteCo übernimmt die strategische Verantwortung im Projekt und sorgt dafür, dass die Unternehmensziele unterstützt werden. Es dient außerdem als Eskalationsinstanz bei Zielkonflikten.",
+          "options": [
+            "Es genehmigt Änderungen am Projektauftrag und an der Planung auf operativer Ebene.",
+            "Es legt strategische Ziele fest, klärt Zielkonflikte und genehmigt größere Beschaffungen.",
+            "Es erstellt technische Grundlagenkonzepte und führt Abnahmetests durch.",
+            "Es bereitet Sitzungen des Projektvorsitzes vor und bewertet Projekt-Resultate."
+          ],
+          "question": "Welche Aufgabe hat das Steering Committee (SteCo) im Projekt NND?"
+        },
+        {
+          "correct_answer": "Die Erstellung eines detaillierten Kosten- und Ressourcenplans sowie eines Rahmenterminplans.",
+          "explanation": "In der Phase 'Detaillierte Planung' werden die Kosten, Ressourcen und Abhängigkeiten im Terminplan detailliert ausgearbeitet, um eine solide Grundlage für die Umsetzung zu schaffen.",
+          "options": [
+            "Die Erstellung eines Projektantrags zur Genehmigung des Projekts.",
+            "Die Durchführung von Abnahmetests und Inbetriebnahme der IT-Komponenten.",
+            "Die Erstellung eines detaillierten Kosten- und Ressourcenplans sowie eines Rahmenterminplans.",
+            "Die Behebung von Mängeln und Erstellung eines Abschlussberichts mit Lessons Learned."
+          ],
+          "question": "Was ist das Hauptziel der Phase 'Detaillierte Planung' im Projekt NND?"
+        },
+        {
+          "correct_answer": "Die Fähigkeit der IT-Systeme, unabhängig von externen Netzwerken zu funktionieren.",
+          "explanation": "Inselbetriebsfähigkeit bedeutet, dass die IT-Systeme der Kernkraftwerke im Falle eines Cyberangriffs oder einer Netzstörung weiterhin autonom funktionieren können, ähnlich einem Notstromaggregat.",
+          "options": [
+            "Die Fähigkeit der IT-Systeme, unabhängig von externen Netzwerken zu funktionieren.",
+            "Die Umstellung der IT-Systeme auf Cloud-basierte Technologien.",
+            "Die Integration von IT-Systemen mehrerer Unternehmen in ein einziges Netzwerk.",
+            "Die Schaffung einer zentralisierten IT-Managementplattform für alle Standorte."
+          ],
+          "question": "Was bedeutet 'Inselbetriebsfähigkeit' im Kontext des Projekts NND?"
+        }
+      ],
+      "title": "Knowledge Check",
+      "type": "quiz"
+    },
+    {
+      "summary_points": [
+        "Vielen Dank für Ihre Teilnahme an dieser Projekthandbuch-Präsentation",
+        "Sie können diese Präsentation jederzeit über die Kursseite im Dashboard erneut ansehen",
+        "Bei Fragen zu diesem Thema können Sie sich gerne an unseren AI-Buddy-Assistenten wenden",
+        "Bitte geben Sie uns Ihr wertvolles Feedback im Gespräch mit dem Assistenten"
+      ],
+      "title": "Vielen Dank!",
+      "type": "welcome"
+    }
+  ]
+}

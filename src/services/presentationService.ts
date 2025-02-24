@@ -43,233 +43,303 @@ export class PresentationService {
   }
 
   private static generateSectionSlide(section: Section, presentation: Presentation): RevealSlide {
-    switch (section.type) {
-      case 'welcome':
-        return {
-          content: `
-            <section>
-              <h1>${section.title}</h1>
-              ${section.summary_points ? `
-                <ul class="summary-points">
-                  ${section.summary_points.map(point => `<li>${point}</li>`).join('\n')}
-                </ul>
-              ` : ''}
-            </section>
-          `,
-          attributes: {
-            'data-transition': 'zoom'
-          }
-        };
+    try {
+      // Add debug logging at the start
+      console.log('[PresentationService] Processing presentation:', {
+        courseName: presentation.courseName,
+        hasAudioFiles: !!presentation.audioFiles,
+        audioFiles: presentation.audioFiles,
+        currentSection: section.title
+      });
 
-      case 'overview':
-        return {
-          content: `
-            <section>
-              <h2>${section.title}</h2>
-              ${section.metadata ? `
-                <div class="metadata-grid">
-                  <div class="metadata-section">
-                    <h3>Prerequisites</h3>
-                    <ul>
-                      ${section.metadata.prerequisites.map(prereq => `<li>${prereq}</li>`).join('\n')}
-                    </ul>
-                  </div>
-                  <div class="metadata-section">
-                    <h3>Learning Goals</h3>
-                    <ul>
-                      ${section.metadata.learningGoals.map(goal => `<li>${goal}</li>`).join('\n')}
-                    </ul>
-                  </div>
-                  <div class="metadata-section">
-                    <h3>Estimated Time</h3>
-                    <p>${section.metadata.estimatedTime}</p>
-                  </div>
-                </div>
-              ` : ''}
-              <aside class="notes">
-                <h3>Speaker Notes for Course Overview</h3>
-                <ul>
-                  <li>Welcome the participants and introduce yourself</li>
-                  <li>Explain the importance of understanding prerequisites</li>
-                  <li>Highlight key learning objectives and their practical applications</li>
-                  <li>Set expectations about the course duration and pace</li>
-                  <li>Encourage questions and participation</li>
-                </ul>
-                ${section.metadata ? `
-                <p>Prerequisites to emphasize:</p>
-                <ul>
-                  ${section.metadata.prerequisites.map(prereq => `<li>Discuss importance of: ${prereq}</li>`).join('\n')}
-                </ul>
-                <p>Learning goals to highlight:</p>
-                <ul>
-                  ${section.metadata.learningGoals.map(goal => `<li>Emphasize outcome: ${goal}</li>`).join('\n')}
-                </ul>
-                ` : ''}
-              </aside>
-            </section>
-          `,
-          attributes: {
-            'data-transition': 'slide'
-          }
-        };
-
-      case 'section_header':
-        return {
-          content: `
-            <section>
-              <h2>${section.title}</h2>
-              <div class="header-line"></div>
-            </section>
-          `,
-          attributes: {
-            'data-transition': 'fade'
-          }
-        };
-
-      case 'content':
-        const audioFileName = section.audio_url ? section.audio_url.split('/').pop() : '';
-        const courseName = presentation.courseName;
-        
-        return {
-          content: `
-            <section>
-              <h2>${section.title}</h2>
-              ${section.summary_points ? `
-                <ul class="content-points">
-                  ${section.summary_points.map(point => `<li>${point}</li>`).join('\n')}
-                </ul>
-              ` : ''}
-              ${section.audio_url ? `
-                <div class="audio-container" id="audio-container-${audioFileName}">
-                  <div class="audio-wrapper">
-                    <audio 
-                      class="presentation-audio"
-                      controls
-                      data-autoplay
-                      data-course="${courseName}"
-                      data-filename="${audioFileName}"
-                      src="/src/assets/audio/${courseName}/${audioFileName}"
-                      onloadedmetadata="this.closest('section').dataset.autoslide = Math.ceil(this.duration * 1000)"
-                    >
-                      <p>Your browser doesn't support HTML5 audio.</p>
-                    </audio>
-                    <div class="audio-loading-indicator" style="display: none;">
-                      <div class="loading-spinner"></div>
-                      <span>Loading audio...</span>
-                    </div>
-                    <div class="audio-error" style="display: none;">
-                      <p>Error loading audio. Please try again.</p>
-                    </div>
-                  </div>
-                </div>
-              ` : ''}
-              <aside class="notes">
-                <h3>Speaker Notes for ${section.title}</h3>
-                <ul>
-                  ${section.summary_points ? section.summary_points.map(point => `
-                    <li>Explain: ${point}</li>
-                    <li>Provide real-world examples or scenarios related to this point</li>
-                  `).join('\n') : ''}
-                </ul>
-                <p>Key reminders:</p>
-                <ul>
-                  <li>Engage with the audience by asking questions</li>
-                  <li>Share relevant industry examples</li>
-                  <li>Address common misconceptions</li>
-                  ${section.audio_url ? '<li>Ensure audio is clear and audible</li>' : ''}
-                </ul>
-              </aside>
-            </section>
-          `,
-          attributes: {
-            'data-transition': 'slide',
-            'data-autoslide': section.audio_url ? 0 : 0
-          }
-        };
-
-      case 'quiz':
-        return {
-          content: `
-            <section>
-              <div class="trophy-counter">
-                ${Array(section.quiz_questions.length).fill('🏆').map((trophy, i) => 
-                  `<span class="trophy-icon" data-trophy-index="${i}">${trophy}</span>`
-                ).join('')}
-              </div>
-              <h2>${section.title}</h2>
-              <h3>Knowledge Check</h3>
-              <p>Test your understanding with these questions.</p>
-              <div class="vertical-nav-hint with-animation">
-                <p>Press ↓ to start quiz</p>
-              </div>
-              <aside class="notes">
-                <h3>Speaker Notes for Quiz Section</h3>
-                <ul>
-                  <li>Explain the quiz format and navigation</li>
-                  <li>Encourage participants to think carefully about each question</li>
-                  <li>Remind them this is a learning opportunity</li>
-                  <li>Be prepared to explain correct answers in detail</li>
-                </ul>
-              </aside>
-            </section>
-            ${section.quiz_questions ? 
-              section.quiz_questions.map((question, index) => `
-                <section>
-                  <div class="trophy-counter">
-                    ${Array(section.quiz_questions.length).fill('🏆').map((trophy, i) => 
-                      `<span class="trophy-icon" data-trophy-index="${i}">${trophy}</span>`
-                    ).join('')}
-                  </div>
-                  <h2>Question ${index + 1} of ${section.quiz_questions.length}</h2>
-                  <p class="question">${question.question}</p>
-                  <ul class="quiz-options" data-correct="${question.options.indexOf(question.correct_answer)}" data-explanation="${question.explanation || ''}" data-question-index="${index}">
-                    ${question.options.map((option, optionIndex) => `
-                      <li class="quiz-option" data-index="${optionIndex}" onclick="checkAnswer(this)">
-                        ${option}
-                        <span class="feedback-icon"></span>
-                      </li>
-                    `).join('\n')}
+      switch (section.type) {
+        case 'welcome':
+          return {
+            content: `
+              <section>
+                <h1>${section.title}</h1>
+                ${section.summary_points ? `
+                  <ul class="summary-points">
+                    ${section.summary_points.map(point => `<li>${point}</li>`).join('\n')}
                   </ul>
-                  <div class="feedback-message"></div>
-                  <div class="explanation-message"></div>
-                  <aside class="notes">
-                    <h3>Speaker Notes for Question ${index + 1}</h3>
-                    <ul>
-                      <li>Question: ${question.question}</li>
-                      <li>Correct Answer: ${question.correct_answer}</li>
-                      <li>Explanation: ${question.explanation}</li>
-                      <li>Additional talking points:</li>
-                      <ul>
-                        <li>Discuss why other options are incorrect</li>
-                        <li>Share relevant examples or scenarios</li>
-                        <li>Address common misconceptions</li>
-                      </ul>
-                    </ul>
-                  </aside>
-                </section>
-              `).join('\n')
-            : ''}
-          `,
-          attributes: {
-            'data-transition': 'slide'
-          }
-        };
+                ` : ''}
+              </section>
+            `,
+            attributes: {
+              'data-transition': 'zoom'
+            }
+          };
 
-      default:
-        return {
-          content: `
-            <section>
-              <h2>${section.title}</h2>
-            </section>
-          `,
-          attributes: {
-            'data-transition': 'slide'
+        case 'overview':
+          return {
+            content: `
+              <section>
+                <h2>${section.title}</h2>
+                ${section.metadata ? `
+                  <div class="metadata-grid">
+                    <div class="metadata-section">
+                      <h3>Prerequisites</h3>
+                      <ul>
+                        ${section.metadata.prerequisites.map(prereq => `<li>${prereq}</li>`).join('\n')}
+                      </ul>
+                    </div>
+                    <div class="metadata-section">
+                      <h3>Learning Goals</h3>
+                      <ul>
+                        ${section.metadata.learningGoals.map(goal => `<li>${goal}</li>`).join('\n')}
+                      </ul>
+                    </div>
+                    <div class="metadata-section">
+                      <h3>Estimated Time</h3>
+                      <p>${section.metadata.estimatedTime}</p>
+                    </div>
+                  </div>
+                ` : ''}
+                <aside class="notes">
+                  <h3>Speaker Notes for Course Overview</h3>
+                  <ul>
+                    <li>Welcome the participants and introduce yourself</li>
+                    <li>Explain the importance of understanding prerequisites</li>
+                    <li>Highlight key learning objectives and their practical applications</li>
+                    <li>Set expectations about the course duration and pace</li>
+                    <li>Encourage questions and participation</li>
+                  </ul>
+                  ${section.metadata ? `
+                  <p>Prerequisites to emphasize:</p>
+                  <ul>
+                    ${section.metadata.prerequisites.map(prereq => `<li>Discuss importance of: ${prereq}</li>`).join('\n')}
+                  </ul>
+                  <p>Learning goals to highlight:</p>
+                  <ul>
+                    ${section.metadata.learningGoals.map(goal => `<li>Emphasize outcome: ${goal}</li>`).join('\n')}
+                  </ul>
+                  ` : ''}
+                </aside>
+              </section>
+            `,
+            attributes: {
+              'data-transition': 'slide'
+            }
+          };
+
+        case 'section_header':
+          return {
+            content: `
+              <section>
+                <h2>${section.title}</h2>
+                <div class="header-line"></div>
+              </section>
+            `,
+            attributes: {
+              'data-transition': 'fade'
+            }
+          };
+
+        case 'content':
+          const audioFile = presentation.audioFiles?.find(
+            audio => audio.sectionTitle === section.title
+          );
+          
+          // Use backend URL for audio files with correct path
+          const audioPath = audioFile ? 
+            `http://localhost:5001/api/courses/${presentation.courseName.toLowerCase()}/audio/${audioFile.fileName}` : 
+            null;
+          
+          console.log('[Audio] Setting up audio for section:', {
+            sectionTitle: section.title,
+            audioFileName: audioFile?.fileName,
+            fullPath: audioPath,
+            actualFilePath: `/src/assets/audio/${presentation.courseName.toLowerCase()}/${audioFile?.fileName}`
+          });
+
+          // Create a more detailed error handler
+          const audioErrorHandler = `
+            this.onerror = function(e) {
+              const audioElement = this;
+              console.error('[Audio] Failed to load audio file:', {
+                section: '${section.title}',
+                fileName: '${audioFile?.fileName}',
+                path: audioElement.src,
+                error: e
+              });
+              
+              // Show error in the UI
+              const errorDiv = this.parentElement.querySelector('.audio-error');
+              if (errorDiv) {
+                errorDiv.style.display = 'block';
+                errorDiv.innerHTML = '<p>Error loading audio: ' + '${audioFile?.fileName}' + '</p>';
+              }
+            };
+          `;
+
+          return {
+            content: `
+              <section>
+                <h2>${section.title}</h2>
+                ${section.summary_points ? `
+                  <ul class="content-points">
+                    ${section.summary_points.map(point => `<li>${point}</li>`).join('\n')}
+                  </ul>
+                ` : ''}
+                ${audioFile ? `
+                  <div class="audio-container" id="audio-container-${audioFile.fileName}">
+                    <div class="audio-wrapper">
+                      <audio 
+                        class="presentation-audio"
+                        controls
+                        data-autoplay
+                        data-course="${presentation.courseName.toLowerCase()}"
+                        data-filename="${audioFile.fileName}"
+                        src="${audioPath}"
+                        onloadedmetadata="this.closest('section').dataset.autoslide = Math.ceil(this.duration * 1000)"
+                        onerror="${audioErrorHandler}"
+                      >
+                        <p>Your browser doesn't support HTML5 audio.</p>
+                      </audio>
+                      <div class="audio-loading-indicator" style="display: none;">
+                        <div class="loading-spinner"></div>
+                        <span>Loading audio...</span>
+                      </div>
+                      <div class="audio-error" style="display: none;">
+                        <p>Error loading audio: ${audioFile.fileName}</p>
+                      </div>
+                    </div>
+                  </div>
+                ` : ''}
+                <aside class="notes">
+                  <h3>Speaker Notes for ${section.title}</h3>
+                  <ul>
+                    ${section.summary_points ? section.summary_points.map(point => `
+                      <li>Explain: ${point}</li>
+                      <li>Provide real-world examples or scenarios related to this point</li>
+                    `).join('\n') : ''}
+                  </ul>
+                  <p>Key reminders:</p>
+                  <ul>
+                    <li>Engage with the audience by asking questions</li>
+                    <li>Share relevant industry examples</li>
+                    <li>Address common misconceptions</li>
+                    ${audioFile ? '<li>Ensure audio is clear and audible</li>' : ''}
+                  </ul>
+                </aside>
+              </section>
+            `,
+            attributes: {
+              'data-transition': 'slide',
+              'data-autoslide': audioFile ? 0 : undefined
+            }
+          };
+
+        case 'quiz':
+          if (!section.quiz_questions?.length) {
+            return {
+              content: `
+                <section>
+                  <h2>${section.title}</h2>
+                  <p>No quiz questions available.</p>
+                </section>
+              `,
+              attributes: {
+                'data-transition': 'slide'
+              }
+            };
           }
-        };
+          return {
+            content: `
+              <section>
+                <div class="trophy-counter">
+                  ${Array(section.quiz_questions.length).fill('🏆').map((trophy, i) => 
+                    `<span class="trophy-icon" data-trophy-index="${i}">${trophy}</span>`
+                  ).join('')}
+                </div>
+                <h2>${section.title}</h2>
+                <h3>Knowledge Check</h3>
+                <p>Test your understanding with these questions.</p>
+                <div class="vertical-nav-hint with-animation">
+                  <p>Press ↓ to start quiz</p>
+                </div>
+                <aside class="notes">
+                  <h3>Speaker Notes for Quiz Section</h3>
+                  <ul>
+                    <li>Explain the quiz format and navigation</li>
+                    <li>Encourage participants to think carefully about each question</li>
+                    <li>Remind them this is a learning opportunity</li>
+                    <li>Be prepared to explain correct answers in detail</li>
+                  </ul>
+                </aside>
+              </section>
+              ${section.quiz_questions ? 
+                section.quiz_questions.map((question, index) => `
+                  <section>
+                    <div class="trophy-counter">
+                      ${Array(section.quiz_questions.length).fill('🏆').map((trophy, i) => 
+                        `<span class="trophy-icon" data-trophy-index="${i}">${trophy}</span>`
+                      ).join('')}
+                    </div>
+                    <h2>Question ${index + 1} of ${section.quiz_questions.length}</h2>
+                    <p class="question">${question.question}</p>
+                    <ul class="quiz-options" data-correct="${question.options.indexOf(question.correct_answer)}" data-explanation="${question.explanation || ''}" data-question-index="${index}">
+                      ${question.options.map((option, optionIndex) => `
+                        <li class="quiz-option" data-index="${optionIndex}" onclick="checkAnswer(this)">
+                          ${option}
+                          <span class="feedback-icon"></span>
+                        </li>
+                      `).join('\n')}
+                    </ul>
+                    <div class="feedback-message"></div>
+                    <div class="explanation-message"></div>
+                    <aside class="notes">
+                      <h3>Speaker Notes for Question ${index + 1}</h3>
+                      <ul>
+                        <li>Question: ${question.question}</li>
+                        <li>Correct Answer: ${question.correct_answer}</li>
+                        <li>Explanation: ${question.explanation}</li>
+                        <li>Additional talking points:</li>
+                        <ul>
+                          <li>Discuss why other options are incorrect</li>
+                          <li>Share relevant examples or scenarios</li>
+                          <li>Address common misconceptions</li>
+                        </ul>
+                      </ul>
+                    </aside>
+                  </section>
+                `).join('\n')
+              : ''}
+            `,
+            attributes: {
+              'data-transition': 'slide'
+            }
+          };
+
+        default:
+          return {
+            content: `
+              <section>
+                <h2>${section.title}</h2>
+              </section>
+            `,
+            attributes: {
+              'data-transition': 'slide'
+            }
+          };
+      }
+    } catch (error) {
+      console.error('[PresentationService] Error generating slide:', error);
+      return {
+        content: `
+          <section>
+            <h2>Error</h2>
+            <p>Failed to generate slide content.</p>
+          </section>
+        `,
+        attributes: {
+          'data-transition': 'slide'
+        }
+      };
     }
   }
 
-  public static generateRevealJsHtml(presentation: Presentation, theme: string): string {
+  public static generateRevealJsHtml(presentation: Presentation, theme: string = 'black'): string {
     this.log('Starting HTML generation', { theme, sections: presentation.sections.length });
 
     try {
@@ -289,6 +359,51 @@ export class PresentationService {
           return this.generateSectionSlide(section, presentation);
         })
       ];
+
+      // Generate logo HTML if logo config exists
+      const logoHtml = presentation.presentationConfig?.logo ? `
+        <div class="presentation-logo-container">
+          <img 
+            src="${presentation.presentationConfig.logo.src}" 
+            class="presentation-logo"
+            alt="Company Logo"
+          />
+        </div>
+      ` : '';
+
+      // Add logo-specific styles
+      const logoStyles = `
+        .presentation-logo-container {
+          position: fixed;
+          top: 10px;
+          left: 10px;
+          z-index: 9999;
+          pointer-events: none;
+          user-select: none;
+        }
+
+        .presentation-logo {
+          max-height: 40px;
+          width: auto;
+          display: block;
+        }
+
+        /* Ensure logo stays visible in all modes */
+        .reveal {
+          position: relative;
+        }
+
+        .reveal .slides {
+          margin-top: 30px;
+        }
+
+        /* Override reveal.js styles that might interfere */
+        .reveal .presentation-logo-container {
+          position: fixed !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      `;
 
       this.log('Slides generated successfully');
 
@@ -318,6 +433,7 @@ export class PresentationService {
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/${theme}.css">
             <style>
+              ${logoStyles}
               :root {
                 --aws-squid-ink: #232F3E;
                 --aws-anchor: #003181;
@@ -1046,7 +1162,8 @@ export class PresentationService {
           <body>
             <div class="presentation-container">
               <div class="presentation-frame">
-                <div class="reveal">
+                <div class="reveal ${presentation.presentationConfig?.logo ? 'has-logo' : ''}">
+                  ${logoHtml}
                   <div class="slides">
                     ${slides.map(slide => `
                       <section ${Object.entries(slide.attributes || {})
@@ -1127,16 +1244,16 @@ export class PresentationService {
 
               // Fullscreen functionality
               document.getElementById('fullscreenButton').addEventListener('click', () => {
-                const presentationFrame = document.querySelector('.presentation-frame');
+                const presentationContainer = document.querySelector('.presentation-container');
                 if (!document.fullscreenElement) {
-                  if (presentationFrame.requestFullscreen) {
-                    presentationFrame.requestFullscreen();
-                  } else if (presentationFrame.webkitRequestFullscreen) {
-                    presentationFrame.webkitRequestFullscreen();
-                  } else if (presentationFrame.msRequestFullscreen) {
-                    presentationFrame.msRequestFullscreen();
+                  if (presentationContainer.requestFullscreen) {
+                    presentationContainer.requestFullscreen();
+                  } else if (presentationContainer.webkitRequestFullscreen) {
+                    presentationContainer.webkitRequestFullscreen();
+                  } else if (presentationContainer.msRequestFullscreen) {
+                    presentationContainer.msRequestFullscreen();
                   }
-                  document.body.classList.add('fullscreen');
+                  presentationContainer.classList.add('fullscreen');
                 } else {
                   if (document.exitFullscreen) {
                     document.exitFullscreen();
@@ -1145,17 +1262,20 @@ export class PresentationService {
                   } else if (document.msExitFullscreen) {
                     document.msExitFullscreen();
                   }
-                  document.body.classList.remove('fullscreen');
+                  presentationContainer.classList.remove('fullscreen');
                 }
               });
 
-              // Update fullscreen button on fullscreen change
+              // Update fullscreen change handler
               document.addEventListener('fullscreenchange', () => {
                 const fullscreenButton = document.getElementById('fullscreenButton');
+                const presentationContainer = document.querySelector('.presentation-container');
                 if (document.fullscreenElement) {
                   fullscreenButton.innerHTML = '⛶';
+                  presentationContainer.classList.add('fullscreen');
                 } else {
                   fullscreenButton.innerHTML = '⛶';
+                  presentationContainer.classList.remove('fullscreen');
                 }
               });
 

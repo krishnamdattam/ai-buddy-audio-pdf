@@ -1,0 +1,173 @@
+{
+  "courseName": "projekthandbuch_short_de",
+  "sections": [
+    {
+      "sectionTitle": "1. Zusammenfassung des Projekthandbuchs NND",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Willkommen! Heute sprechen wir \u00fcber das Projekthandbuch NND. Unser Ziel ist es, die Struktur, Ziele und Vorgehensweise des Projekts zu verstehen.",
+          "audioFile": "projekthandbuch_short_de_1__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 0,
+          "duration": 10728,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Klingt interessant! Was ist das Projekthandbuch NND genau und wof\u00fcr wird es verwendet?",
+          "audioFile": "projekthandbuch_short_de_2__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 10928,
+          "duration": 5508,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekthandbuch NND ist die verbindliche Grundlage f\u00fcr die Planung, Steuerung und Umsetzung des Projekts NND. Es stellt sicher, dass alle Beteiligten, wie Axpo, KKL und Zwilag, klare Verantwortlichkeiten haben und alle regulatorischen, technischen und organisatorischen Vorgaben erf\u00fcllt werden.",
+          "audioFile": "projekthandbuch_short_de_3__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 16636,
+          "duration": 20916,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was genau ist das Ziel des Projekts NND?",
+          "audioFile": "projekthandbuch_short_de_4__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 37752,
+          "duration": 2952,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Hauptziel ist es, sicherheitskritische IT-Dienste in Kernkraftwerken zu optimieren. Dazu geh\u00f6ren der Aufbau eigener Rechenzentren, das Insourcing der Business-IT und die Sicherstellung der Inselbetriebsf\u00e4higkeit. Es geht auch darum, gesetzliche Vorgaben, wie die G\u00fcterkontrollverordnung, zu erf\u00fcllen.",
+          "audioFile": "projekthandbuch_short_de_5__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 40904,
+          "duration": 19944,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Was bedeutet \u201aInselbetriebsf\u00e4higkeit\u2018 in diesem Zusammenhang?",
+          "audioFile": "projekthandbuch_short_de_6__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 61048,
+          "duration": 3960,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Inselbetriebsf\u00e4higkeit bedeutet, dass die Kernkraftwerke auch isoliert, also ohne externe IT-Abh\u00e4ngigkeiten, sicher betrieben werden k\u00f6nnen. Ein Beispiel w\u00e4re, wenn ein Stromnetz komplett ausf\u00e4llt \u2013 die Kraftwerke m\u00fcssen in solchen Szenarien weiterhin funktionieren.",
+          "audioFile": "projekthandbuch_short_de_7__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 65208,
+          "duration": 17388,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt nach komplexen Anforderungen. Welche Sicherheitsstandards werden dabei ber\u00fccksichtigt?",
+          "audioFile": "projekthandbuch_short_de_8__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 82796,
+          "duration": 5796,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekt muss h\u00f6chste IT-Sicherheitsstandards erf\u00fcllen, insbesondere in den Bereichen Verf\u00fcgbarkeit, Integrit\u00e4t und Vertraulichkeit. Dazu werden redundante Systeme eingesetzt, externe Zugriffe minimiert und die Datenspeicherung im Ausland stark eingeschr\u00e4nkt.",
+          "audioFile": "projekthandbuch_short_de_9__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 88792,
+          "duration": 17136,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird das alles organisiert? Gibt es eine klare Struktur f\u00fcr das Projektmanagement?",
+          "audioFile": "projekthandbuch_short_de_10__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 106128,
+          "duration": 5328,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, die Projektorganisation hat mehrere Schl\u00fcsselrollen. Das Steering Committee, oder SteCo, trifft strategische Entscheidungen. Der Projektvorsitz sorgt f\u00fcr die operative Steuerung, und das Projektmanagement Office, kurz PMO, koordiniert Termine, Budgets und Risiken.",
+          "audioFile": "projekthandbuch_short_de_11__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 111656,
+          "duration": 18504,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "K\u00f6nnen Sie mir die Projektphasen genauer erkl\u00e4ren?",
+          "audioFile": "projekthandbuch_short_de_12__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 130360,
+          "duration": 2736,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Nat\u00fcrlich! Es gibt f\u00fcnf Hauptphasen: Initialisierung, Planung, Realisierung, \u00dcbergabe und Abschluss. Zum Beispiel wird in der Initialisierung der Projektauftrag erstellt und die Ziele definiert. In der Realisierungsphase werden die Rechenzentren aufgebaut und Tests durchgef\u00fchrt, bevor in der \u00dcbergabephase Schulungen stattfinden und das System in Betrieb geht.",
+          "audioFile": "projekthandbuch_short_de_13__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 133296,
+          "duration": 24048,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie sorgt man daf\u00fcr, dass das Projekt im Zeitrahmen und Budget bleibt?",
+          "audioFile": "projekthandbuch_short_de_14__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 157544,
+          "duration": 4428,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Das wird durch regelm\u00e4\u00dfige Statusberichte und Meilensteinanalysen sichergestellt. Es gibt auch Eskalationsmechanismen, um schnell auf Abweichungen zu reagieren. Transparente Kommunikation spielt hier eine Schl\u00fcsselrolle.",
+          "audioFile": "projekthandbuch_short_de_15__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 162172,
+          "duration": 14580,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "K\u00f6nnen Sie ein Beispiel nennen, wie Risiken im Projekt gemanagt werden?",
+          "audioFile": "projekthandbuch_short_de_16__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 176952,
+          "duration": 4140,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Sicher! Zum Beispiel k\u00f6nnte ein Risiko sein, dass ein Rechenzentrum nicht rechtzeitig fertig wird. Das Risikomanagement identifiziert solche Gefahren fr\u00fch, bewertet sie und plant Ma\u00dfnahmen, wie alternative Ressourcen oder Zeitpuffer, um Verz\u00f6gerungen zu vermeiden.",
+          "audioFile": "projekthandbuch_short_de_17__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 181292,
+          "duration": 18000,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Was passiert nach Abschluss des Projekts?",
+          "audioFile": "projekthandbuch_short_de_18__1__zusammenfassung_des_projekthandbuchs_nnd.wav",
+          "startTime": 199492,
+          "duration": 2556,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    }
+  ]
+}

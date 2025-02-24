@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { PresentationService } from '../services/presentationService';
 import { Presentation } from '../types/presentation';
 import { toast } from 'sonner';
-import { FaThumbsUp, FaThumbsDown, FaShare, FaFlag, FaRegCommentDots, FaSearch, FaUser } from 'react-icons/fa';
+import { FaThumbsUp, FaThumbsDown, FaShare, FaFlag, FaRegCommentDots, FaSearch, FaUser, FaUserCircle } from 'react-icons/fa';
 import ChatBot from '../components/ChatBot';
 
 interface PublishedPresentationProps {
@@ -37,6 +37,10 @@ const TEST_HTML = `
         border-radius: 8px;
         display: none;
         z-index: 9999;
+      }
+      /* Add styles for audio controls if needed */
+      .reveal audio {
+        margin: 10px 0;
       }
     </style>
   </head>
@@ -180,21 +184,66 @@ const PublishedPresentation: React.FC = () => {
         const { theme = 'black', courseName, presentationFile } = state;
         console.log('[PublishedPresentation] Loading presentation:', { courseName, theme, presentationFile });
 
-        const response = await fetch(`http://localhost:5001/api/courses/${courseName}/${presentationFile || `${courseName}_presentation.json`}`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch presentation: ${response.statusText}`);
+        // Load both presentation and course data
+        const [presentationResponse, courseResponse] = await Promise.all([
+          fetch(`http://localhost:5001/api/courses/${courseName}/${presentationFile || `${courseName}_presentation.json`}`),
+          fetch(`http://localhost:5001/api/courses/${courseName}/${courseName}.json`)
+        ]);
+
+        // Add response status logging
+        console.log('[PublishedPresentation] Response status:', {
+          presentation: presentationResponse.status,
+          course: courseResponse.status
+        });
+
+        if (!presentationResponse.ok || !courseResponse.ok) {
+          throw new Error('Failed to fetch presentation or course data');
         }
 
-        const data: Presentation = await response.json();
-        console.log('[PublishedPresentation] Data loaded:', data);
-        setPresentation(data);
+        const [presentationData, courseData] = await Promise.all([
+          presentationResponse.json(),
+          courseResponse.json()
+        ]);
+
+        // Log raw response data
+        console.log('[PublishedPresentation] Raw data:', {
+          presentation: presentationData,
+          course: courseData
+        });
+
+        // Verify audioFiles exists in course data
+        if (!courseData.audioFiles) {
+          console.warn('[PublishedPresentation] No audioFiles found in course data');
+        }
+
+        // Merge audioFiles from course data into presentation data
+        const mergedPresentation = {
+          ...presentationData,
+          audioFiles: courseData.audioFiles || []
+        };
+
+        console.log('[PublishedPresentation] Merged data:', {
+          courseName: mergedPresentation.courseName,
+          audioFiles: mergedPresentation.audioFiles,
+          sections: mergedPresentation.sections.map(s => ({
+            title: s.title,
+            type: s.type
+          }))
+        });
+        setPresentation(mergedPresentation);
+
+        const html = PresentationService.generateRevealJsHtml(mergedPresentation, theme);
+        if (!html) {
+          throw new Error('Failed to generate presentation HTML');
+        }
+        setPresentationHtml(html);
 
         // Create mapping between slides and sections
         let currentSlide = 0;
         const slideToSection: number[] = [];
         const sectionToSlide: number[] = [];
 
-        data.sections.forEach((section, sectionIndex) => {
+        mergedPresentation.sections.forEach((section, sectionIndex) => {
           sectionToSlide[sectionIndex] = currentSlide;
           
           // For welcome sections, we need two slides
@@ -211,24 +260,84 @@ const PublishedPresentation: React.FC = () => {
         setSlideToSectionMap(slideToSection);
         setSectionToSlideMap(sectionToSlide);
 
-        const html = PresentationService.generateRevealJsHtml(data, theme);
-        if (!html) {
-          throw new Error('Failed to generate presentation HTML');
+        // Add logo HTML if it exists in the presentation config
+        if (mergedPresentation.presentationConfig?.logo) {
+          const logoHtml = `
+            <div class="presentation-logo-container">
+              <img 
+                src="${mergedPresentation.presentationConfig.logo.src}" 
+                class="presentation-logo"
+                alt="Company Logo"
+              />
+            </div>
+          `;
+          
+          // Add logo styles
+          const logoStyles = `
+            .presentation-logo-container {
+              position: fixed;
+              top: 10px;
+              left: 10px;
+              z-index: 9999;
+              pointer-events: none;
+              user-select: none;
+            }
+
+            .presentation-logo {
+              max-height: 40px;
+              width: auto;
+              display: block;
+            }
+
+            .reveal .slides {
+              margin-top: 30px;
+            }
+
+            .reveal .presentation-logo-container {
+              position: fixed !important;
+              transform: none !important;
+              transition: none !important;
+            }
+          `;
+
+          // Add logo styles to the document
+          const styleElement = document.createElement('style');
+          styleElement.textContent = logoStyles;
+          document.head.appendChild(styleElement);
+
+          // Add logo HTML to the presentation
+          const revealElement = document.querySelector('.reveal');
+          if (revealElement) {
+            revealElement.insertAdjacentHTML('afterbegin', logoHtml);
+          }
         }
-        setPresentationHtml(html);
+
+        // Initialize Reveal.js
+        const Reveal = window.Reveal;
+        if (Reveal) {
+          Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            view: 'scroll',
+            plugins: [ RevealNotes ]
+          });
+        }
 
       } catch (error) {
         console.error('[PublishedPresentation] Error:', error);
         const errorMessage = error instanceof Error ? error.message : 'Failed to load presentation';
         setError(errorMessage);
         toast.error(errorMessage);
+        navigate('/dashboard');
       } finally {
         setIsLoading(false);
       }
     };
 
     loadPresentation();
-  }, [location.state, isTestMode]);
+  }, [location.state, isTestMode, navigate]);
 
   useEffect(() => {
     if (!presentationHtml || !iframeRef.current) return;
@@ -458,7 +567,7 @@ const PublishedPresentation: React.FC = () => {
         <div className="w-80 bg-[#232730] border-l border-[#2e3440] p-4 overflow-y-auto">
           <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-            Sections
+            Slides
           </h2>
           <div className="space-y-2">
             {presentation?.sections.map((section, index) => (
@@ -471,7 +580,7 @@ const PublishedPresentation: React.FC = () => {
                     : 'bg-purple-800/20 border border-transparent hover:border-purple-500/50'
                 }`}
               >
-                <h3 className="text-sm font-medium text-white">Section {index + 1}:</h3>
+                <h3 className="text-sm font-medium text-white">Slide {index + 1}</h3>
                 <p className="text-gray-300 text-sm mt-1">{section.title}</p>
               </div>
             ))}
@@ -479,17 +588,28 @@ const PublishedPresentation: React.FC = () => {
         </div>
       </div>
 
-      {/* Replace Chatbot Button with ChatBot Component */}
+      {/* Chat and AI Avatar Controls */}
       <div className="fixed bottom-20 right-12 z-50">
-        <ChatBot courseName={location.state?.courseName} />
+        <div className="flex flex-row gap-4 items-center">
+          {/* AI Avatar Button */}
+          <button 
+            className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 transition-colors flex items-center justify-center shadow-lg"
+            onClick={() => toast.info('AI Avatar feature coming soon!')}
+          >
+            <FaUserCircle className="text-white text-2xl" />
+          </button>
+          
+          {/* Existing ChatBot Component */}
+          <ChatBot courseName={location.state?.courseName} />
+        </div>
       </div>
 
       {/* Footer */}
       <footer className="bg-[#232730] border-t border-[#2e3440] py-4">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between text-gray-400">
-          <p>© 2024 AI-Buddy. All rights reserved.</p>
+          <p>© 2025 AI-Buddy. All rights reserved.</p>
           <div className="flex items-center gap-2">
-            <span>Version 2.0.0</span>
+            <span>Version 0.0.9</span>
             <span>•</span>
             <span>Created by Vijay Betigiri (vijay.betigiri@swisscom.com)</span>
           </div>

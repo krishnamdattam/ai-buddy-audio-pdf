@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Presentation, Languages, MessageSquare, Trophy, Star, Coins, Globe } from 'lucide-react';
@@ -187,6 +187,66 @@ interface DocumentSource {
   content: File[] | string;
 }
 
+// First, add this custom hook near the top of the file after the imports
+const useCounter = (end: number, duration: number = 2000, start: number = 0) => {
+  const [count, setCount] = useState(start);
+  const countRef = useRef(start);
+  const [isAnimating, setIsAnimating] = useState(true);
+
+  useEffect(() => {
+    if (!isAnimating) return;
+
+    const startTime = Date.now();
+    const endTime = startTime + duration;
+
+    const animate = () => {
+      const now = Date.now();
+      const progress = Math.min(1, (now - startTime) / duration);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      
+      const currentCount = Math.floor(start + (end - start) * easeOutQuart);
+      
+      if (countRef.current !== currentCount) {
+        countRef.current = currentCount;
+        setCount(currentCount);
+      }
+
+      if (now < endTime) {
+        requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+        setIsAnimating(false);
+      }
+    };
+
+    requestAnimationFrame(animate);
+
+    return () => {
+      setIsAnimating(false);
+    };
+  }, [end, duration, start, isAnimating]);
+
+  return count;
+};
+
+// First, add interfaces for voice configuration
+interface VoiceConfig {
+  voice: string;
+  style: string;
+  language: string;
+}
+
+interface LanguageVoiceConfig {
+  expert: VoiceConfig;
+  learner: VoiceConfig;
+}
+
+interface VoiceConfigs {
+  [key: string]: LanguageVoiceConfig;
+}
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -308,6 +368,9 @@ const Dashboard = () => {
       }
     }
   });
+
+  // Add selected voice config state
+  const [selectedVoiceConfig, setSelectedVoiceConfig] = useState<LanguageVoiceConfig | null>(null);
 
   // Add voice selection component
   const VoiceSelector = () => (
@@ -562,36 +625,48 @@ const Dashboard = () => {
 
   // Update the handlePlayCourse function
   const handlePlayCourse = async (course: typeof courses[0]) => {
-    const hasAudioFiles = await checkAudioFilesExist(course.title);
-    
-    if (!hasAudioFiles) {
-      toast.error('Audio files not found', {
-        description: 'Please transform the course to audio first.',
-        duration: 3000
-      });
-      return;
-    }
-
     try {
+      // First check if audio files exist
+      const hasAudioFiles = await checkAudioFilesExist(course.name);
+      
+      if (!hasAudioFiles) {
+        toast.error('Audio files not found', {
+          description: 'Please transform the course to audio first.',
+          duration: 3000
+        });
+        return;
+      }
+
       // Fetch complete course data
-      const response = await fetch(`http://localhost:5001/api/courses/${course.title}`);
+      const response = await fetch(`http://localhost:5001/api/courses/${course.name}`);
       if (!response.ok) {
         throw new Error('Failed to fetch course data');
       }
       const courseData = await response.json();
 
-      // Navigate with complete course data
-      navigate('/audio', {
+      // Get the PDF file path from courses_list.json
+      const coursesListResponse = await fetch('http://localhost:5001/api/courses');
+      const coursesList = await coursesListResponse.json();
+      const courseInfo = coursesList.find((c: any) => c.name === course.name);
+
+      if (!courseInfo?.pdfFile) {
+        toast.error('PDF file not found');
+        return;
+      }
+
+      // Navigate with complete course data including PDF file
+      navigate('/index', {
         state: {
-          courseName: course.title,
+          courseName: course.name,
           sections: courseData.processedSections,
           audioFiles: courseData.audioFiles,
-          files: courseData.files // Include the files array containing PDF filename
+          files: [courseInfo.pdfFile.split('/').pop()] // Extract filename from pdfFile path
         },
         replace: true,
       });
+
     } catch (error) {
-      console.error('Error fetching course data:', error);
+      console.error('Error loading course:', error);
       toast.error('Failed to load course data');
     }
   };
@@ -747,7 +822,7 @@ const Dashboard = () => {
 
   // Update handleNext to include web scraping
   const handleNext = async () => {
-    if (!courseName || !selectedTemplate || !selectedPersona) {
+    if (!courseName || !selectedTemplate || !selectedPersona || !selectedVoiceConfig) {
       toast.error('Please fill in all required fields');
       return;
     }
@@ -964,26 +1039,30 @@ const Dashboard = () => {
     }
   };
 
-  // Update handlePersonaChange to set the correct voices based on selected persona
+  // Update handlePersonaChange to set the voice configuration
   const handlePersonaChange = (value: string) => {
     setSelectedPersona(value);
     
     // Set the appropriate voices based on the selected persona
     switch (value) {
       case 'andrew-ava':
+        setSelectedVoiceConfig(voiceConfig.english);
         setSelectedExpertVoice(voiceConfig.english.expert.voice);
         setSelectedLearnerVoice(voiceConfig.english.learner.voice);
         break;
       case 'killian-maja':
+        setSelectedVoiceConfig(voiceConfig.german);
         setSelectedExpertVoice(voiceConfig.german.expert.voice);
         setSelectedLearnerVoice(voiceConfig.german.learner.voice);
         break;
       case 'jan-leni':
+        setSelectedVoiceConfig(voiceConfig.swissgerman);
         setSelectedExpertVoice(voiceConfig.swissgerman.expert.voice);
         setSelectedLearnerVoice(voiceConfig.swissgerman.learner.voice);
         break;
       default:
         // Default to English voices
+        setSelectedVoiceConfig(voiceConfig.english);
         setSelectedExpertVoice(voiceConfig.english.expert.voice);
         setSelectedLearnerVoice(voiceConfig.english.learner.voice);
     }
@@ -1111,6 +1190,11 @@ const Dashboard = () => {
     // Keep the form open for renaming
   };
 
+  // Add these new counter states near other state declarations
+  const totalCoursesCount = useCounter(courses.length, 4000, 0);  // 4 seconds
+  const learningPointsCount = useCounter(learningProgress.earned, 4200, 0);  // 4.2 seconds
+  const badgesCount = useCounter(12, 4400, 0);  // 4.4 seconds
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       {/* Header */}
@@ -1188,7 +1272,9 @@ const Dashboard = () => {
                 <div>
                   <h3 className="text-sm font-medium text-gray-300">Total Courses</h3>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-bold text-white">{courses.length}</span>
+                    <span className="text-3xl font-bold text-white tabular-nums">
+                      {totalCoursesCount}
+                    </span>
                     <span className="text-sm text-emerald-400 flex items-center">
                       <ChevronRight className="h-4 w-4 rotate-90" />
                       23% from last month
@@ -1209,16 +1295,16 @@ const Dashboard = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-300">Learning Points</p>
                   <div className="mt-2">
-                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                      {learningProgress.earned}/{learningProgress.target}
+                    <p className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent tabular-nums">
+                      {learningPointsCount}/{learningProgress.target}
                     </p>
                     <div className="mt-2 w-full bg-gray-700 rounded-full h-2.5 relative overflow-hidden">
                       <div className="absolute inset-0">
                         <div className="animate-shimmer -translate-x-full h-full w-[200%] bg-gradient-to-r from-transparent via-white/[0.05] to-transparent" />
                       </div>
                       <div 
-                        className="relative bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full"
-                        style={{ width: `${(learningProgress.earned / learningProgress.target) * 100}%` }}
+                        className="relative bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full transition-all duration-300"
+                        style={{ width: `${(learningPointsCount / learningProgress.target) * 100}%` }}
                       ></div>
                     </div>
                   </div>
@@ -1254,7 +1340,7 @@ const Dashboard = () => {
                     <h3 className="text-sm font-medium text-gray-300">Badges</h3>
                     <div className="flex items-center gap-3 mt-1">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-bold text-white">12</span>
+                        <span className="text-3xl font-bold text-white tabular-nums">{badgesCount}</span>
                         <span className="text-sm text-amber-400">Badges</span>
                       </div>
                       <div className="h-4 w-px bg-gray-700" />
@@ -1744,7 +1830,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-400">© 2025 AI-Buddy. All rights reserved.</span>
               <span className="text-gray-600">•</span>
-              <span className="text-sm text-gray-400">Version 2.0.0</span>
+              <span className="text-sm text-gray-400">Version 0.0.9</span>
             </div>
             <p className="text-sm text-gray-400">Created by Vijay Betigiri (vijay.betigiri@swisscom.com)</p>
           </div>
@@ -2058,7 +2144,7 @@ const Dashboard = () => {
               <div className="mt-4">
                 <p className="mb-2">The following will be deleted:</p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>Course audio files</li>
+                  <li>Course audio/ presentation files</li>
                   <li>Course canvas data</li>
                   <li>PDF documents</li>
                 </ul>

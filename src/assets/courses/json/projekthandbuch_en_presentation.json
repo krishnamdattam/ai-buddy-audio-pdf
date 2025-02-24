@@ -1,0 +1,160 @@
+{
+  "courseName": "projekthandbuch_en",
+  "sections": [
+    {
+      "title": "Welcome to Projekthandbuch En Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Projekthandbuch En learning journey",
+        "Learn through the audio-visual presentation and by asking questions to the AI Buddy Assistant",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: 2. Principles",
+      "type": "section_header"
+    },
+    {
+      "title": "2. Principles",
+      "type": "content",
+      "summary_points": [
+        "The NND project manual is a guiding document used by participants from Axpo Power AG, Kernkraftwerk Leibstadt AG, and Zwilag Zwischenlager W\u00fcrenlingen AG, applicable in every project phase.",
+        "Its purpose is to ensure smooth and effective project operations by defining structure, tasks, responsibilities, processes, communication rules, and documentation standards.",
+        "The manual is maintained and updated by the NND Project Management Office (PMO) to ensure relevance throughout the project.",
+        "The project management process is guided by principles such as clear mandates, detailed Work Breakdown Structures (WBS), updated schedules and budgets, risk assessments, and adherence to certified standards like IPMA."
+      ]
+    },
+    {
+      "title": "Section 2: 3. Project description",
+      "type": "section_header"
+    },
+    {
+      "title": "3. Project description",
+      "type": "content",
+      "summary_points": [
+        "The NND project aims to redefine business IT for nuclear facilities, ensuring compliance with regulatory requirements such as ENSI Guideline G22, which mandates island operation capability for independent functioning during emergencies.",
+        "Key goals include building a new IT infrastructure, developing a secure IT architecture, creating tailored IT processes, and establishing a new IT organizational unit within the Nuclear Division.",
+        "The project emphasizes IT security, local control, regulatory compliance, and cost efficiencies by leveraging synergies across nuclear facilities while excluding areas like Operational Technology (OT) and Security Operation Centers (SOC), which are managed separately.",
+        "As a Class A project, it faces challenges in meeting strict regulatory requirements, managing costs, and aligning with Axpo Group's enterprise architecture through meticulous project management and adherence to structured methodologies."
+      ]
+    },
+    {
+      "title": "Section 3: 4. Project organization and committee structure",
+      "type": "section_header"
+    },
+    {
+      "title": "4. Project organization and committee structure",
+      "type": "content",
+      "summary_points": [
+        "The SteCo (steering committee) acts as the highest authority in a project, ensuring its strategic success, resolving escalated issues, and making overarching decisions.",
+        "The SteCo's responsibilities include defining strategic goals, clarifying high-level questions, evaluating project results, and approving major decisions like budgets and personnel appointments.",
+        "The project chair focuses on operational success, representing the client's interests, managing day-to-day activities, and working closely with the project manager.",
+        "The SteCo ensures strategic oversight, while the project chair ensures operational management, with both roles collaborating to achieve project success at different levels."
+      ]
+    },
+    {
+      "title": "Section 4: 5. Project phases",
+      "type": "section_header"
+    },
+    {
+      "title": "5. Project phases",
+      "type": "content",
+      "summary_points": [
+        "The NND project phases act as a blueprint, ensuring clarity, organization, and thorough planning for successful project implementation.",
+        "The initial phase defines the project's purpose, objectives, and strategy, culminating in an approved project proposal and authorization to start preliminary work.",
+        "The planning phase includes analyzing the current situation, setting objectives, drafting a project contract, estimating costs, and securing financial resources, resulting in an approved concept and budget.",
+        "Subsequent phases involve detailed planning (risk analysis, quality requirements, and external agreements), implementation (technical designs, commissioning, and user training), and closure (documentation, defect resolution, and lessons-learned workshops) to ensure systematic, high-quality project delivery."
+      ]
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "What is the primary purpose of the NND project manual?",
+          "options": [
+            "To provide a step-by-step guide for technical operations",
+            "To ensure uniformity in project structure, tasks, and communication",
+            "To manage the financial resources of the NND project",
+            "To train employees on nuclear safety protocols"
+          ],
+          "correct_answer": "To ensure uniformity in project structure, tasks, and communication",
+          "explanation": "The NND project manual is designed to provide a blueprint for quality assurance by standardizing project structure, tasks, responsibilities, processes, communication rules, and documentation standards."
+        },
+        {
+          "question": "What is meant by the 'island operation capability' in the context of the NND project?",
+          "options": [
+            "The ability to operate IT systems autonomously during emergencies",
+            "The capacity to isolate nuclear facilities from regulatory oversight",
+            "The implementation of offshore data centers for nuclear facilities",
+            "The geographic isolation of nuclear facilities from external threats"
+          ],
+          "correct_answer": "The ability to operate IT systems autonomously during emergencies",
+          "explanation": "'Island operation capability' ensures that IT systems can function independently without relying on external resources, which is critical for operational continuity and safety in scenarios like grid failures."
+        },
+        {
+          "question": "What is the primary responsibility of the SteCo (Steering Committee) in the NND project?",
+          "options": [
+            "To oversee day-to-day project operations",
+            "To ensure the project's strategic success and resolve escalated issues",
+            "To draft detailed project structure plans",
+            "To conduct lessons-learned workshops at the end of the project"
+          ],
+          "correct_answer": "To ensure the project's strategic success and resolve escalated issues",
+          "explanation": "The SteCo acts as the highest authority in the project, focusing on strategic oversight, resolving conflicts, and making overarching decisions to ensure the project's success."
+        },
+        {
+          "question": "Which phase of the NND project involves drafting a detailed framework schedule and performing risk analyses?",
+          "options": [
+            "Implementation phase",
+            "Initial proposal phase",
+            "In-depth planning phase",
+            "Project closure phase"
+          ],
+          "correct_answer": "In-depth planning phase",
+          "explanation": "The in-depth planning phase focuses on finalizing quality requirements, delivery conditions, risk analyses, and creating a detailed framework schedule to prepare for implementation."
+        },
+        {
+          "question": "Which of the following is NOT within the scope of the NND project?",
+          "options": [
+            "Building a secure IT architecture",
+            "Establishing a new IT organizational unit",
+            "Managing Operational Technology (OT) systems",
+            "Creating tailored IT processes"
+          ],
+          "correct_answer": "Managing Operational Technology (OT) systems",
+          "explanation": "Operational Technology (OT) systems are explicitly excluded from the scope of the NND project as they are managed separately."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Projekthandbuch En course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}

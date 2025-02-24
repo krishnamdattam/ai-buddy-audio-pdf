@@ -1,0 +1,113 @@
+{
+  "courseName": "projekthandbuch_en",
+  "sections": {
+    "section_id:1": {
+      "section_id": "1",
+      "title": "2. Principles",
+      "content": "",
+      "subsections": [
+        {
+          "section_id": "1.1",
+          "title": "2.1 Scope",
+          "content": "The NND project manual applies to all project participants in the NND project, consisting of the companies Axpo Power AG (Axpo), Kernkraftwerk Leibstadt AG (KKL) and\nZwilag Zwischenlager Würenlingen AG (Zwilag) in all phases of the project period. The regulations set out in the project manual are binding for all project participants."
+        },
+        {
+          "section_id": "1.2",
+          "title": "2.2 Aim and purpose",
+          "content": "This project manual specifies how the NND project is to be managed and controlled. It describes the tasks, responsibilities, processes and regulates basic specifications\nand boundary conditions with the aim of fulfilling the project mandate.\nThe purpose of the project manual is to ensure that:\n•\nthe project structure is clearly defined,\n•\nthe project organization as well as tasks, competencies and responsibilities are clearly regulated\nare,\n•\nProcesses for uniform planning, implementation and control of the project are defined,\n•\nrules for communication are established and adhered to,\n•\na uniform documentation of documents and information is carried out\n•\nthere is successful cooperation between the project and line organization.\nIn this respect, the project manual also serves as a quality assurance instrument.\nThe NND Project Management Office (PMO) is responsible for updating and maintaining the project manual."
+        },
+        {
+          "section_id": "1.3",
+          "title": "2.3 Principles & Success Factors",
+          "content": "The following principles apply to the processing of the project. The NND project\n•\nis based on the principles of certified project management (IPMA),\n•\nhas a clearly defined mandate from the client (Chairman of the Steering Committee),\n•\nhas a project organization and a clear definition of responsibilities,\n•\nhas an appropriate work breakdown structure (WBS). The work packages all have a\nwork package description,\n•\nhas a schedule based on the WBS in an appropriate level of detail, which\nis continuously updated,\n•\nhas a current budget plan, divided into the work packages and is presented in a\nbinding cost structure plan documented and updated,\n•\ncarries out a continuous risk assessment at work package level\nCritical success factors:\n•\nThe project bodies receive the resources necessary to carry out their functions and to fulfil their\ntasks necessary action competence\n•\nThe safe and economical operation of the plants, taking into account the technical, organizational and human factors (HOF), is NND's highest priority.\n•\nIt is therefore always important to ensure that set deadlines are met - and if not, to escalate as early as possible in order to avoid damage or additional costs\nin the project.\n•\nAcross the company, management and those involved contribute to and support the goals and approach through the Project Chair (PV) and the Steering\nCommittee (SteCo).\n•\nQualified resources are available in each phase."
+        }
+      ]
+    },
+    "section_id:2": {
+      "section_id": "2",
+      "title": "3. Project description",
+      "content": "",
+      "subsections": [
+        {
+          "section_id": "2.1",
+          "title": "3.1 Project assignment",
+          "content": "The nuclear plants - Leibstadt Nuclear Power Plant (KKL), Beznau Nuclear Power Plant (KKB) and the Zwilag\nZwischenlager Würenlingen AG - have largely adapted their business IT to the previous internal IT\nAxpo's service provider, Avectris (now Aveniq), outsourced. With the entry into force of ENSI Directive G-22\nIn 2020, new requirements must be implemented for all three plants.\nThese requirements are:\n1. Establishment of own data centers on the premises of the three plants to ensure\nisland operation capability\n2. Ensuring the authority of the power plant management through appropriate processes and\nseparate domains In addition, the Axpo Group is relying on a new enterprise architecture, which is heavily based on cloud\nComputing. This is not feasible for the Nuclear Energy Division and the KKL and Zwilag plants, among other things for the regulatory reasons mentioned above.\nLast but not least, the service quality and performance of the current IT service provider Aveniq does not meet the requirements of the plants.\nThe NND project has the task of successfully implementing the IT requirements of the Nuclear Energy Division and those of the KKL and Zwilag plants through the\ncorresponding project goals, which not least requires the insourcing of the entire business IT."
+        },
+        {
+          "section_id": "2.2",
+          "title": "3.2 Requirements for the project",
+          "content": "The main requirements for the design of the business IT of nuclear facilities in\nThe scope of NND is:\nID Requirement source\nID: A1\nRequirement: «IT security has in particular the\nAvailability, integrity, confidentiality and\nNon-repudiation of information in the\napplication of information technology (IT)\nto ensure.\"\nSource: ENSI Guideline G22\nID: A2\nRequirement: «Island operation capability for IT systems requiring protection\nsystems of nuclear facilities. »\nSource: ENSI Guideline G22\nID: A3 The authority of the site management is\nRequirement: «regarding the requirements of IT security\nexplicitly assigned.\nSource: ENSI Guideline G22\nID: A4\nRequirement: «Restrictive restriction on export\n(storage) of data on nuclear technology\nabroad. \"\nSource: Goods Control Ordinance, Category 0 (GKV)\nID: A5\nRequirement: «Efficient and secure operation of the business IT of the\nnuclear facilities.\nSource: Basic safety requirements. »\nID: A6\nRequirement: «Cost reductions through implementation of\nSynergies between the nuclear facilities»\nSource Economic Requirement\nThe requirements A1 to A3 are of particular importance, as they are not currently\nare fully met and therefore full compliance with ENSI Guideline G22 is not\nis given."
+        },
+        {
+          "section_id": "2.3",
+          "title": "3.3 Project objectives",
+          "content": "ID main goals\nZ1 Construction of a completely new IT infrastructure to ensure island operation capability.\nZ2 Development of an IT architecture to meet the increased requirements for IT security of critical infrastructures and the Goods Control Ordinance.\nZ3 Establishment of a new IT organizational unit (KI) in the Nuclear Division with local teams in the nuclear facilities, which will manage the operation and the associated\nServices (QA, reporting, ticketing, etc.) of business IT can be provided independently.\nZ4 Establishment of an adapted process organization (from the IT management system to the individual processes) including the regulation of cooperation with the\nindividual Demand IT of the nuclear facilities, which trigger the requirements and orders to the AI organization.\nThe construction of a completely new infrastructure and the increase in IT security levels are the project goals that determine the budget. The requirements and the\nresulting project goals were coordinated with Axpo IT in order to take synergies into account."
+        },
+        {
+          "section_id": "2.4",
+          "title": "3.4 Project scope (In-Scope/Out-of-Scope)",
+          "content": "The project scope of services and delivery describes the content of the project NND. In addition to the description of the deliveries and services of the project, the non-\nservices (out-of-scope) must be defined.\nThe specifications and requirements documents are used to describe the specific delivery items or services that are to be provided by suppliers.\nThe project scope is determined together with the key stakeholders in the preliminary phase or in the preliminary project and can be adjusted until the end of the detailed\nengineering phase. In the following phases, it can only be changed through change requests.\nOut-of-Scope:\ndemarcation Description\n•\nOperational Technology (OT):\nThe safety-relevant OT systems in nuclear facilities (according to ENSI G01) are not in the scope of NND. These systems are already operated in separate physical\nnetworks with their own processes and largely dedicated personnel and were not affected by the Aveniq/Avectris outsourcing.\n•\nSecurity Operation Centers (SOC):\nThe use of a SOC makes sense and is intended for the future. This is currently outside the scope of NND and will be addressed again when defining future operational\nservices, e.g. purchasing externally as a service, as implemented in KKG.\n•\nDemand IT staff\nAny hiring and budgeting of in-house and external personnel by Demand IT is not within the scope of NND.\n•\nPersonnel for specialist applications BFS and SAP\nThe in-house staff responsible for the application operation of the specialist applications \"Operational Management Systems\" (BFS) and \"SAP\" remain in the nuclear plant\norganization (KKL 5 FTE and KKB 3 FTE). This staff is not budgeted within NND, but is to be viewed in the overall context as part of the IT organization. In future, the\nplatform operation of the servers will be carried out by staff from the new KI organizational unit. The basic operation of SAP will be ensured by external staff."
+        },
+        {
+          "section_id": "2.5",
+          "title": "3.5 Project categorization",
+          "content": "Due to its complexity and scope, the NND project was categorised as a class A project (FDB/0092, WDK006) (FDB/0092, WDK006) according to the KKL project portfolio\nmanual (FDB/0092), WDK006 and the administrative directive on project management of Zwilag (ZWI 2700/D0001). Accordingly, high demands must be placed on the\nproject management methodology and the project management system."
+        }
+      ]
+    },
+    "section_id:3": {
+      "section_id": "3",
+      "title": "4. Project organization and committee structure",
+      "content": "",
+      "subsections": [
+        {
+          "section_id": "3.1",
+          "title": "4.1 Project organization",
+          "content": ""
+        },
+        {
+          "section_id": "3.2",
+          "title": "4.2 Steering Committee (SteCo)",
+          "content": "The main task of the SteCo is to ensure the success of the project strategically and across all companies, in terms of overarching decision-making and as the highest\nescalation authority. It meets regularly (normally once a quarter) or depending on events and takes on the role of the client. The project manager prepares the SteCo\nmeetings and takes part in the SteCo.\ntasks/responsibilities\n• Assumption of overall project responsibility\n• Defining strategic goals\n• Clarifying strategic questions\n• Direction in the event of conflicting goals\n• Evaluation of project results via reporting\n• Escalation point in case of conflicts (especially between project and line)\n• Approval or rejection of project applications\n• Appointment or replacement of the project manager\n• Approval of procurements from the specified budget level according to financial competencies\n(Chapter 17)."
+        },
+        {
+          "section_id": "3.3",
+          "title": "4.3 Project Chair (PV)",
+          "content": "The project chair represents the interests of the client (chair of the steering committee) in the project. His main task is to ensure the operational success of the project.\nThe project chair covers the following functions, among others:\n• Head of Project Chair\n• Department head (responsible for IT)\n• Strategic Purchasing (Axpo)\n• Corporate Controlling (Axpo)\n• Information Security Office (Axpo)\nThe project chair usually meets every two to three months or as events arise. The project manager prepares and attends the PV meetings.\ntasks / responsibilities\n• Ensuring project success.\n• Evaluation of project results.\n• Agreeing and evaluating project management objectives.\n• Clarifying the project framework.\n• Escalation point in conflicts\n• Project communication and project marketing in coordination with the project manager\n• Project risk owner\n• Request and approval of changes:\no the project assignment\no the project manual\no the project objectives\no the project organization\no project planning\no the final project report\no financial release via PL and under SteCo."
+        }
+      ]
+    },
+    "section_id:4": {
+      "section_id": "4",
+      "title": "5. Project phases",
+      "content": "",
+      "subsections": [
+        {
+          "section_id": "4.1",
+          "title": "5.1 Phase 0: Initialization",
+          "content": "The NND project will be implemented in the following project phases:\nContents\n• Formulation of the reason\n• Clarification of the need to start the project\n• Formulation of needs (description of the project objective)\n• Proposal for project and solution strategy\n• Preparation of the project application and compilation of documents\nResults\n• Approved project proposal\n• Order to start the preliminary project"
+        },
+        {
+          "section_id": "4.2",
+          "title": "5.2 Phase 1: Preliminary project",
+          "content": "Contents\n• Kickoff meeting\n• Current analysis\n• Preparation of the project contract for the attention of the project chair, which includes, among other things, the\nobjectives and scope of the project are defined\n• Analysis of project management components and creation of the required documents\n• Structure of the project organization\n• Rough schedule and milestone planning\n• Describe tasks in work packages and link them to the schedule\n• Financial and resource planning\n• Obtaining the necessary financial resources\n• Creation of an implementation concept taking into account all relevant\nBusiness processes, especially change management, regulatory approvals, procurement and\ndocumentation\nResults\n• Approved concept\n• Rough cost and resource planning\n• Loan application for the entire project"
+        },
+        {
+          "section_id": "4.3",
+          "title": "5.3 Phase 2: Main project",
+          "content": "Contents\n• Creation of quality requirements and execution specifications for the technical\ndocumentation\n• Preparation of commercial specifications with delivery and acceptance conditions and\nProcedures for remedying defects and warranty cases\n• D1 input\n• Creation of project structure plan and elaboration of work packages\n• Creation of a framework schedule including the essential dependencies\n• Tendering of external services\n• Resource analysis and release\n• Risk analysis\n• Creating a profitability analysis\nResults\n• Framework schedule including interfaces including the essential dependencies\n• Detailed cost and resource plan, release of resources by line\n• final negotiated offer for external services based on the technical and\ncommercial specifications"
+        },
+        {
+          "section_id": "4.4",
+          "title": "5.4 Phase 3: Implementation",
+          "content": "Contents\n• Creation of the basic technical concepts: Technical Design Guide & rough concepts\n(network, infrastructure, application and client tier), as the basis for awarding the\ndata centers (RZ) and as a basis for the D2 approval documents\n• Entering D2 and D3\n• Planning, organization, monitoring and documentation of acceptance tests, trial operation\nand commissioning, including preparation and review of the relevant schedules,\ntest procedures and acceptance documents\n• Commissioning of the data center components (including management and monitoring systems)\n• IT Security Audit\n• Updating scheduling, financial and resource planning\n• Claim Management\nResults\n• implemented and commissioned solution\n• Training, instruction and provisional handover to the user takes place"
+        },
+        {
+          "section_id": "4.5",
+          "title": "5.5 Phase 4: Conclusion",
+          "content": "Contents\n• Completion of the final documentation\n• D4 input\n• Correction of any defects\n• Processing of any official requirements\n• Review of target achievement\n• Claim Management\n• Conducting project reviews and workshops on lessons learned, knowledge retention and project completion\n• Preparation of the final project statement/credit statement\nResults\n• Final project report with lessons learned\n• Relief of the project organization by the project chair and the steering committee"
+        }
+      ]
+    }
+  }
+}

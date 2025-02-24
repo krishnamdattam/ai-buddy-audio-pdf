@@ -1,0 +1,677 @@
+{
+  "courseName": "projekthandbuch_de",
+  "sections": [
+    {
+      "sectionTitle": "2. Grunds\u00e4tze",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir \u00fcber die Grunds\u00e4tze des Projekthandbuchs NND. Unser Ziel ist es, zu verstehen, wie es den Projekterfolg sichert und wie die beteiligten Organisationen zusammenarbeiten.",
+          "audioFile": "projekthandbuch_de_1__2__grunds_tze.wav",
+          "startTime": 0,
+          "duration": 12456,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "K\u00f6nnen Sie einen realen Grund nennen, warum ein Projekthandbuch wie dieses wichtig ist?",
+          "audioFile": "projekthandbuch_de_2__2__grunds_tze.wav",
+          "startTime": 12656,
+          "duration": 5040,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Nat\u00fcrlich. Stellen Sie sich vor, drei Unternehmen wie Axpo, KKL und Zwilag arbeiten an einem komplexen Projekt. Ohne klare Regeln und Prozesse k\u00f6nnten wichtige Aufgaben \u00fcbersehen werden, oder es k\u00e4me zu Missverst\u00e4ndnissen. Das Projekthandbuch stellt sicher, dass alle Beteiligten dieselben Ziele verfolgen und effizient zusammenarbeiten.",
+          "audioFile": "projekthandbuch_de_3__2__grunds_tze.wav",
+          "startTime": 17896,
+          "duration": 22536,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche konkreten Punkte regelt das Projekthandbuch NND?",
+          "audioFile": "projekthandbuch_de_4__2__grunds_tze.wav",
+          "startTime": 40632,
+          "duration": 3636,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Es legt fest, wie das Projekt organisiert, gesteuert und dokumentiert wird. Es definiert die Projektstruktur, die Verantwortlichkeiten, die Planung und Durchf\u00fchrung von Prozessen sowie die Kommunikation und Dokumentation. Zum Beispiel sorgt es daf\u00fcr, dass alle Unterlagen einheitlich dokumentiert werden und dass die Termine eingehalten werden.",
+          "audioFile": "projekthandbuch_de_5__2__grunds_tze.wav",
+          "startTime": 44468,
+          "duration": 21960,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt umfassend! Wer ist denn f\u00fcr die Pflege des Projekthandbuchs zust\u00e4ndig?",
+          "audioFile": "projekthandbuch_de_6__2__grunds_tze.wav",
+          "startTime": 66628,
+          "duration": 5112,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Das NND Projektmanagement Office, kurz PMO, ist daf\u00fcr verantwortlich. Es aktualisiert und pflegt das Projekthandbuch kontinuierlich, um sicherzustellen, dass es immer auf dem neuesten Stand bleibt.",
+          "audioFile": "projekthandbuch_de_7__2__grunds_tze.wav",
+          "startTime": 71940,
+          "duration": 13896,
+          "purpose": "answer",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Und worauf basiert die Projektsteuerung? Gibt es bestimmte Standards oder Prinzipien?",
+          "audioFile": "projekthandbuch_de_8__2__grunds_tze.wav",
+          "startTime": 86036,
+          "duration": 5400,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, das Projekt orientiert sich an den Grunds\u00e4tzen eines zertifizierten Projektmanagements, wie sie von der IPMA definiert werden. Das bedeutet, dass klare Strukturen, ein definierter Projektauftrag und eine detaillierte Planung, einschlie\u00dflich eines Projektstrukturplans und eines Terminplans, im Mittelpunkt stehen.",
+          "audioFile": "projekthandbuch_de_9__2__grunds_tze.wav",
+          "startTime": 91636,
+          "duration": 19980,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Was passiert, wenn Risiken auftreten oder sich Termine verz\u00f6gern?",
+          "audioFile": "projekthandbuch_de_10__2__grunds_tze.wav",
+          "startTime": 111816,
+          "duration": 4248,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Gute Frage. Risiken werden auf Arbeitspaket-Ebene kontinuierlich bewertet. Sollte ein Termin gef\u00e4hrdet sein, wird dies fr\u00fchzeitig eskaliert. So k\u00f6nnen m\u00f6gliche Sch\u00e4den oder Mehrkosten vermieden werden. Ein Beispiel w\u00e4re, wenn ein Lieferant Verz\u00f6gerungen meldet; das w\u00fcrde sofort an die Projektleitung weitergegeben.",
+          "audioFile": "projekthandbuch_de_11__2__grunds_tze.wav",
+          "startTime": 116264,
+          "duration": 20664,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird sichergestellt, dass alle Beteiligten effizient zusammenarbeiten?",
+          "audioFile": "projekthandbuch_de_12__2__grunds_tze.wav",
+          "startTime": 137128,
+          "duration": 4572,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Die F\u00fchrung und die Beteiligten der drei Unternehmen \u2013 Axpo, KKL und Zwilag \u2013 unterst\u00fctzen die Ziele und das Vorgehen \u00fcber den Projektvorsitz und das Steering Committee. Au\u00dferdem sorgt das Projekthandbuch daf\u00fcr, dass qualifizierte Ressourcen in jeder Projektphase verf\u00fcgbar sind.",
+          "audioFile": "projekthandbuch_de_13__2__grunds_tze.wav",
+          "startTime": 141900,
+          "duration": 17172,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "K\u00f6nnen Sie mir die kritischen Erfolgsfaktoren zusammenfassen?",
+          "audioFile": "projekthandbuch_de_14__2__grunds_tze.wav",
+          "startTime": 159272,
+          "duration": 3348,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Gerne. Zu den kritischen Erfolgsfaktoren geh\u00f6ren: eine klare Handlungskompetenz f\u00fcr die Projektorgane, der sichere und wirtschaftliche Betrieb der Anlagen unter Ber\u00fccksichtigung technischer, organisatorischer und menschlicher Faktoren, die Einhaltung der gesetzten Termine und die Unterst\u00fctzung durch die F\u00fchrung der beteiligten Gesellschaften.",
+          "audioFile": "projekthandbuch_de_15__2__grunds_tze.wav",
+          "startTime": 162820,
+          "duration": 19728,
+          "purpose": "summary",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt nach einer durchdachten Struktur. Vielen Dank f\u00fcr die Erkl\u00e4rung!",
+          "audioFile": "projekthandbuch_de_16__2__grunds_tze.wav",
+          "startTime": 182748,
+          "duration": 4320,
+          "purpose": "summary",
+          "dialogueIndex": 15
+        }
+      ]
+    },
+    {
+      "sectionTitle": "3. Projektbeschreibung",
+      "sectionIndex": 1,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir \u00fcber das Projekt NND und die IT-Anforderungen der Kernkraftwerke Leibstadt, Beznau und Zwilag. Unser Ziel ist es, die wesentlichen Aspekte des Projekts und dessen Bedeutung zu verstehen.",
+          "audioFile": "projekthandbuch_de_1__3__projektbeschreibung.wav",
+          "startTime": 0,
+          "duration": 14040,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Klingt interessant! Warum wurde das Projekt NND gestartet?",
+          "audioFile": "projekthandbuch_de_2__3__projektbeschreibung.wav",
+          "startTime": 14240,
+          "duration": 4284,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekt wurde gestartet, weil die ENSI-Richtlinie G-22 von 2020 strengere Anforderungen an die IT der Kernkraftwerke stellt. Au\u00dferdem entsprechen die Servicequalit\u00e4t und Performance des aktuellen IT-Dienstleisters Aveniq nicht den Anforderungen der Werke.",
+          "audioFile": "projekthandbuch_de_3__3__projektbeschreibung.wav",
+          "startTime": 18724,
+          "duration": 17676,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche Hauptanforderungen m\u00fcssen denn konkret erf\u00fcllt werden?",
+          "audioFile": "projekthandbuch_de_4__3__projektbeschreibung.wav",
+          "startTime": 36600,
+          "duration": 3564,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Es gibt mehrere Anforderungen, aber die wichtigsten sind: Erstens, die IT-Sicherheit muss Verf\u00fcgbarkeit, Integrit\u00e4t, Vertraulichkeit und Nichtabstreitbarkeit gew\u00e4hrleisten. Zweitens, es muss eine Inselbetriebsf\u00e4higkeit f\u00fcr schutzbed\u00fcrftige IT-Systeme geben, und drittens, die Standortleitung muss Weisungsbefugnis hinsichtlich IT-Sicherheit erhalten.",
+          "audioFile": "projekthandbuch_de_5__3__projektbeschreibung.wav",
+          "startTime": 40364,
+          "duration": 23328,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Was bedeutet Inselbetriebsf\u00e4higkeit genau? K\u00f6nnen Sie das etwas n\u00e4her erl\u00e4utern?",
+          "audioFile": "projekthandbuch_de_6__3__projektbeschreibung.wav",
+          "startTime": 63892,
+          "duration": 4968,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Nat\u00fcrlich! Inselbetriebsf\u00e4higkeit bedeutet, dass die IT-Systeme der Kernkraftwerke unabh\u00e4ngig vom externen Netzwerk operieren k\u00f6nnen, um im Falle eines Cyberangriffs oder einer Netzst\u00f6rung weiterhin funktionsf\u00e4hig zu bleiben. Stellen Sie es sich wie ein Notstromaggregat f\u00fcr die IT vor.",
+          "audioFile": "projekthandbuch_de_7__3__projektbeschreibung.wav",
+          "startTime": 69060,
+          "duration": 18396,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Ah, das macht Sinn. Und wie will das Projekt NND diese Anforderungen umsetzen?",
+          "audioFile": "projekthandbuch_de_8__3__projektbeschreibung.wav",
+          "startTime": 87656,
+          "duration": 5256,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekt hat vier Hauptziele: Erstens, der Aufbau einer komplett neuen IT-Infrastruktur. Zweitens, die Entwicklung einer IT-Architektur, die besonders hohe Sicherheitsstandards erf\u00fcllt. Drittens, die Einrichtung einer neuen IT-Organisationseinheit namens KI mit lokalen Teams in den Kernanlagen. Und viertens, die Anpassung der Ablauforganisation, also der Prozesse und Zusammenarbeit zwischen den IT-Bereichen.",
+          "audioFile": "projekthandbuch_de_9__3__projektbeschreibung.wav",
+          "startTime": 93112,
+          "duration": 28440,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Was ist mit den bisherigen IT-Systemen und -Prozessen? Werden diese komplett ersetzt?",
+          "audioFile": "projekthandbuch_de_10__3__projektbeschreibung.wav",
+          "startTime": 121752,
+          "duration": 5364,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Nicht vollst\u00e4ndig. Systeme, die bereits abgedeckt sind, wie die sicherheitsrelevanten Operational Technology (OT)-Systeme, bleiben au\u00dferhalb des Projektumfangs. Auch Security Operation Centers (SOC) und bestimmte Fachanwendungen wie SAP bleiben vorerst unber\u00fchrt.",
+          "audioFile": "projekthandbuch_de_11__3__projektbeschreibung.wav",
+          "startTime": 127316,
+          "duration": 20412,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Sind diese \u00c4nderungen nicht sehr teuer? Wie wird das Projekt finanziert?",
+          "audioFile": "projekthandbuch_de_12__3__projektbeschreibung.wav",
+          "startTime": 147928,
+          "duration": 4428,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Ja, der Aufbau der neuen Infrastruktur und die Erh\u00f6hung des IT-Sicherheitsniveaus sind die budgetbestimmenden Ziele. Die Anforderungen wurden jedoch mit der Axpo IT abgestimmt, um Synergien zu schaffen und Kosten zu senken.",
+          "audioFile": "projekthandbuch_de_13__3__projektbeschreibung.wav",
+          "startTime": 152556,
+          "duration": 14220,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie wird sichergestellt, dass das Projekt trotz seiner Komplexit\u00e4t erfolgreich ist?",
+          "audioFile": "projekthandbuch_de_14__3__projektbeschreibung.wav",
+          "startTime": 166976,
+          "duration": 4932,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Das Projekt wurde als Klasse-A-Projekt kategorisiert, was bedeutet, dass h\u00f6chste Anforderungen an die Projektmanagementmethodik gestellt werden. Der Umfang wird in der fr\u00fchen Phase gemeinsam mit Stakeholdern definiert und kann sp\u00e4ter nur durch Change Requests ge\u00e4ndert werden.",
+          "audioFile": "projekthandbuch_de_15__3__projektbeschreibung.wav",
+          "startTime": 172108,
+          "duration": 16020,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Haben Sie ein Beispiel f\u00fcr eine Regelung, die durch das Projekt eingef\u00fchrt wird?",
+          "audioFile": "projekthandbuch_de_16__3__projektbeschreibung.wav",
+          "startTime": 188328,
+          "duration": 4392,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Ein Beispiel ist die restriktive Einschr\u00e4nkung der Ausfuhr von Daten zur Nukleartechnologie ins Ausland, wie in der G\u00fcterkontrollverordnung Kategorie 0 festgelegt. Das bedeutet, dass sensible Daten lokal bleiben m\u00fcssen.",
+          "audioFile": "projekthandbuch_de_17__3__projektbeschreibung.wav",
+          "startTime": 192920,
+          "duration": 13860,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt alles sehr durchdacht. K\u00f6nnen Sie die wichtigsten Punkte noch einmal zusammenfassen?",
+          "audioFile": "projekthandbuch_de_18__3__projektbeschreibung.wav",
+          "startTime": 206980,
+          "duration": 5148,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    },
+    {
+      "sectionTitle": "4. Projektorganisation und Gremienstruktur",
+      "sectionIndex": 2,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir \u00fcber die Projektorganisation und die Gremienstruktur. Unser Ziel ist es, die Rollen und Verantwortlichkeiten des Steering Committee (SteCo) und des Projektvorsitzes zu verstehen.",
+          "audioFile": "projekthandbuch_de_1__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 0,
+          "duration": 12708,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt interessant. Warum sind diese beiden Gremien so wichtig f\u00fcr ein Projekt?",
+          "audioFile": "projekthandbuch_de_2__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 12908,
+          "duration": 5112,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Das SteCo ist entscheidend, weil es die strategische Verantwortung \u00fcbernimmt. Es sorgt daf\u00fcr, dass das Projekt im Sinne der Unternehmensziele erfolgreich ist. Denk daran wie ein Aufsichtsrat, der den gesamten \u00dcberblick beh\u00e4lt.",
+          "audioFile": "projekthandbuch_de_3__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 18220,
+          "duration": 14292,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was genau macht das SteCo konkret?",
+          "audioFile": "projekthandbuch_de_4__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 32712,
+          "duration": 2448,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Das SteCo legt strategische Ziele fest, kl\u00e4rt Fragen auf hoher Ebene und entscheidet bei Zielkonflikten. Es ist auch eine Eskalationsstelle, z. B. wenn es Probleme zwischen dem Projekt und der Linie gibt. Au\u00dferdem genehmigt es gr\u00f6\u00dfere Beschaffungen \u00fcber einem bestimmten Budget.",
+          "audioFile": "projekthandbuch_de_5__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 35360,
+          "duration": 17280,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt ziemlich umfassend. Wie oft trifft sich das SteCo?",
+          "audioFile": "projekthandbuch_de_6__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 52840,
+          "duration": 4032,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Das SteCo trifft sich normalerweise einmal pro Quartal oder bei besonderen Ereignissen, die es erfordern. Der Projektleiter bereitet diese Sitzungen vor und nimmt daran teil.",
+          "audioFile": "projekthandbuch_de_7__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 57072,
+          "duration": 10692,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstehe. Und was ist der Unterschied zwischen dem SteCo und dem Projektvorsitz?",
+          "audioFile": "projekthandbuch_de_8__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 67964,
+          "duration": 4860,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Das SteCo ist strategisch ausgerichtet, w\u00e4hrend der Projektvorsitz operativ t\u00e4tig ist. Der Projektvorsitz vertritt die Interessen des Auftraggebers und sorgt f\u00fcr die operative Sicherstellung des Projekterfolgs. Ein Beispiel: W\u00e4hrend das SteCo den Kurs eines Schiffes vorgibt, k\u00fcmmert sich der Projektvorsitz darum, dass das Schiff technisch einwandfrei funktioniert.",
+          "audioFile": "projekthandbuch_de_9__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 73024,
+          "duration": 22500,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Und welche Funktionen \u00fcbernimmt der Projektvorsitz konkret?",
+          "audioFile": "projekthandbuch_de_10__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 95724,
+          "duration": 3528,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Im Projektvorsitz arbeiten verschiedene Rollen zusammen, wie der Leiter des Projektvorsitzes, der IT-Abteilungsleiter, der strategische Einkauf, das Unternehmenscontrolling und das Information Security Office \u2013 bei Axpo sind diese Funktionen zentral eingebunden.",
+          "audioFile": "projekthandbuch_de_11__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 99452,
+          "duration": 15912,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Wie oft trifft sich der Projektvorsitz?",
+          "audioFile": "projekthandbuch_de_12__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 115564,
+          "duration": 2520,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Der Projektvorsitz trifft sich in der Regel alle zwei bis drei Monate oder ebenfalls ereignisabh\u00e4ngig. Der Projektleiter bereitet auch diese Sitzungen vor und ist dabei.",
+          "audioFile": "projekthandbuch_de_13__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 118284,
+          "duration": 10836,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Welche Aufgaben hat der Projektvorsitz konkret?",
+          "audioFile": "projekthandbuch_de_14__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 129320,
+          "duration": 3096,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Der Projektvorsitz bewertet die Projekt-Resultate, kl\u00e4rt Rahmenbedingungen und ist eine Eskalationsstelle bei Konflikten. Zudem stimmt er die Projektkommunikation mit dem Projektleiter ab und ist der sogenannte 'Projekt-Risk-Owner'. \u00c4nderungen, wie beispielsweise am Projektauftrag oder an der Planung, m\u00fcssen hier genehmigt werden.",
+          "audioFile": "projekthandbuch_de_15__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 132616,
+          "duration": 19944,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Das wirkt sehr strukturiert. Gibt es noch etwas, das ich beachten sollte?",
+          "audioFile": "projekthandbuch_de_16__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 152760,
+          "duration": 4860,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Wichtig ist, dass beide Gremien \u2013 SteCo und Projektvorsitz \u2013 klar definierte Rollen haben, die sich erg\u00e4nzen. Ein gutes Zusammenspiel dieser Ebenen ist der Schl\u00fcssel f\u00fcr den Projekterfolg.",
+          "audioFile": "projekthandbuch_de_17__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 157820,
+          "duration": 11736,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Danke, das macht Sinn. K\u00f6nnen Sie die Hauptpunkte nochmal zusammenfassen?",
+          "audioFile": "projekthandbuch_de_18__4__projektorganisation_und_gremienstruktur.wav",
+          "startTime": 169756,
+          "duration": 4788,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    },
+    {
+      "sectionTitle": "5. Projektphasen",
+      "sectionIndex": 3,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir \u00fcber die 5 Projektphasen des Projekts NND. Unser Ziel ist es, die Inhalte, Ergebnisse und den Ablauf jeder Phase klar zu verstehen. Bist du bereit?",
+          "audioFile": "projekthandbuch_de_1__5__projektphasen.wav",
+          "startTime": 0,
+          "duration": 12240,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Ja, ich bin gespannt! Worum geht es in diesen 5 Phasen genau?",
+          "audioFile": "projekthandbuch_de_2__5__projektphasen.wav",
+          "startTime": 12440,
+          "duration": 4536,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Die 5 Projektphasen decken den gesamten Projektlebenszyklus ab \u2013 von der Planung bis zum Abschluss. Jede Phase hat dabei spezifische Inhalte und Ergebnisse. Zum Beispiel startet alles mit der Formulierung der Veranlassung, also warum das Projekt \u00fcberhaupt notwendig ist. Kannst du dir vorstellen, warum das wichtig ist?",
+          "audioFile": "projekthandbuch_de_3__5__projektphasen.wav",
+          "startTime": 17176,
+          "duration": 20304,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Ja, ich denke, ohne einen klaren Grund oder ein Ziel w\u00fcrde ein Projekt keinen Sinn ergeben. Was kommt danach?",
+          "audioFile": "projekthandbuch_de_4__5__projektphasen.wav",
+          "startTime": 37680,
+          "duration": 7128,
+          "purpose": "answer",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Genau! Nach der Veranlassung wird die Notwendigkeit des Projekts gepr\u00fcft, die Bed\u00fcrfnisse formuliert und eine Strategie vorgeschlagen. Das Ergebnis dieser Phase ist ein genehmigter Projektantrag, der den Start des Vorprojekts erm\u00f6glicht. Das ist wie bei einem Bauprojekt: Du brauchst zuerst eine Genehmigung, bevor du loslegen kannst.",
+          "audioFile": "projekthandbuch_de_5__5__projektphasen.wav",
+          "startTime": 45008,
+          "duration": 20376,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Das leuchtet ein. Wie sieht es mit der n\u00e4chsten Phase aus?",
+          "audioFile": "projekthandbuch_de_6__5__projektphasen.wav",
+          "startTime": 65584,
+          "duration": 3888,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Das ist die Planungsphase. Hier gibt es unter anderem ein Kickoff-Meeting, eine IST-Analyse und die Erstellung eines Projektauftrags, in dem die Ziele und der Umfang des Projekts festgelegt werden. Stell dir das wie die Blaupause f\u00fcr ein Haus vor \u2013 bevor gebaut wird, muss alles genau geplant werden.",
+          "audioFile": "projekthandbuch_de_7__5__projektphasen.wav",
+          "startTime": 69672,
+          "duration": 18216,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt nach einer Menge Arbeit! Was sind die Ergebnisse dieser Phase?",
+          "audioFile": "projekthandbuch_de_8__5__projektphasen.wav",
+          "startTime": 88088,
+          "duration": 4572,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Die Ergebnisse sind ein genehmigtes Konzept, eine grobe Kosten- und Ressourcenplanung sowie ein Kreditantrag f\u00fcr das Gesamtprojekt. Diese Ergebnisse bilden die Grundlage f\u00fcr die n\u00e4chste Phase.",
+          "audioFile": "projekthandbuch_de_9__5__projektphasen.wav",
+          "startTime": 92860,
+          "duration": 11916,
+          "purpose": "answer",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was passiert in der dritten Phase?",
+          "audioFile": "projekthandbuch_de_10__5__projektphasen.wav",
+          "startTime": 104976,
+          "duration": 2376,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "In der dritten Phase geht es vor allem um die detaillierte Planung. Dazu geh\u00f6ren die Erstellung von Qualit\u00e4tsanforderungen, kommerziellen Spezifikationen und eines Rahmenterminplans. Ein gutes Beispiel ist hier die Ausschreibung externer Leistungen \u2013 wie bei einem Bauprojekt, bei dem du Angebote von Bauunternehmen einholst.",
+          "audioFile": "projekthandbuch_de_11__5__projektphasen.wav",
+          "startTime": 107552,
+          "duration": 19944,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Verstehe. Was sind die Ergebnisse dieser Phase?",
+          "audioFile": "projekthandbuch_de_12__5__projektphasen.wav",
+          "startTime": 127696,
+          "duration": 3276,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Die Ergebnisse umfassen einen detaillierten Kosten- und Ressourcenplan, einen Rahmenterminplan mit Abh\u00e4ngigkeitsbeziehungen und finalisierte Angebote f\u00fcr externe Leistungen. Ohne diese Details k\u00f6nnte das Projekt sp\u00e4ter ins Stocken geraten.",
+          "audioFile": "projekthandbuch_de_13__5__projektphasen.wav",
+          "startTime": 131172,
+          "duration": 14472,
+          "purpose": "answer",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was passiert in der vierten Phase?",
+          "audioFile": "projekthandbuch_de_14__5__projektphasen.wav",
+          "startTime": 145844,
+          "duration": 2340,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Das ist die Umsetzungsphase. Hier werden technische Grundlagenkonzepte erstellt, Abnahmetests durchgef\u00fchrt und die Inbetriebnahme der Rechenzentrums-Komponenten organisiert. Es ist vergleichbar mit dem Bau eines Hauses \u2013 jetzt werden die W\u00e4nde hochgezogen und die Technik installiert.",
+          "audioFile": "projekthandbuch_de_15__5__projektphasen.wav",
+          "startTime": 148384,
+          "duration": 17028,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt spannend! Was sind die Ergebnisse dieser Phase?",
+          "audioFile": "projekthandbuch_de_16__5__projektphasen.wav",
+          "startTime": 165612,
+          "duration": 3600,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Die Ergebnisse sind eine realisierte und in Betrieb genommene L\u00f6sung sowie die Schulung und \u00dcbergabe an die Benutzer. Alles wird getestet, damit es reibungslos funktioniert.",
+          "audioFile": "projekthandbuch_de_17__5__projektphasen.wav",
+          "startTime": 169412,
+          "duration": 10728,
+          "purpose": "answer",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was passiert in der letzten Phase?",
+          "audioFile": "projekthandbuch_de_18__5__projektphasen.wav",
+          "startTime": 180340,
+          "duration": 2448,
+          "purpose": "question",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "In der Abschlussphase geht es um die Fertigstellung der Dokumentation, die Behebung von M\u00e4ngeln und die Erstellung eines Abschlussberichts mit Lessons Learned. Es ist wie die \u00dcbergabe eines Hauses an den Besitzer \u2013 alles muss perfekt sein, und die Erfahrungen werden dokumentiert, um zuk\u00fcnftige Projekte besser zu machen.",
+          "audioFile": "projekthandbuch_de_19__5__projektphasen.wav",
+          "startTime": 182988,
+          "duration": 18324,
+          "purpose": "explanation",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "Das ist eine sehr strukturierte Vorgehensweise. Gibt es eine Zusammenfassung der wichtigsten Punkte?",
+          "audioFile": "projekthandbuch_de_20__5__projektphasen.wav",
+          "startTime": 201512,
+          "duration": 5904,
+          "purpose": "question",
+          "dialogueIndex": 19
+        }
+      ]
+    }
+  ]
+}

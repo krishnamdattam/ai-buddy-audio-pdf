@@ -250,7 +250,7 @@ const Landing = () => {
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">© 2025 AI-Buddy. All rights reserved.</span>
               <span className="text-gray-600">•</span>
-              <span className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">Version 2.0.0</span>
+              <span className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">Version 0.0.9</span>
             </div>
             <p className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">Created by Vijay Betigiri (vijay.betigiri@swisscom.com)</p>
           </div>

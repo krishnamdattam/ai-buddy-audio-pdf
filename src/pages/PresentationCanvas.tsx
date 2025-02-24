@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Home, Search, Settings, LogOut, BookOpen, Edit2, Save, X, Share2, Maximize2, Minimize2, HelpCircle, ChevronDown, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Home, Search, Settings, LogOut, BookOpen, Edit2, Save, X, Share2, Maximize2, Minimize2, HelpCircle, ChevronDown, Check, Upload, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -81,6 +81,8 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
   const [showHelpTooltip, setShowHelpTooltip] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState<string>('black');
   const [showThemeSelector, setShowThemeSelector] = useState<boolean>(false);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -159,6 +161,70 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
   const toggleFullscreen = () => {
     setIsFullscreen(!isFullscreen);
   };
+
+  const handleLogoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        toast.error('Please upload an image file');
+        return;
+      }
+
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error('Logo file size should be less than 2MB');
+        return;
+      }
+
+      const previewUrl = URL.createObjectURL(file);
+      setLogoFile(file);
+      setLogoPreview(previewUrl);
+
+      const formData = new FormData();
+      formData.append('logo', file);
+
+      fetch('http://localhost:5001/api/upload-logo', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (presentation) {
+          const updatedPresentation = {
+            ...presentation,
+            presentationConfig: {
+              ...presentation.presentationConfig,
+              logo: {
+                src: `/images/${file.name}`,
+                position: 'top-left',
+                style: {
+                  maxHeight: '40px',
+                  margin: '10px',
+                  position: 'absolute',
+                  top: '10px',
+                  left: '10px',
+                  zIndex: '1000'
+                }
+              }
+            }
+          };
+          setPresentation(updatedPresentation);
+          toast.success('Logo uploaded successfully');
+        }
+      })
+      .catch(error => {
+        console.error('Error uploading logo:', error);
+        toast.error('Failed to upload logo');
+      });
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (logoPreview) {
+        URL.revokeObjectURL(logoPreview);
+      }
+    };
+  }, [logoPreview]);
 
   if (isLoading) {
     return (
@@ -262,15 +328,12 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
       const toastId = 'publishing-presentation';
       toast.loading("Publishing presentation...", { id: toastId });
       
-      // Navigate to the published presentation with the selected theme
       console.log('[PresentationCanvas] Attempting navigation to /published-presentation');
       
-      // First, try to navigate
       navigate('/published-presentation', {
         state: navigationState
       });
       
-      // Dismiss the loading toast after a short delay to ensure navigation has started
       setTimeout(() => {
         toast.dismiss(toastId);
       }, 1000);
@@ -284,10 +347,8 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
 
   return (
     <div className={`min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 ${isFullscreen ? 'fixed inset-0 z-50' : ''}`}>
-      {/* Enhanced Header */}
       <header className="bg-gray-900/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50 transition-all duration-300">
         <div className="px-8 py-4 flex justify-between items-center">
-          {/* Logo with enhanced animation */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -299,7 +360,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
             </h1>
           </motion.div>
 
-          {/* Enhanced Search and Profile Section */}
           <div className="flex items-center space-x-6">
             <div className="relative w-96 group">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 group-hover:text-purple-400 transition-colors duration-200" />
@@ -358,7 +418,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
               </div>
             </div>
 
-            {/* Enhanced Profile Section */}
             <div className="relative group">
               <motion.div 
                 whileHover={{ scale: 1.05 }}
@@ -389,9 +448,7 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
         </div>
       </header>
 
-      {/* Enhanced Main Content */}
       <div className={`container mx-auto px-6 py-8 pb-32 ${isFullscreen ? 'max-w-none' : ''}`}>
-        {/* Enhanced Title Section */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -405,7 +462,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
           </h2>
         </motion.div>
 
-        {/* Enhanced Slide Content */}
         <div className="relative min-h-[60vh] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
@@ -416,7 +472,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
               transition={{ duration: 0.3 }}
               className={`w-full ${isFullscreen ? 'max-w-6xl' : 'max-w-4xl'} bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 shadow-xl border border-gray-700/50 relative`}
             >
-              {/* Edit Button */}
               <div className="absolute top-4 right-4 flex items-center gap-2">
                 {!isEditing ? (
                   <Button
@@ -745,7 +800,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
           </AnimatePresence>
         </div>
 
-        {/* Enhanced Navigation */}
         <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 flex items-center gap-4">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -836,17 +890,73 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
               </div>
             </div>
           </motion.div>
+
+          <div className="flex items-center gap-4">
+            <div className="relative group">
+              <input
+                type="file"
+                id="logo-upload"
+                accept="image/*"
+                onChange={handleLogoUpload}
+                className="hidden"
+              />
+              <label
+                htmlFor="logo-upload"
+                className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg cursor-pointer transition-colors duration-200"
+              >
+                {logoPreview ? (
+                  <div className="flex items-center gap-2">
+                    <ImageIcon className="w-4 h-4" />
+                    <span>Change Logo</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <Upload className="w-4 h-4" />
+                    <span>Upload Logo</span>
+                  </div>
+                )}
+              </label>
+              
+              {logoPreview && (
+                <div className="absolute top-full mt-2 p-2 bg-gray-800 rounded-lg shadow-xl">
+                  <img 
+                    src={logoPreview} 
+                    alt="Logo preview" 
+                    className="h-8 w-auto"
+                  />
+                  <button
+                    onClick={() => {
+                      setLogoFile(null);
+                      setLogoPreview(null);
+                      if (presentation) {
+                        const updatedPresentation = {
+                          ...presentation,
+                          presentationConfig: {
+                            ...presentation.presentationConfig,
+                            logo: undefined
+                          }
+                        };
+                        setPresentation(updatedPresentation);
+                      }
+                    }}
+                    className="mt-2 text-xs text-red-400 hover:text-red-300"
+                  >
+                    Remove Logo
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Enhanced Footer */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-gray-800 bg-gray-900/80 backdrop-blur-md z-40">
         <div className="max-w-7xl mx-auto px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">© 2025 AI-Buddy. All rights reserved.</span>
               <span className="text-gray-600">•</span>
-              <span className="text-sm text-gray-400">Version 2.0.0</span>
+              <span className="text-sm text-gray-400">Version 0.0.9</span>
             </div>
             <p className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200">
               Created by Vijay Betigiri (vijay.betigiri@swisscom.com)
@@ -855,7 +965,6 @@ const PresentationCanvas: React.FC<PresentationCanvasProps> = ({ /* existing pro
         </div>
       </footer>
 
-      {/* Enhanced Styles */}
       <style>{`
         @keyframes glow {
           0%, 100% {

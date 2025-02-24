@@ -11,6 +11,25 @@ export interface SectionMetadata {
   estimatedTime: string;
 }
 
+export interface LogoStyle {
+  maxHeight: string;
+  margin: string;
+  position: 'absolute';
+  top: string;
+  left: string;
+  zIndex: string;
+}
+
+export interface LogoConfig {
+  src: string;
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  style: LogoStyle;
+}
+
+export interface PresentationConfig {
+  logo?: LogoConfig;
+}
+
 export interface Section {
   title: string;
   type: 'welcome' | 'overview' | 'section_header' | 'section_metadata' | 'content' | 'quiz';
@@ -23,5 +42,6 @@ export interface Section {
 
 export interface Presentation {
   courseName: string;
+  presentationConfig?: PresentationConfig;
   sections: Section[];
 } 

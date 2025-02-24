@@ -1340,7 +1340,7 @@ const CourseCanvas = () => {
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-400">© 2025 AI-Buddy. All rights reserved.</span>
               <span className="text-gray-600">•</span>
-              <span className="text-sm text-gray-400">Version 2.0.0</span>
+              <span className="text-sm text-gray-400">Version 0.0.9</span>
             </div>
             <p className="text-sm text-gray-400">Created by Vijay Betigiri (vijay.betigiri@swisscom.com)</p>
           </div>

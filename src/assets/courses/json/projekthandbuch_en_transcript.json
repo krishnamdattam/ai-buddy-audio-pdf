@@ -1,0 +1,713 @@
+{
+  "courseName": "projekthandbuch_en",
+  "sections": [
+    {
+      "sectionTitle": "2. Principles",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Welcome! Today, we\u2019re going to explore the principles of the NND project manual. By the end, you'll understand its purpose, structure, and key success factors. Ready to dive in?",
+          "audioFile": "projekthandbuch_en_1__2__principles.wav",
+          "startTime": 0,
+          "duration": 11304,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Yes, sounds interesting! What exactly is the NND project manual, and who uses it?",
+          "audioFile": "projekthandbuch_en_2__2__principles.wav",
+          "startTime": 11504,
+          "duration": 5976,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Great question! The NND project manual is a document that guides all participants in the NND project. These participants are from Axpo Power AG, Kernkraftwerk Leibstadt AG, and Zwilag Zwischenlager W\u00fcrenlingen AG. It\u2019s applicable in every phase of the project.",
+          "audioFile": "projekthandbuch_en_3__2__principles.wav",
+          "startTime": 17680,
+          "duration": 18900,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "I see. What does this manual aim to achieve?",
+          "audioFile": "projekthandbuch_en_4__2__principles.wav",
+          "startTime": 36780,
+          "duration": 3708,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Its main purpose is to ensure the project operates smoothly and effectively. It defines the project structure, tasks, responsibilities, processes, communication rules, and documentation standards. Think of it as a blueprint for quality assurance during the entire project.",
+          "audioFile": "projekthandbuch_en_5__2__principles.wav",
+          "startTime": 40688,
+          "duration": 18072,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "That makes sense. Can you give an example of how it helps in practice?",
+          "audioFile": "projekthandbuch_en_6__2__principles.wav",
+          "startTime": 58960,
+          "duration": 4572,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Sure! Imagine you're managing a construction project. If everyone had different ways of documenting progress, it could cause confusion. The NND project manual provides uniform processes for planning, control, and communication, ensuring everyone is on the same page. For instance, it mandates a clear schedule and budget plan based on a detailed Work Breakdown Structure (WBS).",
+          "audioFile": "projekthandbuch_en_7__2__principles.wav",
+          "startTime": 63732,
+          "duration": 25740,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, but who ensures that the manual stays updated and relevant throughout the project?",
+          "audioFile": "projekthandbuch_en_8__2__principles.wav",
+          "startTime": 89672,
+          "duration": 5616,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Good point! The NND Project Management Office (PMO) is responsible for maintaining and updating the manual. They ensure it remains aligned with the ongoing needs of the project.",
+          "audioFile": "projekthandbuch_en_9__2__principles.wav",
+          "startTime": 95488,
+          "duration": 11340,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Got it. What principles guide the NND project management process?",
+          "audioFile": "projekthandbuch_en_10__2__principles.wav",
+          "startTime": 107028,
+          "duration": 4788,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "The NND project follows key principles based on certified project management standards, like IPMA. It has a clear mandate from the client, a well-defined project organization, a detailed WBS with descriptions for each work package, an updated schedule, and a budget plan. It also includes continuous risk assessments for proactive problem-solving.",
+          "audioFile": "projekthandbuch_en_11__2__principles.wav",
+          "startTime": 112016,
+          "duration": 23400,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Interesting! What are the critical success factors for the project?",
+          "audioFile": "projekthandbuch_en_12__2__principles.wav",
+          "startTime": 135616,
+          "duration": 3924,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Critical success factors include proper resource allocation, adherence to deadlines, and ensuring safe and economical operations. For example, if a deadline might be missed, the issue must be escalated early to minimize costs and risks. Additionally, management and project participants must actively support the goals and processes.",
+          "audioFile": "projekthandbuch_en_13__2__principles.wav",
+          "startTime": 139740,
+          "duration": 23220,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "It sounds like a lot of coordination is required. Are qualified resources ensured at every stage?",
+          "audioFile": "projekthandbuch_en_14__2__principles.wav",
+          "startTime": 163160,
+          "duration": 6480,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Absolutely. Qualified resources are made available in every phase to guarantee smooth execution. This ensures that all technical, organizational, and human factors are accounted for effectively.",
+          "audioFile": "projekthandbuch_en_15__2__principles.wav",
+          "startTime": 169840,
+          "duration": 14004,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Thanks for explaining! So, to summarize, the manual provides structure, processes, and rules for effective project management, and it\u2019s backed by strong principles and success factors, right?",
+          "audioFile": "projekthandbuch_en_16__2__principles.wav",
+          "startTime": 184044,
+          "duration": 12528,
+          "purpose": "question",
+          "dialogueIndex": 15
+        }
+      ]
+    },
+    {
+      "sectionTitle": "3. Project description",
+      "sectionIndex": 1,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Welcome! Today, we\u2019ll discuss the NND project and its importance in redefining business IT for nuclear facilities. Our goal is to understand the key requirements, objectives, and scope of this project.",
+          "audioFile": "projekthandbuch_en_1__3__project_description.wav",
+          "startTime": 0,
+          "duration": 14040,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Sounds interesting! Why is this project so critical for nuclear facilities?",
+          "audioFile": "projekthandbuch_en_2__3__project_description.wav",
+          "startTime": 14240,
+          "duration": 5616,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Great question! The NND project is crucial because it addresses the IT-specific regulatory requirements imposed by ENSI Guideline G22. For example, nuclear plants like Leibstadt, Beznau, and Zwilag need to establish their own data centers to ensure island operation capability. This means that their IT systems can function independently, even during emergencies.",
+          "audioFile": "projekthandbuch_en_3__3__project_description.wav",
+          "startTime": 20056,
+          "duration": 27000,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "What do you mean by \u2018island operation capability\u2019? Could you clarify with an example?",
+          "audioFile": "projekthandbuch_en_4__3__project_description.wav",
+          "startTime": 47256,
+          "duration": 5040,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Sure! Imagine a scenario where the external power grid fails due to a cyberattack or natural disaster. With island operation capability, the nuclear facility\u2019s IT systems can continue running autonomously without relying on external resources. This ensures operational continuity and safety.",
+          "audioFile": "projekthandbuch_en_5__3__project_description.wav",
+          "startTime": 52496,
+          "duration": 19764,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "That makes sense. What other requirements does the NND project need to fulfill?",
+          "audioFile": "projekthandbuch_en_6__3__project_description.wav",
+          "startTime": 72460,
+          "duration": 5220,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "The project has several critical requirements. For instance, IT security must ensure availability, integrity, confidentiality, and non-repudiation of information. Additionally, the management of each nuclear site must have explicit authority over IT security. There\u2019s also a strict restriction on exporting nuclear technology data abroad, as per the Goods Control Ordinance.",
+          "audioFile": "projekthandbuch_en_7__3__project_description.wav",
+          "startTime": 77880,
+          "duration": 25056,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "So, the NND project not only focuses on security but also on local control and regulatory compliance?",
+          "audioFile": "projekthandbuch_en_8__3__project_description.wav",
+          "startTime": 103136,
+          "duration": 7416,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Exactly! And beyond that, the project aims to reduce costs by leveraging synergies among the nuclear facilities. For example, creating a unified IT architecture that meets all these requirements can save resources while ensuring security.",
+          "audioFile": "projekthandbuch_en_9__3__project_description.wav",
+          "startTime": 110752,
+          "duration": 15912,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "What about the main goals of the project? Can you summarize them for me?",
+          "audioFile": "projekthandbuch_en_10__3__project_description.wav",
+          "startTime": 126864,
+          "duration": 3996,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Of course! The main goals include building a completely new IT infrastructure to enable island operation capability, developing a secure IT architecture, establishing a new IT organizational unit within the Nuclear Division, and creating tailored IT processes. These goals ensure the independence and compliance of business IT with regulatory standards.",
+          "audioFile": "projekthandbuch_en_11__3__project_description.wav",
+          "startTime": 131060,
+          "duration": 24192,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "But what happens if something is out of the project\u2019s scope? How is that managed?",
+          "audioFile": "projekthandbuch_en_12__3__project_description.wav",
+          "startTime": 155452,
+          "duration": 4788,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Good point! Certain areas, like Operational Technology (OT) systems and Security Operation Centers (SOC), are not part of the NND project because they are already managed separately. Similarly, staffing for specialized applications like SAP isn\u2019t included but is considered in the overall IT organization.",
+          "audioFile": "projekthandbuch_en_13__3__project_description.wav",
+          "startTime": 160440,
+          "duration": 21384,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "That\u2019s clear. It seems like the project management must be quite complex given the scope and requirements.",
+          "audioFile": "projekthandbuch_en_14__3__project_description.wav",
+          "startTime": 182024,
+          "duration": 6300,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Absolutely. The NND project is categorized as a Class A project, which means it requires meticulous project management and adherence to strict methodologies. This ensures every phase, from preliminary engineering to delivery, is handled efficiently.",
+          "audioFile": "projekthandbuch_en_15__3__project_description.wav",
+          "startTime": 188524,
+          "duration": 17964,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "What\u2019s the biggest challenge in implementing this project?",
+          "audioFile": "projekthandbuch_en_16__3__project_description.wav",
+          "startTime": 206688,
+          "duration": 3420,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "The biggest challenge is meeting all the regulatory requirements, particularly those outlined in ENSI Guideline G22, while ensuring seamless insourcing of business IT. At the same time, the project must manage costs and align with Axpo Group\u2019s enterprise architecture.",
+          "audioFile": "projekthandbuch_en_17__3__project_description.wav",
+          "startTime": 210308,
+          "duration": 18180,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "This seems like a massive undertaking. Can you summarize the key takeaways for me?",
+          "audioFile": "projekthandbuch_en_18__3__project_description.wav",
+          "startTime": 228688,
+          "duration": 5148,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    },
+    {
+      "sectionTitle": "4. Project organization and committee structure",
+      "sectionIndex": 2,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Today, we\u2019ll explore project organization and committee structure. Specifically, we'll discuss the roles of the SteCo and the project chair. By the end, you\u2019ll understand how they ensure a project's strategic and operational success.",
+          "audioFile": "projekthandbuch_en_1__4__project_organization_and_committee_structure.wav",
+          "startTime": 0,
+          "duration": 15012,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "That sounds interesting! What exactly is the SteCo, and what does it do?",
+          "audioFile": "projekthandbuch_en_2__4__project_organization_and_committee_structure.wav",
+          "startTime": 15212,
+          "duration": 5040,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "The SteCo, or steering committee, is like the board of directors for a project. It ensures the project\u2019s strategic success across all companies involved. Think of it as the highest authority, making overarching decisions and resolving escalated issues. For example, if two departments disagree on project goals, the SteCo steps in to resolve the conflict.",
+          "audioFile": "projekthandbuch_en_3__4__project_organization_and_committee_structure.wav",
+          "startTime": 20452,
+          "duration": 23544,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Got it. So, how often does the SteCo meet, and who prepares for these meetings?",
+          "audioFile": "projekthandbuch_en_4__4__project_organization_and_committee_structure.wav",
+          "startTime": 44196,
+          "duration": 6732,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "The SteCo typically meets quarterly, although meetings can be scheduled based on significant events. The project manager is responsible for preparing these meetings and also participates in them.",
+          "audioFile": "projekthandbuch_en_5__4__project_organization_and_committee_structure.wav",
+          "startTime": 51128,
+          "duration": 12276,
+          "purpose": "answer",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "What are the specific responsibilities of the SteCo?",
+          "audioFile": "projekthandbuch_en_6__4__project_organization_and_committee_structure.wav",
+          "startTime": 63604,
+          "duration": 3312,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "The SteCo has a range of responsibilities, including defining strategic goals, clarifying high-level questions, evaluating project results through reports, and acting as an escalation point in conflicts\u2014especially between the project and line functions. For instance, if procurement delays are impacting the timeline, the SteCo might intervene to resolve the issue.",
+          "audioFile": "projekthandbuch_en_7__4__project_organization_and_committee_structure.wav",
+          "startTime": 67116,
+          "duration": 24264,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Does the SteCo have the authority to make personnel or budget decisions?",
+          "audioFile": "projekthandbuch_en_8__4__project_organization_and_committee_structure.wav",
+          "startTime": 91580,
+          "duration": 4680,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, the SteCo can approve or reject project applications, appoint or replace the project manager, and approve procurements above certain budget thresholds, following financial competencies outlined in Chapter 17. Essentially, they oversee major strategic decisions.",
+          "audioFile": "projekthandbuch_en_9__4__project_organization_and_committee_structure.wav",
+          "startTime": 96460,
+          "duration": 19332,
+          "purpose": "answer",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Interesting! Now, what about the project chair? How is their role different from the SteCo?",
+          "audioFile": "projekthandbuch_en_10__4__project_organization_and_committee_structure.wav",
+          "startTime": 115992,
+          "duration": 5508,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Great question! While the SteCo focuses on strategic oversight, the project chair ensures the operational success of the project. Think of them as the captain steering the ship, representing the client's interests and working closely with the project manager to manage day-to-day operations.",
+          "audioFile": "projekthandbuch_en_11__4__project_organization_and_committee_structure.wav",
+          "startTime": 121700,
+          "duration": 18288,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "What specific tasks does the project chair handle?",
+          "audioFile": "projekthandbuch_en_12__4__project_organization_and_committee_structure.wav",
+          "startTime": 140188,
+          "duration": 3024,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "The project chair has several responsibilities, such as evaluating project results, aligning project management objectives, clarifying the project framework, and acting as an escalation point in conflicts. They also manage project communication and marketing with the project manager. For instance, if a project\u2019s goals need to be adjusted due to unforeseen risks, the project chair would lead that process.",
+          "audioFile": "projekthandbuch_en_13__4__project_organization_and_committee_structure.wav",
+          "startTime": 143412,
+          "duration": 25236,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Does the project chair have a say in approving changes to the project?",
+          "audioFile": "projekthandbuch_en_14__4__project_organization_and_committee_structure.wav",
+          "startTime": 168848,
+          "duration": 4356,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Absolutely. The project chair can request and approve changes like updates to the project assignment, manual, objectives, organization, planning, final report, and financial releases\u2014though major decisions might still require SteCo involvement.",
+          "audioFile": "projekthandbuch_en_15__4__project_organization_and_committee_structure.wav",
+          "startTime": 173404,
+          "duration": 16776,
+          "purpose": "answer",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "How often does the project chair meet, and who prepares those meetings?",
+          "audioFile": "projekthandbuch_en_16__4__project_organization_and_committee_structure.wav",
+          "startTime": 190380,
+          "duration": 4824,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "The project chair usually meets every two to three months or as needed. Similar to the SteCo, the project manager is responsible for preparing and attending these meetings.",
+          "audioFile": "projekthandbuch_en_17__4__project_organization_and_committee_structure.wav",
+          "startTime": 195404,
+          "duration": 11412,
+          "purpose": "answer",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "This is all starting to make sense. Can you summarize the main differences between the SteCo and the project chair?",
+          "audioFile": "projekthandbuch_en_18__4__project_organization_and_committee_structure.wav",
+          "startTime": 207016,
+          "duration": 6696,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    },
+    {
+      "sectionTitle": "5. Project phases",
+      "sectionIndex": 3,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Hello! Today, we\u2019re going to explore the project phases of the NND project. By the end, you\u2019ll understand how this process ensures successful project implementation.",
+          "audioFile": "projekthandbuch_en_1__5__project_phases.wav",
+          "startTime": 0,
+          "duration": 10656,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Great! What exactly are these phases, and why are they important?",
+          "audioFile": "projekthandbuch_en_2__5__project_phases.wav",
+          "startTime": 10856,
+          "duration": 4608,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Think of a project as building a house. You wouldn\u2019t start without a blueprint, right? The NND project phases act like that blueprint, ensuring clarity, organization, and thorough planning at every step.",
+          "audioFile": "projekthandbuch_en_3__5__project_phases.wav",
+          "startTime": 15664,
+          "duration": 13320,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "That makes sense! So, what\u2019s the first step in this process?",
+          "audioFile": "projekthandbuch_en_4__5__project_phases.wav",
+          "startTime": 29184,
+          "duration": 4788,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "The first phase involves formulating the reason for the project and clarifying why it\u2019s necessary. It\u2019s like asking, \u2018Why do we need this house?\u2019 Then, we define the project\u2019s objective and propose a strategy to achieve it. This phase ends with an approved project proposal and an order to start the preliminary work.",
+          "audioFile": "projekthandbuch_en_5__5__project_phases.wav",
+          "startTime": 34172,
+          "duration": 19980,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, so the foundation is set. What happens next?",
+          "audioFile": "projekthandbuch_en_6__5__project_phases.wav",
+          "startTime": 54352,
+          "duration": 4032,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Next is the planning phase, which begins with a kickoff meeting. We analyze the current situation, define project objectives and scope, and prepare a project contract. It\u2019s like setting up a detailed roadmap for your house construction, including tasks, schedules, and financial planning.",
+          "audioFile": "projekthandbuch_en_7__5__project_phases.wav",
+          "startTime": 58584,
+          "duration": 18288,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "How do financial and resource planning fit into this phase?",
+          "audioFile": "projekthandbuch_en_8__5__project_phases.wav",
+          "startTime": 77072,
+          "duration": 3636,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Good question! Imagine estimating the cost of materials and labor for building your house. Similarly, in this phase, we draft a rough budget and secure the necessary financial resources to proceed. The outcome includes an approved concept and a loan application for the project.",
+          "audioFile": "projekthandbuch_en_9__5__project_phases.wav",
+          "startTime": 80908,
+          "duration": 18288,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "That\u2019s detailed! What happens after financials are sorted?",
+          "audioFile": "projekthandbuch_en_10__5__project_phases.wav",
+          "startTime": 99396,
+          "duration": 3888,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "We move to an in-depth planning phase. Here, we create quality requirements, define delivery and warranty conditions, draft a project structure plan, and perform risk and profitability analyses. Think of it as finalizing every detail before construction starts.",
+          "audioFile": "projekthandbuch_en_11__5__project_phases.wav",
+          "startTime": 103484,
+          "duration": 18324,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "And the results of this phase?",
+          "audioFile": "projekthandbuch_en_12__5__project_phases.wav",
+          "startTime": 122008,
+          "duration": 2016,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "The outcome is a detailed framework schedule, cost and resource plans, and finalized external service agreements. It\u2019s like having a complete construction timeline and budget ready.",
+          "audioFile": "projekthandbuch_en_13__5__project_phases.wav",
+          "startTime": 124224,
+          "duration": 11520,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Once that\u2019s done, do we start implementation?",
+          "audioFile": "projekthandbuch_en_14__5__project_phases.wav",
+          "startTime": 135944,
+          "duration": 2844,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Correct! The implementation phase kicks off with creating basic technical concepts, such as network and infrastructure designs, and involves commissioning components like data centers. It\u2019s like assembling materials on-site for your house. We also conduct security audits, update schedules, and ensure everything aligns with the plan.",
+          "audioFile": "projekthandbuch_en_15__5__project_phases.wav",
+          "startTime": 138988,
+          "duration": 20700,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "What does the implementation phase deliver?",
+          "audioFile": "projekthandbuch_en_16__5__project_phases.wav",
+          "startTime": 159888,
+          "duration": 2592,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "It delivers a fully implemented and commissioned solution. Additionally, training and provisional handover are conducted to ensure users are familiar with the final product.",
+          "audioFile": "projekthandbuch_en_17__5__project_phases.wav",
+          "startTime": 162680,
+          "duration": 10512,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "How is the project wrapped up after implementation?",
+          "audioFile": "projekthandbuch_en_18__5__project_phases.wav",
+          "startTime": 173392,
+          "duration": 3096,
+          "purpose": "question",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "The final phase focuses on project closure. It includes completing documentation, fixing any defects, reviewing target achievements, and conducting lessons-learned workshops. It\u2019s like inspecting the house, ensuring everything is in order, and handing over the keys.",
+          "audioFile": "projekthandbuch_en_19__5__project_phases.wav",
+          "startTime": 176688,
+          "duration": 18036,
+          "purpose": "explanation",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "And the results of this phase?",
+          "audioFile": "projekthandbuch_en_20__5__project_phases.wav",
+          "startTime": 194924,
+          "duration": 2016,
+          "purpose": "question",
+          "dialogueIndex": 19
+        },
+        {
+          "speaker": "expert",
+          "text": "The results include a final project report with lessons learned and the official closure of the project organization by the steering committee.",
+          "audioFile": "projekthandbuch_en_21__5__project_phases.wav",
+          "startTime": 197140,
+          "duration": 8244,
+          "purpose": "explanation",
+          "dialogueIndex": 20
+        },
+        {
+          "speaker": "learner",
+          "text": "This process seems thorough. How does it ensure project success?",
+          "audioFile": "projekthandbuch_en_22__5__project_phases.wav",
+          "startTime": 205584,
+          "duration": 4536,
+          "purpose": "question",
+          "dialogueIndex": 21
+        },
+        {
+          "speaker": "expert",
+          "text": "By breaking down the project into these structured phases, we address each aspect systematically\u2014from planning to execution and review. It minimizes risks, ensures quality, and aligns with business goals.",
+          "audioFile": "projekthandbuch_en_23__5__project_phases.wav",
+          "startTime": 210320,
+          "duration": 13968,
+          "purpose": "explanation",
+          "dialogueIndex": 22
+        },
+        {
+          "speaker": "learner",
+          "text": "Got it! Thanks for explaining the NND project phases so clearly.",
+          "audioFile": "projekthandbuch_en_24__5__project_phases.wav",
+          "startTime": 224488,
+          "duration": 5112,
+          "purpose": "summary",
+          "dialogueIndex": 23
+        }
+      ]
+    }
+  ]
+}

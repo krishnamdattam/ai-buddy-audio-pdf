@@ -85,6 +85,8 @@ export default function Index() {
   }>>([]);
   const [pdfUrl, setPdfUrl] = useState<string>('');
   const [courseData, setCourseData] = useState<any>(null);
+  const [pdfLoadError, setPdfLoadError] = useState(false);
+  const [isPdfLoading, setIsPdfLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -206,7 +208,10 @@ export default function Index() {
       toast.error('PDF file not found');
       return;
     }
+
+    // Log the PDF URL for debugging
     const pdfUrl = `http://localhost:5001/api/pdf/${courseState.courseName}/${pdfFilename}`;
+    console.log('Setting PDF URL:', pdfUrl);
     setPdfUrl(pdfUrl);
 
     const loadAudioSections = async () => {
@@ -712,15 +717,36 @@ export default function Index() {
               animate={{ x: 0, opacity: 1 }}
               className={`${isPdfFullScreen ? 'flex-1' : 'w-1/2'} border-r border-gray-700/50 transition-all duration-300`}
             >
-              <div className="h-full rounded-lg overflow-hidden backdrop-blur-sm shadow-xl">
+              <div className="h-full rounded-lg overflow-hidden backdrop-blur-sm shadow-xl relative">
+                {/* Loading indicator */}
+                {isPdfLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                  </div>
+                )}
+                
                 <object
                   data={pdfUrl}
                   type="application/pdf"
-                  className="w-full h-full border-0"
-                  title="PDF Document"
+                  className="w-full h-full"
+                  onLoad={() => setIsPdfLoading(false)}
+                  onError={() => {
+                    setIsPdfLoading(false);
+                    setPdfLoadError(true);
+                  }}
                 >
-                  <p>It appears you don't have a PDF plugin for this browser. You can 
-                  <a href={pdfUrl} target="_blank" rel="noopener noreferrer"> click here to download the PDF file.</a></p>
+                  {pdfLoadError && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-900/90">
+                      <a 
+                        href={pdfUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:text-blue-300 underline"
+                      >
+                        Open PDF in new tab
+                      </a>
+                    </div>
+                  )}
                 </object>
               </div>
             </motion.div>
@@ -877,7 +903,7 @@ export default function Index() {
                 <div className="flex items-center gap-2 text-[10px] text-gray-400">
                   <span className="hover:text-gray-300 transition-colors">© 2025 AI-Buddy</span>
                   <div className="h-2 w-px bg-gray-700/50" />
-                  <span className="text-gray-500">v2.0.0</span>
+                  <span className="text-gray-500">v0.0.9</span>
                 </div>
                 <a 
                   href="mailto:vijay.betigiri@swisscom.com"

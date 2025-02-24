@@ -1,0 +1,118 @@
+{
+  "courseName": "projekthandbuch_short_de",
+  "sections": [
+    {
+      "title": "Willkommen zum Projekthandbuch Short De Kurs",
+      "type": "welcome",
+      "summary_points": [
+        "Willkommen zu Ihrer umfassenden Projekthandbuch Short De Lernreise",
+        "Lernen Sie durch die audiovisuelle Präsentation und durch Fragen an den KI-Buddy-Assistenten",
+        "Lernen Sie anhand praktischer Beispiele und realer Szenarien",
+        "Beherrschen Sie Kernkonzepte und Best Practices"
+      ]
+    },
+    {
+      "title": "Kursübersicht",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Grundlegendes Verständnis von IT-Konzepten",
+          "Vertrautheit mit grundlegenden Computerbegriffen",
+          "Keine Vorkenntnisse erforderlich"
+        ],
+        "learningGoals": [
+          "Verstehen grundlegender Konzepte und Dienste",
+          "Lernen Sie mit Kerntechnologien zu arbeiten",
+          "Beherrschen Sie wichtige Terminologie und Prinzipien",
+          "Gewinnen Sie praktisches Umsetzungswissen"
+        ],
+        "estimatedTime": "2 Stunden"
+      }
+    },
+    {
+      "title": "Abschnitt 1: 1. Zusammenfassung des Projekthandbuchs NND",
+      "type": "section_header"
+    },
+    {
+      "title": "1. Zusammenfassung des Projekthandbuchs NND",
+      "type": "content",
+      "summary_points": [
+        "Das Projekthandbuch NND dient als verbindliche Grundlage für die Planung, Steuerung und Umsetzung des Projekts, um klare Verantwortlichkeiten und die Erfüllung regulatorischer, technischer und organisatorischer Vorgaben sicherzustellen.",
+        "Das Hauptziel des Projekts ist die Optimierung sicherheitskritischer IT-Dienste in Kernkraftwerken, einschließlich des Aufbaus eigener Rechenzentren, des Insourcings der Business-IT sowie der Sicherstellung der Inselbetriebsfähigkeit.",
+        "Das Projekt verfolgt höchste IT-Sicherheitsstandards durch redundante Systeme, Minimierung externer Zugriffe und Einschränkungen der Datenspeicherung im Ausland, um Verfügbarkeit, Integrität und Vertraulichkeit zu gewährleisten.",
+        "Die Projektorganisation umfasst Schlüsselrollen wie das Steering Committee für strategische Entscheidungen, den Projektvorsitz für operative Steuerung und das PMO zur Koordination von Terminen, Budgets und Risiken, während das Projekt in fünf Phasen durchgeführt wird: Initialisierung, Planung, Realisierung, Übergabe und Abschluss."
+      ]
+    },
+    {
+      "title": "Wissensüberprüfung",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "Was ist das Hauptziel des Projekts NND?",
+          "options": [
+            "Die Entwicklung neuer Kernkraftwerke",
+            "Die Optimierung sicherheitskritischer IT-Dienste in Kernkraftwerken",
+            "Die Abschaltung von Kernkraftwerken",
+            "Die Errichtung von Offshore-Windparks"
+          ],
+          "correct_answer": "Die Optimierung sicherheitskritischer IT-Dienste in Kernkraftwerken",
+          "explanation": "Das Hauptziel des Projekts NND ist die Optimierung sicherheitskritischer IT-Dienste in Kernkraftwerken. Dazu gehören der Aufbau eigener Rechenzentren, das Insourcing der Business-IT und die Sicherstellung der Inselbetriebsfähigkeit."
+        },
+        {
+          "question": "Welche Rolle ist für strategische Entscheidungen im Projektmanagement verantwortlich?",
+          "options": [
+            "Projektmanagement Office (PMO)",
+            "Projektvorsitz",
+            "Steering Committee (SteCo)",
+            "IT-Sicherheitsbeauftragter"
+          ],
+          "correct_answer": "Steering Committee (SteCo)",
+          "explanation": "Das Steering Committee (SteCo) ist für strategische Entscheidungen verantwortlich, während der Projektvorsitz die operative Steuerung übernimmt und das PMO Termine, Budgets und Risiken koordiniert."
+        },
+        {
+          "question": "Was bedeutet 'Inselbetriebsfähigkeit' im Kontext des Projekts NND?",
+          "options": [
+            "Der Betrieb mehrerer IT-Systeme in unterschiedlichen Ländern",
+            "Die Fähigkeit, Kernkraftwerke ohne externe IT-Abhängigkeiten sicher zu betreiben",
+            "Die Trennung von IT-Diensten in verschiedene Netzwerke",
+            "Die vollständige Automatisierung von Kraftwerksprozessen"
+          ],
+          "correct_answer": "Die Fähigkeit, Kernkraftwerke ohne externe IT-Abhängigkeiten sicher zu betreiben",
+          "explanation": "'Inselbetriebsfähigkeit' bedeutet, dass die Kernkraftwerke auch isoliert, also ohne externe IT-Abhängigkeiten, sicher betrieben werden können, z.B. bei einem kompletten Stromnetzausfall."
+        },
+        {
+          "question": "Welche Sicherheitsprinzipien werden im Projekt NND besonders berücksichtigt?",
+          "options": [
+            "Flexibilität, Geschwindigkeit und Erschwinglichkeit",
+            "Verfügbarkeit, Integrität und Vertraulichkeit",
+            "Skalierbarkeit, Transparenz und Zugänglichkeit",
+            "Effizienz, Effektivität und Benutzerfreundlichkeit"
+          ],
+          "correct_answer": "Verfügbarkeit, Integrität und Vertraulichkeit",
+          "explanation": "Das Projekt NND legt besonderen Wert auf die Sicherheitsprinzipien Verfügbarkeit, Integrität und Vertraulichkeit, um höchste IT-Sicherheitsstandards zu gewährleisten."
+        },
+        {
+          "question": "Welche Maßnahmen werden im Projekt ergriffen, um Risiken wie Verzögerungen zu minimieren?",
+          "options": [
+            "Einsatz von künstlicher Intelligenz zur Projektsteuerung",
+            "Frühzeitige Risikobewertung, alternative Ressourcen und Zeitpuffer",
+            "Ausschließlich wöchentliche Statusberichte",
+            "Verzicht auf Eskalationsmechanismen"
+          ],
+          "correct_answer": "Frühzeitige Risikobewertung, alternative Ressourcen und Zeitpuffer",
+          "explanation": "Das Risikomanagement identifiziert potenzielle Gefahren frühzeitig, bewertet sie und ergreift Maßnahmen wie alternative Ressourcen oder Zeitpuffer, um Verzögerungen zu minimieren."
+        }
+      ]
+    },
+    {
+      "title": "Vielen Dank!",
+      "type": "welcome",
+      "summary_points": [
+        "Vielen Dank für Ihre Teilnahme an dieser Projekthandbuch Short De Kurspräsentation",
+        "Sie können diese Präsentation jederzeit über die Kursseite im Dashboard erneut ansehen",
+        "Bei Fragen zu diesem Thema wenden Sie sich gerne an unseren KI-Buddy-Assistenten",
+        "Bitte geben Sie uns Ihr wertvolles Feedback im Gespräch mit dem Assistenten"
+      ]
+    }
+  ]
+}
