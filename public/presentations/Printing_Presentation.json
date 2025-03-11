@@ -1,0 +1,129 @@
+{
+    "presentation": {
+      "slides": [
+        {
+          "slide_name": "slide_1",
+          "type": "content",
+          "title": "Was ist Secure Printing?",
+          "content": [
+            "Drucke Dokumente an jedem KKB-Drucker.",
+            "Sichere Einrichtung auf deinem Rechner erforderlich.",
+            "Öffne „Systemsteuerung“ → „Geräte und Drucker“.",
+            "Falls nicht vorhanden, installiere den SecurePrint-Drucker."
+          ],
+          "image": "images1/image1.png",
+          "conversation": "Audio1/Audio1.mp3"
+        },
+        {
+          "slide_name": "slide_2",
+          "type": "content",
+          "title": "Prüfe, ob SecurePrint installiert ist",
+          "content": [
+            "Suche nach „AXPOSecurePrint_PCL…“ auf deinem Gerät.",
+            "Falls vorhanden, ist SecurePrint bereits eingerichtet."
+          ],
+          "image": "images1/image2.png",
+          "conversation": "Audio1/Audio2.mp3"
+        },
+        {
+          "slide_name": "slide_3",
+          "type": "content",
+          "title": "SecurePrint hinzufügen (falls nicht vorhanden)",
+          "content": [
+            "Öffne „Drucker hinzufügen“ (WIN10) oder „Gerät hinzufügen“ (WIN11).",
+            "Wähle den SecurePrinter aus der Liste und füge ihn hinzu."
+          ],
+          "image": "images1/image3.png",
+          "conversation": "Audio1/Audio3.mp3"
+        },
+        {
+          "slide_name": "slide_4",
+          "type": "content",
+          "title": "Setze den SecurePrint als Standarddrucker",
+          "content": [
+            "Windows 10: Drucker erscheint in der Liste → Installieren & Standard setzen.",
+            "Windows 11: Nach der Installation als Standarddrucker auswählen."
+          ],
+          "image": "images1/image4.png",
+          "conversation": "Audio1/Audio4.mp3"
+        },
+        {
+          "slide_name": "slide_5",
+          "type": "content",
+          "title": "Drucker nicht in der Liste?",
+          "content": [
+            "Klicke auf „Der gewünschte Drucker ist nicht in der Liste enthalten“.",
+            "Wähle „Einen Drucker im Verzeichnis anhand des Standorts suchen“."
+          ],
+          "image": "images1/image5.png",
+          "conversation": "Audio1/Audio5.mp3"
+        },
+        {
+          "slide_name": "slide_6",
+          "type": "content",
+          "title": "Den richtigen Drucker finden",
+          "content": [
+            "Gib „Axpo“ in das Suchfeld ein.",
+            "Wähle den „AXPOSecurePrint_PCL“ aus den Suchergebnissen."
+          ],
+          "image": "images1/image6.png",
+          "conversation": "Audio1/Audio6.mp3"
+        },
+        {
+          "slide_name": "slide_7",
+          "type": "content",
+          "title": "Drucken mit SecurePrint",
+          "content": [
+            "Setze SecurePrint als Standarddrucker (empfohlen).",
+            "Beim Drucken „AXPOSecurePrint“ auswählen und „Drucken“ klicken."
+          ],
+          "image": "images1/image7.png",
+          "conversation": "Audio1/Audio7.mp3"
+        },
+        {
+          "slide_name": "slide_8",
+          "type": "content",
+          "title": "Druckauftrag am KKB-Drucker abholen",
+          "content": [
+            "Gehe zu einem beliebigen KKB-Drucker.",
+            "Halte deinen Badge an den Leser."
+          ],
+          "image": "images1/image8.png",
+          "conversation": "Audio1/Audio8.mp3"
+        },
+        {
+          "slide_name": "slide_9",
+          "type": "content",
+          "title": "Druckaufträge verwalten",
+          "content": [
+            "Nach Anmeldung erscheint die Benutzeroberfläche.",
+            "Tippe auf „AXPOSecurePrint“"
+          ],
+          "image": "images1/image9.png",
+          "conversation": "Audio1/Audio9.mp3"
+        },
+        {
+          "slide_name": "slide_10",
+          "type": "content",
+          "title": "Druckaufträge einsehen",
+          "content": [
+            "Deine gesendeten Druckjobs werden angezeigt."
+          ],
+          "image": "images1/image10.png",
+          "conversation": "Audio1/Audio10.mp3"
+        },
+        {
+          "slide_name": "slide_11",
+          "type": "content",
+          "title": "Druck starten",
+          "content": [
+            "Wähle einzelne oder alle Druckaufträge aus.",
+            "Nach dem Druck verschwinden die Jobs aus der Liste."
+          ],
+          "image": null,
+          "conversation": "Audio1/Audio11.mp3"
+        }
+      ]
+    }
+  }
+  

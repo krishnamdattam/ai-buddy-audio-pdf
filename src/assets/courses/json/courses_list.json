@@ -68,18 +68,37 @@
     "summary": "This course is a summary guide to the NND project handbook in 4 minutes. It covers a brief summary of all the key topics and concepts that are important to understand the project handbook in german language. It takes 5 minutes to complete."
   },
   {
-    "id": "a7ec855e-6626-4f16-9df1-2183c29d3738",
-    "name": "nnd_projekthandbuch_de",
-    "title": "NND_Projekthandbuch_DE",
+    "id": "1c9cf88b-27bd-4d39-9ee5-e8dad86c822e",
+    "name": "wingo_roaming",
+    "title": "Wingo Roaming",
+    "template": "educational-deep-dive",
+    "persona": "andrew-ava",
+    "voiceConfig": {
+      "language": "english"
+    },
+    "createdAt": "2025-02-24T19:18:44.008985",
+    "lastAccessed": "2025-02-24T20:20:23.358388",
+    "progress": 0,
+    "audioAvailable": true,
+    "pdfFile": "pdf/Roaming_EN.pdf",
+    "presentationAvailable": true,
+    "video": "video/wingo_roaming.mp4"
+  },
+  {
+    "id": "e0dbe8f0-884a-4307-b3a1-63a218313d69",
+    "name": "wingo_roaming_de",
+    "title": "Wingo Roaming_DE",
     "template": "educational-deep-dive",
     "persona": "killian-maja",
     "voiceConfig": {
       "language": "german"
     },
-    "createdAt": "2025-02-24T13:16:14.221711",
-    "lastAccessed": "2025-02-24T13:16:14.221711",
+    "createdAt": "2025-02-26T12:48:01.524357",
+    "lastAccessed": "2025-02-26T13:56:50.733920",
     "progress": 0,
-    "audioAvailable": false,
-    "pdfFile": "pdf/NND_AP1.0_Projekthandbuch_v136.pdf"
+    "audioAvailable": true,
+    "pdfFile": "pdf/Roaming_DE.pdf",
+    "presentationAvailable": true,
+    "video": "video/wingo_roaming_de.mp4"
   }
 ]

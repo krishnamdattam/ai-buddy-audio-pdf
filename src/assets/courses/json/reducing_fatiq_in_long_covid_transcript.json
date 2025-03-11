@@ -1,0 +1,359 @@
+{
+  "courseName": "reducing_fatiq_in_long_covid",
+  "sections": [
+    {
+      "sectionTitle": "1. Introduction:",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Today, we\u2019ll discuss the emergence of Long COVID and its implications. By the end, you\u2019ll understand its symptoms, potential causes, and treatment approaches.",
+          "audioFile": "reducing_fatiq_in_long_covid_1__1__introduction.wav",
+          "startTime": 0,
+          "duration": 10296,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Interesting! I\u2019ve heard about Long COVID but don\u2019t know much about it. What exactly is it?",
+          "audioFile": "reducing_fatiq_in_long_covid_2__1__introduction.wav",
+          "startTime": 10496,
+          "duration": 5544,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Long COVID refers to post-COVID symptoms that persist for weeks or months after the initial infection. For example, symptoms lasting beyond 3 weeks are termed 'postacute COVID,' and beyond 12 weeks, it\u2019s called 'chronic post-COVID syndrome.\u2019 It can affect multiple systems in the body.",
+          "audioFile": "reducing_fatiq_in_long_covid_3__1__introduction.wav",
+          "startTime": 16240,
+          "duration": 19224,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "What kind of symptoms are we talking about here?",
+          "audioFile": "reducing_fatiq_in_long_covid_4__1__introduction.wav",
+          "startTime": 35664,
+          "duration": 2592,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Common symptoms include persistent fatigue, muscle pain (myalgia), depressive symptoms, and sleep disturbances. These resemble chronic fatigue syndrome, also known as CFS/ME.",
+          "audioFile": "reducing_fatiq_in_long_covid_5__1__introduction.wav",
+          "startTime": 38456,
+          "duration": 13356,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "That sounds serious. What causes these symptoms?",
+          "audioFile": "reducing_fatiq_in_long_covid_6__1__introduction.wav",
+          "startTime": 52012,
+          "duration": 3888,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "One evidence-based hypothesis suggests damage to olfactory sensory neurons. This can increase resistance to cerebrospinal fluid flow, leading to congestion in the brain's glymphatic system and toxic buildup. This process may explain the fatigue and other neurological symptoms.",
+          "audioFile": "reducing_fatiq_in_long_covid_7__1__introduction.wav",
+          "startTime": 56100,
+          "duration": 18684,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "That\u2019s fascinating. Is there any proof that the virus can affect the brain like this?",
+          "audioFile": "reducing_fatiq_in_long_covid_8__1__introduction.wav",
+          "startTime": 74984,
+          "duration": 5256,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, studies show that SARS-CoV-2, the virus responsible for COVID-19, can enter the nervous system through the olfactory mucosa. In mouse studies, the virus's spike protein was observed crossing the blood-brain barrier.",
+          "audioFile": "reducing_fatiq_in_long_covid_9__1__introduction.wav",
+          "startTime": 80440,
+          "duration": 14796,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Are there any treatments for Long COVID symptoms?",
+          "audioFile": "reducing_fatiq_in_long_covid_10__1__introduction.wav",
+          "startTime": 95436,
+          "duration": 3132,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "One promising approach involves manual treatments, similar to those used for CFS/ME. These treatments aim to reduce inflammation in the cranium and spine, improve lymphatic drainage, and lower stress on the nervous system.",
+          "audioFile": "reducing_fatiq_in_long_covid_11__1__introduction.wav",
+          "startTime": 98768,
+          "duration": 15516,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Could you give an example of how this treatment works?",
+          "audioFile": "reducing_fatiq_in_long_covid_12__1__introduction.wav",
+          "startTime": 114484,
+          "duration": 2952,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Sure! For instance, in one case study, a patient with chronic post-COVID fatigue saw improvements after receiving manual therapy. This included techniques to enhance lymphatic circulation, which might have reduced brain toxicity and inflammation.",
+          "audioFile": "reducing_fatiq_in_long_covid_13__1__introduction.wav",
+          "startTime": 117636,
+          "duration": 16452,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "That\u2019s promising! Are these treatments widely available?",
+          "audioFile": "reducing_fatiq_in_long_covid_14__1__introduction.wav",
+          "startTime": 134288,
+          "duration": 4248,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Currently, accredited osteopaths and physiotherapists in the UK are using these techniques. They also employ tools like the Profile of Fatigue-Related States (PFRS) to measure outcomes in clinical settings.",
+          "audioFile": "reducing_fatiq_in_long_covid_15__1__introduction.wav",
+          "startTime": 138736,
+          "duration": 14580,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Is this approach backed by any specific rehabilitation programs?",
+          "audioFile": "reducing_fatiq_in_long_covid_16__1__introduction.wav",
+          "startTime": 153516,
+          "duration": 4428,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, Halpin et al. developed an integrated COVID-19 rehabilitation pathway. It uses a multidisciplinary approach to address the physical, cognitive, psychological, social, and vocational aspects of Long COVID.",
+          "audioFile": "reducing_fatiq_in_long_covid_17__1__introduction.wav",
+          "startTime": 158144,
+          "duration": 15192,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "It seems like early intervention is key. Is there a risk these symptoms could become permanent if untreated?",
+          "audioFile": "reducing_fatiq_in_long_covid_18__1__introduction.wav",
+          "startTime": 173536,
+          "duration": 6696,
+          "purpose": "question",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "Exactly. Without intervention, these symptoms may become deeply ingrained. Investing in specialized multidisciplinary rehabilitation services could prevent them from becoming chronic.",
+          "audioFile": "reducing_fatiq_in_long_covid_19__1__introduction.wav",
+          "startTime": 180432,
+          "duration": 12528,
+          "purpose": "explanation",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "This has been very insightful. Could you summarize the key points for me?",
+          "audioFile": "reducing_fatiq_in_long_covid_20__1__introduction.wav",
+          "startTime": 193160,
+          "duration": 4500,
+          "purpose": "question",
+          "dialogueIndex": 19
+        }
+      ]
+    },
+    {
+      "sectionTitle": "2. Methods",
+      "sectionIndex": 1,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Today, we\u2019re going to discuss a clinical case study that explored the Perrin Technique\u2122 for managing fatigue related to Long COVID. The study focuses on patient responses to specific treatments over a 12-week period. Does that sound interesting?",
+          "audioFile": "reducing_fatiq_in_long_covid_1__2__methods.wav",
+          "startTime": 0,
+          "duration": 15408,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Yes, it does! I\u2019ve heard about Long COVID but not this technique. What\u2019s the Perrin Technique\u2122?",
+          "audioFile": "reducing_fatiq_in_long_covid_2__2__methods.wav",
+          "startTime": 15608,
+          "duration": 6696,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Great question! The Perrin Technique\u2122 is a manual treatment protocol involving soft tissue techniques like effleurage and stretching of muscles in the neck, back, and chest, combined with cranial osteopathic techniques. It aims to reduce spinal inflammation and promote lymph drainage in the brain and spine.",
+          "audioFile": "reducing_fatiq_in_long_covid_3__2__methods.wav",
+          "startTime": 22504,
+          "duration": 19800,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Interesting. How was the study conducted to evaluate its effectiveness?",
+          "audioFile": "reducing_fatiq_in_long_covid_4__2__methods.wav",
+          "startTime": 42504,
+          "duration": 4644,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Patients diagnosed with Long COVID\u2014confirmed by a positive PCR test and fatigue persisting for over 12 weeks\u2014were treated by qualified practitioners such as osteopaths or physiotherapists. They completed a symptom severity questionnaire, called the PFRS, at the start and after about 3 months of weekly treatments.",
+          "audioFile": "reducing_fatiq_in_long_covid_5__2__methods.wav",
+          "startTime": 47348,
+          "duration": 21528,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "What exactly is the PFRS questionnaire, and why was it used?",
+          "audioFile": "reducing_fatiq_in_long_covid_6__2__methods.wav",
+          "startTime": 69076,
+          "duration": 4212,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "The PFRS, or Profile of Fatigue-Related Symptoms, is a self-report tool with 54 items scored on a 7-point scale. It evaluates emotional distress, cognitive difficulty, fatigue, and somatic symptoms\u2014key areas affected in Long COVID. It\u2019s reliable and captures symptoms like slowness of thought, feeling faint, and physical tiredness from minimal effort.",
+          "audioFile": "reducing_fatiq_in_long_covid_7__2__methods.wav",
+          "startTime": 73488,
+          "duration": 25488,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "That\u2019s thorough! Did the study include any home-based treatments as part of the protocol?",
+          "audioFile": "reducing_fatiq_in_long_covid_8__2__methods.wav",
+          "startTime": 99176,
+          "duration": 5580,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, it did! Patients followed a daily routine of self-massage targeting the head, neck, and chest, along with alternating warm and cool gel packs on the upper spine. They also did gentle mobility exercises to improve thoracic spinal movement.",
+          "audioFile": "reducing_fatiq_in_long_covid_9__2__methods.wav",
+          "startTime": 104956,
+          "duration": 17388,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "How were the results analyzed? Was there a statistical comparison?",
+          "audioFile": "reducing_fatiq_in_long_covid_10__2__methods.wav",
+          "startTime": 122544,
+          "duration": 4248,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "The data were analyzed using Microsoft Excel and Stata. Since the study wasn\u2019t formally powered for inferential analysis, descriptive data were presented. Spearman\u2019s rank correlation was used to assess the relationship between treatment sessions and PFRS score changes.",
+          "audioFile": "reducing_fatiq_in_long_covid_11__2__methods.wav",
+          "startTime": 126992,
+          "duration": 17712,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "What happened if there were missing responses in the PFRS questionnaire?",
+          "audioFile": "reducing_fatiq_in_long_covid_12__2__methods.wav",
+          "startTime": 144904,
+          "duration": 4212,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Good question! If some items were missing, the mean score of the answered items on the same subscale was imputed. However, if more than half of the items on a subscale were missing, that subscale score was considered missing. This only happened once in the study.",
+          "audioFile": "reducing_fatiq_in_long_covid_13__2__methods.wav",
+          "startTime": 149316,
+          "duration": 15408,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "So what were the main outcomes of the study?",
+          "audioFile": "reducing_fatiq_in_long_covid_14__2__methods.wav",
+          "startTime": 164924,
+          "duration": 2952,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "The study summarized changes in total PFRS scores and its subscales. Higher PFRS scores indicate more severe symptoms, so reductions in these scores suggest improvement. The results showed descriptive data on symptom changes but didn\u2019t include formal statistical testing.",
+          "audioFile": "reducing_fatiq_in_long_covid_15__2__methods.wav",
+          "startTime": 168076,
+          "duration": 18612,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "This sounds promising, but it seems like more research might be needed. Is that correct?",
+          "audioFile": "reducing_fatiq_in_long_covid_16__2__methods.wav",
+          "startTime": 186888,
+          "duration": 5220,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Exactly. While the results are encouraging, the study wasn\u2019t powered for inferential analysis. Larger, controlled studies would provide stronger evidence for the effectiveness of the Perrin Technique\u2122 for Long COVID management.",
+          "audioFile": "reducing_fatiq_in_long_covid_17__2__methods.wav",
+          "startTime": 192308,
+          "duration": 14112,
+          "purpose": "answer",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "Got it! Thanks for explaining everything so clearly. Can you summarize the key takeaways for me?",
+          "audioFile": "reducing_fatiq_in_long_covid_18__2__methods.wav",
+          "startTime": 206620,
+          "duration": 6228,
+          "purpose": "question",
+          "dialogueIndex": 17
+        }
+      ]
+    }
+  ]
+}

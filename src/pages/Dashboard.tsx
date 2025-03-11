@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Presentation, Languages, MessageSquare, Trophy, Star, Coins, Globe } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, ChevronRight, BookOpen, Clock, Settings, LogOut, Search, Plus, Users, FileText, Upload, Play, MessageCircle, X, Headphones, Presentation, Languages, MessageSquare, Trophy, Star, Coins, Globe, Video, Tv } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import {
@@ -190,11 +190,12 @@ interface DocumentSource {
 // First, add this custom hook near the top of the file after the imports
 const useCounter = (end: number, duration: number = 2000, start: number = 0) => {
   const [count, setCount] = useState(start);
-  const countRef = useRef(start);
   const [isAnimating, setIsAnimating] = useState(true);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
-    if (!isAnimating) return;
+    setCount(start);
+    setIsAnimating(true);
 
     const startTime = Date.now();
     const endTime = startTime + duration;
@@ -205,28 +206,26 @@ const useCounter = (end: number, duration: number = 2000, start: number = 0) => 
       
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      
       const currentCount = Math.floor(start + (end - start) * easeOutQuart);
       
-      if (countRef.current !== currentCount) {
-        countRef.current = currentCount;
-        setCount(currentCount);
-      }
+      setCount(currentCount);
 
       if (now < endTime) {
-        requestAnimationFrame(animate);
+        animationFrameRef.current = requestAnimationFrame(animate);
       } else {
         setCount(end);
         setIsAnimating(false);
       }
     };
 
-    requestAnimationFrame(animate);
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      setIsAnimating(false);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
     };
-  }, [end, duration, start, isAnimating]);
+  }, [end, duration, start]);
 
   return count;
 };
@@ -245,6 +244,23 @@ interface LanguageVoiceConfig {
 
 interface VoiceConfigs {
   [key: string]: LanguageVoiceConfig;
+}
+
+interface Course {
+  id: string | number;
+  name?: string;  // Make name optional since not all courses have it
+  title: string;
+  createdAt: string;
+  progress: number;
+  lastAccessed: string;
+  template?: string;
+  persona?: string;
+  sections?: CourseSection[];
+  audioFiles?: AudioFile[];
+  audioAvailable: boolean;
+  presentationAvailable: boolean;
+  video?: string;
+  pdfFile?: string;
 }
 
 const Dashboard = () => {
@@ -278,23 +294,11 @@ const Dashboard = () => {
   });
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [courses, setCourses] = useState<Array<{
-    id: number;
-    title: string;
-    createdAt: string;
-    progress: number;
-    lastAccessed: string;
-    template?: string;
-    persona?: string;
-    sections?: CourseSection[];
-    audioFiles?: AudioFile[];
-    audioAvailable: boolean;
-    presentationAvailable: boolean;
-  }>>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [courseToDelete, setCourseToDelete] = useState<typeof courses[0] | null>(null);
+  const [courseToDelete, setCourseToDelete] = useState<Course | null>(null);
   const [isDuplicateDialogOpen, setIsDuplicateDialogOpen] = useState(false);
-  const [existingCourse, setExistingCourse] = useState<{ id: number; title: string } | null>(null);
+  const [existingCourse, setExistingCourse] = useState<{ id: string; title: string } | null>(null);
   const [learningProgress, setLearningProgress] = useState<LearningProgress>({
     earned: 1246,
     target: 2000,
@@ -492,18 +496,27 @@ const Dashboard = () => {
   useEffect(() => {
     const loadCourses = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/courses');
+        console.log('Loading courses...');
+        const API_URL = 'http://localhost:5001';  // Define API URL
+        const response = await fetch(`${API_URL}/api/courses`);
+        console.log('Response status:', response.status);
         if (!response.ok) {
-          throw new Error('Failed to load courses');
+          throw new Error('Failed to fetch courses');
         }
         const data = await response.json();
-        setCourses(data);
+        console.log('Loaded courses:', data);
+        
+        // Map the data to include name if not present
+        const mappedCourses = data.map((course: any) => ({
+          ...course,
+          name: course.name || course.title?.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_')
+        }));
+        
+        setCourses(mappedCourses);
+        console.log('Updated courses state:', mappedCourses);
       } catch (error) {
         console.error('Error loading courses:', error);
-        toast.error('Failed to load courses', {
-          description: 'Please try refreshing the page',
-          duration: 3000
-        });
+        toast.error('Failed to load courses');
       }
     };
 
@@ -544,7 +557,7 @@ const Dashboard = () => {
   }, [location.state, navigate]);
 
   // Handle course deletion
-  const handleDeleteCourse = async (course: typeof courses[0]) => {
+  const handleDeleteCourse = async (course: Course) => {
     setCourseToDelete(course);
     setIsDeleteDialogOpen(true);
   };
@@ -624,7 +637,7 @@ const Dashboard = () => {
   };
 
   // Update the handlePlayCourse function
-  const handlePlayCourse = async (course: typeof courses[0]) => {
+  const handlePlayCourse = async (course: Course) => {
     try {
       // First check if audio files exist
       const hasAudioFiles = await checkAudioFilesExist(course.name);
@@ -672,53 +685,32 @@ const Dashboard = () => {
   };
 
   // Update the handlePlayVideoCourse function
-  const handlePlayVideoCourse = async (course: typeof courses[0]) => {
-    const toastId = 'loading-presentation';
+  const handlePlayVideoCourse = async (course: Course) => {
     try {
-      // Show loading toast
-      toast.loading('Loading presentation...', { id: toastId });
-
-      // Sanitize course name for URL
-      const sanitizedCourseName = course.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
-      
-      // First check if presentation file exists
-      const presentationFile = `${sanitizedCourseName}_presentation.json`;
-      const checkResponse = await fetch(`http://localhost:5001/api/courses/${sanitizedCourseName}/${presentationFile}`);
-      
-      if (!checkResponse.ok) {
-        throw new Error('Presentation file not found');
+      // Check if video is available
+      if (!course.video) {
+        toast.error('Video not available', {
+          description: 'This course does not have a video.',
+          duration: 3000
+        });
+        return;
       }
 
-      // Dismiss loading toast
-      toast.dismiss(toastId);
-
-      // Navigate to published presentation with course data
-      navigate('/published-presentation', {
+      // Navigate to video player with course data
+      navigate('/video-player', {
         state: {
-          courseName: sanitizedCourseName,
-          theme: 'black', // default theme
-          presentationFile: presentationFile
+          courseName: course.title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '_'),
+          title: course.title,
+          files: [course.pdfFile?.split('/').pop()],
+          video: course.video
         }
       });
 
     } catch (error) {
-      console.error('Error loading presentation:', error);
-      toast.dismiss(toastId);
-      
-      // Show error toast
-      toast.error('Failed to load presentation', {
+      console.error('Error playing video:', error);
+      toast.error('Failed to play video', {
         description: error instanceof Error ? error.message : 'Please try again or contact support'
       });
-      
-      // If presentation file doesn't exist, navigate to presentation canvas to create one
-      if (error instanceof Error && error.message === 'Presentation file not found') {
-        navigate('/presentation-canvas', {
-          state: {
-            courseName: course.title,
-            isNewPresentation: true
-          }
-        });
-      }
     }
   };
 
@@ -1089,7 +1081,7 @@ const Dashboard = () => {
     }
   };
 
-  const handleEditCourse = async (course: typeof courses[0]) => {
+  const handleEditCourse = async (course: Course) => {
     try {
       // Show loading toast
       toast.loading('Loading course data...', { id: 'loading-course' });
@@ -1161,11 +1153,18 @@ const Dashboard = () => {
   };
 
   // Update the getRandomProgress function
-  const getRandomProgress = (courseId: number) => {
-    const seed = courseId * 17;
-    const baseProgress = [35, 45, 60, 75, 85, 95, 100];
-    const index = seed % baseProgress.length;
-    return baseProgress[index];
+  const getRandomProgress = (id: string | number) => {
+    // Convert id to string if it's a number
+    const idString = id.toString();
+    // Use a hash function to generate a consistent random number based on the ID
+    let hash = 0;
+    for (let i = 0; i < idString.length; i++) {
+      const char = idString.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    // Convert hash to a number between 0 and 100
+    return Math.abs(hash % 101);
   };
 
   // Add the handleOpenExistingCourse function
@@ -1732,25 +1731,42 @@ const Dashboard = () => {
                           variant="ghost"
                           size="icon"
                           onClick={() => {
-                            if (!course.presentationAvailable) {
-                              toast.error('Presentation not available', {
-                                description: 'Please create a presentation for this course first.',
+                            navigate('/published-presentation', {
+                              state: {
+                                courseName: course.name || course.title,
+                                presentationFile: `${course.name || course.title}_presentation.json`
+                              }
+                            });
+                          }}
+                          className="w-8 h-8 rounded-lg bg-green-500/10 text-green-400 hover:text-green-300 hover:bg-green-500/20"
+                          title="View Presentation"
+                        >
+                          <Tv className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => {
+                            if (!course.video) {
+                              toast.error('Video not available', {
+                                description: 'This course does not have a video.',
                                 duration: 3000
                               });
                               return;
                             }
-                            handlePlayVideoCourse(course);
+                            navigate('/published-avatar-presentation', {
+                              state: {
+                                courseName: course.name || course.title,
+                                video: course.video,
+                                files: [course.pdfFile]
+                              }
+                            });
                           }}
-                          className={cn(
-                            "w-8 h-8 rounded-lg",
-                            course.presentationAvailable 
-                              ? "bg-emerald-500/10 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/20" 
-                              : "bg-gray-700/50 text-gray-500 cursor-not-allowed"
-                          )}
-                          disabled={!course.presentationAvailable}
-                          title={course.presentationAvailable ? "Play Presentation Course" : "Presentation not available"}
+                          className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 hover:text-blue-300 hover:bg-blue-500/20"
+                          title="Watch Expert-Learner Interaction"
                         >
-                          <Presentation className="h-4 w-4" />
+                          <Video className="h-4 w-4" />
                         </Button>
 
                         {/* Add a flex-grow div to create space */}

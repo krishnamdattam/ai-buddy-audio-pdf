@@ -1,0 +1,132 @@
+{
+    "presentation": {
+      "slides": [
+        {
+          "slide_name": "slide_1",
+          "type": "content",
+          "title": "Willkommen im Axpo Drucker Leitfaden",
+          "content": [
+            "Dieser Leitfaden hilft dir, das Drucken bei Axpo Baden zu verstehen.",
+            "Wir behandeln sowohl Secure Print (mit Badge) als auch Direct Print (ohne Badge).",
+            "Lass uns loslegen!"
+          ],
+          "image": null,
+          "conversation": "Audio/Audio1.mp3"
+        },
+        {
+          "slide_name": "slide_2",
+          "type": "content",
+          "title": "Schritt 1: Finden Sie den nächsten Drucker",
+          "content": [
+            "Schritt 1 - Suche den Namen des Druckerservers",
+            "1. Suche den nächstgelegenen Drucker.",
+            "2. Suche das Etikett, das an der Seite oder an der Vorderseite des Druckers angebracht ist (Beispiel im Bild) und merke dir die P-Nummer."
+          ],
+          "image": "images/image1.png",
+          "conversation": "Audio/Audio2.mp3"
+        },
+        {
+          "slide_name": "slide_3",
+          "type": "content",
+          "title": "Öffnen Sie den Axpo Printers Ordner",
+          "content": [
+            "3. Kehre zu deinem Computer zurück und öffne den Axpo Printers - Ordner auf deinem Desktop.",
+            "Falls der Ordner nicht vorhanden sein sollte, kannst du auch auf diesen Link drücken: Axpo Printers."
+          ],
+          "image": "images/image2.png",
+          "conversation": "Audio/Audio3.mp3"
+        },
+        {
+          "slide_name": "slide_4",
+          "type": "content",
+          "title": "Druckserver-Nummer suchen",
+          "content": [
+            "4. Gebe den Hostnamen (z.B. P509332) in das Suchfeld oben rechts ein, um die Nummer des Druckservers zu erhalten.",
+            "Die Nummer des Druckservers wird automatisch erscheinen. Wenn nicht, überprüfe, ob keine Tippfehler vorhanden sind."
+          ],
+          "image": null,
+          "conversation": "Audio/Audio4.mp3"
+        },
+        {
+          "slide_name": "slide_5",
+          "type": "content",
+          "title": "Schritt 2 - Installiere des Druckers auf deinem Gerät",
+          "content": [
+            "1. Nachdem du den Hostnamen des Druckers in das Suchfeld eingegeben hast und er unten erscheint, doppelklicke auf den zu installierenden Drucker.",
+            "2. Sobald du den Drucker installiert hast, kannst du deine Dokumente drucken, indem du den neu hinzugefügten Drucker in der Druckerauswahl auswählst."
+          ],
+          "image": null,
+          "conversation": "Audio/Audio5.mp3"
+        },
+        {
+          "slide_name": "slide_6",
+          "type": "content",
+          "title": "Drucken mit deinem Badge",
+          "content": [
+            "Wenn du mit deinem Badge druckst, kannst du deinen Druckauftrag an einem der verfügbaren Drucker in Baden abholen, indem du dich lediglich mit deinem Ausweis authentifizierst."
+          ],
+          "image": null,
+          "conversation": "Audio/Audio6.mp3"
+        },
+        {
+          "slide_name": "slide_7",
+          "type": "content",
+          "title": "Schritt 1 - Installiere des SecurePrint-Druckers auf deinem Gerät",
+          "content": [
+            "Schritt 1 - Installiere des SecurePrint-Druckers auf deinem Gerät",
+            "Öffne den Axpo Printers - Ordner auf deinem Desktop. Falls der Ordner nicht vorhanden sein sollte, kannst du auch auf diesen Link drücken: Axpo Printers"
+          ],
+          "image": "images/image3.png",
+          "conversation": "Audio/Audio7.mp3"
+        },
+        {
+          "slide_name": "slide_8",
+          "type": "content",
+          "title": "Druckauftrag erteilen",
+          "content": [
+            "Doppelklicke auf 'AXPOSecurePrint_PCL'.",
+            "Sobald du den Drucker installiert hast, kannst du deine Dokumente drucken, indem du den neu hinzugefügten Drucker in der Druckerauswahl auswählst."
+          ],
+          "image": null,
+          "conversation": "Audio/Audio8.mp3"
+        },
+        {
+          "slide_name": "slide_9",
+          "type": "content",
+          "title": "Schritt 2 - Druckauftrag erteilen",
+          "content": [
+            "Wähle das Dokument aus, welches du drucken möchtest.",
+            "Wähle in der Druckerauswahl den 'AXPOSecurePrint_PCL' aus."
+          ],
+          "image": "images/image4.png",
+          "conversation": "Audio/Audio9.mp3"
+        },
+        {
+          "slide_name": "slide_10",
+          "type": "content",
+          "title": "Schritt 3- Bedienung des Druckers",
+          "content": [
+            "Gehe zum nächstgelegenen Drucker und melde dich mit deinem Badge an.",
+            "Halte deinen Badge über die rechte Seite.",
+            "Wenn du den Drucker noch nie verwendet hast, wirst du nach deinem Login gefragt.",
+            "Wichtig: Bitte bei Benutzername dein 8-stelliger Benutzer eingeben, z.B. 'Hansmust' (erste vier Buchstaben des Vornamens und den ersten vier Buchstaben des Nachnamens) und dein Windowspasswort.",
+            "Dein Batch wird somit automatisch mit deinem Login verknüpft. Dieser Schritt ist nur einmal nötig."
+          ],
+          "image": "images/image5.png",
+          "conversation": "Audio/Audio10.mp3"
+        },
+        {
+          "slide_name": "slide_11",
+          "type": "content",
+          "title": "Druckauftrag auslösen",
+          "content": [
+            "Sobald du dich bei deinem Konto angemeldet hast, öffne das AxpoSecurePrint-Symbol.",
+            "Wähle das Dokument aus, das du drucken möchtest, und drucke es aus."
+          ],
+          "image": "images/image6.png",
+          "conversation": "Audio/Audio11.mp3"
+        }
+      ]
+    }
+  }
+  

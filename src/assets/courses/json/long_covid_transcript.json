@@ -1,0 +1,359 @@
+{
+  "courseName": "long_covid",
+  "sections": [
+    {
+      "sectionTitle": "1. Introduction:",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Today, we\u2019ll explore the emergence of Long COVID, its symptoms, and how certain interventions might help those affected. Are you ready to dive in?",
+          "audioFile": "long_covid_1__1__introduction.wav",
+          "startTime": 0,
+          "duration": 8388,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Yes, I\u2019m curious to learn about Long COVID and what makes it such a global health concern.",
+          "audioFile": "long_covid_2__1__introduction.wav",
+          "startTime": 8588,
+          "duration": 6264,
+          "purpose": "introduction",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Long COVID refers to a set of symptoms that persist after recovering from the acute phase of COVID-19. Some patients face fatigue, muscle pain, depression, and sleep disturbances, similar to chronic fatigue syndrome or myalgic encephalomyelitis (CFS/ME).",
+          "audioFile": "long_covid_3__1__introduction.wav",
+          "startTime": 15052,
+          "duration": 18504,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "That sounds serious. Has anything similar happened with other viruses?",
+          "audioFile": "long_covid_4__1__introduction.wav",
+          "startTime": 33756,
+          "duration": 5112,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes! After the SARS outbreak, which was also caused by a coronavirus, some healthcare workers developed prolonged fatigue syndromes, preventing them from returning to work even 20 months later. This is a similar pattern we\u2019re now seeing with Long COVID.",
+          "audioFile": "long_covid_5__1__introduction.wav",
+          "startTime": 39068,
+          "duration": 15732,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Why do these symptoms persist even after the infection is gone?",
+          "audioFile": "long_covid_6__1__introduction.wav",
+          "startTime": 55000,
+          "duration": 4032,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "One hypothesis suggests damage to olfactory sensory neurons, leading to cerebrospinal fluid congestion and toxin buildup in the brain. For example, studies show SARS-CoV-2 can cross the olfactory mucosa and even the blood-brain barrier in mice.",
+          "audioFile": "long_covid_7__1__introduction.wav",
+          "startTime": 59232,
+          "duration": 18432,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "That sounds complex. How do we address such issues when they involve the nervous system?",
+          "audioFile": "long_covid_8__1__introduction.wav",
+          "startTime": 77864,
+          "duration": 5400,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Well, manual treatments, like those used for CFS/ME, have shown promise. These interventions help drain the central lymphatic system, reduce inflammation in the cranium and spine, and improve the body\u2019s stress response, or sympathetic tone.",
+          "audioFile": "long_covid_9__1__introduction.wav",
+          "startTime": 83464,
+          "duration": 16668,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Interesting. Has this approach been tested on Long COVID patients?",
+          "audioFile": "long_covid_10__1__introduction.wav",
+          "startTime": 100332,
+          "duration": 4680,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, a case study showed success in treating a man with Long COVID using such manual techniques. Additionally, UK osteopaths and physiotherapists have been using these methods, tracking progress with tools like the Profile of Fatigue-Related States (PFRS).",
+          "audioFile": "long_covid_11__1__introduction.wav",
+          "startTime": 105212,
+          "duration": 17712,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "So, is this treatment widely accepted now?",
+          "audioFile": "long_covid_12__1__introduction.wav",
+          "startTime": 123124,
+          "duration": 3600,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Not yet. Broader application requires thorough evaluation, but early data from 20 patients shows potential. It\u2019s encouraging enough to consider integrating these methods into multidisciplinary rehabilitation pathways.",
+          "audioFile": "long_covid_13__1__introduction.wav",
+          "startTime": 126924,
+          "duration": 14544,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "What\u2019s a rehabilitation pathway, and how does it help Long COVID patients?",
+          "audioFile": "long_covid_14__1__introduction.wav",
+          "startTime": 141668,
+          "duration": 4860,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "A rehabilitation pathway is a structured approach to treatment. For Long COVID, this involves addressing physical, cognitive, psychological, social, and work-related challenges, often requiring a team of specialists.",
+          "audioFile": "long_covid_15__1__introduction.wav",
+          "startTime": 146728,
+          "duration": 14940,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "That makes sense. Are there specific timelines for recovery in these pathways?",
+          "audioFile": "long_covid_16__1__introduction.wav",
+          "startTime": 161868,
+          "duration": 5364,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes. Symptoms lasting beyond 3 weeks are called \u2018postacute COVID,\u2019 and those persisting beyond 12 weeks are termed \u2018chronic post-COVID syndrome.\u2019 Early intervention can prevent these from becoming long-term issues.",
+          "audioFile": "long_covid_17__1__introduction.wav",
+          "startTime": 167432,
+          "duration": 14832,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "It seems like investing in such services could really help patients regain their quality of life.",
+          "audioFile": "long_covid_18__1__introduction.wav",
+          "startTime": 182464,
+          "duration": 5436,
+          "purpose": "engagement",
+          "dialogueIndex": 17
+        }
+      ]
+    },
+    {
+      "sectionTitle": "2. Methods",
+      "sectionIndex": 1,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Today, we'll discuss a study on how the Perrin Technique\u2122 was applied to manage fatigue in patients with Long COVID. Our goal is to understand the methods, interventions, and outcomes.",
+          "audioFile": "long_covid_1__2__methods.wav",
+          "startTime": 0,
+          "duration": 11880,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "That sounds interesting! Can you start by explaining how the patients were selected for this study?",
+          "audioFile": "long_covid_2__2__methods.wav",
+          "startTime": 12080,
+          "duration": 5616,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Of course! Patients were selected if they had a positive PCR test for COVID-19 and persistent fatigue lasting more than 12 weeks post-infection. They were evaluated by qualified Perrin Technique\u2122 practitioners, such as osteopaths or physiotherapists.",
+          "audioFile": "long_covid_3__2__methods.wav",
+          "startTime": 17896,
+          "duration": 17316,
+          "purpose": "explanation",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Were there any specific exclusions for the patients?",
+          "audioFile": "long_covid_4__2__methods.wav",
+          "startTime": 35412,
+          "duration": 3312,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, the study excluded patients with a history of mental illness, significant physical health issues, or prior diagnoses of Chronic Fatigue Syndrome (CFS) or Myalgic Encephalomyelitis (ME). This ensured a focus on new attendees experiencing fatigue related specifically to Long COVID.",
+          "audioFile": "long_covid_5__2__methods.wav",
+          "startTime": 38924,
+          "duration": 20412,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "What does the Perrin Technique\u2122 involve in terms of treatment?",
+          "audioFile": "long_covid_6__2__methods.wav",
+          "startTime": 59536,
+          "duration": 3456,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "The technique includes weekly manual treatments like effleurage, which is a gentle stroking massage, of the neck, back, and chest. It also involves stretching certain muscles, such as the paravertebral thoracic and suboccipital muscles, along with gentle cranial osteopathic techniques. Patients were also given home-based routines.",
+          "audioFile": "long_covid_7__2__methods.wav",
+          "startTime": 63192,
+          "duration": 23148,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "What kind of home routines did the patients follow?",
+          "audioFile": "long_covid_8__2__methods.wav",
+          "startTime": 86540,
+          "duration": 2880,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "Patients performed daily self-massage of the head, neck, and chest. They used alternating warm and cool gel packs on their upper spine to reduce inflammation and aid lymph drainage in the brain and spine. Additionally, they did gentle mobility exercises to improve spinal movement.",
+          "audioFile": "long_covid_9__2__methods.wav",
+          "startTime": 89620,
+          "duration": 19620,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "How was the effectiveness of the treatment measured?",
+          "audioFile": "long_covid_10__2__methods.wav",
+          "startTime": 109440,
+          "duration": 2952,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "The effectiveness was measured using the patient-reported 54-item PFRS questionnaire. It evaluates symptom severity across four subscales: emotional distress, cognitive difficulty, fatigue, and somatic symptoms, using a 7-point Likert scale.",
+          "audioFile": "long_covid_11__2__methods.wav",
+          "startTime": 112592,
+          "duration": 18864,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "What makes the PFRS questionnaire reliable for this study?",
+          "audioFile": "long_covid_12__2__methods.wav",
+          "startTime": 131656,
+          "duration": 3600,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "The PFRS is highly reliable because it has shown excellent internal consistency and convergence with similar measures. It also covers core Long COVID symptoms, such as fatigue, cognitive difficulties, and physical tiredness, which are central to the condition.",
+          "audioFile": "long_covid_13__2__methods.wav",
+          "startTime": 135456,
+          "duration": 17280,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "How was the data analyzed after collecting the questionnaires?",
+          "audioFile": "long_covid_14__2__methods.wav",
+          "startTime": 152936,
+          "duration": 3780,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "The data was analyzed using Microsoft Excel 2016 and Stata 14. Descriptive statistics were used since the study wasn\u2019t formally powered for inferential analysis. Spearman\u2019s rank correlation was calculated to check the association between treatment sessions and changes in PFRS scores.",
+          "audioFile": "long_covid_15__2__methods.wav",
+          "startTime": 156916,
+          "duration": 19908,
+          "purpose": "explanation",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Did they do anything to handle missing data in the questionnaires?",
+          "audioFile": "long_covid_16__2__methods.wav",
+          "startTime": 177024,
+          "duration": 4068,
+          "purpose": "question",
+          "dialogueIndex": 15
+        },
+        {
+          "speaker": "expert",
+          "text": "Yes, they imputed missing data by using the mean score of other items from the same subscale, as those are likely more correlated. However, if more than half the items in a subscale were missing, the subscale score was deemed missing. This only happened once in the study.",
+          "audioFile": "long_covid_17__2__methods.wav",
+          "startTime": 181292,
+          "duration": 17280,
+          "purpose": "explanation",
+          "dialogueIndex": 16
+        },
+        {
+          "speaker": "learner",
+          "text": "What were the key results regarding symptom improvement?",
+          "audioFile": "long_covid_18__2__methods.wav",
+          "startTime": 198772,
+          "duration": 3204,
+          "purpose": "question",
+          "dialogueIndex": 17
+        },
+        {
+          "speaker": "expert",
+          "text": "The study summarized PFRS scores to show changes in symptom severity across the four subscales. While exact results weren\u2019t detailed here, the main focus was on associating the number of treatment sessions with symptom improvement.",
+          "audioFile": "long_covid_19__2__methods.wav",
+          "startTime": 202176,
+          "duration": 14832,
+          "purpose": "explanation",
+          "dialogueIndex": 18
+        },
+        {
+          "speaker": "learner",
+          "text": "This study sounds comprehensive! Can you summarize the key points for me?",
+          "audioFile": "long_covid_20__2__methods.wav",
+          "startTime": 217208,
+          "duration": 4680,
+          "purpose": "question",
+          "dialogueIndex": 19
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "courseName": "wingo_roaming",
+  "sections": [
+    {
+      "title": "Welcome to Wingo Roaming Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Wingo Roaming learning journey",
+        "Learn through the audio-visual presentation and by asking questions to the AI Buddy Assistant",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: 1. This is how you keep your costs under control even",
+      "type": "section_header"
+    },
+    {
+      "title": "1. This is how you keep your costs under control even",
+      "type": "content",
+      "summary_points": [
+        "Wingo offers flexible travel options for managing mobile costs abroad, which can be activated and managed via the myWingo customer portal or the Wingo Cockpit.",
+        "Users can monitor their data and call usage anytime in myWingo, set roaming limits, and access information about country-specific rates through the roaming tool.",
+        "Wingo Mobile subscriptions support Full Speed 5G on 5G-capable devices using the Swisscom network, except for Wingo Prepaid plans.",
+        "Specific subscriptions like Wingo Swiss and Wingo Europe Pro offer varying levels of international data and call benefits, with travel options available for additional usage outside their coverage zones."
+      ]
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "What is the minimum duration you must book a travel option with Wingo before it can be canceled daily?",
+          "options": [
+            "7 days",
+            "30 days",
+            "12 months",
+            "90 days"
+          ],
+          "correct_answer": "30 days",
+          "explanation": "Travel options with Wingo must be booked for at least 30 days before you can cancel them daily. This ensures users have enough time to utilize the service effectively."
+        },
+        {
+          "question": "Which tool can you use to check the cost of calling between countries and find country group zones?",
+          "options": [
+            "Wingo Cockpit",
+            "Roaming Tool in myWingo",
+            "Swisscom Network Monitor",
+            "5G Speed Tracker"
+          ],
+          "correct_answer": "Roaming Tool in myWingo",
+          "explanation": "The Roaming Tool in myWingo provides information about country group zones and the cost of calling between countries, making it easy to plan international usage."
+        },
+        {
+          "question": "What is the data limit for Wingo Europe Pro before speed is reduced?",
+          "options": [
+            "10 GB",
+            "20 GB",
+            "40 GB",
+            "50 GB"
+          ],
+          "correct_answer": "40 GB",
+          "explanation": "Wingo Europe Pro includes 40 GB of data in the EU/UK at full speed. After this limit, the speed is reduced to 200 kbit/s."
+        },
+        {
+          "question": "Which of the following subscriptions does NOT support Full Speed 5G?",
+          "options": [
+            "Wingo Europe Pro",
+            "Wingo Swiss",
+            "Wingo Prepaid",
+            "All Wingo Mobile subscriptions"
+          ],
+          "correct_answer": "Wingo Prepaid",
+          "explanation": "All Wingo Mobile subscriptions support Full Speed 5G except for Wingo Prepaid. Users with prepaid plans cannot access this option."
+        },
+        {
+          "question": "What network does Wingo use to provide its services?",
+          "options": [
+            "Vodafone",
+            "Swisscom",
+            "T-Mobile",
+            "Orange"
+          ],
+          "correct_answer": "Swisscom",
+          "explanation": "Wingo services operate on the ultra-fast Swisscom network, offering excellent coverage and speed for its users."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Wingo Roaming course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}

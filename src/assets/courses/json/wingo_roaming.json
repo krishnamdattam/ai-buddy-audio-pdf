@@ -1,0 +1,158 @@
+{
+  "courseName": "wingo_roaming",
+  "template": "educational-deep-dive",
+  "persona": "andrew-ava",
+  "files": [
+    "pdf/wingo_roaming.pdf"
+  ],
+  "processedSections": [
+    {
+      "title": "1. This is how you keep your costs under control even",
+      "content": "abroad\nExpensive roaming surprise? You don't want it, we don't want it.\nThat's why we offer you practical travel options for almost every tariff zone. Here are a\nfew important tips before you pack your bags.\nYour travel options are valid for 12 months, so the next trip can come!\nYou can order the travel options like all other Wingo options directly in myWingo. You\nmust book the options for at least 30 days, after which you can cancel daily.\nYou can check how much you have already used at any time in your customer portal\nmyWingo.\nAttention: The roaming limit you set must be at least as high as the international option\nyou have booked. This is the only way you can make calls and surf the internet abroad.\nOf course, you can change your limit free of charge, even when you are abroad.\nQuestion: What is a country group and which countries are assigned to which group?\nAnswer: Country groups apply to international calls , i.e. calls from one country to\nanother. Different rates apply depending on which country you are calling and which\ncountry you are currently in.\nWe have grouped these into different zones. If you want to know how much an\ninternational call costs, go to the roaming tool and select the country there.\nThe countries are grouped as follows:\nCountry group 1\nAlaska, Germany, France, Great Britain, Guernsey, Hawaii, Isle of Man, Italy, Jersey,\nCanada, Monaco, Austria, San Marino, St. Croix, St. John, St. Thomas, USA, Ukraine,\nVatican\nCountry Group 2\nAustralia, New Zealand\nCountry group 3\nAlbania, Bosnia & Herzegovina, Hong Kong, Israel, Japan, Kosovo, Moldova,\nMontenegro, North Macedonia, Palestine, Russia, Serbia, Singapore, South Korea,\nTaiwan, Belarus\nCountry Group 4\nAlgeria, Argentina, Egypt, Brazil, China, Guadeloupe, Indonesia, Libya, Malaysia,\nMorocco, Mexico, East Timor, Philippines, South Africa, Thailand, Tunisia\nCountry group 5\nRemaining countries\nQuestion: How do I activate an option for my Wingo Mobile subscription?\nAnswer: You can easily activate all options in your customer portal myWingo . To do this,\nlog in and then select the menu item \"Add option\". Or you can go to your Wingo Cockpit -\nyou can access this at any time, free of charge, even when abroad.\nQuestion: Can I also use data in the EU/UK with Wingo Swiss?\nAnswer: Wingo Swiss is a flat-rate subscription specifically for customers who spend\nmost of their time in Switzerland and want to surf, make calls and send messages there\nwithout limits. Calls or data in or to other countries are not included.\nFor calls and data at home and abroad, check out our options on portal.\nQuestion: Can I use the Wingo Swiss, Wingo Europe Pro and Wingo International\nsubscriptions abroad?\nAnswer: With Wingo Swiss , calls, data and messages within Switzerland are included. If\nyou want to use calls or data abroad, you can book one of our travel options . You can\ndo this in your customer portal myWingo after ordering . The costs vary depending on\nthe country you are traveling to and start at 9.90 per package (validity: 12 months).\nThe following data packages are available:\n\u2022\nData Travel 500 MB for EU/UK: 9.90/12 months\n\u2022\nData Travel 1 GB for EU/UK: 15.90/12 months\n\u2022\nData Travel 5 GB for EU/UK: 42.90/12 months\n\u2022\nData Travel 10 GB for EU/UK: 64.90/12 months\nWith Wingo Europe Pro you can make unlimited calls and send messages within the\nEU/UK. You can also use 40 GB of data in the EU/UK. If you want to use data, calls or\nmessages in other countries, our travel options are also available here.\nWith the Wingo International subscription you can use data, calls and messages in over\n40 countries. If that's not enough for you, you can also add the travel options to this\nsubscription.\nQuestion: Can I use the Wingo Swiss and Wingo Europe Pro subscriptions abroad?\nAnswer: With Wingo Swiss , calls, data and messages are included within Switzerland\nand Liechtenstein. If you would like to use calls or data abroad, you can book one of\nour travel options . You can do this in your customer portal myWingo after ordering . The\ncosts vary depending on the country you are traveling to and start at \u20ac9.90 per package\n(validity: 12 months).\nThe following data packages are available:\n\u2022\nData Travel 500 MB for EU/UK: 9.90/12 months\n\u2022\nData Travel 1 GB for EU/UK: 15.90/12 months\n\u2022\nData Travel 5 GB for EU/UK: 42.90/12 months\n\u2022\nData Travel 10 GB for EU/UK: 64.90/12 months\nWith Wingo Europe Pro you can surf, make calls and send messages without limits\nwithin the EU/UK. As soon as you have used up 40 GB of data per month in these\ncountries, you will continue surfing at a reduced speed of 200 kbit/s. If you would like to\nuse data, calls or messages in other countries, our travel options are also available\nhere.\nQuestion: Can I use Wingo to send data, calls and messages on board ships, planes or\nferries?\nAnswer: Outgoing calls and data usage on board ships, aircraft and ferries or via\nsatellite is not possible. Please use the Wi-Fi of the airlines, ships or ferries. Calls to\na satellite phone and receiving calls from a satellite phone are possible.\nQuestion: Which devices can I use with Full Speed 5G?\nAnswer: You can use the option with smartphones, tablets, smartwatches and\nwearables. To benefit from the speed, your device must be 5G-capable and your\nlocation must have 5G coverage.\nQuestion: With which subscription can I use Full Speed 5G?\nAnswer: You can use Full Speed 5G with all Wingo Mobile subscriptions. If you have\na Wingo Prepaid, this option is not available to you.\nQuestion: Which network does Wingo use?\nAnswer: All Wingo services run over the ultra-fast Swisscom network .\nHave you planned your next trip yet?\nPrepare your trip in your myWingo customer portal. Remember to activate the\nappropriate international options and set your roaming limit.",
+      "subsections": [],
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of mobile network subscriptions and options.",
+          "Familiarity with navigating online customer portals."
+        ],
+        "learningGoals": [
+          "Understand how to manage roaming costs while traveling abroad.",
+          "Learn how to activate travel options and check usage in the myWingo portal.",
+          "Identify country groups and their applicable rates for calls and data.",
+          "Explore subscription compatibility with Full Speed 5G and other features."
+        ],
+        "estimatedTime": "20-30 minutes"
+      },
+      "dialogue": [
+        {
+          "speaker": "Expert",
+          "text": "Today, we\u2019ll talk about how to manage your mobile costs while traveling abroad with Wingo. Our goal is to explore travel options, roaming limits, and how to stay connected without surprises.",
+          "purpose": "introduction"
+        },
+        {
+          "speaker": "Learner",
+          "text": "That sounds useful! I\u2019ve heard about unexpected roaming charges. How can I avoid them?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Great question! Wingo offers practical travel options for almost every tariff zone. These options are valid for 12 months and can be managed directly in your customer portal, myWingo. Just book the option for at least 30 days, and you can cancel daily afterward.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "How do I know how much data or calling time I\u2019ve used?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "You can check your usage anytime in myWingo. It\u2019s simple and ensures you stay within your limits.",
+          "purpose": "answer"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Can I set a roaming limit for additional safety?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Yes, you can set a roaming limit, but it must be at least as high as the international option you\u2019ve booked. This ensures you can make calls and surf abroad. Plus, you can change your roaming limit for free, even when traveling.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "What are these international options, and how do I know which countries fall into which group?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Countries are grouped into five zones for international calls. For instance, Group 1 includes countries like Germany, USA, and Italy, while Group 2 includes Australia and New Zealand. You can find the full list in the roaming tool in myWingo. It tells you the cost of calling between countries.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "How do I activate a travel option for my Wingo Mobile subscription?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Activating options is easy! Log into myWingo, select 'Add option,' and choose what you need. Alternatively, you can use the Wingo Cockpit, which is accessible anytime, even while abroad, free of charge.",
+          "purpose": "answer"
+        },
+        {
+          "speaker": "Learner",
+          "text": "What if I use Wingo Swiss? Can I still use data in the EU or UK?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Wingo Swiss is designed for unlimited use within Switzerland. For data or calls in the EU or UK, you\u2019ll need to book a travel option. For example, you can get 500 MB of data for 9.90 CHF, valid for 12 months.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "What about Wingo Europe Pro? Can I use that abroad?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "With Wingo Europe Pro, you can make unlimited calls, send messages, and use 40 GB of data within the EU/UK. After 40 GB, your speed reduces to 200 kbit/s. For other countries, travel options are available.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Can I use Wingo services on ships, planes, or ferries?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Unfortunately, outgoing calls and data use on ships, planes, or ferries aren\u2019t possible. But you can use the Wi-Fi provided by airlines, ships, or ferries if available.",
+          "purpose": "answer"
+        },
+        {
+          "speaker": "Learner",
+          "text": "What devices support Full Speed 5G with Wingo?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "Full Speed 5G works with smartphones, tablets, smartwatches, and wearables, as long as the device is 5G-capable and you\u2019re in a 5G-covered area.",
+          "purpose": "explanation"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Which subscriptions allow Full Speed 5G?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "All Wingo Mobile subscriptions support Full Speed 5G, except for Wingo Prepaid. If you have a prepaid plan, this option isn\u2019t available.",
+          "purpose": "answer"
+        },
+        {
+          "speaker": "Learner",
+          "text": "Which network does Wingo use?",
+          "purpose": "question"
+        },
+        {
+          "speaker": "Expert",
+          "text": "All Wingo services run on the ultra-fast Swisscom network, ensuring excellent coverage and speed.",
+          "purpose": "answer"
+        },
+        {
+          "speaker": "Expert",
+          "text": "To summarize, Wingo offers flexible travel options to manage costs abroad. Use myWingo to activate options, monitor usage, and set roaming limits. Remember, different country groups have varying rates, and services like Full Speed 5G and unlimited data depend on your subscription. Plan ahead, and you\u2019ll stay connected hassle-free!",
+          "purpose": "summary"
+        }
+      ]
+    }
+  ],
+  "summary": "",
+  "audioFiles": [
+    {
+      "fileName": "wingo_roaming_section_1__1__this_is_how_you_keep_your_costs_under_control_even.wav",
+      "sectionIndex": 0,
+      "sectionTitle": "1. This is how you keep your costs under control even"
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "courseName": "wingo_roaming_de",
+  "sections": [
+    {
+      "sectionTitle": "1. So beh\u00e4ltst du auch im Ausland deine Kosten im Griff",
+      "sectionIndex": 0,
+      "dialogues": [
+        {
+          "speaker": "expert",
+          "text": "Heute sprechen wir dar\u00fcber, wie du mit Wingo auch im Ausland deine Kosten im Griff behalten kannst. Klingt gut?",
+          "audioFile": "wingo_roaming_de_1__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 0,
+          "duration": 7272,
+          "purpose": "introduction",
+          "dialogueIndex": 0
+        },
+        {
+          "speaker": "learner",
+          "text": "Ja, definitiv! Ich reise oft und will keine teuren \u00dcberraschungen erleben.",
+          "audioFile": "wingo_roaming_de_2__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 7472,
+          "duration": 5364,
+          "purpose": "question",
+          "dialogueIndex": 1
+        },
+        {
+          "speaker": "expert",
+          "text": "Perfekt! Stell dir vor, du gehst in den Urlaub und nach ein paar Minuten Surfen bekommst du eine horrende Rechnung. Genau das wollen wir vermeiden. Mit Wingo kannst du Reiseoptionen buchen, die 12 Monate g\u00fcltig sind. So bist du auch f\u00fcr zuk\u00fcnftige Reisen abgesichert.",
+          "audioFile": "wingo_roaming_de_3__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 13036,
+          "duration": 17352,
+          "purpose": "hook",
+          "dialogueIndex": 2
+        },
+        {
+          "speaker": "learner",
+          "text": "Das klingt praktisch! Wie funktioniert das genau?",
+          "audioFile": "wingo_roaming_de_4__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 30588,
+          "duration": 3204,
+          "purpose": "question",
+          "dialogueIndex": 3
+        },
+        {
+          "speaker": "expert",
+          "text": "Ganz einfach! Du kannst die Reiseoptionen in deinem Kundenportal myWingo aktivieren. Sie m\u00fcssen f\u00fcr mindestens 30 Tage gebucht werden, danach kannst du sie t\u00e4glich k\u00fcndigen. So hast du volle Flexibilit\u00e4t.",
+          "audioFile": "wingo_roaming_de_5__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 33992,
+          "duration": 13788,
+          "purpose": "explanation",
+          "dialogueIndex": 4
+        },
+        {
+          "speaker": "learner",
+          "text": "Und wie behalte ich den \u00dcberblick \u00fcber meinen Verbrauch?",
+          "audioFile": "wingo_roaming_de_6__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 47980,
+          "duration": 3132,
+          "purpose": "question",
+          "dialogueIndex": 5
+        },
+        {
+          "speaker": "expert",
+          "text": "Das ist kinderleicht! Du kannst deinen Verbrauch jederzeit im Kundenportal myWingo pr\u00fcfen. Au\u00dferdem kannst du dort auch kostenlos deine Roaming-Limite anpassen, selbst wenn du dich im Ausland befindest.",
+          "audioFile": "wingo_roaming_de_7__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 51312,
+          "duration": 12816,
+          "purpose": "explanation",
+          "dialogueIndex": 6
+        },
+        {
+          "speaker": "learner",
+          "text": "Okay, und was sind diese L\u00e4ndergruppen, von denen ich gelesen habe?",
+          "audioFile": "wingo_roaming_de_8__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 64328,
+          "duration": 4212,
+          "purpose": "question",
+          "dialogueIndex": 7
+        },
+        {
+          "speaker": "expert",
+          "text": "L\u00e4ndergruppen sind einfach eine Einteilung von L\u00e4ndern in Tarifzonen. Zum Beispiel geh\u00f6rt Deutschland zur L\u00e4ndergruppe 1, Australien zur L\u00e4ndergruppe 2 und China zur L\u00e4ndergruppe 4. Die genauen Tarife kannst du im Roaming-Tool auf der Wingo-Website pr\u00fcfen.",
+          "audioFile": "wingo_roaming_de_9__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 68740,
+          "duration": 16524,
+          "purpose": "explanation",
+          "dialogueIndex": 8
+        },
+        {
+          "speaker": "learner",
+          "text": "Das macht Sinn. Und wie sieht es mit den Datenpaketen aus?",
+          "audioFile": "wingo_roaming_de_10__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 85464,
+          "duration": 3852,
+          "purpose": "question",
+          "dialogueIndex": 9
+        },
+        {
+          "speaker": "expert",
+          "text": "F\u00fcr die EU/UK gibt es beispielsweise folgende Pakete: 500 MB f\u00fcr 9,90 \u20ac, 1 GB f\u00fcr 15,90 \u20ac, 5 GB f\u00fcr 42,90 \u20ac oder 10 GB f\u00fcr 64,90 \u20ac. Alle Pakete sind 12 Monate g\u00fcltig. Du kannst sie direkt in myWingo buchen.",
+          "audioFile": "wingo_roaming_de_11__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 89516,
+          "duration": 23184,
+          "purpose": "explanation",
+          "dialogueIndex": 10
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was, wenn ich mit meinem Abo wie Wingo Swiss oder Wingo Europe Pro im Ausland bin?",
+          "audioFile": "wingo_roaming_de_12__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 112900,
+          "duration": 5112,
+          "purpose": "question",
+          "dialogueIndex": 11
+        },
+        {
+          "speaker": "expert",
+          "text": "Mit Wingo Swiss kannst du unbegrenzt in der Schweiz surfen und telefonieren. Im Ausland musst du jedoch eine Reiseoption buchen. Mit Wingo Europe Pro nutzt du in der EU/UK 40 GB Daten und kannst unbegrenzt telefonieren und Nachrichten senden. F\u00fcr andere L\u00e4nder gibt es auch hier die Reiseoptionen.",
+          "audioFile": "wingo_roaming_de_13__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 118212,
+          "duration": 19836,
+          "purpose": "explanation",
+          "dialogueIndex": 12
+        },
+        {
+          "speaker": "learner",
+          "text": "Und was ist mit Anrufen oder Daten an Bord von Flugzeugen oder Schiffen?",
+          "audioFile": "wingo_roaming_de_14__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 138248,
+          "duration": 4320,
+          "purpose": "question",
+          "dialogueIndex": 13
+        },
+        {
+          "speaker": "expert",
+          "text": "Leider sind ausgehende Anrufe und Datennutzung an Bord von Schiffen, Flugzeugen oder F\u00e4hren nicht m\u00f6glich. Du kannst dich aber direkt beim Anbieter vor Ort informieren.",
+          "audioFile": "wingo_roaming_de_15__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 142768,
+          "duration": 10440,
+          "purpose": "answer",
+          "dialogueIndex": 14
+        },
+        {
+          "speaker": "learner",
+          "text": "Alles klar! Ich glaube, ich habe jetzt einen guten \u00dcberblick.",
+          "audioFile": "wingo_roaming_de_16__1__so_beh_ltst_du_auch_im_ausland_deine_kosten_im_griff.wav",
+          "startTime": 153408,
+          "duration": 4248,
+          "purpose": "summary",
+          "dialogueIndex": 15
+        }
+      ]
+    }
+  ]
+}

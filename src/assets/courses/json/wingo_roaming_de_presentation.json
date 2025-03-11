@@ -1,0 +1,118 @@
+{
+  "courseName": "wingo_roaming_de",
+  "sections": [
+    {
+      "title": "Welcome to Wingo Roaming De Course",
+      "type": "welcome",
+      "summary_points": [
+        "Welcome to your comprehensive Wingo Roaming De learning journey",
+        "Learn through the audio-visual presentation and by asking questions to the AI Buddy Assistant",
+        "Learn through practical examples and real-world scenarios",
+        "Master core concepts and best practices"
+      ]
+    },
+    {
+      "title": "Course Overview",
+      "type": "overview",
+      "metadata": {
+        "prerequisites": [
+          "Basic understanding of IT concepts",
+          "Familiarity with basic computing terms",
+          "No prior experience required"
+        ],
+        "learningGoals": [
+          "Understand fundamental concepts and services",
+          "Learn to work with core technologies",
+          "Master key terminology and principles",
+          "Gain practical implementation knowledge"
+        ],
+        "estimatedTime": "2 hours"
+      }
+    },
+    {
+      "title": "Section 1: 1. So beh\u00e4ltst du auch im Ausland deine Kosten im Griff",
+      "type": "section_header"
+    },
+    {
+      "title": "1. So beh\u00e4ltst du auch im Ausland deine Kosten im Griff",
+      "type": "content",
+      "summary_points": [
+        "Mit Wingo kannst du Reiseoptionen buchen, die 12 Monate g\u00fcltig sind, und diese \u00fcber das Kundenportal myWingo aktivieren und flexibel k\u00fcndigen.",
+        "Im Kundenportal myWingo kannst du deinen Verbrauch pr\u00fcfen und kostenlos Roaming-Limite anpassen, auch aus dem Ausland.",
+        "L\u00e4nder sind in Tarifzonen eingeteilt, die genauen Tarife und L\u00e4ndergruppen sind im Roaming-Tool auf der Wingo-Website einsehbar.",
+        "Datenpakete f\u00fcr die EU/UK sind verf\u00fcgbar und reichen von 500 MB bis 10 GB, w\u00e4hrend Wingo Swiss und Wingo Europe Pro unterschiedliche Konditionen f\u00fcr Auslandsnutzung bieten."
+      ]
+    },
+    {
+      "title": "Knowledge Check",
+      "type": "quiz",
+      "quiz_questions": [
+        {
+          "question": "Wie lange sind die Reiseoptionen von Wingo g\u00fcltig, nachdem sie gebucht wurden?",
+          "options": [
+            "1 Monat",
+            "6 Monate",
+            "12 Monate",
+            "24 Monate"
+          ],
+          "correct_answer": "12 Monate",
+          "explanation": "Die Reiseoptionen von Wingo sind 12 Monate g\u00fcltig, was bedeutet, dass sie auch f\u00fcr zuk\u00fcnftige Reisen genutzt werden k\u00f6nnen."
+        },
+        {
+          "question": "Wo kann man die Wingo Reiseoptionen aktivieren und verwalten?",
+          "options": [
+            "In der Wingo App",
+            "Im Kundenportal myWingo",
+            "Auf der Wingo Website",
+            "Am Schalter eines Wingo Stores"
+          ],
+          "correct_answer": "Im Kundenportal myWingo",
+          "explanation": "Reiseoptionen k\u00f6nnen im Kundenportal myWingo aktiviert und verwaltet werden. Dort kannst du auch deinen Verbrauch pr\u00fcfen und Roaming-Limite anpassen."
+        },
+        {
+          "question": "Welcher Aussage zu den L\u00e4ndergruppen-Tarifen von Wingo ist korrekt?",
+          "options": [
+            "Alle L\u00e4nder haben denselben Tarif.",
+            "Die L\u00e4ndergruppen k\u00f6nnen nicht auf der Wingo-Website eingesehen werden.",
+            "L\u00e4ndergruppen teilen L\u00e4nder in unterschiedliche Tarifzonen ein.",
+            "Deutschland geh\u00f6rt zur L\u00e4ndergruppe 4."
+          ],
+          "correct_answer": "L\u00e4ndergruppen teilen L\u00e4nder in unterschiedliche Tarifzonen ein.",
+          "explanation": "L\u00e4ndergruppen sind in verschiedene Tarifzonen unterteilt, z. B. Deutschland in L\u00e4ndergruppe 1 und China in L\u00e4ndergruppe 4. Die genauen Tarife k\u00f6nnen im Roaming-Tool auf der Wingo-Website gepr\u00fcft werden."
+        },
+        {
+          "question": "Welche Datenpaket-Option ist f\u00fcr die EU/UK NICHT verf\u00fcgbar?",
+          "options": [
+            "500 MB f\u00fcr 9,90 \u20ac",
+            "2 GB f\u00fcr 18,90 \u20ac",
+            "5 GB f\u00fcr 42,90 \u20ac",
+            "10 GB f\u00fcr 64,90 \u20ac"
+          ],
+          "correct_answer": "2 GB f\u00fcr 18,90 \u20ac",
+          "explanation": "F\u00fcr die EU/UK gibt es die Pakete 500 MB (9,90 \u20ac), 1 GB (15,90 \u20ac), 5 GB (42,90 \u20ac) und 10 GB (64,90 \u20ac). Ein 2-GB-Paket wird nicht angeboten."
+        },
+        {
+          "question": "Was passiert, wenn du mit deinem Wingo Swiss Abo im Ausland bist?",
+          "options": [
+            "Du kannst unbegrenzt Daten nutzen und telefonieren.",
+            "Du musst eine Reiseoption buchen, um Daten nutzen oder telefonieren zu k\u00f6nnen.",
+            "Du kannst nur Anrufe t\u00e4tigen, aber keine Daten nutzen.",
+            "Du kannst Daten nutzen, aber Anrufe sind nicht m\u00f6glich."
+          ],
+          "correct_answer": "Du musst eine Reiseoption buchen, um Daten nutzen oder telefonieren zu k\u00f6nnen.",
+          "explanation": "Mit dem Wingo Swiss Abo kannst du unbegrenzt in der Schweiz surfen und telefonieren, aber im Ausland ist eine Reiseoption erforderlich."
+        }
+      ]
+    },
+    {
+      "title": "Thank You!",
+      "type": "welcome",
+      "summary_points": [
+        "Thank you for attending this Wingo Roaming De course presentation",
+        "You can revisit this presentation anytime through the course page on the dashboard",
+        "For any questions about this topic, feel free to ask our AI Buddy Assistant",
+        "Please provide your valuable feedback by talking to the assistant"
+      ]
+    }
+  ]
+}

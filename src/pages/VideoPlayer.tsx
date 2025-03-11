@@ -55,6 +55,11 @@ const VideoPlayer: React.FC<VideoPlayerProps> = () => {
   const SEPARATOR_DURATION = 5; // 5 seconds for each section separator
 
   const getVideoUrl = (courseName: string) => {
+    // Use the video path from location.state if available
+    if (location.state?.video) {
+      return `/${location.state.video}`;
+    }
+    // Fallback to the old behavior
     return `/video/${courseName}.mp4`;
   };
 
